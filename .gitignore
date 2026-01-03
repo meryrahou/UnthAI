@@ -2,6 +2,7 @@ venv/
 __pycache__/
 *.png
 *.html
+!PREPROCESSING_GUIDE_PRETTY.html
 .DS_Store
 scraped_video_ids.txt
 tiktok_dataset.csv
