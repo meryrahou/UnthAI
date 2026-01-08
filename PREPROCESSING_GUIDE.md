@@ -15,9 +15,10 @@ This guide outlines the technical steps required to prepare the `tiktok_final_da
 - **Logic**: Count tokens; if `tag_count == total_token_count`, drop the row.
 
 ### Handle Replies & Prefixes
-- **Identify**: Replies often start with "Replying to @username: " or just "@username" at the beginning of the string.
-- **Action**: Strip these prefixes using regex to focus on the message intent.
-- **Example**: `^(@[\w.]+[: ]*|Replying to @[\w.]+[: ]*)` -> `""`
+- **Identify**: Replies often start with "Replying to @username: " or just "@username" at the beginning of the string, or contain concatenated tags like `@user1@user2`.
+- **Action**: Strip these prefixes and all mentions using a robust regex that captures the `@` and everything until the next space or another `@`.
+- **Regex**: `r"@[^\s@]*"`
+- **Example**: `^(@[\w.]+[: ]*|Replying to @[\w.]+[: ]*)` -> `""` (Legacy prefix handling, now subsumed by the robust regex)
 
 ### Final Dataset Preparation
 To ensure the dataset is ready for model training:
@@ -29,32 +30,29 @@ To ensure the dataset is ready for model training:
 
 ## 2. Text Normalization
 
-### Punctuation Intensity (`...`, `???`, `!!!`)
-- **Strategy**: Do not delete! These are major sentiment signals indicating intensity.
-- **Normalization**: Map sequences like `!!!!!!!` or `??????` to specific tokens like `[EXTREME_INTENSITY]` or simply `[!]`. This preserves the signal while reducing vocabulary size.
+### Unified Punctuation & Spacing
+- **Collapse Intensity**: Sequences of multiple identical punctuation marks (e.g., `!!!`, `???`, `...`) should be collapsed into a **single mark followed by a space**.
+    - Example: `Amazing!!!` -> `Amazing! `
+    - Example: `Wait... what???` -> `Wait. what? `
+- **Space after Punctuation**: Ensure every punctuation mark (., !, ?, ,) is followed by a single space for better tokenization.
 
-### Emojis: Tiered Task-Specific Mapping
-To maximize signal across our three classification tasks, we use different mapping strategies depending on the objective:
+### Unified Emoji Mapping
+We combine Intent and Topic signals into a single mapping layer. Sentiment-specific tokens ([POS]/[NEG]) are removed to focus on functional and domain drivers.
 
-#### 1. Sentiment Mode
-*Goal: Capture emotional valence.*
-- **[POS]**: ❤️, 🥰, 😍, 🔥, 😋, 😂, 👏, 💯, 👍, 😁, 🤩, 😊, 🥳, 💪, 🤲, 🌹, 💐, 💎, 🇩🇿
-- **[NEG]**: 🤮, 😡, 👎, 💔, 💀, 💸, 😭, 😢, 😒, 😑, 😱
-
-#### 2. Intent Mode
+#### 1. Intent Layer
 *Goal: Capture functional triggers.*
-- **[APPRECIATION]**: ❤️, 🥰, 😂, 👏, 🤲, 🌹, 💐
-- **[COMPLAINT]**: 🤮, 😡, 👎, 💔, 💀, 💸, 😒, 😑
-- **[INQUIRY]**: ❓, ❔, 🤔, 🧐, 👀, 📍, 📞, 🕒
+- **[APPRECIATION]**: ❤️, 🥰, 👏, 🤲, 🌹, 💐, 😂, 😍, 😁, 🤣, 🔥, 👍, ♥️, 💪, 😅, ✨, 💯, 🙏, 🤩, 😘, ☺️, 🤍, 😎, 😻, 🫡, 🫶, 🌷, 😄, 🌸, 🤗, 💋, 🌺, 🇩🇿
+- **[COMPLAINT]**: 🤮, 😡, 👎, 💔, 💀, 💸, 😒, 😑, 😭, 😢, ❌, 😱, 😔, 😞, 😩, 🤢, 😫, 🥀, ☹️, 😠, 😖, 😰, 🤬
+- **[INQUIRY]**: ❓, ❔, 🤔, 🧐, 👀, 📍, 📞, 🕒, 🫣
 - **[RECOMMENDATION]**: 👌, 🔝, 🌟, ✨, ✅, 🥇, 👑
-- **[OUT_OF_SCOPE]**: Emojis that don't fit the above (e.g., random animals, flags other than 🇩🇿).
+- **[OUT_OF_SCOPE]**: Emojis that don't fit the above categories.
 
-#### 3. Topic Mode
+#### 2. Topic Layer
 *Goal: Capture domain specific keywords.*
-- **[BOUFFE]**: 🥘, 🍔, 🍕, 🥙, 🥗, 🍦, 😋, 🤤, 🍜, 🍣, 🥩
+- **[BOUFFE]**: 🥘, 🍔, 🍕, 🥙, 🥗, 🍦, 😋, 🤤, 🍜, 🍣, 🥩, 🍰, 🥐, 🥪, 🌭, 🍟, 🌮, 🦐, 🦞, 🥯, 🍯, 🍓, 🍉, 🍒, 🍋, 🍎, 🥑, 🌯, 🍗, 🍖
 - **[PRICE]**: 💸, 💰, 💳, 💶, 💵
-- **[TREATMENT]**: 🧑‍🍳, 👨‍🍳, 👋, 🤝, 🫂
-- **[SERVICE]**: 🕒, ⏳, 🛵, 🍴, 🍽️
+- **[TREATMENT]**: 🧑‍🍳, 👨‍🍳, 👋, 🤝, 🫂, 👋🏻
+- **[SERVICE]**: 🕒, ⏳, 🛵, 🍴, 🍽️, 🏃
 - **[ENDROIT]**: 📍, 🧼, 🧹, 📸, 🤳, ✨, 🌟, 🏝
 - **[DELIVERY]**: 🛵, 🚚, 📦
 - **[UNKNOWN]**: Emojis not mapped to a specific topic area.
@@ -65,20 +63,20 @@ To maximize signal across our three classification tasks, we use different mappi
 
 ...
 
-## 4. Intent & Multimodal Classification
+## 4. Intent & Topic Classification
 
-We are moving past simple sentiment into **Intent-Based Multimodal Classification**.
+We are using **Unified Multi-Label Classification** to identify both what the user is talking about (Topic) and why they are posting (Intent).
 
 ### Intent Categories
-- **appreciation**: Generalized positive praise without detailed specifics.
-- **complaint**: Expressing a specific failure in food, price, or service.
-- **inquiry**: Asking for info (location, price list, menu items).
-- **recommendation**: Actively suggesting the place to others or warning them away.
-- **out of scope**: Irrelevant or general comments.
+- **appreciation**: Generalized positive praise.
+- **complaint**: Specific failure in food, price, or service.
+- **inquiry**: Asking for info (location, menu).
+- **recommendation**: Suggesting the place to others.
+- **out of scope**: Irrelevant comments.
 
 ### Topic Categories
 - **price**: Costs and value.
-- **TREATMENT (personnel)**: Quality of staff interaction.
+- **TREATMENT (personnel)**: Staff interaction.
 - **bouffe**: Food and drink quality.
 - **service (waiting time)**: Efficiency and speed.
 - **endroit (propreté)**: Cleanliness and vibes.
@@ -93,9 +91,9 @@ We are moving past simple sentiment into **Intent-Based Multimodal Classificatio
 | :--- | :--- | :--- |
 | `[GIF]` | Drop Row | (NULL) |
 | `@mery Check it out` | Remove tag | `Check it out` |
-| `Amazing 🔥😍` | Map to token | `Amazing [POS_EMOJI]` |
-| `Waiters were fast` | Factual praise | `Intent=Review, Sentiment=Neutral` |
-| `So expensive 💸!!!` | Map flags | `So expensive [NEG_EMOJI] [INTENSE]` |
+| `So expensive!!!` | Collapse & Space | `So expensive! ` |
+| `Good?Yes` | Add Space | `Good? Yes` |
+| `Pizza 🍕🤤` | Unified Tags | `Pizza [BOUFFE]` |
 
 ---
 > [!TIP]
