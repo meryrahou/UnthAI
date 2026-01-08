@@ -1,0 +1,57 @@
+final_id,comment_id,platform,source_name,comment_text,date,likesCount,Topic_REVIEWED,sentiment,intent,raw_text
+1,28900,tiktok,@snacky_time_kouba,السعر,2026-01-02T18:47:52.389954,0,,,,السعر
+2,51566,tiktok,@broaster_chiken,في حالة درك وين خرجت من عندوا الغلا وبرك النوعية في حالة أنا عن نفسي ماعجبنيش السرفيس حدث ولا حرج,2026-01-02T21:00:01.526232,0,,,,في حالة درك وين خرجت من عندوا الغلا وبرك النوعية في حالة أنا عن نفسي ماعجبنيش السرفيس حدث ولا حرج
+3,13822,Facebook,Restaurant San Benito,الحوت في بجاية خير bon prix,2025-12-29T20:32:45.000Z,0,"price,food",,,الحوت في بجاية خير bon prix
+4,7679,Google Maps,Restaurant À Petit Feu,"Accueil : Parfait & Chaleureux
+Ambiance : Extraordinaire & Magnifique
+Gastronomie : Délicieux & Désireux",2023-11-23T08:58:16.174Z,0,"food,treatment,place",,,"Accueil : Parfait & Chaleureux
+Ambiance : Extraordinaire & Magnifique
+Gastronomie : Délicieux & Désireux"
+5,45348,tiktok,@budz,mon cousin a mieux a Hydra quartier des ambassades,2026-01-02T20:15:56.664381,0,,,,mon cousin a mieux a Hydra quartier des ambassades
+6,62774,tiktok,@allechante,Le prix  [INTENSE],2026-01-02T21:30:57.321127,0,,,,Le prix ????
+7,24018,tiktok,@spotter.dz,هدا ريسطورون تع عبدو رحا وقيل,2026-01-02T18:27:24.951449,0,,,,هدا ريسطورون تع عبدو رحا وقيل
+8,53676,tiktok,@guellil._.tasnim,احكيلنا على البري خو,2026-01-02T21:08:10.137854,3,,,,احكيلنا على البري خو 🤣🤣
+9,42070,tiktok,@street_food,في الدار النظافة,2026-01-02T19:57:59.469248,0,,,,في الدار النظافة 😏
+10,51718,tiktok,@quick_bite,هدا فيلم رعب,2026-01-02T21:01:56.786376,9,,,,هدا فيلم رعب 😂😂
+11,6073,Google Maps,Casbah Istanbul,Très bon mais le poulet est meilleur,2023-08-15T23:22:53.232Z,0,food,,,Très bon mais le poulet est meilleur
+12,55044,tiktok,@luestro_annaba,تكوموندي انت وزهرك,2026-01-02T21:12:19.312138,1,,,,تكوموندي انت وزهرك😂
+13,1125,instagram,jardina.coffee,Les meilleures crèmes brulées que j’ai mangé de ma vie,2025-08-22T21:09:56.000Z,2,unknown,,,Les meilleures crèmes brulées que j’ai mangé de ma vie 😍
+14,6241,Google Maps,Casbah Istanbul,التجربة كانت سيئة فلم اخرج بانطباع جيد من المطعم بسبب المسؤول التركي الذي يتعامل بطريقة غير جيدة حيث يقوم بحمل الصحون من امامك قبل سؤالك عن حاجتك لاي شيء آخر وهذا التصرف الغريب جعلني اقرر بعدم القدوم لهذا المطعم مرة اخرى,2022-08-22T11:25:07.095Z,1,unknown,,,التجربة كانت سيئة فلم اخرج بانطباع جيد من المطعم بسبب المسؤول التركي الذي يتعامل بطريقة غير جيدة حيث يقوم بحمل الصحون من امامك قبل سؤالك عن حاجتك لاي شيء آخر وهذا التصرف الغريب جعلني اقرر بعدم القدوم لهذا المطعم مرة اخرى
+15,3039,Google Maps,تاج محل بن عكنون,"C'était bon, les prix comme partout ailleurs (je parle des restos indiens), la déco est belle, les sauces sont exquises. Je remercie le personnel qui est aux petits soins, les serveurs sont vraiment très gentils, professionnels et rapides. Les plats sont copieux. Les pains naan étaient trop croustillants à mon goût, je préfère quand ils sont tendres mais sinon belle expérience.",2025-01-05T15:59:24.524Z,0,"price,food,service",,,"C'était bon, les prix comme partout ailleurs (je parle des restos indiens), la déco est belle, les sauces sont exquises. Je remercie le personnel qui est aux petits soins, les serveurs sont vraiment très gentils, professionnels et rapides. Les plats sont copieux. Les pains naan étaient trop croustillants à mon goût, je préfère quand ils sont tendres mais sinon belle expérience."
+16,38284,tiktok,@kfc,ساهلة قاطع,2026-01-02T19:39:30.621297,0,,,,ساهلة قاطع
+17,49508,tiktok,@kik.sfood21,والله ياخوتي من لبريستيج بزاف نخاف لاندخل,2026-01-02T20:41:12.870552,1,,,,والله ياخوتي من لبريستيج بزاف نخاف لاندخل😅
+18,22586,tiktok,@le_perchoir,Bordj kiffan c'était super bon,2026-01-02T18:25:08.690579,3,,,,Bordj kiffan c'était super bon
+19,35510,tiktok,@sinai,Magnifique et encore frère tout les plats ne sont pas encore évoqué,2026-01-02T19:28:15.389410,1,,,,Magnifique 😍et encore frère tout les plats ne sont pas encore évoqué 😉
+20,61520,tiktok,@denatelo_annaba,les prix très élevés plein de cafards par tout je vous jure,2026-01-02T21:25:08.387488,0,,,,les prix très élevés plein de cafards par tout je vous jure
+21,12736,Facebook,Restaurant Rais,سندويتش صح يبان هايل ولذيذ ومقردع باللحم ولكن في نفس الوقت أكيد يقردع الجيب وهامش الربح فيه مبالغ فيه جدا لدرجة الهربة تسلك ههههه,2025-10-13T21:18:08.000Z,0,unknown,,,سندويتش صح يبان هايل ولذيذ ومقردع باللحم ولكن في نفس الوقت أكيد يقردع الجيب وهامش الربح فيه مبالغ فيه جدا لدرجة الهربة تسلك ههههه
+22,12691,Facebook,Restaurant Rais,Walitou ri trawnou,2025-10-12T21:58:25.000Z,0,unknown,,,Walitou ri trawnou 🤢🤢🤢🤢
+23,6995,Google Maps,American Burger Factory,"Nous avons été très déçus par notre passage dans ce restaurant hier soir. Voici notre retour d’expérience :
+
+Les sandwichs étaient froids et sans aucun goût.
+
+Suite à notre repas, trois personnes sur six de notre groupe sont tombées malades dès le lendemain matin : vomissements, diarrhée, fortes douleurs au ventre.
+
+Il s’agit clairement d’une intoxication alimentaire.
+
+Nous déconseillons fortement ce restaurant. À fuir absolument pour votre santé !",2025-07-14T10:20:10.580Z,0,unknown,,,"Nous avons été très déçus par notre passage dans ce restaurant hier soir. Voici notre retour d’expérience :
+
+Les sandwichs étaient froids et sans aucun goût.
+
+Suite à notre repas, trois personnes sur six de notre groupe sont tombées malades dès le lendemain matin : vomissements, diarrhée, fortes douleurs au ventre.
+
+Il s’agit clairement d’une intoxication alimentaire.
+
+Nous déconseillons fortement ce restaurant. À fuir absolument pour votre santé !"
+24,1449,instagram,mimas_donuts,اففضضضضللل دونات فالججججججزززائر [APPRECIATION],2025-06-21T00:59:28.000Z,3,unknown,,,اففضضضضللل دونات فالججججججزززائر❤️😭😭😭😭😭😭😭
+25,70938,tiktok,@paradou_restaurant,عرسنا فيها في 2002,2026-01-02T22:04:52.707337,1,,,,عرسنا فيها في 2002
+26,1167,instagram,L’ENTRACTE,Les prix svp,2025-07-15T23:10:58.000Z,0,price,,,Les prix svp
+27,57580,tiktok,@_le216_,راجلها نحسو نبحبهاش كيما حبها للمرحوم محمد ربي يرحمو حتى هي محبت حتى واحد من محمد الله يرحمو [APPRECIATION],2026-01-02T21:17:27.096168,1,,,,راجلها نحسو نبحبهاش كيما حبها للمرحوم محمد ربي يرحمو حتى هي محبت حتى واحد من محمد الله يرحمو🤲
+28,2502,Google Maps,HichamCook Grill House,الطعام لذيذ وخدمة ممتاز اجواء روعه,2024-05-13T13:10:20.077Z,0,unknown,,,الطعام لذيذ وخدمة ممتاز اجواء روعه
+29,59848,tiktok,@oscar_restaurant,c'est trop cher,2026-01-02T21:22:05.755980,0,,,,c'est trop cher
+30,8647,Google Maps,American Burger Factory,"#American_Burger …..franchement je valide a 100% super bon
+Service 10/10
+Propreté…..",2022-01-11T18:57:15.654Z,0,"food,service,place",,,"#American_Burger …..franchement je valide a 100% super bon
+Service 10/10
+Propreté….."
+31,16106,tiktok,@mardoum,رني هنا كي تغيبلك عيطلي,2026-01-02T18:08:03.913148,0,,,,رني هنا كي تغيبلك عيطلي 🤤
+32,37110,tiktok,@restaurant.madala,prix abordable pas cher du tout au vue la delice des plats,2026-01-02T19:34:44.959958,2,,,,prix abordable pas cher du tout au vue la delice des plats
