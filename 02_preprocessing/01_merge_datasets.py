@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-files = ["tiktok_dataset.csv", "tiktok_dataset_single.csv"]
+files = ["../01_collection/tiktok_dataset.csv", "../01_collection/tiktok_dataset_single.csv"]
 dfs = []
 
 for f in files:
