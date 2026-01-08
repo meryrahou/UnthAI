@@ -19,6 +19,12 @@ This guide outlines the technical steps required to prepare the `tiktok_final_da
 - **Action**: Strip these prefixes using regex to focus on the message intent.
 - **Example**: `^(@[\w.]+[: ]*|Replying to @[\w.]+[: ]*)` -> `""`
 
+### Final Dataset Preparation
+To ensure the dataset is ready for model training:
+- **Text Deduplication**: Drop duplicate rows based on the `comment_text` column to remove redundant signals.
+- **Shuffling**: Randomly shuffle the final rows to ensure that different restaurant sentiments are mixed, avoiding bias during training batches.
+- **ID Reset**: After shuffling and deduplicating, assign a new sequential `id` column (e.g., 1 to N) to provide a clean reference for each row.
+
 ---
 
 ## 2. Text Normalization
@@ -27,45 +33,57 @@ This guide outlines the technical steps required to prepare the `tiktok_final_da
 - **Strategy**: Do not delete! These are major sentiment signals indicating intensity.
 - **Normalization**: Map sequences like `!!!!!!!` or `??????` to specific tokens like `[EXTREME_INTENSITY]` or simply `[!]`. This preserves the signal while reducing vocabulary size.
 
-### Emojis: Selective Mapping & Noise Reduction
-We will adopt a **selective mapping** strategy based on the restaurant/food theme:
-- **Action**: Map high-signal emojis to tokens and **delete all other emojis** (e.g., flags, random objects, unrelated symbols).
+### Emojis: Tiered Task-Specific Mapping
+To maximize signal across our three classification tasks, we use different mapping strategies depending on the objective:
 
-| Category | Emojis | Token |
-| :--- | :--- | :--- |
-| **Positive** | ❤️, 😍, 🔥, 😋, 🤤, 👌, 💯, ✨, 🌟, 🔝, 👍, 👏, 🥰, 🥘, 🍔, 🍕, 🥙, 🥗, 🌮, 🍗, 🍡, 🍱, 🥧, 🍰, 🍦, 🥂 | `[POS_EMOJI]` |
-| **Negative** | 🤮, 🤢, 😡, 👎, 💸, 📉, 🚫, 💀, 💩, 🤡, 🙄, 😤, 🤬, 🚮, 💔 | `[NEG_EMOJI]` |
-| **Neutral** | 📍, 📞, 🕒, 🚗, 🛵, 🍴, ☕, 🥤, 🍨, 🥖, 🧂 | `[NEUT_EMOJI]` |
+#### 1. Sentiment Mode
+*Goal: Capture emotional valence.*
+- **[POS]**: ❤️, 🥰, 😍, 🔥, 😋, 😂, 👏, 💯, 👍, 😁, 🤩, 😊, 🥳, 💪, 🤲, 🌹, 💐, 💎, 🇩🇿
+- **[NEG]**: 🤮, 😡, 👎, 💔, 💀, 💸, 😭, 😢, 😒, 😑, 😱
+
+#### 2. Intent Mode
+*Goal: Capture functional triggers.*
+- **[APPRECIATION]**: ❤️, 🥰, 😂, 👏, 🤲, 🌹, 💐
+- **[COMPLAINT]**: 🤮, 😡, 👎, 💔, 💀, 💸, 😒, 😑
+- **[INQUIRY]**: ❓, ❔, 🤔, 🧐, 👀, 📍, 📞, 🕒
+- **[RECOMMENDATION]**: 👌, 🔝, 🌟, ✨, ✅, 🥇, 👑
+- **[OUT_OF_SCOPE]**: Emojis that don't fit the above (e.g., random animals, flags other than 🇩🇿).
+
+#### 3. Topic Mode
+*Goal: Capture domain specific keywords.*
+- **[BOUFFE]**: 🥘, 🍔, 🍕, 🥙, 🥗, 🍦, 😋, 🤤, 🍜, 🍣, 🥩
+- **[PRICE]**: 💸, 💰, 💳, 💶, 💵
+- **[TREATMENT]**: 🧑‍🍳, 👨‍🍳, 👋, 🤝, 🫂
+- **[SERVICE]**: 🕒, ⏳, 🛵, 🍴, 🍽️
+- **[ENDROIT]**: 📍, 🧼, 🧹, 📸, 🤳, ✨, 🌟, 🏝
+- **[DELIVERY]**: 🛵, 🚚, 📦
+- **[UNKNOWN]**: Emojis not mapped to a specific topic area.
 
 ---
 
-## 3. Language & Script Filtering
+## 3. Language & Script Filtering...
 
-### Script Enforcement
-Since your target is Algeria, we keep only **Arabic** and **Latin** (French/English/Arabizi) characters.
-- **Action**: Use a library like `langid` or character set checks to remove comments containing non-target scripts (Cyrillic, Asian scripts, etc.).
-- **Symbol Check**: Remove comments consisting *only* of symbols/punctuation with no actual text.
-
----
+...
 
 ## 4. Intent & Multimodal Classification
 
 We are moving past simple sentiment into **Intent-Based Multimodal Classification**.
 
-### The Objective
-Identify the **Intent** of the user. This identifies the *driver* of the feedback, providing more actionable insights.
-
-### Multimodal Layers
-1. **Text Layer**: BERT/MARBERT embeddings for semantic meaning.
-2. **Emoji Layer**: Categorized tokens (`[POS_EMOJI]`, etc.) to weight emotional intent.
-3. **Punctuation Layer**: Mapping intensity signals to flags like `[INTENSE]`.
-
 ### Intent Categories
-- **Review**: Sharing a personal experience or opinion on a visit.
-- **Inquiry**: Asking for info (location, price list, menu items).
-- **Recommendation**: Actively suggesting the place to others or warning them away.
-- **Complaint**: Expressing a specific failure in food, price, or service.
-- **Appreciation**: Generalized positive praise without detailed specifics.
+- **appreciation**: Generalized positive praise without detailed specifics.
+- **complaint**: Expressing a specific failure in food, price, or service.
+- **inquiry**: Asking for info (location, price list, menu items).
+- **recommendation**: Actively suggesting the place to others or warning them away.
+- **out of scope**: Irrelevant or general comments.
+
+### Topic Categories
+- **price**: Costs and value.
+- **TREATMENT (personnel)**: Quality of staff interaction.
+- **bouffe**: Food and drink quality.
+- **service (waiting time)**: Efficiency and speed.
+- **endroit (propreté)**: Cleanliness and vibes.
+- **delivery**: Home delivery services.
+- **unknown**: Topic not clearly identified.
 
 ---
 
