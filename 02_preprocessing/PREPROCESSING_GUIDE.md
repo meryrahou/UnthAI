@@ -59,29 +59,24 @@ We combine Intent and Topic signals into a single mapping layer. Sentiment-speci
 
 ---
 
-## 3. Language & Script Filtering...
+## 4. Manual Annotation & Targets
 
-...
+The dataset in `03_annotation/` is prepared for manual labeling across 6 primary topic dimensions and 4 intent categories.
 
-## 4. Intent & Topic Classification
+### Annotation Columns (Topic)
+Assign `1` if the comment discusses the topic, or leave empty if not.
+- **food**: Food quality, taste, temperature, portions.
+- **service**: Speed, professionalism, wait times.
+- **place**: Cleanliness, atmosphere, location, decor.
+- **delivery**: Delivery speed, packaging, availability.
+- **price**: Cost, value for money, payment issues.
+- **treatment**: Staff behavior, hospitality, welcoming.
 
-We are using **Unified Multi-Label Classification** to identify both what the user is talking about (Topic) and why they are posting (Intent).
-
-### Intent Categories
+### Intent Categories (Targets)
 - **appreciation**: Generalized positive praise.
 - **complaint**: Specific failure in food, price, or service.
 - **inquiry**: Asking for info (location, menu).
 - **recommendation**: Suggesting the place to others.
-- **out of scope**: Irrelevant comments.
-
-### Topic Categories
-- **price**: Costs and value.
-- **TREATMENT (personnel)**: Staff interaction.
-- **bouffe**: Food and drink quality.
-- **service (waiting time)**: Efficiency and speed.
-- **endroit (propreté)**: Cleanliness and vibes.
-- **delivery**: Home delivery services.
-- **unknown**: Topic not clearly identified.
 
 ---
 

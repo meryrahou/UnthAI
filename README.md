@@ -20,9 +20,12 @@ The project is organized into logical phases:
 - `dataset.csv`: The unified dataset ready for the pipeline.
 - `dataset_preprocessed.csv`: The final, high-quality output for model training.
 
-### 📂 [03_modeling/](file:///Users/mery/GitHub/UnthAI/03_modeling/)
-*Upcoming Phase*
-- Reserved for sentiment analysis and intent classification models.
+### 📂 [03_annotation/](file:///Users/mery/GitHub/UnthAI/03_annotation/)
+*Manual Labeling Phase*
+- `04_annotation_tool.py`: Interactive web-based annotation tool.
+- `annotation_part_1.csv` ... `annotation_part_4.csv`: Partitioned datasets for team annotation.
+- `01_apply_annotation_schema.py`: Utility script for schema maintenance.
+- `03_split_dataset.py`: Script used for partitioning.
 
 ---
 
