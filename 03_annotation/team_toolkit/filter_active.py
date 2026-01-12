@@ -20,13 +20,15 @@ def filter_active(batch_file):
     
     active_ids = ai_df.loc[mask, 'comment_id'].tolist()
     
-    df_active = df[df['comment_id'].isin(active_ids)]
+    df_active = df[df['comment_id'].isin(active_ids)].head(100)
     
     output_file = batch_file.replace(".csv", "_active.csv")
     df_active.to_csv(output_file, index=False)
     
     # Also create a matching _ai.csv for the tool to load suggestions
-    ai_active = ai_df[ai_df['comment_id'].isin(active_ids)]
+    # Filter ai_active to match the 100 rows in df_active
+    final_active_ids = df_active['comment_id'].tolist()
+    ai_active = ai_df[ai_df['comment_id'].isin(final_active_ids)]
     ai_active.to_csv(output_file.replace(".csv", "_ai.csv"), index=False)
     
     print(f"✅ Filtered {len(df_active)} active suggestions (out of {len(df)} total).")
