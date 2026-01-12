@@ -59,9 +59,14 @@ if os.path.exists(AI_FILE):
 
 app = FastAPI()
 
+# In-memory session state for skipped indices
+skipped_indices = set()
+
 def get_next_index():
     labeled = df['out_of_scope'].isin(['True', 'False', True, False])
-    next_idx = df[~labeled].index.min()
+    # Filter out both labeled rows and indices skipped in this session
+    unlabeled_mask = ~labeled & ~df.index.isin(skipped_indices)
+    next_idx = df[unlabeled_mask].index.min()
     return next_idx if not pd.isna(next_idx) else None
 
 @app.get("/", response_class=HTMLResponse)
@@ -129,6 +134,9 @@ async def read_item(request: Request, index: int = None):
                 if (e.key.toLowerCase() === 'd') {{
                     document.querySelector('form').submit();
                 }}
+                if (e.key.toLowerCase() === 'k') {{
+                    window.location.href = '/skip?index={index}';
+                }}
             }});
         </script>
     </head>
@@ -170,9 +178,9 @@ async def read_item(request: Request, index: int = None):
                 <div class="footer">
                     <div class="nav-links">
                         <a href="/?index={index-1}" style="color: #8b949e; text-decoration: none;">← Previous</a> &nbsp;&nbsp;
-                        <a href="/?index={index+1}" style="color: #8b949e; text-decoration: none;">Skip →</a>
+                        <a href="/skip?index={index}" style="color: #8b949e; text-decoration: none;">Skip →</a>
                         <div class="shortcut-hint">
-                            <b>S</b>: Accept AI + Save | <b>D</b>: Save & Next
+                            <b>S</b>: Accept AI + Save | <b>D</b>: Save & Next | <b>K</b>: Skip
                         </div>
                     </div>
                     <button type="submit">SAVE & NEXT (D)</button>
@@ -219,6 +227,13 @@ async def save_item(request: Request, index: int = Form(...)):
         except Exception as e:
             print(f"⚠️ Sync to Master failed: {e}")
     
+    next_idx = get_next_index()
+    return RedirectResponse(url=f"/?index={next_idx}" if next_idx is not None else "/", status_code=303)
+
+@app.get("/skip")
+async def skip_item(index: int):
+    skipped_indices.add(index)
+    print(f"⏭️ Skipped comment index {index} for this session.")
     next_idx = get_next_index()
     return RedirectResponse(url=f"/?index={next_idx}" if next_idx is not None else "/", status_code=303)
 
