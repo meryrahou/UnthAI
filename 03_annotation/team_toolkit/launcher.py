@@ -53,7 +53,7 @@ if __name__ == "__main__":
             print(f"📦 No file provided. Pulling ALL unlabeled rows from {MAIN_DATASET}...")
             df_master = pd.read_csv(MAIN_DATASET)
             # Find rows where out_of_scope is completely empty/NaN
-            unlabeled = df_master[~df_master['out_of_scope'].isin(['True', 'False', True, False])]
+            unlabeled = df_master[~df_master['out_of_scope'].isin(['True', 'False', True, False])].head(1000)
             if len(unlabeled) == 0:
                 print("🎉 No unlabeled rows left in Master! You are done.")
                 sys.exit()
