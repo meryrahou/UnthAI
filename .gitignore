@@ -5,3 +5,4 @@ __pycache__/
 01_collection/scraped_video_ids.txt
 01_collection/tiktok_dataset.csv
 01_collection/tiktok_dataset_single.csv
+*.pt

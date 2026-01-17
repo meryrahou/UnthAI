@@ -10,7 +10,7 @@ To launch the interactive annotation tool, follow these steps:
 Ensure you have the required Python packages installed. From the root of the project, run:
 ```bash
 source venv/bin/activate
-pip install fastapi uvicorn pandas python-multipart
+pip install fastapi uvicorn pandas python-multipart jinja2 matplotlib
 ```
 
 ### 2. Launch the tool
