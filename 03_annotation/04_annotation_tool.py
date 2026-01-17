@@ -7,15 +7,36 @@ import uvicorn
 app = FastAPI()
 
 import argparse
+import sys
 
 # Setup CLI arguments
 parser = argparse.ArgumentParser(description="UnthAI Annotation Tool")
-parser.add_argument("file", nargs="?", default="annotation_part_1.csv", help="Name of the CSV file to annotate (inside 03_annotation/)")
+parser.add_argument(
+    "file",
+    nargs="?",
+    default="annotation_part_1.csv",
+    help="Name of the CSV file to annotate (inside 03_annotation/)"
+)
 args = parser.parse_args()
 
-# Configuration
+# Get the filename or full path from argument
 PART_NAME = args.file
-PART_FILE = os.path.join("/Users/mery/GitHub/UnthAI/03_annotation", PART_NAME)
+
+# If a full path is provided, use it as is
+if os.path.isabs(PART_NAME):
+    PART_FILE = PART_NAME
+else:
+    # Otherwise, assume it’s in the same folder as this script
+    SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+    PART_FILE = os.path.join(SCRIPT_DIR, PART_NAME)
+
+# Sanity check
+if not os.path.exists(PART_FILE):
+    print(f"Error: File {PART_FILE} not found!")
+    sys.exit(1)
+
+print(f"Using CSV file: {PART_FILE}")
+
 # Mapping for UI Display vs Dataset Column
 CATEGORY_MAP = {
     'price': 'Price',
@@ -127,6 +148,28 @@ async def read_item(request: Request, index: int = None):
             .status-badge {{ background: #21262d; padding: 4px 8px; border-radius: 4px; font-size: 0.7em; font-weight: 800; border: 1px solid #30363d; }}
             .status-labeled {{ color: #00e676; border-color: #00e676; }}
         </style>
+        <script>
+            // JS to uncheck "None" if any other intent is checked
+            function setupNoneLogic() {{
+                const sections = document.querySelectorAll('.section');
+                sections.forEach(section => {{
+                    const checkboxes = section.querySelectorAll('input[type="checkbox"]');
+                    checkboxes.forEach(cb => {{
+                        cb.addEventListener('change', () => {{
+                            if (cb.value !== 'None' && cb.checked) {{
+                                const noneBox = section.querySelector('input[value="None"]');
+                                if (noneBox) noneBox.checked = false;
+                            }} 
+                            if ([...checkboxes].filter(c => c.checked && c.value !== 'None').length === 0) {{
+                                const noneBox = section.querySelector('input[value="None"]');
+                                if (noneBox) noneBox.checked = true;
+                            }}
+                        }});
+                    }});
+                }});
+            }}
+            window.addEventListener('DOMContentLoaded', setupNoneLogic);
+        </script>
     </head>
     <body>
         <div class="container">
@@ -156,11 +199,12 @@ async def read_item(request: Request, index: int = None):
                         <h3>{CATEGORY_MAP[cat]}</h3>
                         <div class="options">
                             {"".join([f'''
-                            <label class="{opt.lower()}">
-                                <input type="radio" name="{cat}" value="{opt}" {'checked' if (df.at[index, cat] == opt or (df.at[index, cat] == "" and opt == "None")) else ''} required>
-                                {opt.capitalize()}
-                            </label>
-                            ''' for opt in OPTIONS])}
+                                <label class="{opt.lower()}">
+                                    <input type="checkbox" name="{cat}[]" value="{opt}" 
+                                    {'checked' if (opt in df.at[index, cat].split(",") if df.at[index, cat] else (opt == "None")) else ''}>
+                                    {opt.capitalize()}
+                                </label>
+                                ''' for opt in OPTIONS])}
                         </div>
                     </div>
                     ''' for cat in DISPLAY_ORDER])}
@@ -185,19 +229,21 @@ async def save_item(request: Request, index: int = Form(...)):
     form_data = await request.form()
     all_none = True
     for cat in CATEGORY_MAP.keys():
-        val = form_data.get(cat)
-        if val != 'None':
-            all_none = False
-            df.at[index, cat] = val
+        vals = form_data.getlist(f"{cat}[]")  # get all checked options
+        if 'None' in vals or not vals:
+            df.at[index, cat] = ""  # default = None
         else:
-            df.at[index, cat] = ""
-            
+            all_none = False
+            df.at[index, cat] = ",".join(vals)  # store as comma-separated string
+
     df.at[index, 'out_of_scope'] = "True" if all_none else "False"
     df.to_csv(PART_FILE, index=False)
-    
-    # After saving, find the next unlabeled index
+
     next_idx = get_next_index()
-    return RedirectResponse(url=f"/?index={next_idx}" if next_idx is not None else "/?index=" + str(len(df)), status_code=303)
+    return RedirectResponse(
+        url=f"/?index={next_idx}" if next_idx is not None else "/?index=" + str(len(df)), 
+        status_code=303
+    )
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
