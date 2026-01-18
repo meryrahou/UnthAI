@@ -20,7 +20,7 @@ def filter_active(batch_file):
     
     active_ids = ai_df.loc[mask, 'comment_id'].tolist()
     
-    df_active = df[df['comment_id'].isin(active_ids)].head(100)
+    df_active = df[df['comment_id'].isin(active_ids)].head(500)
     
     output_file = batch_file.replace(".csv", "_active.csv")
     df_active.to_csv(output_file, index=False)

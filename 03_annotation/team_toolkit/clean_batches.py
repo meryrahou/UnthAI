@@ -18,7 +18,7 @@ def clean_batches(master_file, batch_file, ai_file):
 
     # Clean Batch File
     if os.path.exists(batch_file):
-        df_batch = pd.read_csv(batch_file)
+        df_batch = pd.read_csv(batch_file, keep_default_na=False)
         initial_len = len(df_batch)
         df_batch = df_batch[~df_batch['comment_id'].isin(labeled_ids)]
         removed = initial_len - len(df_batch)
@@ -30,7 +30,7 @@ def clean_batches(master_file, batch_file, ai_file):
 
     # Clean AI File
     if os.path.exists(ai_file):
-        df_ai = pd.read_csv(ai_file)
+        df_ai = pd.read_csv(ai_file, keep_default_na=False)
         initial_len = len(df_ai)
         df_ai = df_ai[~df_ai['comment_id'].isin(labeled_ids)]
         removed = initial_len - len(df_ai)

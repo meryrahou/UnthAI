@@ -31,7 +31,7 @@ def run_team_flow():
     print(f"\n--- [2/4] Checking AI Cache ---")
     print(f"📊 Found {active_count} active suggestions in cache.")
 
-    if active_count < 100:
+    if active_count < 500:
         print(f"📉 Cache low (< 100). Running incremental inference...")
         
         # Load unlabeled batch data
@@ -69,7 +69,7 @@ def run_team_flow():
             # Load results and append to main AI file
             chunk_ai_file = chunk_file.replace(".csv", "_ai.csv")
             if os.path.exists(chunk_ai_file):
-                df_chunk_ai = pd.read_csv(chunk_ai_file)
+                df_chunk_ai = pd.read_csv(chunk_ai_file, keep_default_na=False)
                 
                 # Append to main AI file
                 if os.path.exists(AI_FILE):
