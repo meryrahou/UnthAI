@@ -5,7 +5,7 @@ import sys
 import pandas as pd
 
 # --- Default Settings ---
-def run_instant_flow(main_file, ai_source):
+def run_instant_flow(main_file, ai_source, show_all=False):
     print("🚀 Starting Instant Annotation Flow (Global AI Mode)...")
     
     batch_active = "batch_full_active.csv"
@@ -22,10 +22,13 @@ def run_instant_flow(main_file, ai_source):
     
     # 2. Filter for Active (not all None)
     cats = ['ai_food', 'ai_service', 'ai_place', 'ai_delivery', 'ai_price', 'ai_treatment']
-    mask_active = ai_df[cats].apply(lambda x: any(str(v).lower() != 'none' for v in x), axis=1)
-    active_ids_df = ai_df[mask_active].copy()
-    
-    print(f"🔍 Found {len(active_ids_df)} active suggestions in total.")
+    if show_all:
+        print("🔓 'Full Scan' mode: Including all comments (even None).")
+        active_ids_df = ai_df.copy()
+    else:
+        mask_active = ai_df[cats].apply(lambda x: any(str(v).lower() != 'none' for v in x), axis=1)
+        active_ids_df = ai_df[mask_active].copy()
+        print(f"🔍 Found {len(active_ids_df)} active suggestions in total.")
 
     # 3. Load Master and Filter out already labeled
     print(f"🧹 Filtering out already labeled rows from {main_file}...")
@@ -62,9 +65,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--master", default="../annotation_part_1.csv", help="Master CSV to label")
     parser.add_argument("--ai", help="Pre-labeled AI CSV for suggestions")
+    parser.add_argument("--all", action="store_true", help="Include ALL comments (even if AI says None for all categories)")
     args = parser.parse_args()
 
     if not args.ai:
         args.ai = args.master.replace(".csv", "_ai.csv")
 
-    run_instant_flow(args.master, args.ai)
+    run_instant_flow(args.master, args.ai, show_all=args.all)
