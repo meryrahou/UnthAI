@@ -9,8 +9,8 @@ import argparse
 
 # --- Configuration ---
 MODEL_NAME = "UBC-NLP/MARBERT"
-# Using the relative path inside the toolkit
-WEIGHTS_PATH = "marbert_unthai_bootstrapped.pt"
+# Using the primary weights in the root annotation folder
+WEIGHTS_PATH = "../marbert_unthai_bootstrapped.pt"
 DEVICE = torch.device('cpu') 
 CATEGORIES = ['food', 'service', 'place', 'delivery', 'price', 'treatment']
 INTENTS = ['None', 'appreciation', 'complaint', 'inquiry', 'recommendation']
@@ -21,8 +21,8 @@ class MultiTaskMARBERT(nn.Module):
         self.bert = AutoModel.from_pretrained(model_name)
         self.dropout = nn.Dropout(0.1)
         self.oos_head = nn.Linear(768, 1)
-        # 6 topic heads, each binary (2 outputs)
-        self.topic_heads = nn.ModuleList([nn.Linear(768, 2) for _ in range(6)])
+        # 6 topic heads, each 3 classes: 0=None, 1=appreciation, 2=complaint
+        self.topic_heads = nn.ModuleList([nn.Linear(768, 3) for _ in range(6)])
 
     def forward(self, input_ids, attention_mask):
         outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask)
@@ -83,11 +83,12 @@ def run_inference(input_file):
             oos_probs = torch.sigmoid(oos_logits).cpu().flatten().tolist()
             all_oos.extend(["True" if p > 0.5 else "False" for p in oos_probs])
             
-            # Topics (Binary)
+            # Topics (3-way)
             for i, head_logits in enumerate(topic_logits):
                 preds = torch.argmax(head_logits, dim=1).cpu().tolist()
-                # 1 = appreciation, 0 = None
-                all_topic_intents[i].extend(['appreciation' if p == 1 else 'None' for p in preds])
+                # 0=None, 1=appreciation, 2=complaint
+                mapping = {0: 'None', 1: 'appreciation', 2: 'complaint'}
+                all_topic_intents[i].extend([mapping.get(p, 'None') for p in preds])
 
     ai_df = pd.DataFrame({'comment_id': df['comment_id']})
     ai_df['ai_out_of_scope'] = all_oos
