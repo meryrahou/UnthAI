@@ -13,10 +13,10 @@ import argparse
 # --- Configuration ---
 MODEL_NAME = "UBC-NLP/MARBERT"
 MODEL_SAVE_PATH = "03_annotation/marbert_unthai_bootstrapped.pt"
-DEVICE = torch.device('cpu') 
+DEVICE = torch.device('mps') if torch.backends.mps.is_available() else torch.device('cpu') 
 CATEGORIES = ['food', 'service', 'place', 'delivery', 'price', 'treatment']
 MAX_LEN = 64
-BATCH_SIZE = 2
+BATCH_SIZE = 32
 EPOCHS = 1
 LEARNING_RATE = 2e-5
 

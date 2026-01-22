@@ -1,9 +1,9 @@
 import pandas as pd
 
 #   Chemin vers ton fichier CSV original
-input_csv = "03_annotation/data_partitions/annotation_part_2.csv"
+input_csv = "annotation_part_1.csv"
 #   Chemin du fichier final transformé
-output_csv = "03_annotation/annotation_part_2_multilabel.csv"
+output_csv = "annotation_part_1_multilabel.csv"
 
 #   Colonnes des topics
 topics = ["food", "service", "place", "delivery", "price", "treatment"]
