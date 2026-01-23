@@ -322,9 +322,9 @@ async def get_posts(current_user: dict = Depends(get_current_user)):
         posts.append({
             "id": int(pid),
             "platform": "googlemaps" if "maps" in platform.lower() else platform.lower().replace(" ", ""),
-            "author": f"{platform} Digest",
+            "author": f"Post {int(pid)} from {platform}",
             "date": earliest_date,
-            "content": f"Customer sentiment stream from {platform}. Analyzing {total_p} recent interactions.",
+            "content": f"Analyzing {total_p} recent interactions.",
             "commentCount": total_p,
             "likes": int(p_df['likesCount'].sum()),
             "sentiment": {

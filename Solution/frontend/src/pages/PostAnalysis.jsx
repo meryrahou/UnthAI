@@ -87,19 +87,25 @@ const PostAnalysis = () => {
         <div className="analysis-page animate-fade-in">
             <div className="sidebar-analysis">
                 <div className="platform-filter">
-                    {['tiktok', 'instagram', 'facebook', 'googlemaps'].map(p => (
-                        <button
-                            key={p}
-                            className={`platform-btn ${selectedPlatform === p ? 'active' : ''}`}
-                            onClick={() => setSelectedPlatform(p)}
-                        >
-                            {p === 'tiktok' ? <Play size={18} /> :
-                                p === 'facebook' ? <Facebook size={18} /> :
-                                    p === 'instagram' ? <Instagram size={18} /> :
-                                        <MapPin size={18} />}
-                            <span style={{ textTransform: 'capitalize' }}>{p === 'googlemaps' ? 'Maps' : p}</span>
-                        </button>
-                    ))}
+                    {['tiktok', 'instagram', 'facebook', 'googlemaps'].map(p => {
+                        const count = posts.filter(post => post.platform === p).length;
+                        if (count === 0) return null;
+
+                        return (
+                            <button
+                                key={p}
+                                className={`platform-btn ${selectedPlatform === p ? 'active' : ''}`}
+                                onClick={() => setSelectedPlatform(p)}
+                            >
+                                {p === 'tiktok' ? <Play size={18} /> :
+                                    p === 'facebook' ? <Facebook size={18} /> :
+                                        p === 'instagram' ? <Instagram size={18} /> :
+                                            <MapPin size={18} />}
+                                <span style={{ textTransform: 'capitalize' }}>{p === 'googlemaps' ? 'Maps' : p}</span>
+                                <span className="platform-count">{count}</span>
+                            </button>
+                        );
+                    })}
                 </div>
 
                 <div className="posts-list">
@@ -203,24 +209,28 @@ const PostAnalysis = () => {
                                 className={`filter-btn ${commentFilter === 'appreciation' ? 'active' : ''}`}
                                 onClick={() => setCommentFilter('appreciation')}
                             >
+                                <div className="comment-sentiment-dot appreciation"></div>
                                 Appreciation
                             </button>
                             <button
                                 className={`filter-btn ${commentFilter === 'complaint' ? 'active' : ''}`}
                                 onClick={() => setCommentFilter('complaint')}
                             >
+                                <div className="comment-sentiment-dot complaint"></div>
                                 Complaint
                             </button>
                             <button
                                 className={`filter-btn ${commentFilter === 'recommendation' ? 'active' : ''}`}
                                 onClick={() => setCommentFilter('recommendation')}
                             >
+                                <div className="comment-sentiment-dot recommendation"></div>
                                 Recommendation
                             </button>
                             <button
                                 className={`filter-btn ${commentFilter === 'inquiry' ? 'active' : ''}`}
                                 onClick={() => setCommentFilter('inquiry')}
                             >
+                                <div className="comment-sentiment-dot inquiry"></div>
                                 Inquiry
                             </button>
                         </div>
@@ -237,7 +247,7 @@ const PostAnalysis = () => {
                                         <div className="comment-content">
                                             <p>"{comment.text}"</p>
                                             <div className="comment-meta">
-                                                <span>{comment.category}</span> • <span>{comment.time}</span>
+                                                <span className={`meta-cat ${comment.type}`}>{comment.category}</span> • <span>{comment.time}</span>
                                                 {comment.likesCount > 0 && (
                                                     <span className="comment-likes" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', marginLeft: '12px', color: 'var(--text-dim)' }}>
                                                         <ThumbsUp size={12} /> {comment.likesCount}
