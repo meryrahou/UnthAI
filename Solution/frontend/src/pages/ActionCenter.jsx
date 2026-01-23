@@ -20,12 +20,13 @@ const ActionCenter = () => {
     const [actions, setActions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({ total: 0, urgent: 0, completed: 0 });
+    const [trendPeriod, setTrendPeriod] = useState('weekly');
 
     useEffect(() => {
         const fetchActions = async () => {
             setLoading(true);
             try {
-                const response = await fetch('http://localhost:8001/api/actions', {
+                const response = await fetch(`http://localhost:8001/api/actions?trend_period=${trendPeriod}`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 });
                 if (response.ok) {
@@ -56,7 +57,7 @@ const ActionCenter = () => {
             setLoading(false);
         };
         fetchActions();
-    }, []);
+    }, [trendPeriod]);
 
     const handleToggleComplete = (actionId) => {
         if (!restaurantName) return;
@@ -192,6 +193,37 @@ const ActionCenter = () => {
                     {t('completed')}
                 </button>
             </div>
+
+            {activeTab === 'trends' && (
+                <div className="trend-period-selector" style={{ marginBottom: '24px', display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontSize: '13px', color: 'var(--text-muted)', fontWeight: 500 }}>{t('trendPeriod') || 'Trend Period'}:</span>
+                    <div className="custom-select-wrapper" style={{ position: 'relative' }}>
+                        <select
+                            value={trendPeriod}
+                            onChange={(e) => setTrendPeriod(e.target.value)}
+                            style={{
+                                padding: '8px 36px 8px 16px',
+                                background: 'var(--card-bg)',
+                                border: '1px solid var(--border)',
+                                borderRadius: '10px',
+                                color: 'var(--text-main)',
+                                fontSize: '13px',
+                                fontWeight: 500,
+                                cursor: 'pointer',
+                                appearance: 'none',
+                                WebkitAppearance: 'none',
+                                outline: 'none',
+                                boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
+                            }}
+                        >
+                            <option value="weekly">{t('weekly') || 'Weekly'}</option>
+                            <option value="monthly">{t('monthly') || 'Monthly'}</option>
+                            <option value="quarterly">{t('quarterly') || 'Quarterly'}</option>
+                        </select>
+                        <TrendingUp size={14} style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)', pointerEvents: 'none' }} />
+                    </div>
+                </div>
+            )}
 
             <div className="action-grid">
                 {filteredActions.length === 0 ? (

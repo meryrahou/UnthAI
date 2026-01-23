@@ -262,6 +262,11 @@
     line-height: 1.4;
 }
 
+.trend-period-selector select:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.1);
+}
+
 .action-sample:last-child {
     margin-bottom: 0;
 }

@@ -519,7 +519,7 @@ async def get_trends(
     return result
 
 @app.get("/api/actions")
-async def get_actions(current_user: dict = Depends(get_current_user)):
+async def get_actions(trend_period: str = "weekly", current_user: dict = Depends(get_current_user)):
     df_user = get_restaurant_df(current_user["restaurant_name"])
     
     # Filter out out_of_scope
@@ -533,11 +533,25 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
     df_user = df_user.dropna(subset=['date_dt'])
     
     now = pd.Timestamp.now(tz='UTC')
+    
+    # Define timeframes based on user choice
+    days_map = {
+        "weekly": 7,
+        "monthly": 30,
+        "quarterly": 90
+    }
+    days = days_map.get(trend_period, 7)
+    
+    current_period_start = now - pd.Timedelta(days=days)
+    previous_period_start = now - pd.Timedelta(days=days*2)
+    
+    # These variables are used for TREND detection
+    this_period = df_user[df_user['date_dt'] >= current_period_start]
+    last_period = df_user[(df_user['date_dt'] >= previous_period_start) & (df_user['date_dt'] < current_period_start)]
+    
+    # Week variables for Complaint/Recency logic (kept fixed to maintain standard 'recent' definition)
     week_ago = now - pd.Timedelta(days=7)
     two_weeks_ago = now - pd.Timedelta(days=14)
-    
-    this_week = df_user[df_user['date_dt'] >= week_ago]
-    last_week = df_user[(df_user['date_dt'] >= two_weeks_ago) & (df_user['date_dt'] < week_ago)]
     
     # 1. COMPLAINT CLUSTERS
     complaints = df_user[df_user['feeling'] == 'negative'].copy()
@@ -716,23 +730,23 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
             })
             action_id += 1
     
-    # 3. TRENDING ISSUES (Relaxed Thresholds)
+    # 3. TRENDING ISSUES (Dynamic Period)
     categories = ['food', 'service', 'place', 'delivery', 'price', 'treatment']
     
     for cat in categories:
-        this_week_neg = len(this_week[this_week[cat].astype(str).str.lower() == 'complaint'])
-        last_week_neg = len(last_week[last_week[cat].astype(str).str.lower() == 'complaint'])
+        this_period_neg = len(this_period[this_period[cat].astype(str).str.lower() == 'complaint'])
+        last_period_neg = len(last_period[last_period[cat].astype(str).str.lower() == 'complaint'])
         
         # Surface if there is ANY increase, even from 0
-        if this_week_neg > last_week_neg:
+        if this_period_neg > last_period_neg:
             trend_pct = 0
-            if last_week_neg > 0:
-                trend_pct = int(((this_week_neg - last_week_neg) / last_week_neg) * 100)
+            if last_period_neg > 0:
+                trend_pct = int(((this_period_neg - last_period_neg) / last_period_neg) * 100)
             else:
-                trend_pct = 100 # New issue this week
+                trend_pct = 100 # New issue in this period
             
-            if trend_pct >= 20 or this_week_neg >= 2: 
-                samples = this_week[this_week[cat].astype(str).str.lower() == 'complaint']['comment_text'].head(3).tolist()
+            if trend_pct >= 20 or this_period_neg >= 2: 
+                samples = this_period[this_period[cat].astype(str).str.lower() == 'complaint']['comment_text'].head(3).tolist()
                 
                 actions.append({
                     'id': action_id,
@@ -741,8 +755,8 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
                     'titleKey': 'issuesIncreasingTitle',
                     'topicKey': f'pillers.{cat}',
                     'descKey': 'increasingIssuesDesc',
-                    'count': this_week_neg,
-                    'timeframeType': 'thisWeek',
+                    'count': this_period_neg,
+                    'timeframeType': f'this{trend_period.capitalize()}',
                     'platforms': [],
                     'samples': [s[:80] + "..." for s in samples],
                     'trend': trend_pct,
