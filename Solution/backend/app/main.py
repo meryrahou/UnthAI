@@ -516,6 +516,203 @@ async def get_trends(
         
     return result
 
+@app.get("/api/actions")
+async def get_actions(current_user: dict = Depends(get_current_user)):
+    df_user = get_restaurant_df(current_user["restaurant_name"])
+    
+    # Filter out out_of_scope
+    df_user = df_user[df_user['out_of_scope'].astype(str).str.lower() != 'true']
+    
+    actions = []
+    action_id = 1
+    
+    # Parse dates for trend analysis
+    df_user['date_dt'] = pd.to_datetime(df_user['date'], format='mixed', utc=True, errors='coerce')
+    df_user = df_user.dropna(subset=['date_dt'])
+    
+    now = pd.Timestamp.now(tz='UTC')
+    week_ago = now - pd.Timedelta(days=7)
+    two_weeks_ago = now - pd.Timedelta(days=14)
+    
+    this_week = df_user[df_user['date_dt'] >= week_ago]
+    last_week = df_user[(df_user['date_dt'] >= two_weeks_ago) & (df_user['date_dt'] < week_ago)]
+    
+    # 1. COMPLAINT CLUSTERS
+    complaints = df_user[df_user['feeling'] == 'negative'].copy()
+    
+    # Define complaint keywords to cluster
+    complaint_keywords = {
+        'slow service': ['slow', 'wait', 'long', 'attente', 'lent'],
+        'cold food': ['cold', 'froid', 'froide', 'bared'],
+        'rude staff': ['rude', 'impolite', 'mal', 'mauvais', 'service'],
+        'dirty place': ['dirty', 'sale', 'propre', 'clean'],
+        'high prices': ['expensive', 'cher', 'price', 'prix', 'costly'],
+        'small portions': ['small', 'portion', 'petite', 'little']
+    }
+    
+    for issue, keywords in complaint_keywords.items():
+        # Find complaints mentioning these keywords
+        mask = complaints['comment_text'].str.lower().str.contains('|'.join(keywords), na=False, regex=True)
+        issue_complaints = complaints[mask]
+        
+        if len(issue_complaints) >= 3:  # Only surface if 3+ mentions
+            # Get platforms
+            platforms = issue_complaints['platform'].unique().tolist()
+            platforms = [p.capitalize() if p != 'googlemaps' else 'Maps' for p in platforms]
+            
+            # Sample comments
+            samples = issue_complaints['comment_text'].head(3).tolist()
+            
+            # Calculate trend
+            this_week_count = len(issue_complaints[issue_complaints['date_dt'] >= week_ago])
+            last_week_count = len(issue_complaints[(issue_complaints['date_dt'] >= two_weeks_ago) & (issue_complaints['date_dt'] < week_ago)])
+            
+            trend = None
+            if last_week_count > 0:
+                trend = int(((this_week_count - last_week_count) / last_week_count) * 100)
+            
+            # Smarter priority: based on total volume + trend + recency
+            total_count = len(issue_complaints)
+            recent_count = len(issue_complaints[issue_complaints['date_dt'] >= (now - pd.Timedelta(days=30))])
+            
+            # Base priority on total volume
+            if total_count >= 10:
+                priority = 'high'
+            elif total_count >= 5:
+                priority = 'medium'
+            else:
+                priority = 'low'
+            
+            # Bump up if trending upward significantly
+            if trend and trend >= 50:
+                priority = 'high'
+            
+            # Downgrade if no recent activity
+            if recent_count == 0:
+                priority = 'low'
+            
+            actions.append({
+                'id': action_id,
+                'type': 'complaints',
+                'priority': priority,
+                'title': f'{issue.title()} Complaints',
+                'description': f'{len(issue_complaints)} customers mentioned issues with {issue}.',
+                'count': len(issue_complaints),
+                'timeframe': 'Last 30 days',
+                'platforms': platforms[:3],
+                'samples': samples,
+                'trend': trend,
+                'status': 'pending'
+            })
+            action_id += 1
+    
+    # 2. UNANSWERED INQUIRIES
+    inquiries = df_user[
+        (df_user['comment_text'].str.contains(r'\?', na=False, regex=True)) |
+        (df_user.apply(lambda row: any('inquiry' in str(p).lower() for p in eval(str(row.get('model_prediction', '[]')))), axis=1))
+    ].copy()
+    
+    recent_inquiries = inquiries[inquiries['date_dt'] >= week_ago]
+    
+    if len(recent_inquiries) > 0:
+        # Group by similar questions
+        inquiry_samples = recent_inquiries['comment_text'].head(5).tolist()
+        platforms = recent_inquiries['platform'].unique().tolist()
+        platforms = [p.capitalize() if p != 'googlemaps' else 'Maps' for p in platforms]
+        
+        actions.append({
+            'id': action_id,
+            'type': 'inquiries',
+            'priority': 'medium',
+            'title': 'Unanswered Customer Questions',
+            'description': f'{len(recent_inquiries)} customers asked questions that may need responses.',
+            'count': len(recent_inquiries),
+            'timeframe': 'Last 7 days',
+            'platforms': platforms[:3],
+            'samples': inquiry_samples,
+            'trend': None,
+            'status': 'pending'
+        })
+        action_id += 1
+    
+    # 3. TRENDING ISSUES (Week-over-week changes)
+    categories = ['food', 'service', 'place', 'delivery', 'price', 'treatment']
+    
+    for cat in categories:
+        this_week_neg = len(this_week[this_week[cat].astype(str).str.lower() == 'complaint'])
+        last_week_neg = len(last_week[last_week[cat].astype(str).str.lower() == 'complaint'])
+        
+        if last_week_neg > 0 and this_week_neg > last_week_neg:
+            trend_pct = int(((this_week_neg - last_week_neg) / last_week_neg) * 100)
+            
+            if trend_pct >= 30:  # Only show significant increases
+                samples = this_week[this_week[cat].astype(str).str.lower() == 'complaint']['comment_text'].head(2).tolist()
+                
+                actions.append({
+                    'id': action_id,
+                    'type': 'trends',
+                    'priority': 'high' if trend_pct >= 50 else 'medium',
+                    'title': f'{cat.capitalize()} Issues Increasing',
+                    'description': f'Negative feedback about {cat} has increased significantly this week.',
+                    'count': this_week_neg,
+                    'timeframe': 'This week',
+                    'platforms': [],
+                    'samples': samples,
+                    'trend': trend_pct,
+                    'status': 'pending'
+                })
+                action_id += 1
+    
+    # 4. QUICK WINS (Top recommendations)
+    recommendations = df_user[
+        df_user.apply(lambda row: any('recommendation' in str(p).lower() for p in eval(str(row.get('model_prediction', '[]')))), axis=1)
+    ].copy()
+    
+    if len(recommendations) >= 5:
+        # Find most common recommendation themes
+        rec_text = ' '.join(recommendations['comment_text'].astype(str).tolist()).lower()
+        
+        quick_wins = []
+        if 'vegan' in rec_text or 'vegetarian' in rec_text:
+            quick_wins.append({
+                'title': 'Add More Vegetarian Options',
+                'description': 'Multiple customers requested more plant-based menu items.',
+                'count': len(recommendations[recommendations['comment_text'].str.contains('vegan|vegetarian', case=False, na=False)])
+            })
+        
+        if 'delivery' in rec_text or 'livraison' in rec_text:
+            quick_wins.append({
+                'title': 'Expand Delivery Hours',
+                'description': 'Customers are asking for extended delivery availability.',
+                'count': len(recommendations[recommendations['comment_text'].str.contains('delivery|livraison', case=False, na=False)])
+            })
+        
+        for win in quick_wins:
+            if win['count'] >= 3:
+                actions.append({
+                    'id': action_id,
+                    'type': 'recommendations',
+                    'priority': 'low',
+                    'title': win['title'],
+                    'description': win['description'],
+                    'count': win['count'],
+                    'timeframe': 'Recurring',
+                    'platforms': [],
+                    'samples': [],
+                    'trend': None,
+                    'status': 'pending'
+                })
+                action_id += 1
+    
+    # Calculate stats
+    stats = {
+        'total': len(actions),
+        'urgent': len([a for a in actions if a['priority'] == 'high']),
+        'completed': 0  # Would track this in a real DB
+    }
+    
+    return {"actions": actions, "stats": stats}
+
 @app.get("/api/ai/insights")
 async def get_ai_insights(current_user: dict = Depends(get_current_user)):
     df_user = get_restaurant_df(current_user["restaurant_name"])

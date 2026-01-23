@@ -8,7 +8,8 @@ import {
     User,
     LogOut,
     LayoutDashboard,
-    Zap
+    Zap,
+    Target
 } from 'lucide-react';
 import './Sidebar.css';
 
@@ -34,6 +35,10 @@ const Sidebar = ({ onLogout }) => {
                 <NavLink to="/trends" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
                     <Zap size={20} />
                     <span>Trend Explorer</span>
+                </NavLink>
+                <NavLink to="/actions" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+                    <Target size={20} />
+                    <span>Action Center</span>
                 </NavLink>
                 <NavLink to="/insights" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
                     <Sparkles size={20} />
