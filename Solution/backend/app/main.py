@@ -554,92 +554,99 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
     }
     
     for issue, keywords in complaint_keywords.items():
-        # Find complaints mentioning these keywords
+        # Find all complaints matching keywords
         mask = complaints['comment_text'].str.lower().str.contains('|'.join(keywords), na=False, regex=True)
-        issue_complaints = complaints[mask]
+        all_matches = complaints[mask]
         
-        if len(issue_complaints) >= 3:
-            # Smarter samples: find the relevant sentence/segment
-            samples = []
-            for _, row in issue_complaints.head(5).iterrows():
-                text = str(row['comment_text'])
-                # Find which keyword was hit
-                hit = next((k for k in keywords if k in text.lower()), None)
-                if hit:
-                    # Extract ultra-tight window (~40 chars total)
-                    idx = text.lower().find(hit)
-                    start = max(0, idx - 15)
-                    end = min(len(text), idx + 25)
-                    snippet = text[start:end].strip()
-                    if start > 0: snippet = "..." + snippet
-                    if end < len(text): snippet = snippet + "..."
-                    samples.append(snippet)
-                else:
-                    samples.append(text[:40] + "...")
+        if not all_matches.empty:
+            # Group by Year-Month to separate distinct timeframes
+            # We sort descending so newest actions usually get processed first (though ID order matters less)
+            all_matches = all_matches.sort_values('date_dt', ascending=False)
             
-            # Get platforms
-            platforms = issue_complaints['platform'].unique().tolist()
-            platforms = [p.capitalize() if p != 'googlemaps' else 'Maps' for p in platforms]
-            
-            this_week_count = len(issue_complaints[issue_complaints['date_dt'] >= week_ago])
-            last_week_count = len(issue_complaints[(issue_complaints['date_dt'] >= two_weeks_ago) & (issue_complaints['date_dt'] < week_ago)])
-            
-            trend = None
-            if last_week_count > 0:
-                trend = int(((this_week_count - last_week_count) / last_week_count) * 100)
-            
-            # Smarter priority: based on total volume + trend + recency
-            total_count = len(issue_complaints)
-            recent_count = len(issue_complaints[issue_complaints['date_dt'] >= (now - pd.Timedelta(days=30))])
-            
-            # Base priority on total volume
-            if total_count >= 10:
-                priority = 'high'
-            elif total_count >= 5:
-                priority = 'medium'
-            else:
-                priority = 'low'
-            
-            # Bump up if trending upward significantly
-            if trend and trend >= 50:
-                priority = 'high'
-            
-            # Downgrade if no recent activity
-            if recent_count == 0:
-                priority = 'low'
-            
-            # Calculate exact timeframe
-            oldest_date = issue_complaints['date_dt'].min()
-            days_ago = (now - oldest_date).days
-            timeframe = f"Last {days_ago} days" if days_ago > 0 else "Today"
+            for period, issue_complaints in all_matches.groupby(all_matches['date_dt'].dt.to_period('M')):
+                if len(issue_complaints) >= 3:
+                    # Smarter samples: find the relevant sentence/segment
+                    samples = []
+                    for _, row in issue_complaints.head(5).iterrows():
+                        text = str(row['comment_text'])
+                        # Find which keyword was hit
+                        hit = next((k for k in keywords if k in text.lower()), None)
+                        if hit:
+                            # Extract ultra-tight window (~40 chars total)
+                            idx = text.lower().find(hit)
+                            start = max(0, idx - 15)
+                            end = min(len(text), idx + 25)
+                            snippet = text[start:end].strip()
+                            if start > 0: snippet = "..." + snippet
+                            if end < len(text): snippet = snippet + "..."
+                            samples.append(snippet)
+                        else:
+                            samples.append(text[:40] + "...")
+                    
+                    # Get platforms
+                    platforms = issue_complaints['platform'].unique().tolist()
+                    platforms = [p.capitalize() if p != 'googlemaps' else 'Maps' for p in platforms]
+                    
+                    # Trend calc (only relevant if this is a recent bucket)
+                    this_week_count = len(issue_complaints[issue_complaints['date_dt'] >= week_ago])
+                    last_week_count = len(issue_complaints[(issue_complaints['date_dt'] >= two_weeks_ago) & (issue_complaints['date_dt'] < week_ago)])
+                    
+                    trend = None
+                    if last_week_count > 0:
+                        trend = int(((this_week_count - last_week_count) / last_week_count) * 100)
+                    
+                    # Smarter priority: based on total volume + trend + recency
+                    total_count = len(issue_complaints)
+                    recent_count = len(issue_complaints[issue_complaints['date_dt'] >= (now - pd.Timedelta(days=30))])
+                    
+                    # Base priority on total volume in this period
+                    if total_count >= 10:
+                        priority = 'high'
+                    elif total_count >= 5:
+                        priority = 'medium'
+                    else:
+                        priority = 'low'
+                    
+                    # Bump up if trending upward (only applies to current month)
+                    if trend and trend >= 50:
+                        priority = 'high'
+                    
+                    # Downgrade if no recent activity (handles old monthly buckets)
+                    if recent_count == 0:
+                        priority = 'low'
+                    
+                    # Calculate exact timeframe for this bucket
+                    # Note: For strict monthly buckets, days_ago will be the start of that complaint set
+                    oldest_date = issue_complaints['date_dt'].min()
+                    days_ago = (now - oldest_date).days
+                    
+                    # Format for frontend translation
+                    topic_key = {
+                        'slow service': 'slowService',
+                        'cold food': 'coldFood',
+                        'rude staff': 'rudeStaff',
+                        'dirty place': 'dirtyPlace',
+                        'high prices': 'highPrices',
+                        'small portions': 'smallPortions',
+                        'taste issue': 'food'
+                    }.get(issue, 'general')
 
-            # Format for frontend translation
-            topic_key = {
-                'slow service': 'slowService',
-                'cold food': 'coldFood',
-                'rude staff': 'rudeStaff',
-                'dirty place': 'dirtyPlace',
-                'high prices': 'highPrices',
-                'small portions': 'smallPortions',
-                'taste issue': 'food'
-            }.get(issue, 'general')
-
-            actions.append({
-                'id': action_id,
-                'type': 'complaints',
-                'priority': priority,
-                'titleKey': 'complaintsTitle',
-                'topicKey': f'pillers.{topic_key}',
-                'descKey': 'xMentionsCustomers',
-                'count': len(issue_complaints),
-                'timeframeType': 'lastDays' if days_ago > 0 else 'today',
-                'timeframeDays': days_ago,
-                'platforms': platforms[:3],
-                'samples': samples,
-                'trend': trend,
-                'status': 'pending'
-            })
-            action_id += 1
+                    actions.append({
+                        'id': action_id,
+                        'type': 'complaints',
+                        'priority': priority,
+                        'titleKey': 'complaintsTitle',
+                        'topicKey': f'pillers.{topic_key}',
+                        'descKey': 'xMentionsCustomers',
+                        'count': len(issue_complaints),
+                        'timeframeType': 'lastDays' if days_ago > 0 else 'today',
+                        'timeframeDays': days_ago,
+                        'platforms': platforms[:3],
+                        'samples': samples,
+                        'trend': trend,
+                        'status': 'pending'
+                    })
+                    action_id += 1
     
     # 2. UNANSWERED INQUIRIES (Grouped by Theme)
     inquiries = df_user[
