@@ -47,10 +47,6 @@ const AIInsights = () => {
                     <h1>AI Strategic Insights</h1>
                     <p className="subtitle">Data-driven recommendations to grow your restaurant's reputation.</p>
                 </div>
-                <button className="primary-btn">
-                    <TrendingUp size={16} />
-                    Update Strategy
-                </button>
             </div>
 
             <div className="insights-grid">
@@ -83,9 +79,6 @@ const AIInsights = () => {
                                     <span className="impact-label">Expected Impact:</span>
                                     <span className={`impact-value ${rec.impact.toLowerCase()}`}>{rec.impact}</span>
                                 </div>
-                                <button className="apply-btn">
-                                    Learn More <ArrowRight size={16} />
-                                </button>
                             </div>
                         </div>
                     ))}

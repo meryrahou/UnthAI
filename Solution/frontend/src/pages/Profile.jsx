@@ -62,12 +62,15 @@ const Profile = () => {
                         </div>
                     </div>
 
-                    <div className="glass-card Danger Zone">
+                    <div className="glass-card danger-zone">
                         <h3 className="error-text">Danger Zone</h3>
                         <p className="section-desc">Irreversible account actions.</p>
                         <div className="danger-actions">
-                            <button className="secondary-btn logout">
-                                <LogOut size={18} /> Logout from all devices
+                            <button className="secondary-btn logout" onClick={() => {
+                                localStorage.removeItem('token');
+                                window.location.href = '/auth';
+                            }}>
+                                <LogOut size={18} /> Logout
                             </button>
                             <button className="outline-btn delete">Delete Account</button>
                         </div>

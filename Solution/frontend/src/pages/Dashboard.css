@@ -14,13 +14,39 @@
     margin-top: 8px;
 }
 
-.date-picker-mock {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 14px;
+.date-picker-container {
+    display: flex;
+    gap: 16px;
+    background: var(--card-bg);
+    padding: 12px 20px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+}
+
+.date-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.date-input-group label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+.date-input-group input {
+    background: transparent;
+    border: none;
     color: var(--text-main);
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+}
+
+.date-input-group input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
     cursor: pointer;
 }
 

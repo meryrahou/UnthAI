@@ -13,6 +13,7 @@ import {
 import './SocialConfig.css';
 
 const SocialConfig = () => {
+    const [pref, setPref] = React.useState('time');
     const accounts = [
         { platform: 'TikTok', username: '@uncles_burger_dz', status: 'connected', icon: <Play /> },
         { platform: 'Instagram', username: 'uncles_burger_dz', status: 'connected', icon: <Instagram /> },
@@ -31,7 +32,7 @@ const SocialConfig = () => {
                 <div className="glass-card connections-card">
                     <div className="card-header">
                         <h3>Active Connections</h3>
-                        <button className="add-btn"><Plus size={18} /> Connect New</button>
+                        <button className="add-btn" onClick={() => alert("Connecting new account...")}><Plus size={18} /> Connect New</button>
                     </div>
                     <div className="accounts-list">
                         {accounts.map((acc, idx) => (
@@ -57,7 +58,10 @@ const SocialConfig = () => {
                     <p className="section-desc">Choose how the AI should gather data from your accounts.</p>
 
                     <div className="pref-options">
-                        <div className="pref-option active">
+                        <div
+                            className={`pref-option ${pref === 'time' ? 'active' : ''}`}
+                            onClick={() => setPref('time')}
+                        >
                             <div className="pref-icon"><Clock /></div>
                             <div className="pref-text">
                                 <h4>Time Period Analysis</h4>
@@ -66,7 +70,10 @@ const SocialConfig = () => {
                             </div>
                         </div>
 
-                        <div className="pref-option">
+                        <div
+                            className={`pref-option ${pref === 'posts' ? 'active' : ''}`}
+                            onClick={() => setPref('posts')}
+                        >
                             <div className="pref-icon"><List /></div>
                             <div className="pref-text">
                                 <h4>Recent Posts Analysis</h4>
@@ -76,11 +83,17 @@ const SocialConfig = () => {
                     </div>
 
                     <div className="justification-box">
-                        <h4>Why Time Period?</h4>
-                        <p>Choosing a time period allows the platform to generate <strong>Temporal Trend Evolution</strong>. It enables the AI to detect if sentiment is improving month-over-month and correlate spikes with specific marketing campaigns or seasonal menus.</p>
+                        <h4>Why {pref === 'time' ? 'Time Period' : 'Recent Posts'}?</h4>
+                        <p>
+                            {pref === 'time'
+                                ? "Choosing a time period allows the platform to generate Temporal Trend Evolution. It enables the AI to detect if sentiment is improving month-over-month."
+                                : "Recent posts analysis is perfect for quick sanity checks after a specific marketing drop or event to see immediate reception."}
+                        </p>
                     </div>
 
-                    <button className="primary-btn full-width">Save Preferences</button>
+                    <button className="primary-btn full-width" onClick={() => alert('Preferences Saved!')}>
+                        Save Preferences
+                    </button>
                 </div>
             </div>
         </div>

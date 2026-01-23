@@ -11,17 +11,7 @@ const Header = () => {
             </div>
 
             <div className="header-actions">
-                <button className="icon-btn">
-                    <Bell size={20} />
-                    <span className="notification-dot"></span>
-                </button>
-                <div className="user-profile">
-                    <div className="user-info">
-                        <p className="user-name">Mery's Restaurant</p>
-                        <p className="user-role">Owner</p>
-                    </div>
-                    <UserCircle size={32} />
-                </div>
+                {/* Profile actions removed as requested */}
             </div>
         </header>
     );

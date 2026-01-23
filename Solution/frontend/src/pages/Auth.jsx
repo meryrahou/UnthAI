@@ -4,6 +4,47 @@ import './Auth.css';
 
 const Auth = ({ onLogin }) => {
     const [isLogin, setIsLogin] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleLogin = async (e) => {
+        if (e) e.preventDefault();
+        setError('');
+        setLoading(true);
+
+        // For the demo, if clicking Google without inputs, we fill it
+        const loginEmail = email || 'sanbenito@unthai.dz';
+        const loginPassword = password || 'unthai2026';
+
+        try {
+            const formData = new URLSearchParams();
+            formData.append('username', loginEmail);
+            formData.append('password', loginPassword);
+
+            const response = await fetch('http://localhost:8001/token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData.toString(),
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                localStorage.setItem('token', data.access_token);
+                onLogin();
+            } else {
+                const data = await response.json();
+                setError(data.detail || 'Login failed. Please check your credentials.');
+            }
+        } catch (err) {
+            setError('Could not connect to the server. Make sure the backend is running.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="auth-container">
@@ -35,21 +76,32 @@ const Auth = ({ onLogin }) => {
                         <p>{isLogin ? 'Enter your details to access your dashboard.' : 'Start analyzing your restaurant data today.'}</p>
                     </div>
 
-                    <button className="google-btn" onClick={onLogin}>
+                    <button
+                        className="google-btn"
+                        onClick={() => handleLogin()}
+                        disabled={loading}
+                    >
                         <Chrome size={20} />
-                        <span>Continue with Google</span>
+                        <span>{loading ? 'Connecting...' : 'Continue with Google'}</span>
                     </button>
 
                     <div className="divider">
                         <span>OR</span>
                     </div>
 
-                    <form className="auth-form" onSubmit={(e) => { e.preventDefault(); onLogin(); }}>
+                    <form className="auth-form" onSubmit={handleLogin}>
+                        {error && <div className="error-message">{error}</div>}
                         <div className="input-group">
                             <label>Email Address</label>
                             <div className="input-wrapper">
                                 <Mail size={18} />
-                                <input type="email" placeholder="name@restaurant.com" required />
+                                <input
+                                    type="email"
+                                    placeholder="name@restaurant.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
                             </div>
                         </div>
 
@@ -57,14 +109,20 @@ const Auth = ({ onLogin }) => {
                             <label>Password</label>
                             <div className="input-wrapper">
                                 <Lock size={18} />
-                                <input type="password" placeholder="••••••••" required />
+                                <input
+                                    type="password"
+                                    placeholder="••••••••"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
                             </div>
                         </div>
 
                         {isLogin && <a href="#" className="forgot-link">Forgot password?</a>}
 
-                        <button type="submit" className="submit-btn">
-                            {isLogin ? 'Sign In' : 'Create Account'}
+                        <button type="submit" className="submit-btn" disabled={loading}>
+                            {loading ? 'Signing in...' : (isLogin ? 'Sign In' : 'Create Account')}
                             <ArrowRight size={18} />
                         </button>
                     </form>
