@@ -4,7 +4,7 @@ import './Auth.css';
 
 const Auth = ({ onLogin }) => {
     const [isLogin, setIsLogin] = useState(true);
-    const [email, setEmail] = useState('');
+    const [restaurantName, setRestaurantName] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -15,12 +15,12 @@ const Auth = ({ onLogin }) => {
         setLoading(true);
 
         // For the demo, if clicking Google without inputs, we fill it
-        const loginEmail = email || 'sanbenito@unthai.dz';
-        const loginPassword = password || 'unthai2026';
+        const loginName = restaurantName || 'favorite restaurant';
+        const loginPassword = password || '1234';
 
         try {
             const formData = new URLSearchParams();
-            formData.append('username', loginEmail);
+            formData.append('username', loginName);
             formData.append('password', loginPassword);
 
             const response = await fetch('http://localhost:8001/token', {
@@ -92,14 +92,14 @@ const Auth = ({ onLogin }) => {
                     <form className="auth-form" onSubmit={handleLogin}>
                         {error && <div className="error-message">{error}</div>}
                         <div className="input-group">
-                            <label>Email Address</label>
+                            <label>Restaurant Name</label>
                             <div className="input-wrapper">
                                 <Mail size={18} />
                                 <input
-                                    type="email"
-                                    placeholder="name@restaurant.com"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    type="text"
+                                    placeholder="e.g. Restaurant San Benito"
+                                    value={restaurantName}
+                                    onChange={(e) => setRestaurantName(e.target.value)}
                                     required
                                 />
                             </div>

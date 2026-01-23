@@ -9,9 +9,11 @@ from typing import List, Optional, Dict
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 import os
+import json
+from app.services.data_manager import refresh_restaurant_data, get_processed_path
 
 # --- Configuration ---
-CSV_PATH = "/Users/mery/GitHub/UnthAI/03_annotation/annotation_part_1.csv"
+CSV_PATH = "/Users/mery/GitHub/UnthAI/Solution/backend/data/master_data.csv"
 SECRET_KEY = "unthai_super_secret_key"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 600
@@ -29,22 +31,44 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Data Loading ---
-PROCESSED_CSV_PATH = "/Users/mery/GitHub/UnthAI/Solution/backend/processed_san_benito.csv"
-try:
-    df_res = pd.read_csv(PROCESSED_CSV_PATH)
-    df_res = df_res.fillna("")
-    # Pre-calculate data bounds
-    if not df_res.empty:
-        df_res['date_dt_all'] = pd.to_datetime(df_res['date'], utc=True)
-        DATA_MIN = df_res['date_dt_all'].min().strftime('%Y-%m-%d')
-        DATA_MAX = df_res['date_dt_all'].max().strftime('%Y-%m-%d')
-    else:
-        DATA_MIN, DATA_MAX = "2026-01-01", "2026-01-30"
-except Exception as e:
-    print(f"Error loading processed CSV: {e}")
-    df_res = pd.DataFrame()
-    DATA_MIN, DATA_MAX = "2026-01-01", "2026-01-30"
+# --- Data Loading (Legacy - Commented Out) ---
+# PROCESSED_CSV_PATH = "/Users/mery/GitHub/UnthAI/Solution/backend/processed_san_benito.csv"
+# try:
+#     df_res = pd.read_csv(PROCESSED_CSV_PATH)
+#     df_res = df_res.fillna("")
+#     # Pre-calculate data bounds
+#     if not df_res.empty:
+#         df_res['date_dt_all'] = pd.to_datetime(df_res['date'], utc=True)
+#         DATA_MIN = df_res['date_dt_all'].min().strftime('%Y-%m-%d')
+#         DATA_MAX = df_res['date_dt_all'].max().strftime('%Y-%m-%d')
+#     else:
+#         DATA_MIN, DATA_MAX = "2026-01-01", "2026-01-30"
+# except Exception as e:
+#     print(f"Error loading processed CSV: {e}")
+#     df_res = pd.DataFrame()
+#     DATA_MIN, DATA_MAX = "2026-01-01", "2026-01-30"
+
+# --- Dynamic Data Store ---
+data_cache = {}
+
+def get_restaurant_df(restaurant_name: str):
+    if restaurant_name in data_cache:
+        return data_cache[restaurant_name]
+    
+    path = get_processed_path(restaurant_name)
+    if not os.path.exists(path):
+        success = refresh_restaurant_data(restaurant_name)
+        if not success:
+            raise HTTPException(status_code=404, detail=f"No data found for {restaurant_name}")
+            
+    df = pd.read_csv(path)
+    df = df.fillna("")
+    # Fix: Use 'mixed' format to handle 'Z' suffix and other variations
+    df['date_dt_all'] = pd.to_datetime(df['date'], format='mixed', utc=True, errors='coerce')
+    df = df.dropna(subset=['date_dt_all'])
+    
+    data_cache[restaurant_name] = df
+    return df
 
 # --- Auth Logic ---
 class Token(BaseModel):
@@ -72,23 +96,38 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
-        if username is None:
+        restaurant_name: str = payload.get("restaurant_name")
+        if username is None or restaurant_name is None:
             raise credentials_exception
     except JWTError:
         raise credentials_exception
     
-    return {"username": username, "restaurant_name": "Restaurant San Benito"}
+    return {"username": username, "restaurant_name": restaurant_name}
 
 @app.post("/token", response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
-    # Mock user for San Benito
-    if form_data.username == "sanbenito@unthai.dz" and form_data.password == "unthai2026":
-        access_token = create_access_token(data={"sub": form_data.username})
+    # Allow login with any restaurant name as long as password is correct
+    if form_data.password == "1234":
+        restaurant_name = form_data.username # We use username field for restaurant name
+        
+        # Verify it exists in master data before giving token
+        df_master = pd.read_csv(CSV_PATH)
+        if restaurant_name.lower() not in df_master['source_name'].str.lower().unique():
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Restaurant '{restaurant_name}' not found in our database.",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+            
+        access_token = create_access_token(data={
+            "sub": f"{restaurant_name}@unthai.dz", 
+            "restaurant_name": restaurant_name
+        })
         return {"access_token": access_token, "token_type": "bearer"}
     else:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
+            detail="Incorrect password. (Try 'unthai2026')",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
@@ -97,7 +136,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 @app.get("/api/user/me", response_model=User)
 async def read_users_me(current_user: dict = Depends(get_current_user)):
     return {
-        "username": "Mery's Restaurant" if current_user["username"] == "mery@unthai.dz" else "San Benito Admin",
+        "username": current_user["restaurant_name"],
         "email": current_user["username"],
         "restaurant_name": current_user["restaurant_name"]
     }
@@ -108,21 +147,33 @@ async def get_dashboard_summary(
     end_date: Optional[str] = None,
     current_user: dict = Depends(get_current_user)
 ):
-    d_df = df_res.copy()
-    # Always create a standardized datetime column for filtering and history
-    d_df['date_dt'] = pd.to_datetime(d_df['date'], utc=True)
+    df_user = get_restaurant_df(current_user["restaurant_name"])
+    if df_user.empty:
+        return {"error": "No data available"}
+
+    d_df = df_user.copy()
     
+    # Robust date conversion with mixed format support
+    d_df['date_dt'] = pd.to_datetime(d_df['date'], format='mixed', utc=True, errors='coerce')
+    d_df = d_df.dropna(subset=['date_dt'])
+    
+    if d_df.empty:
+        return {"error": "No valid dates found in data"}
+
     if start_date and end_date and start_date != "" and end_date != "":
         try:
-            # Ensure filter dates are also UTC aware for clean comparison
             s_dt = pd.to_datetime(start_date, utc=True)
             e_dt = pd.to_datetime(end_date, utc=True) + pd.Timedelta(days=1)
             d_df = d_df[(d_df['date_dt'] >= s_dt) & (d_df['date_dt'] < e_dt)]
         except Exception as e:
             print(f"Filter error: {e}")
     else:
-        # Defaults if not provided
-        start_date, end_date = DATA_MIN, DATA_MAX
+        if 'date_dt_all' in df_user.columns:
+            start_date = df_user['date_dt_all'].min().strftime('%Y-%m-%d')
+            end_date = df_user['date_dt_all'].max().strftime('%Y-%m-%d')
+        else:
+             start_date = d_df['date_dt'].min().strftime('%Y-%m-%d')
+             end_date = d_df['date_dt'].max().strftime('%Y-%m-%d')
 
     total_comments = len(d_df)
     
@@ -229,19 +280,22 @@ async def get_dashboard_summary(
 
 @app.get("/api/posts")
 async def get_posts(current_user: dict = Depends(get_current_user)):
-    platforms = sorted(df_res['platform'].unique().tolist())
+    df_user = get_restaurant_df(current_user["restaurant_name"])
+    # Group by post_id to get unique posts
+    post_ids = df_user['post_id'].unique().tolist()
     posts = []
     categories = ['food', 'service', 'place', 'delivery', 'price', 'treatment']
     
-    for i, platform in enumerate(platforms):
-        p_df = df_res[df_res['platform'] == platform].copy()
+    for pid in post_ids:
+        p_df = df_user[df_user['post_id'] == pid].copy()
         if p_df.empty: continue
         
+        platform = p_df['platform'].iloc[0]
         try:
-            p_df['date_dt'] = pd.to_datetime(p_df['date'])
+            p_df['date_dt'] = pd.to_datetime(p_df['date'], format='mixed', utc=True)
             earliest_date = p_df['date_dt'].min().strftime('%b %d, %Y')
         except:
-            earliest_date = "Jan 20, 2026"
+            earliest_date = "N/A"
             
         pos_count = len(p_df[p_df['feeling'] == 'positive'])
         neg_count = len(p_df[p_df['feeling'] == 'negative'])
@@ -258,8 +312,6 @@ async def get_posts(current_user: dict = Depends(get_current_user)):
             total_cat = app_c + com_c + rec_c + inq_c
             if total_cat > 0:
                 score = int(((app_c - com_c) / total_cat) * 50 + 50)
-                # Find platform disparity (though grouped by platform here, we can flag if this platform is lower than avg)
-                # For this view, we'll just show the volume as dots/pill
                 cat_performance.append({
                     "name": cat.capitalize(), 
                     "score": score,
@@ -268,8 +320,8 @@ async def get_posts(current_user: dict = Depends(get_current_user)):
                 })
         
         posts.append({
-            "id": i,
-            "platform": platform.lower().replace(" ", ""),
+            "id": int(pid),
+            "platform": "googlemaps" if "maps" in platform.lower() else platform.lower().replace(" ", ""),
             "author": f"{platform} Digest",
             "date": earliest_date,
             "content": f"Customer sentiment stream from {platform}. Analyzing {total_p} recent interactions.",
@@ -287,14 +339,14 @@ async def get_posts(current_user: dict = Depends(get_current_user)):
 
 @app.get("/api/posts/{post_id}/comments")
 async def get_post_comments(post_id: int, current_user: dict = Depends(get_current_user)):
-    platforms = sorted(df_res['platform'].unique().tolist())
-    if post_id >= len(platforms): return []
+    df_user = get_restaurant_df(current_user["restaurant_name"])
     
-    platform = platforms[post_id]
-    c_df = df_res[df_res['platform'] == platform].head(1000)
+    # Filter by the physical post_id column
+    c_df = df_user[df_user['post_id'] == post_id].head(1000)
+    if c_df.empty: return []
     
     comments = []
-    cols = df_res.columns
+    cols = df_user.columns
     for _, row in c_df.iterrows():
         try:
             preds_str = row.get('model_prediction', '[]')
@@ -345,12 +397,14 @@ async def get_post_comments(post_id: int, current_user: dict = Depends(get_curre
 
 @app.get("/api/ai/insights")
 async def get_ai_insights(current_user: dict = Depends(get_current_user)):
+    df_user = get_restaurant_df(current_user["restaurant_name"])
+    pos_len = len(df_user[df_user['feeling'] == 'positive'])
     return [
         {
             "id": 1,
             "type": "strategy",
             "title": "Leverage High Appreciation",
-            "content": f"You have a strong base of {len(df_res[df_res['feeling'] == 'positive'])} positive reviews. Highlight these on your social media to attract new customers.",
+            "content": f"You have a strong base of {pos_len} positive reviews. Highlight these on your social media to attract new customers.",
             "impact": "High"
         }
     ]

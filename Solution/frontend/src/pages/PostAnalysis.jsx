@@ -32,12 +32,8 @@ const PostAnalysis = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setPosts(data);
-                    // Filter San Benito Facebook posts initially
-                    const facebookPosts = data.filter(p => p.platform === 'facebook');
-                    if (facebookPosts.length > 0) {
-                        setSelectedPost(facebookPosts[0].id);
-                        setSelectedPlatform('facebook');
-                    } else if (data.length > 0) {
+                    // Select the first post found, whatever platform it is
+                    if (data.length > 0) {
                         setSelectedPost(data[0].id);
                         setSelectedPlatform(data[0].platform);
                     }

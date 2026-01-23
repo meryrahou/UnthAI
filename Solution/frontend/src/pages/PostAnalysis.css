@@ -40,6 +40,13 @@
     border-color: var(--primary);
 }
 
+.posts-list {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+    /* Optional: adds space for scrollbar */
+}
+
 .posts-list h3 {
     font-size: 16px;
     margin-bottom: 20px;
