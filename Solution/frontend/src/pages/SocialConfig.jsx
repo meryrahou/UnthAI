@@ -10,9 +10,11 @@ import {
     Clock,
     List
 } from 'lucide-react';
+import { useApp } from '../utils/AppContext';
 import './SocialConfig.css';
 
 const SocialConfig = () => {
+    const { t } = useApp();
     const [pref, setPref] = React.useState('time');
     const accounts = [
         { platform: 'TikTok', username: '@uncles_burger_dz', status: 'connected', icon: <Play /> },
@@ -24,15 +26,15 @@ const SocialConfig = () => {
     return (
         <div className="config-page animate-fade-in">
             <div className="page-header">
-                <h1>Source Configuration</h1>
-                <p className="subtitle">Connect and manage your restaurant's social media platforms.</p>
+                <h1>{t('sourceConfiguration')}</h1>
+                <p className="subtitle">{t('configSubtitle')}</p>
             </div>
 
             <div className="config-grid">
                 <div className="glass-card connections-card">
                     <div className="card-header">
-                        <h3>Active Connections</h3>
-                        <button className="add-btn" onClick={() => alert("Connecting new account...")}><Plus size={18} /> Connect New</button>
+                        <h3>{t('activeConnections')}</h3>
+                        <button className="add-btn" onClick={() => alert("Connecting new account...")}><Plus size={18} /> {t('connectNew')}</button>
                     </div>
                     <div className="accounts-list">
                         {accounts.map((acc, idx) => (
@@ -54,8 +56,8 @@ const SocialConfig = () => {
                 </div>
 
                 <div className="glass-card analysis-prefs">
-                    <h3>Collection Preferences</h3>
-                    <p className="section-desc">Choose how the AI should gather data from your accounts.</p>
+                    <h3>{t('collectionPreferences')}</h3>
+                    <p className="section-desc">{t('collectionDesc')}</p>
 
                     <div className="pref-options">
                         <div
@@ -64,9 +66,9 @@ const SocialConfig = () => {
                         >
                             <div className="pref-icon"><Clock /></div>
                             <div className="pref-text">
-                                <h4>Time Period Analysis</h4>
-                                <p>Analyze all comments within a specific timeframe (e.g., last 3 months).</p>
-                                <span className="rec-badge">Recommended</span>
+                                <h4>{t('timePeriodAnalysis')}</h4>
+                                <p>{t('timePeriodDesc')}</p>
+                                <span className="rec-badge">{t('recommended')}</span>
                             </div>
                         </div>
 
@@ -76,23 +78,23 @@ const SocialConfig = () => {
                         >
                             <div className="pref-icon"><List /></div>
                             <div className="pref-text">
-                                <h4>Recent Posts Analysis</h4>
-                                <p>Analyze the 10-50 most recent uploads regardless of date.</p>
+                                <h4>{t('recentPostsAnalysis')}</h4>
+                                <p>{t('recentPostsDesc')}</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="justification-box">
-                        <h4>Why {pref === 'time' ? 'Time Period' : 'Recent Posts'}?</h4>
+                        <h4>{pref === 'time' ? t('whyTimePeriod') : t('whyRecentPosts')}?</h4>
                         <p>
                             {pref === 'time'
-                                ? "Choosing a time period allows the platform to generate Temporal Trend Evolution. It enables the AI to detect if sentiment is improving month-over-month."
-                                : "Recent posts analysis is perfect for quick sanity checks after a specific marketing drop or event to see immediate reception."}
+                                ? t('timePeriodReason')
+                                : t('recentPostsReason')}
                         </p>
                     </div>
 
                     <button className="primary-btn full-width" onClick={() => alert('Preferences Saved!')}>
-                        Save Preferences
+                        {t('savePreferences')}
                     </button>
                 </div>
             </div>

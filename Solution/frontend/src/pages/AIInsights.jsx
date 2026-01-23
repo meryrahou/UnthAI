@@ -37,7 +37,7 @@ const AIInsights = () => {
             <div className="page-header">
                 <div>
                     <h1>{t('aiInsights')}</h1>
-                    <p className="subtitle">Data-driven recommendations to grow your restaurant's reputation.</p>
+                    <p className="subtitle">{t('aiInsightsSubtitle')}</p>
                 </div>
             </div>
 

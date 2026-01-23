@@ -238,7 +238,7 @@ const PostAnalysis = () => {
 
                 <div className="glass-card top-comments">
                     <div className="comments-header">
-                        <h3>{t('comments')}</h3>
+                        <h3>{t('representativeComments')}</h3>
                         <div className="filter-group">
                             {['all', 'appreciation', 'complaint', 'recommendation', 'inquiry'].map(f => (
                                 <button
@@ -247,7 +247,7 @@ const PostAnalysis = () => {
                                     onClick={() => setCommentFilter(f)}
                                 >
                                     {f !== 'all' && <div className={`comment-sentiment-dot ${f}`}></div>}
-                                    {f === 'all' ? 'All' : f.charAt(0).toUpperCase() + f.slice(1)}
+                                    {f === 'all' ? t('all') : t(f)}
                                 </button>
                             ))}
                         </div>
@@ -267,7 +267,7 @@ const PostAnalysis = () => {
                                                     <p>"{comment.text}"</p>
                                                     <div className="comment-meta">
                                                         <span className={`meta-cat ${comment.type}`}>
-                                                            {comment.category === 'general' ? 'General' : comment.category.charAt(0).toUpperCase() + comment.category.slice(1)}
+                                                            {t(`pillers.${comment.category}`) || comment.category}
                                                         </span> • <span>{comment.time}</span>
                                                         {comment.likesCount > 0 && (
                                                             <span className="comment-likes">

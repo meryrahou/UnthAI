@@ -55,7 +55,7 @@ const Dashboard = () => {
         return (
             <div className="loading-container">
                 <div className="spinner"></div>
-                <p>Analyzing Reputation...</p>
+                <p>{t('analyzingReputation')}</p>
             </div>
         );
     }
@@ -70,10 +70,10 @@ const Dashboard = () => {
     };
 
     const kpiConfig = {
-        total: { icon: <MessageCircle size={22} />, status: 'up', label: 'Total Reviews', trend: 'Filtered' },
-        health: { icon: <Activity size={22} />, status: 'up', label: 'Brand Health', trend: 'Sentiment' },
-        pillar: { icon: <Target size={22} />, status: 'up', label: 'Most Discussed', trend: 'Popular' },
-        complaint: { icon: <AlertTriangle size={22} />, status: 'down', label: 'Top Complaint', trend: 'Attention' }
+        total: { icon: <MessageCircle size={22} />, status: 'up', label: t('totalReviews'), trend: t('filtered') },
+        health: { icon: <Activity size={22} />, status: 'up', label: t('brandHealth'), trend: t('sentiment') },
+        pillar: { icon: <Target size={22} />, status: 'up', label: t('mostDiscussed'), trend: t('popular') },
+        complaint: { icon: <AlertTriangle size={22} />, status: 'down', label: t('topComplaint'), trend: t('attention') }
     };
 
     return (
@@ -81,11 +81,11 @@ const Dashboard = () => {
             <div className="page-header">
                 <div>
                     <h1>{t('dashboard')}</h1>
-                    <p className="subtitle">Real-time analysis of your restaurant's digital footprint.</p>
+                    <p className="subtitle">{t('dashboardSubtitle')}</p>
                 </div>
                 <div className="date-picker-container">
                     <div className="date-input-group">
-                        <label>START</label>
+                        <label>{t('start')}</label>
                         <div className="input-with-icon">
                             <input
                                 type="date"
@@ -96,7 +96,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="date-input-group">
-                        <label>END</label>
+                        <label>{t('end')}</label>
                         <div className="input-with-icon">
                             <input
                                 type="date"
@@ -155,7 +155,9 @@ const Dashboard = () => {
                                     height={36}
                                     iconType="circle"
                                     formatter={(value) => {
-                                        const label = value === 'Appreciation' ? 'Positive' : value === 'Complaint' ? 'Negative' : value;
+                                        const label = value === 'Appreciation' || value === 'Positive' ? t('positive') :
+                                            value === 'Complaint' || value === 'Negative' ? t('negative') :
+                                                value === 'Neutral' ? t('neutral') : value;
                                         return <span style={{ color: 'var(--text-muted)', fontSize: '13px', fontWeight: 500 }}>{label}</span>
                                     }}
                                 />
@@ -190,8 +192,8 @@ const Dashboard = () => {
                                     contentStyle={tooltipStyle}
                                 />
                                 <Legend iconType="rect" verticalAlign="bottom" />
-                                <Bar dataKey="apprec" name="Positive" fill="#10b981" radius={[6, 6, 0, 0]} barSize={24} />
-                                <Bar dataKey="compl" name="Negative" fill="#ef4444" radius={[6, 6, 0, 0]} barSize={24} />
+                                <Bar dataKey="apprec" name={t('positive')} fill="#10b981" radius={[6, 6, 0, 0]} barSize={24} />
+                                <Bar dataKey="compl" name={t('negative')} fill="#ef4444" radius={[6, 6, 0, 0]} barSize={24} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
@@ -202,21 +204,23 @@ const Dashboard = () => {
                 <div className="glass-card ai-summary-card">
                     <div className="ai-summary-header">
                         <h3>{t('quickInsights')}</h3>
-                        <span className="ai-badge-new">AI Generated</span>
+                        <span className="ai-badge-new">{t('aiGenerated')}</span>
                     </div>
                     <div className="ai-content-new">
                         <ul className="ai-facts-new">
                             <li>
                                 <span className="dot pos"></span>
-                                Found <strong>{data.pos_count || 0} Appreciations</strong> and <strong>{data.recommendation_count || 0} Recommendations</strong>.
+                                {t('foundStats')
+                                    .replace('{pos}', data.pos_count || 0)
+                                    .replace('{rec}', data.recommendation_count || 0)}
                             </li>
                             <li>
                                 <span className="dot info"></span>
-                                Your most discussed pillar is <strong>{data.kpis.find(k => k.id === 'pillar')?.value || 'N/A'}</strong>.
+                                {t('mostDiscussedPillar').replace('{value}', data.kpis.find(k => k.id === 'pillar')?.value || 'N/A')}
                             </li>
                             <li>
                                 <span className="dot neg"></span>
-                                Top Negative source: <strong>{data.kpis.find(k => k.id === 'complaint')?.value || 'N/A'}</strong>.
+                                {t('topNegativeSource').replace('{value}', data.kpis.find(k => k.id === 'complaint')?.value || 'N/A')}
                             </li>
                         </ul>
                     </div>

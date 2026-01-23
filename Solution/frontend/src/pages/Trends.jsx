@@ -27,7 +27,7 @@ const Trends = () => {
     if (loading) return (
         <div className="loading-container">
             <div className="spinner"></div>
-            <p>Gathering Trend Data...</p>
+            <p>{t('gatheringTrends')}</p>
         </div>
     );
 
@@ -36,12 +36,12 @@ const Trends = () => {
             <div className="trends-header">
                 <div>
                     <h2><Zap size={24} style={{ color: 'var(--primary)' }} /> {t('trendExplorer')}</h2>
-                    <p>Discover the most discussed topics across all platforms.</p>
+                    <p>{t('trendsSubtitle')}</p>
                 </div>
             </div>
 
             <div className="trends-section">
-                <h3>Food & Feedback Keywords</h3>
+                <h3>{t('keywordsTitle')}</h3>
                 <div className="vibrant-grid">
                     {words.slice(0, 20).map((w, idx) => (
                         <div key={idx} className="vibrant-trend-card">
@@ -49,7 +49,7 @@ const Trends = () => {
                                 <span className="trend-word">{w.text}</span>
                                 <div className="trend-badge">
                                     <span className="count">{w.value}</span>
-                                    <span className="label">Comments</span>
+                                    <span className="label">{t('comments')}</span>
                                 </div>
                             </div>
                             <div className="trend-progress-bar">
@@ -68,7 +68,7 @@ const Trends = () => {
             </div>
 
             <div className="trends-section" style={{ marginTop: '40px' }}>
-                <h3>Topic Distribution</h3>
+                <h3>{t('topicDistribution')}</h3>
                 <div className="topic-cloud">
                     {words.slice(0, 30).map((w, idx) => (
                         <span

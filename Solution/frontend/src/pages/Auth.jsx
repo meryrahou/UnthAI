@@ -4,7 +4,7 @@ import { useApp } from '../utils/AppContext';
 import './Auth.css';
 
 const Auth = ({ onLogin }) => {
-    const { theme, toggleTheme } = useApp();
+    const { theme, toggleTheme, t } = useApp();
     const [isLogin, setIsLogin] = useState(true);
     const [restaurantName, setRestaurantName] = useState('');
     const [password, setPassword] = useState('');
@@ -39,7 +39,7 @@ const Auth = ({ onLogin }) => {
                 onLogin();
             } else {
                 const data = await response.json();
-                setError(data.detail || 'Login failed. Please check your credentials.');
+                setError(data.detail || t('loginFailed') || 'Login failed. Please check your credentials.');
             }
         } catch (err) {
             setError('Could not connect to the server. Make sure the backend is running.');
@@ -60,15 +60,15 @@ const Auth = ({ onLogin }) => {
                         <Sparkles size={48} color="#ff6b35" />
                         <h1>Unth<span>AI</span></h1>
                     </div>
-                    <p>Unlocking the secrets of your restaurant's reputation through the power of Algerian specialized NLP.</p>
+                    <p>{t('authTagline')}</p>
                     <div className="visual-stats">
                         <div className="v-stat">
                             <span>98%</span>
-                            <p>Model Accuracy</p>
+                            <p>{t('modelAccuracy')}</p>
                         </div>
                         <div className="v-stat">
                             <span>500+</span>
-                            <p>Active Restaurants</p>
+                            <p>{t('activeRestaurants')}</p>
                         </div>
                     </div>
                 </div>
@@ -77,8 +77,8 @@ const Auth = ({ onLogin }) => {
             <div className="auth-form-side">
                 <div className="auth-form-wrapper">
                     <div className="form-header">
-                        <h2>{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
-                        <p>{isLogin ? 'Enter your details to access your dashboard.' : 'Start analyzing your restaurant data today.'}</p>
+                        <h2>{isLogin ? t('welcomeBack') : t('createAccount')}</h2>
+                        <p>{isLogin ? t('loginDetails') : t('startAnalyzing')}</p>
                     </div>
 
                     <button
@@ -87,17 +87,17 @@ const Auth = ({ onLogin }) => {
                         disabled={loading}
                     >
                         <Chrome size={20} />
-                        <span>{loading ? 'Connecting...' : 'Continue with Google'}</span>
+                        <span>{loading ? t('connecting') : t('continueWithGoogle')}</span>
                     </button>
 
                     <div className="divider">
-                        <span>OR</span>
+                        <span>{t('or')}</span>
                     </div>
 
                     <form className="auth-form" onSubmit={handleLogin}>
                         {error && <div className="error-message">{error}</div>}
                         <div className="input-group">
-                            <label>Restaurant Name</label>
+                            <label>{t('restaurantNameLabel')}</label>
                             <div className="input-wrapper">
                                 <Mail size={18} />
                                 <input
@@ -111,7 +111,7 @@ const Auth = ({ onLogin }) => {
                         </div>
 
                         <div className="input-group">
-                            <label>Password</label>
+                            <label>{t('passwordLabel')}</label>
                             <div className="input-wrapper">
                                 <Lock size={18} />
                                 <input
@@ -124,18 +124,18 @@ const Auth = ({ onLogin }) => {
                             </div>
                         </div>
 
-                        {isLogin && <a href="#" className="forgot-link">Forgot password?</a>}
+                        {isLogin && <a href="#" className="forgot-link">{t('forgotPassword')}</a>}
 
                         <button type="submit" className="submit-btn" disabled={loading}>
-                            {loading ? 'Signing in...' : (isLogin ? 'Sign In' : 'Create Account')}
+                            {loading ? t('signingIn') : (isLogin ? t('signIn') : t('createAccount'))}
                             <ArrowRight size={18} />
                         </button>
                     </form>
 
                     <p className="toggle-auth">
-                        {isLogin ? "Don't have an account?" : "Already have an account?"}
-                        <button onClick={() => setIsLogin(!isLogin)}>
-                            {isLogin ? 'Sign Up' : 'Sign In'}
+                        {isLogin ? t('dontHaveAccount') : t('alreadyHaveAccount')}
+                        <button onClick={() => setIsLogin(!isLogin)} type="button">
+                            {isLogin ? t('signUp') : t('signIn')}
                         </button>
                     </p>
                 </div>
