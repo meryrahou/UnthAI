@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import PostAnalysis from './pages/PostAnalysis';
+import Trends from './pages/Trends';
 import AIInsights from './pages/AIInsights';
 import SocialConfig from './pages/SocialConfig';
 import Profile from './pages/Profile';
@@ -29,6 +30,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/analysis" element={<PostAnalysis />} />
+              <Route path="/trends" element={<Trends />} />
               <Route path="/insights" element={<AIInsights />} />
               <Route path="/config" element={<SocialConfig />} />
               <Route path="/profile" element={<Profile />} />

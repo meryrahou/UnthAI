@@ -1,0 +1,36 @@
+comment_id,final_id,comment_text,platform,source_name,date,likesCount,food,service,place,delivery,price,treatment,out_of_scope,model_prediction,feeling
+52270,917504,كليت عندهم كلش توب والله,tiktok,@uncles_burger_dz,2026-01-02T21:03:28.158417,0,Appreciation,Appreciation,Appreciation,Appreciation,Appreciation,Appreciation,False,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""delivery_appreciation"", ""price_appreciation"", ""treatment_appreciation""]",positive
+52706,524904,أنا معجبنيش الخبز يعيف,tiktok,@uncles_burger_dz,2026-01-02T21:03:40.624878,0,Complaint,,,,,,False,"[""food_complaint""]",negative
+52576,787673,Onat,tiktok,@uncles_burger_dz,2026-01-02T21:03:36.435804,0,,,,,,,True,[],neutral
+52288,265486,أنا في عنابة وأول مرة نعرف بهذا روستورو,tiktok,@uncles_burger_dz,2026-01-02T21:03:28.158459,0,,,,,,,True,[],neutral
+52122,791365,Lgit fih cha3ra hamburger lol,tiktok,@uncles_burger_dz,2026-01-02T21:03:25.013469,10,complaint,,,,,,False,"[""food_complaint""]",negative
+52360,922788,حق ربي شجعتني مرنروحش تما ٠٠,tiktok,@uncles_burger_dz,2026-01-02T21:03:31.530457,0,,,,,,,True,[],neutral
+52364,792598,du camembert en plus,tiktok,@uncles_burger_dz,2026-01-02T21:03:31.530460,0,appreciation,,,,,,False,"[""food_appreciation""]",positive
+52324,663933,شحال طاكوس,tiktok,@uncles_burger_dz,2026-01-02T21:03:29.230229,0,,,,,inquiry,,False,"[""price_inquiry""]",neutral
+52356,402652,لاصوص مايها زيد عقدها شوية بركا,tiktok,@uncles_burger_dz,2026-01-02T21:03:31.530452,0,recommendation,,,,,,False,"[""food_recommendation""]",positive
+52116,796484,عادي ماشي حاجة واو و سرفيس ناقص,tiktok,@uncles_burger_dz,2026-01-02T21:03:25.013463,2,Complaint,,,,,Complaint,False,"[""food_complaint"", ""treatment_complaint""]",negative
+52248,665838,lpoutine ta3ou Très délicieux Benaa masratch,tiktok,@uncles_burger_dz,2026-01-02T21:03:28.152394,0,Appreciation,,,,,,False,"[""food_appreciation""]",positive
+52162,404543,le pain mech bnin,tiktok,@uncles_burger_dz,2026-01-02T21:03:26.444463,1,complaint,,,,,,False,"[""food_complaint""]",negative
+52192,142955,فريت في حالة,tiktok,@uncles_burger_dz,2026-01-02T21:03:26.511083,0,complaint,,,,,,False,"[""food_complaint""]",negative
+52254,669075,محتوى روعة ربي يوفقك,tiktok,@uncles_burger_dz,2026-01-02T21:03:28.152404,1,,,appreciation,,,,False,"[""place_appreciation""]",positive
+52696,801039,سامحني ا خويا شهادة زور هادي كليت عندو تع طوكيو في حالة حاشة نعمة ربي وكريسبي موزاريلا تقول توكل ف الحطب ولاصوص لي تحكي علاها تقول حليب وما مبقيتش نروحلو للأبد  [RECOMMENDATION],tiktok,@uncles_burger_dz,2026-01-02T21:03:40.624827,0,Complaint,,,,,,False,"[""food_complaint""]",negative
+52236,408140,وش من بلاصة,tiktok,@uncles_burger_dz,2026-01-02T21:03:27.379959,0,,,Inquiry,,,,False,"[""place_inquiry""]",neutral
+52310,279358,bn courage mais آنكلز مش اونكلز,tiktok,@uncles_burger_dz,2026-01-02T21:03:29.079508,3,,,,,,,True,[],neutral
+52278,541976,بنين ابوتين تيعوا ننصحكم والله بنة,tiktok,@uncles_burger_dz,2026-01-02T21:03:28.158442,0,appreciation,,,,,,False,"[""food_appreciation""]",positive
+52728,935650,ادا بالذات كليت فيه و ندمت يعيف ماللخر و لي prix زايدين بلا فايدة,tiktok,@uncles_burger_dz,2026-01-02T21:03:40.624946,0,Complaint,,,,Complaint,,False,"[""food_complaint"", ""price_complaint""]",negative
+52234,149919,عنابة l a classe toujours بصحتك [APPRECIATION],tiktok,@uncles_burger_dz,2026-01-02T21:03:27.379956,0,,,Appreciation,,,,False,"[""place_appreciation""]",positive
+52626,543446,اعيف فاست فود في عنابة ساعة باش يجيبو لكوموند و يجيبوها باردة و ينساو نصها الله غلطت عمري لي دخلت ليه,tiktok,@uncles_burger_dz,2026-01-02T21:03:38.920966,1,,complaint,,complaint,,complaint,False,"[""service_complaint"", ""delivery_complaint"", ""treatment_complaint""]",negative
+52252,806632,صحبوب,tiktok,@uncles_burger_dz,2026-01-02T21:03:28.152402,1,,,,,,,True,[],neutral
+52754,675733,كاين 5 بوتين وش الفرق بيناتهم ادو تاني,tiktok,@uncles_burger_dz,2026-01-02T21:03:41.467075,0,,,Inquiry,,,,False,"[""place_inquiry""]",neutral
+52352,151465,والله مايتكل,tiktok,@uncles_burger_dz,2026-01-02T21:03:31.530449,0,complaint,,,,,,False,"[""food_complaint""]",negative
+52190,151650,يدير la livraison,tiktok,@uncles_burger_dz,2026-01-02T21:03:26.511081,1,,,,inquiry,,,False,"[""delivery_inquiry""]",neutral
+52308,680322,عندهم توصيل,tiktok,@uncles_burger_dz,2026-01-02T21:03:29.079505,1,,,,inquiry,,,False,"[""delivery_inquiry""]",neutral
+52756,421413,تلعبيز كبير,tiktok,@uncles_burger_dz,2026-01-02T21:03:41.467077,0,,,,,,,True,[],neutral
+52744,815032,تلعبيز ف لبلاطو بالفرماج سايح لا استطيع,tiktok,@uncles_burger_dz,2026-01-02T21:03:41.467065,0,complaint,,,,,,False,"[""food_complaint""]",negative
+52316,422204,Top poutin [APPRECIATION],tiktok,@uncles_burger_dz,2026-01-02T21:03:29.230221,0,Appreciation,,,,,,False,"[""food_appreciation""]",positive
+52710,422653,لينسم,tiktok,@uncles_burger_dz,2026-01-02T21:03:40.624886,0,,,,,,,True,[],neutral
+52124,947592,وينا بلاصة,tiktok,@uncles_burger_dz,2026-01-02T21:03:25.013471,1,,,Inquiry,,,,False,"[""place_inquiry""]",neutral
+52148,161459,من سوق اهراس رحنا ليه روعة يهبل,tiktok,@uncles_burger_dz,2026-01-02T21:03:26.444453,2,,,Appreciation,,,,False,"[""place_appreciation""]",positive
+52680,554930,ارحم ton colon يا jeune,tiktok,@uncles_burger_dz,2026-01-02T21:03:39.748644,1,recommendation,,,,,,False,"[""food_recommendation""]",positive
+52366,948998,أو بحدايا وين نخدم بوتين تيعو يقتل خلاه  [APPRECIATION],tiktok,@uncles_burger_dz,2026-01-02T21:03:31.530463,0,Appreciation,,,,,,False,"[""food_appreciation""]",positive
+52186,293931,"continue, mon frère",tiktok,@uncles_burger_dz,2026-01-02T21:03:26.511078,4,,,,,,,True,[],neutral

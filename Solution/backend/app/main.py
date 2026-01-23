@@ -437,6 +437,56 @@ async def get_post_comments(post_id: int, current_user: dict = Depends(get_curre
     
     return comments
 
+@app.get("/api/trends")
+async def get_trends(
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    current_user: dict = Depends(get_current_user)
+):
+    df_user = get_restaurant_df(current_user["restaurant_name"])
+    
+    # Filter by date
+    d_df = df_user.copy()
+    if 'date_dt' not in d_df.columns:
+         d_df['date_dt'] = pd.to_datetime(d_df['date'], format='mixed', utc=True, errors='coerce')
+
+    if start_date and end_date and start_date != "" and end_date != "":
+        try:
+            s_dt = pd.to_datetime(start_date, utc=True)
+            e_dt = pd.to_datetime(end_date, utc=True) + pd.Timedelta(days=1)
+            d_df = d_df[(d_df['date_dt'] >= s_dt) & (d_df['date_dt'] < e_dt)]
+        except:
+            pass
+    
+    # Filter out out_of_scope comments
+    d_df = d_df[d_df['out_of_scope'].astype(str).str.lower() != 'true']
+    
+    # Simple Word Frequency Logic
+    text_data = " ".join(d_df['comment_text'].astype(str).tolist()).lower()
+    
+    import re
+    from collections import Counter
+    
+    # Update regex to support Arabic script explicitly
+    words = re.findall(r'[\w\u0600-\u06FF]+', text_data)
+    
+    # Custom Stopword List (English, French, basic Arabic/Chat)
+    stopwords = {
+        'the', 'and', 'a', 'to', 'of', 'in', 'is', 'it', 'for', 'with', 'on', 'was', 'very',
+        'le', 'la', 'les', 'et', 'de', 'du', 'des', 'un', 'une', 'est', 'c', 'ce', 'que', 'qui', 
+        'pas', 'tres', 'très', 'bon', 'bien', 'avec', 'pour', 'dans', 'sur', 'au', 'aux',
+        'fi', 'ala', 'men', 'ana', 'enta', 'houwa', 'hiya', '3la', 'kima', 'el', 'li', 'rah', 'rak',
+        'top', 'good', 'best', 'magnifique', 'excellent', 'restaurant', 'food', 'service', 'place'
+    }
+    
+    # Filter stopwords and short words
+    filtered_words = [w for w in words if w not in stopwords and len(w) > 2 and not w.isdigit()]
+    
+    count = Counter(filtered_words)
+    common = count.most_common(60)
+    
+    return [{"text": word, "value": freq} for word, freq in common]
+
 @app.get("/api/ai/insights")
 async def get_ai_insights(current_user: dict = Depends(get_current_user)):
     df_user = get_restaurant_df(current_user["restaurant_name"])

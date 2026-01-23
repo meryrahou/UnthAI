@@ -1,0 +1,803 @@
+comment_id,final_id,comment_text,platform,source_name,date,likesCount,food,service,place,delivery,price,treatment,out_of_scope,post_id,model_prediction,feeling
+62756,136837,"pas trop, le service super long",tiktok,favorite restaurant,2026-01-02T21:30:55.677942,0,Complaint,Complaint,,,,,False,1008.0,"[""food_complaint"", ""service_complaint""]",negative
+62658,923239,ماشاء الله بالتوفيق,tiktok,favorite restaurant,2026-01-02T21:30:54.049944,1,,,,,,,True,1008.0,[],neutral
+62708,394558,"Vous avez pas vu le prix d’un trompe-l’œil à 450 dinars , même c’est très abusé",tiktok,favorite restaurant,2026-01-02T21:30:54.860454,2,,,,,Complaint,,False,1008.0,"[""price_complaint""]",negative
+62494,799750,حنا غي نشوفو,tiktok,favorite restaurant,2026-01-02T21:30:49.256856,4,,,,,,,True,1008.0,[],neutral
+62740,292828,Salaire algérien prix suisse,tiktok,favorite restaurant,2026-01-02T21:30:55.613335,0,Complaint,,,,Complaint,,False,1008.0,"[""food_complaint"", ""price_complaint""]",negative
+62636,548650,الأكلات المسرطنة très professionnel,tiktok,favorite restaurant,2026-01-02T21:30:53.973729,0,Complaint,,,,,Appreciation,False,1008.0,"[""food_complaint"", ""treatment_appreciation""]",neutral
+62694,544371,ما شاء الله ربي يبارك   [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:30:54.860444,2,,,,,,,True,1008.0,[],neutral
+62714,289312,magnifiques  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:30:54.860458,1,,,appreciation,,,,False,1008.0,"[""place_appreciation""]",positive
+62608,545932,صراحة بلاصة شابة بزااااف حيدرة ترجع لمرتبة 2 بون كوراج,tiktok,favorite restaurant,2026-01-02T21:30:53.187043,1,,,appreciation,,,,False,1008.0,"[""place_appreciation""]",positive
+62722,683405,en face les centres quoi ? .,tiktok,favorite restaurant,2026-01-02T21:30:55.613310,0,,,inquiry,,,,False,1008.0,"[""place_inquiry""]",neutral
+62672,925021,"J’y suis allé, j’ai beaucoup aimé personnel au top",tiktok,favorite restaurant,2026-01-02T21:30:54.725077,2,,,Appreciation,,,Appreciation,False,1008.0,"[""place_appreciation"", ""treatment_appreciation""]",positive
+63088,140029,"le mot clé de la vidéo ""ننصح الناس لي جايين من خارج الوطن"" بالعربية عندك اورو ارواح، ولا حمي جيبك مليح خاطر كما يقولو tu VAS laisser de plumes",tiktok,favorite restaurant,2026-01-02T21:31:04.202465,0,,,,,Complaint,,False,1008.0,"[""price_complaint""]",negative
+62638,943012,تعملون عيد ميلاد,tiktok,favorite restaurant,2026-01-02T21:30:53.973732,1,,,,,,,True,1008.0,[],neutral
+62548,687392,Tout est bon,tiktok,favorite restaurant,2026-01-02T21:30:51.792754,1,appreciation,,,,,,False,1008.0,"[""food_appreciation""]",positive
+62570,545610,ويلاقونا كيما لاقوك ولالا,tiktok,favorite restaurant,2026-01-02T21:30:53.140153,0,,,,,,,True,1008.0,[],neutral
+62678,801281,Très belle boulangerie  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:30:54.725084,1,,,Appreciation,,,,False,1008.0,"[""place_appreciation""]",positive
+63106,277118,وين حمبوك بعثلي نمرو ديالكم,tiktok,favorite restaurant,2026-01-02T21:31:05.048381,0,,,Inquiry,,,,False,1008.0,"[""place_inquiry""]",neutral
+63100,139319,شحال عطاوك,tiktok,favorite restaurant,2026-01-02T21:31:04.202482,0,,,,,inquiry,,False,1008.0,"[""price_inquiry""]",neutral
+62518,804982,je valide surtout les serveurs morceaux de sucre le service rapide je donne 10/10 [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:30:51.792712,8,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1008.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+63044,671369,TROP D’ATTENTE ? C’EST MORT  J’IRAIS PAS ! [COMPLAINT],tiktok,favorite restaurant,2026-01-02T21:31:03.370952,1,,complaint,,,,,False,1008.0,"[""service_complaint""]",negative
+62500,131640,les gens négatifs rester chez vous l Algérie à besoin de gens positifs qui aiment leur pays et qui laissent de bons commentaires,tiktok,favorite restaurant,2026-01-02T21:30:49.256867,222,,,,,,,True,1008.0,[],neutral
+62552,925759,J’ai validé c’est le meilleur  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:30:51.792760,2,,,Appreciation,,,,False,1008.0,"[""place_appreciation""]",positive
+62574,673823,الله يبارك هذي حومتي من نجي أنشأ الله نجي عندكم تهلو فينا,tiktok,favorite restaurant,2026-01-02T21:30:53.140160,0,,,,,,,True,1008.0,[],neutral
+63092,815624,مزيا نصحتي ناس خارج الوطن لخطر بالاورو,tiktok,favorite restaurant,2026-01-02T21:31:04.202475,0,,,,,,,True,1008.0,[],neutral
+63026,150683,Vraiment magnifique bravo et bonne continuation  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:31:02.524617,0,,,Appreciation,,,,False,1008.0,"[""place_appreciation""]",positive
+62534,794581,les prix j'imagine qu'ils sont pas raisonnable,tiktok,favorite restaurant,2026-01-02T21:30:51.792736,0,,,,,Complaint,,False,1008.0,"[""price_complaint""]",negative
+63122,812348,داخل الوطن نهزو الشمع لجماعة خارج الوطن. أفريقيا,tiktok,favorite restaurant,2026-01-02T21:31:05.048404,0,,,,,,,True,1008.0,[],neutral
+63096,529126,مزية قلتلي من خارج الوطن خاطرش لي في داخل الوطن ما يقدوش لهادوك الاسعار بالدولار و الاورو و ياربي,tiktok,favorite restaurant,2026-01-02T21:31:04.202479,0,,,,,Complaint,,False,1008.0,"[""price_complaint""]",negative
+63072,161637,والسعر مهدرتيش عليه,tiktok,favorite restaurant,2026-01-02T21:31:04.202448,0,,,,,Inquiry,,False,1008.0,"[""price_inquiry""]",neutral
+62734,289462,les prix  [PRICE],tiktok,favorite restaurant,2026-01-02T21:30:55.613327,0,,,,,Inquiry,,False,1008.0,"[""price_inquiry""]",neutral
+62578,938684,من فضلك و ليسكن داخل الوطن يقدر يجي,tiktok,favorite restaurant,2026-01-02T21:30:53.140167,0,,,,,,,True,1008.0,[],neutral
+62540,278014,سعر في متناول برات بيب,tiktok,favorite restaurant,2026-01-02T21:30:51.792744,3,,,,,Complaint,,False,1008.0,"[""price_complaint""]",negative
+62706,159253,Si c’est cher pour vous allez à la boulangerie pâtisserie de votre quartier,tiktok,favorite restaurant,2026-01-02T21:30:54.860452,3,,,,,,,True,1008.0,[],neutral
+63040,661536,pourquoi les Tramp l'oeil sont minuscule,tiktok,favorite restaurant,2026-01-02T21:31:03.370947,0,Complaint,,,,,,False,1008.0,"[""food_complaint""]",negative
+63124,660436,زدمة خوتي,tiktok,favorite restaurant,2026-01-02T21:31:05.048406,0,,,,,,,True,1008.0,[],neutral
+63090,551402,من خارج وطن علاه لي في وطن قالولك راهم حافرينا قبر في بلادنا وعايشين غاية,tiktok,favorite restaurant,2026-01-02T21:31:04.202473,0,,,,,,,True,1008.0,[],neutral
+63054,815976,معجبنيش لبارح كنت عندهم,tiktok,favorite restaurant,2026-01-02T21:31:03.371145,0,,,complaint,,,,False,1008.0,"[""place_complaint""]",negative
+62530,665190,"Le prix est très élevé par rapport à certains et les sièges sont élégants, Dieu merci.",tiktok,favorite restaurant,2026-01-02T21:30:51.792730,3,,,,,Complaint,,False,1008.0,"[""price_complaint""]",negative
+51530,283704,والله محترفين. حرقان العيد,tiktok,favorite restaurant,2026-01-02T21:00:00.620413,0,,,,,,,True,1032.0,[],neutral
+50890,402547,احنا رحنالو قبل رمضان كيف ماه تقول اليوم واين فتح,tiktok,favorite restaurant,2026-01-02T20:59:47.253778,1,,,Appreciation,,,,False,1032.0,"[""place_appreciation""]",positive
+50796,946572,وين اكزكت,tiktok,favorite restaurant,2026-01-02T20:59:45.758601,0,,,Inquiry,,,,False,1032.0,"[""place_inquiry""]",neutral
+51510,421537,ليجا من الطليان يخلص با الاورو ولا با جورني تعنا مجرد سؤال  فقط,tiktok,favorite restaurant,2026-01-02T21:00:00.620397,1,,,,,"complaint,inquiry",,False,1032.0,[],neutral
+51016,947013,مشاء الله ولاقوة الابالله العلي العظيم ربي يوفقك ان شاء الله,tiktok,favorite restaurant,2026-01-02T20:59:48.842417,0,,,,,,,True,1032.0,[],neutral
+51038,671731,il fallait présenter une fois que tout est en place,tiktok,favorite restaurant,2026-01-02T20:59:49.625939,0,,,,,,,True,1032.0,[],neutral
+50842,546922,حتى انا جيت من المغرب,tiktok,favorite restaurant,2026-01-02T20:59:46.444051,1,,,,,,,True,1032.0,[],neutral
+50916,946283,شكرا,tiktok,favorite restaurant,2026-01-02T20:59:47.306520,1,,,,,,,True,1032.0,[],neutral
+51498,145160,hada weld Cartier f ANNABA Mohamed il est avec nous en France il a investi au bled c un magnifique endroit je valide et bonne chance mon gars,tiktok,favorite restaurant,2026-01-02T21:00:00.620387,0,,,,,,,True,1032.0,[],neutral
+50940,554920,C’est où le spécialité algérien ?,tiktok,favorite restaurant,2026-01-02T20:59:47.306543,1,,,Inquiry,,,,False,1032.0,"[""place_inquiry""]",neutral
+50948,153470,وعادات عنابة والمطبخ الجزا ئري وينو,tiktok,favorite restaurant,2026-01-02T20:59:47.306551,27,,,,,,,True,1032.0,[],neutral
+51596,920315,نكتيفي كارت الشفاء برك ونجي,tiktok,favorite restaurant,2026-01-02T21:00:02.374309,0,,,,,,,True,1032.0,[],neutral
+50880,404079,و le prix ? كون شريتي عليه شوي,tiktok,favorite restaurant,2026-01-02T20:59:47.253767,0,,,,,Inquiry,,False,1032.0,"[""price_inquiry""]",neutral
+50908,667668,حاب ماكل كورية انا في عنابة ولله [APPRECIATION],tiktok,favorite restaurant,2026-01-02T20:59:47.253800,0,,,,,,,True,1032.0,[],neutral
+51070,656482,بالجمعة يفتح,tiktok,favorite restaurant,2026-01-02T20:59:50.991559,1,,,Inquiry,,,,False,1032.0,"[""place_inquiry""]",neutral
+50874,154340,لا خويا ماكنتش بصح عتبة مربوحة إن شاء الله,tiktok,favorite restaurant,2026-01-02T20:59:47.253749,0,,,,,,,True,1032.0,[],neutral
+50836,555051,كلش خدمة,tiktok,favorite restaurant,2026-01-02T20:59:46.444037,0,,,,,,,True,1032.0,[],neutral
+50884,268293,w la salle des fêtes wa9teh thel tebda ?,tiktok,favorite restaurant,2026-01-02T20:59:47.253771,2,,,inquiry,,,,False,1032.0,"[""place_inquiry""]",neutral
+51586,277692,كاين مصلى تاع نساء؟؟,tiktok,favorite restaurant,2026-01-02T21:00:02.374301,0,,,Inquiry,,,,False,1032.0,"[""place_inquiry""]",neutral
+50826,657443,احكي علا سومه,tiktok,favorite restaurant,2026-01-02T20:59:45.758639,0,,,,,Inquiry,,False,1032.0,"[""price_inquiry""]",neutral
+50904,134619,الأسعار پريفي,tiktok,favorite restaurant,2026-01-02T20:59:47.253794,0,,,,,Complaint,,False,1032.0,"[""price_complaint""]",negative
+50792,798208,شكون راح يسناه عنابة معمره برستورون,tiktok,favorite restaurant,2026-01-02T20:59:44.958919,0,,,,,,,True,1032.0,[],neutral
+51052,918838,Ou et la cuisine algérienne,tiktok,favorite restaurant,2026-01-02T20:59:49.629658,0,,,Appreciation,,,,False,1032.0,"[""place_appreciation""]",positive
+50932,149908,"à tester in cha Allah, merci pour tes vidéos?",tiktok,favorite restaurant,2026-01-02T20:59:47.306536,2,,,,,,,True,1032.0,[],neutral
+51036,262595,Mashallah je viendrais cette été  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T20:59:49.625937,0,,,,,,,True,1032.0,[],neutral
+50974,414796,علا حساب شوارمة ولبيتزا انا جاي من امريكا الجنوبية,tiktok,favorite restaurant,2026-01-02T20:59:48.252205,7,,,appreciation,,,,False,1032.0,"[""place_appreciation""]",positive
+51506,534738,تسنيم كعبة وحدة افضل صانع محتوى  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:00:00.620394,2,,,,,,,True,1032.0,[],neutral
+51508,546769,خردة فارغ. و ثقال يقتلو و و menu. فارغ لماكلة. لتقولو عليها يقولك ماعندناش,tiktok,favorite restaurant,2026-01-02T21:00:00.620396,2,Complaint,Complaint,Complaint,,,Complaint,False,1032.0,"[""food_complaint"", ""service_complaint"", ""place_complaint"", ""treatment_complaint""]",negative
+50936,283344,Tout fast food et resto avec 50 milles marches pourquoi ? Aussi il y en a marrrrrrrre des fast food fi annaba : j’ai visité resto el hadja fi seraidi et aussi khaymet sidi azzouz des vrais resto,tiktok,favorite restaurant,2026-01-02T20:59:47.306540,5,Complaint,,Complaint,,Complaint,,False,1032.0,"[""food_complaint"", ""place_complaint"", ""price_complaint""]",negative
+50770,159941,تسمى نقدر نغلط نتعشى في عرس نورمال,tiktok,favorite restaurant,2026-01-02T20:59:44.958889,1,,,,,,,True,1032.0,[],neutral
+51598,147757,ما يحوسش على خدامه,tiktok,favorite restaurant,2026-01-02T21:00:02.374311,0,,,,,,inquiry,False,1032.0,"[""treatment_inquiry""]",neutral
+51014,135416,"c'est un plus pour Annaba, grandiose, mais il manque nos plats traditionnelles.",tiktok,favorite restaurant,2026-01-02T20:59:48.842413,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1032.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+51022,687336,L’argent c bien,tiktok,favorite restaurant,2026-01-02T20:59:49.023648,0,,,,,inquiry,,False,1032.0,"[""price_inquiry""]",neutral
+51448,657646,Fel'7in حطيتك انت صوتو سبحان الله [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T20:59:58.924831,0,,,,,,,True,1032.0,[],neutral
+50894,400631,وشبيك ماقلتيناش بنين ولا لا,tiktok,favorite restaurant,2026-01-02T20:59:47.253782,0,inquiry,,,,,,False,1032.0,"[""food_inquiry""]",neutral
+50980,812080,نروحلو نهار يكون كاين عرس و نتعشى باطل,tiktok,favorite restaurant,2026-01-02T20:59:48.252210,0,,,,,,,True,1032.0,[],neutral
+51592,539927,ملاحة ياسر، شكرا على هذا الاستثمار، بصح نحبو البصمة انتاعكم ، علاش روز جربي، نقدرو نخترعو اطباقنا,tiktok,favorite restaurant,2026-01-02T21:00:02.374306,0,,,appreciation,,,,False,1032.0,"[""place_appreciation""]",positive
+51608,421991,مدلنا ع الاقل فكرة ع الاسعار,tiktok,favorite restaurant,2026-01-02T21:00:02.374320,0,,,,,Inquiry,,False,1032.0,"[""price_inquiry""]",neutral
+51534,684246,نسيتي لي بري الاسعار,tiktok,favorite restaurant,2026-01-02T21:00:00.620416,0,,,,,Inquiry,,False,1032.0,"[""price_inquiry""]",neutral
+50722,657724,احكيلنا عل الاسعار لحكاية الصحيحة,tiktok,favorite restaurant,2026-01-02T20:59:42.104940,9,,,,,Inquiry,,False,1032.0,"[""price_inquiry""]",neutral
+51484,924651,اين المطبخ الجزائري,tiktok,favorite restaurant,2026-01-02T20:59:59.744228,0,,,Inquiry,,,,False,1032.0,"[""place_inquiry""]",neutral
+51574,162927,pourquoi vous avez pas pensé aux handicapés,tiktok,favorite restaurant,2026-01-02T21:00:01.526238,0,,,Recommendation,,,,False,1032.0,"[""place_recommendation""]",positive
+50928,932236,je viens pas tant que ya pas algérien ######## [COMPLAINT],tiktok,favorite restaurant,2026-01-02T20:59:47.306532,5,,,,,,,True,1032.0,[],neutral
+32170,944746,مدام خرج ليك تعليق ماشي صدفة فرحتك راهي قريبةان شاء الله ديري النية وقولي أمين وربي يفرحك كيما فرحتيني بابوني [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:35.147233,1,,,,,,,True,1068.0,[],neutral
+32194,409782,عيطو لعماد الليبي,tiktok,favorite restaurant,2026-01-02T19:14:36.058794,1,,,,,,,True,1068.0,[],neutral
+31924,538346,وين بلص,tiktok,favorite restaurant,2026-01-02T19:14:26.999415,2,,,Inquiry,,,,False,1068.0,"[""place_inquiry""]",neutral
+31842,789671,ماشي دخلة مليون  [INQUIRY],tiktok,favorite restaurant,2026-01-02T19:14:24.440198,2,,,,,Inquiry,,False,1068.0,"[""price_inquiry""]",neutral
+32178,265733,هادو ادا رحت عندهم ماشي تخلص غي شا كليت تخلص حتى هداك لحوت لي راه تحت لرض على خاطر دارلك لومبيونص [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:36.058767,1,,,,,complaint,,False,1068.0,"[""price_complaint""]",negative
+31918,275121,Je kiff la music inspiration sahraoui le rythme   [APPRECIATION] [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T19:14:26.559951,0,,,Appreciation,,,,False,1068.0,"[""place_appreciation""]",positive
+31928,795595,سلام وين عنوان فى الجزاير,tiktok,favorite restaurant,2026-01-02T19:14:26.999426,2,,,Inquiry,,,,False,1068.0,"[""place_inquiry""]",neutral
+31822,153314,روعة  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:24.034741,2,,,appreciation,,,,False,1068.0,"[""place_appreciation""]",positive
+31846,931817,اسم المطعم,tiktok,favorite restaurant,2026-01-02T19:14:24.440202,2,,,Inquiry,,,,False,1068.0,"[""place_inquiry""]",neutral
+31796,665361,Mais les prix ils ont bien ou bien ….,tiktok,favorite restaurant,2026-01-02T19:14:24.034714,5,,,,,Inquiry,,False,1068.0,"[""price_inquiry""]",neutral
+31892,810010,vive l'Algérie,tiktok,favorite restaurant,2026-01-02T19:14:25.768440,2,,,,,,,True,1068.0,[],neutral
+31882,685682,il y en a un à Bobigny c'est un restaurant chinois,tiktok,favorite restaurant,2026-01-02T19:14:25.768432,2,,,,,,,True,1068.0,[],neutral
+31728,157528,وين محل ايكزاكت,tiktok,favorite restaurant,2026-01-02T19:14:11.602621,4,,,Inquiry,,,,False,1068.0,"[""place_inquiry""]",neutral
+31744,939850,وين ذرارية,tiktok,favorite restaurant,2026-01-02T19:14:20.872534,1,,,Inquiry,,,,False,1068.0,"[""place_inquiry""]",neutral
+32202,132636,الا سعار في متناول كيليان مبابي,tiktok,favorite restaurant,2026-01-02T19:14:36.058803,1,,,,,Complaint,,False,1068.0,"[""price_complaint""]",negative
+32174,288680,c'est magnifique il ya un restaurant qui ressemble a paris  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:36.058761,0,,,Appreciation,,,,False,1068.0,"[""place_appreciation""]",positive
+31868,424064,حسي مسي [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:25.718942,0,,,,,,,True,1068.0,[],neutral
+31820,395046,وين يضبط,tiktok,favorite restaurant,2026-01-02T19:14:24.034740,1,,,Inquiry,,,,False,1068.0,"[""place_inquiry""]",neutral
+31704,936285,يصيدولنا حوت غير من تما يجي جديد وبنين  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:11.602582,7,appreciation,,,,,,False,1068.0,"[""food_appreciation""]",positive
+31836,808898,meilleurs restaurants  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:24.440191,2,,,Appreciation,,,,False,1068.0,"[""place_appreciation""]",positive
+31896,661557,ont étais là bas machallah très bon,tiktok,favorite restaurant,2026-01-02T19:14:25.768443,3,Appreciation,,,,,,False,1068.0,"[""food_appreciation""]",positive
+31778,424556,ديكور يخلصو لكليو,tiktok,favorite restaurant,2026-01-02T19:14:23.117717,2,,,,,complaint,,False,1068.0,"[""price_complaint""]",negative
+31818,930074,ياعمري وين هذا,tiktok,favorite restaurant,2026-01-02T19:14:24.034739,7,,,Inquiry,,,,False,1068.0,"[""place_inquiry""]",neutral
+32172,809639,الي ميزانهم فوق 60 ممنوع الدخول,tiktok,favorite restaurant,2026-01-02T19:14:36.058746,0,,,,,,,True,1068.0,[],neutral
+31854,140451,هذا مطعم عبدو الرحا,tiktok,favorite restaurant,2026-01-02T19:14:24.440219,2,,,,,,,True,1068.0,[],neutral
+31844,542829,جزائرية [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:24.440200,4,,,,,,,True,1068.0,[],neutral
+31808,789669,وين هاد المكان من فظلكم,tiktok,favorite restaurant,2026-01-02T19:14:24.034725,2,,,Inquiry,,,,False,1068.0,"[""place_inquiry""]",neutral
+31790,146765,ناس لحية عند abdou rha,tiktok,favorite restaurant,2026-01-02T19:14:23.330113,0,,,,,,,True,1068.0,[],neutral
+31866,411786,وين هادي بلاصة,tiktok,favorite restaurant,2026-01-02T19:14:25.718939,2,,,Inquiry,,,,False,1068.0,"[""place_inquiry""]",neutral
+31706,663117,مليحة [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:11.602590,1,,,appreciation,,,,False,1068.0,"[""place_appreciation""]",positive
+31834,262259,واو ما شاء الله  كلاس وتحفة  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:24.440189,1,,,Appreciation,,,,False,1068.0,"[""place_appreciation""]",positive
+61594,944394,à testé  bonne continuation [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T21:25:43.488234,3,,,,,,,True,1080.0,[],neutral
+53850,424478,أنا يبانلي ساندويتش مزعبل,tiktok,favorite restaurant,2026-01-02T21:08:14.207197,0,,,,,,,True,1080.0,[],neutral
+61554,540591,تسخف فينا الواحد فالغربة والله العظيم,tiktok,favorite restaurant,2026-01-02T21:25:39.597084,0,,,,,,,True,1080.0,[],neutral
+53788,674134,Il est très beau,tiktok,favorite restaurant,2026-01-02T21:08:12.795365,1,,,Appreciation,,,,False,1080.0,"[""place_appreciation""]",positive
+61668,276558,Rachedi واش قولك هههههه,tiktok,favorite restaurant,2026-01-02T21:25:45.400216,2,,,,,,,True,1080.0,[],neutral
+54364,790444,المصاغر كي تخدم تولي تبدع  good luck bruh [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:08:25.236796,1,Appreciation,,Appreciation,,,,False,1080.0,"[""food_appreciation"", ""place_appreciation""]",positive
+53706,940444,الله يبارك مشاء الله كليت عندو تذوق تحصل [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T21:08:10.137887,3,appreciation,,,,,,False,1080.0,"[""food_appreciation""]",positive
+53704,677092,Jrbto bnin yhubl,tiktok,favorite restaurant,2026-01-02T21:08:10.137884,2,appreciation,,,,,,False,1080.0,"[""food_appreciation""]",positive
+53776,147010,كاين توصيل؟؟؟؟,tiktok,favorite restaurant,2026-01-02T21:08:12.795353,0,,,,inquiry,,,False,1080.0,"[""delivery_inquiry""]",neutral
+53890,552328,ربي يعينك  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:08:14.299341,0,,,,,,,True,1080.0,[],neutral
+53906,929791,متاكد هذا كل بعشرين,tiktok,favorite restaurant,2026-01-02T21:08:15.001576,0,,,,,inquiry,,False,1080.0,"[""price_inquiry""]",neutral
+53702,414043,قولو ينقص شوي الفريت فطاكوس برك. وربي يعاونكم,tiktok,favorite restaurant,2026-01-02T21:08:10.137883,17,recommendation,,,,,,False,1080.0,"[""food_recommendation""]",positive
+61630,816500,مزال في سيدي عمار ولا قفل ؟,tiktok,favorite restaurant,2026-01-02T21:25:44.586377,0,,,Inquiry,,,,False,1080.0,"[""place_inquiry""]",neutral
+61626,794266,الله بارك بين البنة,tiktok,favorite restaurant,2026-01-02T21:25:44.586367,0,appreciation,,,,,,False,1080.0,"[""food_appreciation""]",positive
+53700,404757,بطيمة الحمرة كبرت فيها و تربيت فيها كرطيا 8 سنين مشفتهاش ربي يحفضك خويا نشالله,tiktok,favorite restaurant,2026-01-02T21:08:10.137882,7,,,,,,,True,1080.0,[],neutral
+53828,655987,جرب هولنا,tiktok,favorite restaurant,2026-01-02T21:08:13.490859,0,,,,,,,True,1080.0,[],neutral
+61650,943825,معندوش باج فيسبوك,tiktok,favorite restaurant,2026-01-02T21:25:44.586402,0,,,,,,,True,1080.0,[],neutral
+53822,539939,الحانوت أو تع عمي,tiktok,favorite restaurant,2026-01-02T21:08:13.490835,0,,,,,,,True,1080.0,[],neutral
+53900,527687,خصني كوبة قهوة,tiktok,favorite restaurant,2026-01-02T21:08:14.299350,0,,,,,,,True,1080.0,[],neutral
+53934,406093,او في كرتيا,tiktok,favorite restaurant,2026-01-02T21:08:15.857647,0,,,,,,,True,1080.0,[],neutral
+61606,286160,Les prix kfh,tiktok,favorite restaurant,2026-01-02T21:25:43.488247,0,,,,,Inquiry,,False,1080.0,"[""price_inquiry""]",neutral
+53926,155092,خرجلي في سحور,tiktok,favorite restaurant,2026-01-02T21:08:15.078011,0,,,,,,,True,1080.0,[],neutral
+61644,288606,بالتوفيق انشاء الله,tiktok,favorite restaurant,2026-01-02T21:25:44.586395,0,,,,,,,True,1080.0,[],neutral
+53766,924604,كي لعادة من باتنة إلى عنابة تحياتنا [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:08:12.795340,0,,,,,,,True,1080.0,[],neutral
+53846,656823,وانا علاه خرجلي درك في رمضان وهو عندو 3 شهر,tiktok,favorite restaurant,2026-01-02T21:08:14.207191,0,,,,,,,True,1080.0,[],neutral
+53948,285192,𝓛𝓞𝓕𝓘 لوفي,tiktok,favorite restaurant,2026-01-02T21:08:15.857675,1,,,,,,,True,1080.0,[],neutral
+53786,937658,قداه الملفوف,tiktok,favorite restaurant,2026-01-02T21:08:12.795363,0,inquiry,,,,inquiry,,False,1080.0,"[""food_inquiry"", ""price_inquiry""]",neutral
+54360,422984,جربتوا وقتلوا ملعند تس [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:08:25.236793,1,,,,,,,True,1080.0,[],neutral
+53712,133198,كان متخدمش معاهم روبين مدرنا والو,tiktok,favorite restaurant,2026-01-02T21:08:10.137892,7,,,,,,,True,1080.0,[],neutral
+53768,926921,وش نوعية الرغيف,tiktok,favorite restaurant,2026-01-02T21:08:12.795344,0,Inquiry,,,,,,False,1080.0,"[""food_inquiry""]",neutral
+53860,788429,bonjour j ai pas compris l adresse c est où,tiktok,favorite restaurant,2026-01-02T21:08:14.207235,0,,,Inquiry,,,,False,1080.0,"[""place_inquiry""]",neutral
+61550,395035,عنابة دوار كبير تعمر غير حوانت تاع ماكلة,tiktok,favorite restaurant,2026-01-02T21:25:39.597081,31,,,,,,,True,1080.0,[],neutral
+53754,921711,بالبراكة خويا . ربي يفتح عليك و الهلال في لي كليون ولازملك يكون خاطرك واسع مع. ليكليون,tiktok,favorite restaurant,2026-01-02T21:08:11.828095,0,,,,,,,True,1080.0,[],neutral
+53732,655650,جربتو هههه خاصة الملفوف بنة بنة  [APPRECIATION] [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T21:08:11.755072,2,Appreciation,,,,,,False,1080.0,"[""food_appreciation""]",positive
+54262,142336,ديما نعدي عليه نبقى نشوف نقول زعما بنينة ههههه زعما ميوصلش باطيمة مع دورة,tiktok,favorite restaurant,2026-01-02T21:08:23.666078,0,,,,inquiry,,,False,1080.0,"[""delivery_inquiry""]",neutral
+53920,400382,tasnim rép privé urg,tiktok,favorite restaurant,2026-01-02T21:08:15.001606,1,,,,,,,True,1080.0,[],neutral
+61608,659608,مرة جايا كي تكون رايح اتجرب بلاصة جديدة اعرضني اتسسس  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:25:43.488252,0,,,,,,,True,1080.0,[],neutral
+53820,657210,البروموسيون ديما ولا لا,tiktok,favorite restaurant,2026-01-02T21:08:13.490832,0,,,,,Inquiry,,False,1080.0,"[""price_inquiry""]",neutral
+53812,153630,مزال نفس لبري ؟,tiktok,favorite restaurant,2026-01-02T21:08:13.490783,0,,,,,inquiry,,False,1080.0,"[""price_inquiry""]",neutral
+53810,659688,يا في كرتيا و جامي جربناه,tiktok,favorite restaurant,2026-01-02T21:08:12.889069,1,,,,,,,True,1080.0,[],neutral
+53800,279689,اذا كان سانجي هو لي يطيبلك مبروك عليك خويا,tiktok,favorite restaurant,2026-01-02T21:08:12.889060,0,,,,,,,True,1080.0,[],neutral
+34632,941351,والله غنية تهبل,tiktok,favorite restaurant,2026-01-02T19:24:38.705264,0,,,,,,,True,1116.0,[],neutral
+34600,131387,je trouve que c est trop de viande pour une seule personne,tiktok,favorite restaurant,2026-01-02T19:24:34.186917,4,Complaint,,,,,,False,1116.0,"[""food_complaint""]",negative
+32224,139013,Soon i will come i have a date there And it’s for 17 september inshallah,tiktok,favorite restaurant,2026-01-02T19:14:51.260337,1,,,,,,,True,1116.0,[],neutral
+32226,285591,Meilleur resto avec ma meilleur personne i mean personne  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:51.260338,11,,,,,,,True,1116.0,[],neutral
+34648,410059,𝐴 je le mets dans la liste si un jour on a le temps de manger  [INQUIRY] [ENDROIT],tiktok,favorite restaurant,2026-01-02T19:24:38.705280,0,,,,,,,True,1116.0,[],neutral
+34674,162923,تقبلت كلشي غير ثوم اموا مشوي معليش  Ma  [BOUFFE],tiktok,favorite restaurant,2026-01-02T19:24:40.033291,0,Complaint,,,,,,False,1116.0,"[""food_complaint""]",negative
+32288,799865,Le meilleur restaurant à Alger  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:14:54.860350,0,,,Appreciation,,,,False,1116.0,"[""place_appreciation""]",positive
+34630,657060,Mon meilleur endroit,tiktok,favorite restaurant,2026-01-02T19:24:38.705249,0,,,Appreciation,,,,False,1116.0,"[""place_appreciation""]",positive
+22518,786809,معلاباليش علاه راجلي مسميه القوربي,tiktok,favorite restaurant,2026-01-02T18:25:07.753362,5,,,,,,,True,1119.0,[],neutral
+22608,918449,location?,tiktok,favorite restaurant,2026-01-02T18:25:09.480491,0,,,Inquiry,Inquiry,,,False,1119.0,"[""place_inquiry"", ""delivery_inquiry""]",neutral
+22582,147500,وين هذي البلاصة ؟؟؟؟ [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:25:08.690414,0,,,Inquiry,,,,False,1119.0,"[""place_inquiry""]",neutral
+22706,659958,Just what I need now,tiktok,favorite restaurant,2026-01-02T18:25:11.147748,2,,,Appreciation,,,,False,1119.0,"[""place_appreciation""]",positive
+22578,681230,Pq vous je mettez pas pas le nom du restaurant ?,tiktok,favorite restaurant,2026-01-02T18:25:08.690408,0,,,inquiry,,,,False,1119.0,"[""place_inquiry""]",neutral
+22646,399246,Qui sur Alger pour sortir,tiktok,favorite restaurant,2026-01-02T18:25:10.325573,0,,,,,,,True,1119.0,[],neutral
+22476,548439,كفاه نروحولها من تافورة,tiktok,favorite restaurant,2026-01-02T18:25:06.952895,0,,,inquiry,,,,False,1119.0,"[""place_inquiry""]",neutral
+23318,291657,moulay bateau  casse,tiktok,favorite restaurant,2026-01-02T18:25:26.514037,0,,,,,,,True,1119.0,[],neutral
+23258,798511,يا الجزائر، يا سيدة المغرب العربي، يا أرضاً إذا ذُكرتْهبّالتاريخ واقفاً احتراماً. فيكِ امتزج البحر بملح البطولة، والصحراء بوقار الصبر، والجبال بثبات الرجال. وشعبكِ… أهل النخوة إذا اشتدّت الخطوب، وأهل الكرم إذا نزل الضيف، وأهل القلب الأبيض الذي يفتح أبوابه قبل كلماته. في وجوههم دفء، وفي لهجتهم موسيقى، وفي روحهم كبرياء لا ينحني. يا الجزائر، لك من الغزل ما يليق بحسنك، ولشعبك من المديح ما يوافق طيب معدنهم، فأنتِ الحُسن إذا تُرجِم وطناً، وهم الطيبة إذا تجسّدت بشراً,tiktok,favorite restaurant,2026-01-02T18:25:24.838293,0,,,,,,,True,1119.0,[],neutral
+22558,685943,مولاي ياه قعدة وماكلة [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:25:07.867935,2,appreciation,,,,,,False,1119.0,"[""food_appreciation""]",positive
+22692,134421,مولاي,tiktok,favorite restaurant,2026-01-02T18:25:10.456101,0,,,,,,,True,1119.0,[],neutral
+22772,262152,C’est cher ?,tiktok,favorite restaurant,2026-01-02T18:25:12.857954,0,,,,,Inquiry,,False,1119.0,"[""price_inquiry""]",neutral
+22762,655540,بصحتك اختي والله راحة,tiktok,favorite restaurant,2026-01-02T18:25:12.857941,0,,,,,,,True,1119.0,[],neutral
+22638,531376,شحال عندي مجيتش عندو  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:25:10.325565,0,,,,,,,True,1119.0,[],neutral
+22614,131635,وين جاي في ألجي,tiktok,favorite restaurant,2026-01-02T18:25:09.480496,0,,,Inquiry,Inquiry,,,False,1119.0,"[""place_inquiry"", ""delivery_inquiry""]",neutral
+22538,660872,Wach n9ol 3la hadaQ El hout la bnin  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:25:07.753387,1,appreciation,,,,,,False,1119.0,"[""food_appreciation""]",positive
+22496,800641,j'arrive pas a le trouver sur maps,tiktok,favorite restaurant,2026-01-02T18:25:06.952914,3,,,complaint,,,,False,1119.0,"[""place_complaint""]",negative
+22498,926561,where?,tiktok,favorite restaurant,2026-01-02T18:25:06.952916,1,,,Inquiry,,,,False,1119.0,"[""place_inquiry""]",neutral
+22548,929500,Chez moulay c le meilleur,tiktok,favorite restaurant,2026-01-02T18:25:07.867927,1,,,Appreciation,,,,False,1119.0,"[""place_appreciation""]",positive
+22736,546577,الحومة [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:25:12.072799,0,,,,,,,True,1119.0,[],neutral
+22806,666096,مرحبا بيكم عليا ههه,tiktok,favorite restaurant,2026-01-02T18:25:13.673832,2,,,,,,,True,1119.0,[],neutral
+22766,664578,NOUS DÉCOUVRONS LES TRÉSORS CACHÉS DE NOTRE PROPRE PAYS MACHALLAH C’EST HYPER TENTANT MERCI POUR LE POST  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:25:12.857946,2,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1119.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+23296,413811,يجو نساء عادي ولا رجال برك ؟ لأنو زوجي قالي حانوت تع رجال برك  [COMPLAINT],tiktok,favorite restaurant,2026-01-02T18:25:25.742549,0,,,inquiry,,,,False,1119.0,"[""place_inquiry""]",neutral
+22458,526804,sadly i cant send her this anymore,tiktok,favorite restaurant,2026-01-02T18:25:02.841803,38,,,,,,,True,1119.0,[],neutral
+22622,928043,رحت لها فوور,tiktok,favorite restaurant,2026-01-02T18:25:09.583494,0,,,appreciation,,,,False,1119.0,"[""place_appreciation""]",positive
+22672,269221,non il y a rien spécial la propriété zéro plus les prix chers,tiktok,favorite restaurant,2026-01-02T18:25:10.456073,0,Complaint,,Complaint,,Complaint,,False,1119.0,"[""food_complaint"", ""place_complaint"", ""price_complaint""]",negative
+22516,396733,C ou exactement la ville ?,tiktok,favorite restaurant,2026-01-02T18:25:07.753360,74,,,Inquiry,,,,False,1119.0,"[""place_inquiry""]",neutral
+22770,153557,c'est magique le nom du resto svp,tiktok,favorite restaurant,2026-01-02T18:25:12.857951,0,,,inquiry,,,,False,1119.0,"[""place_inquiry""]",neutral
+22800,656158,يادرا الاسعار,tiktok,favorite restaurant,2026-01-02T18:25:13.673824,0,,,,,Inquiry,,False,1119.0,"[""price_inquiry""]",neutral
+22618,270907,Bateau cassé  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:25:09.480499,1,,,,,,,True,1119.0,[],neutral
+22552,415273,Oui j confirme dayman nrouhlou en famille poisson frai w bnin w meme les prix tres raisonnable par rapport l les autres restau  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:25:07.867931,1,Appreciation,Appreciation,Appreciation,,Appreciation,Appreciation,False,1119.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""price_appreciation"", ""treatment_appreciation""]",positive
+22684,148241,الله,tiktok,favorite restaurant,2026-01-02T18:25:10.456095,0,,,,,,,True,1119.0,[],neutral
+23302,417328,وين جايا لبلاصه من فضلكم اهدرو بلعربيه,tiktok,favorite restaurant,2026-01-02T18:25:25.742554,0,,,Inquiry,,,,False,1119.0,"[""place_inquiry""]",neutral
+22670,802490,مرحبا بيكم في باطوكاسي  [BOUFFE],tiktok,favorite restaurant,2026-01-02T18:25:10.325599,0,,,,,,,True,1119.0,[],neutral
+22436,408735,رحتلها بلاصة تهبللل,tiktok,favorite restaurant,2026-01-02T18:25:02.841782,39,,,appreciation,,,,False,1119.0,"[""place_appreciation""]",positive
+22682,276011,bateau cassé bourdj el kifan [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:25:10.456093,0,,,appreciation,,,,False,1119.0,"[""place_appreciation""]",positive
+22524,668854,Moulay casse,tiktok,favorite restaurant,2026-01-02T18:25:07.753369,0,,,,,,,True,1119.0,[],neutral
+22764,923502,وكي يتعكر البحر كيفاه ؟,tiktok,favorite restaurant,2026-01-02T18:25:12.857944,0,,,Inquiry,,,,False,1119.0,"[""place_inquiry""]",neutral
+70280,409475,le vendredi c'est ce que c'est ouvert ?,tiktok,favorite restaurant,2026-01-02T22:00:17.984139,1,,,inquiry,,,,False,1120.0,"[""place_inquiry""]",neutral
+70198,397319,c est où exactement,tiktok,favorite restaurant,2026-01-02T22:00:14.827611,0,,,Inquiry,,,,False,1120.0,"[""place_inquiry""]",neutral
+70188,544620,asque les prix résonable wala nn,tiktok,favorite restaurant,2026-01-02T22:00:14.827555,11,,,,,Inquiry,,False,1120.0,"[""price_inquiry""]",neutral
+70278,158185,عين الفرانين و العين الحامية عومت فيهم كي كنت صغير,tiktok,favorite restaurant,2026-01-02T22:00:17.984137,0,,,,,,,True,1120.0,[],neutral
+68164,668702,فاتحة هذا الايامات؟؟؟,tiktok,favorite restaurant,2026-01-02T21:54:52.782608,1,,,Inquiry,,,,False,1120.0,"[""place_inquiry""]",neutral
+70312,410657,وين في عين فيراني بلاج؟,tiktok,favorite restaurant,2026-01-02T22:00:18.870916,0,,,Inquiry,,,,False,1120.0,"[""place_inquiry""]",neutral
+68178,658359,Un grand merci à Mr Fateh qui nous a accueilli comme des rois! Service au top je recommande un spot à faire sur Oran et merciiii à Walid pour le conseil fondant pistache [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:54:52.782637,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1120.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+68248,669860,"C'est très bon, et le. Personnel très très très compétent, le prix je ne connais pas car j'étais invité",tiktok,favorite restaurant,2026-01-02T21:54:57.317023,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1120.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+68202,162884,Très belle endroit tout le reste faut faire reset et tout reprendre depuis le début,tiktok,favorite restaurant,2026-01-02T21:54:56.019863,0,,,Recommendation,,,,False,1120.0,"[""place_recommendation""]",positive
+70270,920550,"J’y ai mangé, c’est excellent  [APPRECIATION]",tiktok,favorite restaurant,2026-01-02T22:00:17.984100,2,Appreciation,,Appreciation,,,,False,1120.0,"[""food_appreciation"", ""place_appreciation""]",positive
+68194,942530,C'est un bon endroit mais faut revoir vos prix c'est un peu abusé,tiktok,favorite restaurant,2026-01-02T21:54:52.782659,4,,,Appreciation,,Complaint,,False,1120.0,"[""place_appreciation"", ""price_complaint""]",neutral
+70548,160609,djam tu connais cette endroit machaallah,tiktok,favorite restaurant,2026-01-02T22:00:26.489387,0,,,,,,,True,1120.0,[],neutral
+70322,393631,My favourite restaurent in oran [APPRECIATION],tiktok,favorite restaurant,2026-01-02T22:00:18.870927,1,,,Appreciation,,,,False,1120.0,"[""place_appreciation""]",positive
+70576,263058,J’ai déjà été très bon restaurant très bon personnel et surtout magnifique vue. Bravo  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T22:00:28.463081,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1120.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+70566,412114,Mon grand bonjour  à Aïn Franine depuis le pays des Cigognes . Je garde un très beau Souvenir avec mes meilleurs amis à Aïn Franine la mer le Soleil les balades les grillades  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T22:00:28.463053,1,,,,,,,True,1120.0,[],neutral
+68236,136696,Ism la chanson,tiktok,favorite restaurant,2026-01-02T21:54:56.019946,0,,,,,,,True,1120.0,[],neutral
+70552,525591,Tellement magnifique cette endroit en plus l’équipe tellement accueillante je suis venue avec mon fils vraiment incroyable vraiment une adresse que je valide  [APPRECIATION] [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T22:00:26.489390,2,,Appreciation,Appreciation,,,Appreciation,False,1120.0,"[""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+68370,160444,ga3da top  ch3al twahch [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:55:05.450140,1,,,appreciation,,,,False,1120.0,"[""place_appreciation""]",positive
+70556,408615,endroit MAGNIFIQUE personnel très gentil. bons moments avec des amis.  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T22:00:26.489392,2,,,Appreciation,,,Appreciation,False,1120.0,"[""place_appreciation"", ""treatment_appreciation""]",positive
+70324,946425,"jy suis allée en famille, un endroit de paix et de beauté, on y mange très bien aussi.",tiktok,favorite restaurant,2026-01-02T22:00:18.870929,0,Appreciation,,Appreciation,,,,False,1120.0,"[""food_appreciation"", ""place_appreciation""]",positive
+70318,660589,"je recommencerais bien un autre dîner, l'endroit, le personnel, les plans rien à dire sauf que c'était magique  [APPRECIATION]",tiktok,favorite restaurant,2026-01-02T22:00:18.870923,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1120.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+68254,398786,J’ai des beau souvenirs dans ce restaurant,tiktok,favorite restaurant,2026-01-02T21:54:57.317049,0,Appreciation,,Appreciation,,,,False,1120.0,"[""food_appreciation"", ""place_appreciation""]",positive
+70252,538289,Restaurant Le chalet très bon endroit pour gâter ceux qu'on aime propre et bonne gastronomie,tiktok,favorite restaurant,2026-01-02T22:00:16.570507,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1120.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+68174,938825,It’s really signing with a big letter wahranne,tiktok,favorite restaurant,2026-01-02T21:54:52.782632,1,,,,,,,True,1120.0,[],neutral
+70218,157497,insha allah nous allons passer ce mois ci mashaa allah,tiktok,favorite restaurant,2026-01-02T22:00:14.827639,1,,,,,,,True,1120.0,[],neutral
+70562,136704,c'est magnifique rien à dire le meilleur de oran  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T22:00:26.489396,2,,,Appreciation,,,,False,1120.0,"[""place_appreciation""]",positive
+70356,793773,Cadre incroyable  Merci pour la découverte [APPRECIATION],tiktok,favorite restaurant,2026-01-02T22:00:19.687364,2,,,appreciation,,,,False,1120.0,"[""place_appreciation""]",positive
+68200,670717,les serveurs vraiment zero,tiktok,favorite restaurant,2026-01-02T21:54:52.782666,0,,,,,,complaint,False,1120.0,"[""treatment_complaint""]",negative
+70570,532847,Magnifique endroit que du bonheur  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T22:00:28.463074,1,,,appreciation,,,,False,1120.0,"[""place_appreciation""]",positive
+68204,927616,00/00 la bouffe,tiktok,favorite restaurant,2026-01-02T21:54:56.019904,2,complaint,,,,,,False,1120.0,"[""food_complaint""]",negative
+70340,655871,personnel indiscipliné et qui nous on manqué de respect,tiktok,favorite restaurant,2026-01-02T22:00:18.870951,1,,,,,,Complaint,False,1120.0,"[""treatment_complaint""]",negative
+70314,132533,Très bien filmé bravo  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T22:00:18.870919,0,,,,,,,True,1120.0,[],neutral
+68206,422181,عندي فيه ذكرى  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:54:56.019908,2,,,,,,,True,1120.0,[],neutral
+68188,393768,Y’a des endroits comme ça sur Alger ?,tiktok,favorite restaurant,2026-01-02T21:54:52.782651,1,,,Inquiry,Inquiry,,,False,1120.0,"[""place_inquiry"", ""delivery_inquiry""]",neutral
+68400,657960,c'est le petit chalet un endroit sublime,tiktok,favorite restaurant,2026-01-02T21:55:07.898473,0,,,Appreciation,,,,False,1120.0,"[""place_appreciation""]",positive
+70208,287746,كفاش نروحلها,tiktok,favorite restaurant,2026-01-02T22:00:14.827625,0,,,,,,,True,1120.0,[],neutral
+23832,543527,"j'y étais plusieurs fois, l'ambiance est trop géniale et en plus de ça familiale et bien fréquenté, la chanteur sympa",tiktok,favorite restaurant,2026-01-02T18:27:05.483621,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1126.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+23828,407604,"Et je voulais vous dire encore le chanteur, je l’ai ramené au mariage de ma fille, excellent une ambiance formidable si j’ai un autre mariage Inch’Allah, je n’hésiterai pas à le ramener. Merci beaucoup au chanteur.",tiktok,favorite restaurant,2026-01-02T18:27:05.483608,3,,,,,,,True,1126.0,[],neutral
+23800,791268,des soirées banales,tiktok,favorite restaurant,2026-01-02T18:27:03.640710,0,,,complaint,,,,False,1126.0,"[""place_complaint""]",negative
+33544,262900,Non ce que vous consommez mais il y’a aussi un menu week-end avec d’autre plats en +,tiktok,favorite restaurant,2026-01-02T19:21:36.210216,2,,,,,,,True,1126.0,[],neutral
+23720,540854,"C’est vrai que l’ambiance musicale avec les chanteurs donne beaucoup de vie au restaurant, mais honnêtement le volume est un peu trop fort… on n’arrive pas à profiter du repas tranquillement. Dommage, parce que l’ambiance en elle-même est agréable.",tiktok,favorite restaurant,2026-01-02T18:26:57.764643,17,,,Complaint,,,,False,1126.0,"[""place_complaint""]",negative
+23722,147211,ou vous êtes svp,tiktok,favorite restaurant,2026-01-02T18:26:57.764645,1,,,Inquiry,,,,False,1126.0,"[""place_inquiry""]",neutral
+23908,394647,mon qg léonard  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:27:07.248975,1,,,,,,,True,1126.0,[],neutral
+33542,394059,W diner nkhalso wach on consomme wela menu,tiktok,favorite restaurant,2026-01-02T19:21:36.210206,0,,,,,Inquiry,,False,1126.0,"[""price_inquiry""]",neutral
+23804,543275,chanteur Allah ibarek une belle voix,tiktok,favorite restaurant,2026-01-02T18:27:03.640718,1,,,,,,,True,1126.0,[],neutral
+23834,395713,"C’est pas vrai, c’est un excellent restaurant avec une bonne ambiance. Très bonne ambiance très accueillant on passe une soirée très agréable le chanteur, il est excellent, j’ai été plusieurs fois et je retournerai Inch’Allah. Merci [APPRECIATION]",tiktok,favorite restaurant,2026-01-02T18:27:05.483623,47,,,Appreciation,,,Appreciation,False,1126.0,"[""place_appreciation"", ""treatment_appreciation""]",positive
+23758,394618,"bonsoir, est ce que vous avez le programme du nouvel an ?",tiktok,favorite restaurant,2026-01-02T18:27:02.784709,0,,,Inquiry,,,,False,1126.0,"[""place_inquiry""]",neutral
+23718,151639,c vrai très sympa,tiktok,favorite restaurant,2026-01-02T18:26:57.764642,1,,,Appreciation,,,Appreciation,False,1126.0,"[""place_appreciation"", ""treatment_appreciation""]",positive
+14666,537715,C’est magnifique !  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:34.195409,0,,,appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14340,803755,ما شاءالله روووووعة مطعم عالمي تقولي راكي في باريس  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:25.734743,0,,,,,,,True,1128.0,[],neutral
+14424,550879,c'était la coupole mais il a tt détruit et refait a neuf,tiktok,favorite restaurant,2026-01-02T18:01:26.864253,0,,,,,,,True,1128.0,[],neutral
+14314,794475,cette table me fait envie et j'irai manger là bas.,tiktok,favorite restaurant,2026-01-02T18:01:24.676974,0,,,,,,,True,1128.0,[],neutral
+14354,282620,Est ce que c’est bon c’est frais,tiktok,favorite restaurant,2026-01-02T18:01:25.734773,0,inquiry,,inquiry,,,,False,1128.0,"[""food_inquiry"", ""place_inquiry""]",neutral
+14490,683463,this where we went on their second dayyyy it's amazinggg,tiktok,favorite restaurant,2026-01-02T18:01:29.929661,0,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14186,158922,c'est où svp ?,tiktok,favorite restaurant,2026-01-02T18:01:21.546562,1,,,Inquiry,,,,False,1128.0,"[""place_inquiry""]",neutral
+14660,927776,magnifique j'adore votre déco  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:34.195404,0,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14246,666970,Est-ce que les plats sont bons ? Le goût ?,tiktok,favorite restaurant,2026-01-02T18:01:22.580402,0,inquiry,,,,,,False,1128.0,"[""food_inquiry""]",neutral
+14260,544270,c'est trop chère,tiktok,favorite restaurant,2026-01-02T18:01:23.636706,0,,,,,complaint,,False,1128.0,"[""price_complaint""]",negative
+14302,542391,ماكانش روج مدرنا والو,tiktok,favorite restaurant,2026-01-02T18:01:24.676965,0,complaint,,,,,,False,1128.0,"[""food_complaint""]",negative
+14380,161614,musée,tiktok,favorite restaurant,2026-01-02T18:01:25.853765,0,,,,,,,True,1128.0,[],neutral
+14356,817913,C'est tellement beau. Dommage qu'il restera juste un petit rêve pour moi,tiktok,favorite restaurant,2026-01-02T18:01:25.734775,0,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14228,544314,est ce qu'ils proposent une ambiance musicale,tiktok,favorite restaurant,2026-01-02T18:01:22.580380,0,,,inquiry,,,,False,1128.0,"[""place_inquiry""]",neutral
+14448,932134,j aime. merci pour le partage,tiktok,favorite restaurant,2026-01-02T18:01:27.863773,1,,,,,,,True,1128.0,[],neutral
+14218,148296,ki kant la copole kant très belle,tiktok,favorite restaurant,2026-01-02T18:01:22.580367,1,,,,,,,True,1128.0,[],neutral
+14478,413519,"très beau décors, dommage la bouteille de coca qui n'avait pas sa place j'aurais préféré une hamoud boualem [APPRECIATION]",tiktok,favorite restaurant,2026-01-02T18:01:29.001315,0,Complaint,,Appreciation,,,,False,1128.0,"[""food_complaint"", ""place_appreciation""]",neutral
+14416,554899,J’aime trop la décoration  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:26.864233,0,,,appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14198,789638,On se croirait pas en Algérie  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:21.546575,1,,,,,,,True,1128.0,[],neutral
+14270,668193,en face du consulat de Maroc,tiktok,favorite restaurant,2026-01-02T18:01:23.636720,0,,,,,,,True,1128.0,[],neutral
+14462,282027,Les gens sont tellement négatifs ils ont un mal être ds leur vie c’est pour ça des commentaires négatifs comme leur personnalités  . moi je dirais chaque établissement a des points positifs et négatifs mais si on est optimiste on va profiter que du bon côté sinon il faut rester chez sois cuiniser et critiquer sa propre cuisine,tiktok,favorite restaurant,2026-01-02T18:01:29.001300,1,,,,,,,True,1128.0,[],neutral
+14406,805080,La coupole en pro max il a carrément était mit en avant,tiktok,favorite restaurant,2026-01-02T18:01:26.755375,0,,,,,,,True,1128.0,[],neutral
+14114,798184,sans alcool  ce n'est pas intéressant c'est trop cher,tiktok,favorite restaurant,2026-01-02T18:01:16.708078,6,,,,,Complaint,,False,1128.0,"[""price_complaint""]",negative
+14328,140092,"agréable cadre, mais le menu n'est pas gastronomique.",tiktok,favorite restaurant,2026-01-02T18:01:24.676985,0,Complaint,,Appreciation,,,,False,1128.0,"[""food_complaint"", ""place_appreciation""]",neutral
+14532,926938,كونوا في الموعد,tiktok,favorite restaurant,2026-01-02T18:01:30.950646,0,,,,,,,True,1128.0,[],neutral
+14358,263884,mais c un musée !  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:25.734778,0,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14324,399511,Woullah ila top ça fait plaisir bonne continuation,tiktok,favorite restaurant,2026-01-02T18:01:24.676982,0,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14174,284547,أجمل مطعم في وهران [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:21.546537,2,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14668,416487,Il est magnifique se resto  [APPRECIATION] [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T18:01:34.195411,0,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14130,811833,J’aime bien ton contenu please encore des bon plans à Oran  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:16.708095,41,,,,,,,True,1128.0,[],neutral
+14182,927169,Chapeau au décorateur  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:21.546558,2,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14664,802556,c tout cosy j adore trop beau. bravo,tiktok,favorite restaurant,2026-01-02T18:01:34.195406,0,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14226,944596,et pour les prix  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:01:22.580377,0,,,,,Inquiry,,False,1128.0,"[""price_inquiry""]",neutral
+14712,802950,راك في إيطاليا او فرنسا او اسبانيا بدون تأشيرة و لا تذكرة طايرة  مهم كي نجي بلاد ان شاء الله رني عندك,tiktok,favorite restaurant,2026-01-02T18:01:35.129747,0,,,,,,,True,1128.0,[],neutral
+14206,532671,C est tres beau c est où exactement svp?,tiktok,favorite restaurant,2026-01-02T18:01:21.546583,1,,,Inquiry,,,,False,1128.0,"[""place_inquiry""]",neutral
+14280,408954,Très beau restaurant,tiktok,favorite restaurant,2026-01-02T18:01:23.636733,1,,,Appreciation,,,,False,1128.0,"[""place_appreciation""]",positive
+14348,684326,c'est au front de mer,tiktok,favorite restaurant,2026-01-02T18:01:25.734766,0,,,,,,,True,1128.0,[],neutral
+25198,154124,moi aussi c'est pareil j'étais déçu vraiment c'est incroyable,tiktok,favorite restaurant,2026-01-02T18:33:09.961732,0,,,complaint,,,,False,1131.0,"[""place_complaint""]",negative
+26400,918868,"Je suis en France, je veux découvrir les plats françaises, y en a marre des plats algériens",tiktok,favorite restaurant,2026-01-02T18:34:57.644745,0,,,,,,,True,1131.0,[],neutral
+26256,940021,Tikarbabine vous les faites un jour particulier ou y’en a tous les jours ?,tiktok,favorite restaurant,2026-01-02T18:34:51.325370,1,,,inquiry,,,,False,1131.0,"[""place_inquiry""]",neutral
+26248,818288,Tajine au poulet olives et tajine aux pruneaux c’est typiquement Marocain  soyez fier de votre pays. [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T18:34:51.325364,30,,,,,,,True,1131.0,[],neutral
+26254,658581,En tout cas c’est très bon le service est chaleureux nous vous remercions. les personnes qui se plaignent font preuve de mauvaise foi,tiktok,favorite restaurant,2026-01-02T18:34:51.325368,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1131.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+26286,414229,dommage. des plats comme en sauce sans protection tout le monde se serre en sachant que certaines niveau hygiène laisse à désirer. dommage .,tiktok,favorite restaurant,2026-01-02T18:34:55.204683,5,Complaint,,Complaint,,,,False,1131.0,"[""food_complaint"", ""place_complaint""]",negative
+25418,922407,Franchement sans plus. il n y avait pas tous ça,tiktok,favorite restaurant,2026-01-02T18:33:45.650386,1,Complaint,,,,,,False,1131.0,"[""food_complaint""]",negative
+25338,415319,"et je vais être honnête avec vous, c'est extrêmement chers pour rien et je vous jure que la viande n'est pas de qualité il y a rien d'extraordinaire.",tiktok,favorite restaurant,2026-01-02T18:33:43.549986,42,Complaint,,,,Complaint,,False,1131.0,"[""food_complaint"", ""price_complaint""]",negative
+25316,537922,le top,tiktok,favorite restaurant,2026-01-02T18:33:43.549940,0,appreciation,,,,,,False,1131.0,"[""food_appreciation""]",positive
+25392,934096,dommage pas à Montpellier,tiktok,favorite restaurant,2026-01-02T18:33:45.357484,0,,,,,,,True,1131.0,[],neutral
+25340,421832,J’ai demandé une cuisson à point on me la servi carbonisée,tiktok,favorite restaurant,2026-01-02T18:33:44.283976,2,complaint,,,,,,False,1131.0,"[""food_complaint""]",negative
+26222,540043,vive l'Algérie      [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:34:51.325322,6,,,,,,,True,1131.0,[],neutral
+26246,918952,salut c'est où svp l'adresse svp,tiktok,favorite restaurant,2026-01-02T18:34:51.325362,0,,,Inquiry,,,,False,1131.0,"[""place_inquiry""]",neutral
+25548,658620,Le grutier,tiktok,favorite restaurant,2026-01-02T18:33:49.761338,0,,,,,,,True,1131.0,[],neutral
+26314,553023,c payant pour les enfants moin de 5ans  j v pas avie,tiktok,favorite restaurant,2026-01-02T18:34:55.974017,0,,,,,,,True,1131.0,[],neutral
+26330,919281,tajines au poulet sucré en met pas de persil monsieur  [COMPLAINT],tiktok,favorite restaurant,2026-01-02T18:34:55.974027,0,Complaint,,,,,,False,1131.0,"[""food_complaint""]",negative
+25576,686871,Je vais sincère c’est bruyant on se croirait à la cantine et c’est pas top,tiktok,favorite restaurant,2026-01-02T18:33:50.475857,0,complaint,,complaint,,,,False,1131.0,"[""food_complaint"", ""place_complaint""]",negative
+25280,944050,kasra j'adore les plats algériennes [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:33:41.990873,0,,,,,,,True,1131.0,[],neutral
+25432,936961,"j'ai déjà mangé là-bas franchement 4/10 . 1) - les plats sont certe bons ( pour la majorité) mais ce n'est pas des plats dont tu peut te reservire plusieurs fois tu mange une fois t'es calé. 2) - la viande est certe à volonté mais de mauvaise qualité et mal cuite , ils ne demandent pas la cuisson qu'on désire parfois le poulet est encore rose . 3)- côté dessert c'est vraiment un 2/10 la plus part des pâtisseries ne sont pas bonnes , très peu de choix 4)- endroits pas très spacieux donc espace fermé+ le crie des enfants ont a vite la tête qui tourne 5) - toilettes très sale pour moi ce genre de plats ( maghrébin) ne sont pas fait pour être en buffet à volonté, quand t'as plusieurs choix dont les plats maghrébin c'est bien pour varié et tt mais à 100% c'est pas rentable parce que on mange pas beaucoup",tiktok,favorite restaurant,2026-01-02T18:33:47.165192,1,Complaint,,Complaint,,Complaint,,False,1131.0,"[""food_complaint"", ""place_complaint"", ""price_complaint""]",negative
+26410,394559,on aurait bien aimé les tarifs,tiktok,favorite restaurant,2026-01-02T18:34:57.644757,0,,,,,Recommendation,,False,1131.0,"[""price_recommendation""]",positive
+26414,919869,c est maric Algérie Tunisie. faut arrêter de diviser.,tiktok,favorite restaurant,2026-01-02T18:34:57.644761,0,,,,,,,True,1131.0,[],neutral
+26234,948645,le prix,tiktok,favorite restaurant,2026-01-02T18:34:51.325353,1,,,,,Inquiry,,False,1131.0,"[""price_inquiry""]",neutral
+25572,289818,voila la vrais cuisine algerienne ouf pour une seul fois,tiktok,favorite restaurant,2026-01-02T18:33:50.475846,0,appreciation,,,,,,False,1131.0,"[""food_appreciation""]",positive
+26308,809070,Y avait pas ça hier à midi dommage,tiktok,favorite restaurant,2026-01-02T18:34:55.974012,0,,,Complaint,,,,False,1131.0,"[""place_complaint""]",negative
+25208,928124,Je connais c’est super bon propre et prix raisonnable,tiktok,favorite restaurant,2026-01-02T18:33:09.961754,0,Appreciation,Appreciation,Appreciation,,Appreciation,Appreciation,False,1131.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""price_appreciation"", ""treatment_appreciation""]",positive
+25172,276716,j’y suis allér c’était excellent !,tiktok,favorite restaurant,2026-01-02T18:33:07.362106,3,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1131.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+26306,551534,C'est quel jour ce menu merci,tiktok,favorite restaurant,2026-01-02T18:34:55.974011,0,inquiry,,,,,,False,1131.0,"[""food_inquiry""]",neutral
+25188,416098,bon appétit [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:33:07.362122,0,,,,,,,True,1131.0,[],neutral
+25286,807546,C’est non hallal ?,tiktok,favorite restaurant,2026-01-02T18:33:41.990878,0,inquiry,,,,,,False,1131.0,"[""food_inquiry""]",neutral
+25430,549188,il n'y a pas de halal juste des étiquettes,tiktok,favorite restaurant,2026-01-02T18:33:47.165190,2,Complaint,,,,,,False,1131.0,"[""food_complaint""]",negative
+26304,801024,pas partout le persil  [COMPLAINT],tiktok,favorite restaurant,2026-01-02T18:34:55.974009,0,Recommendation,,,,,,False,1131.0,"[""food_recommendation""]",positive
+25380,805545,C’est hyper bon j’y suis allé 3 fois en 1 mois c’est le meilleur franchement  [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T18:33:44.430287,9,Appreciation,,,,,,False,1131.0,"[""food_appreciation""]",positive
+25374,786775,Pour avoir testé franchement efficace /très bon  [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T18:33:44.284046,1,Appreciation,Appreciation,,,,,False,1131.0,"[""food_appreciation"", ""service_appreciation""]",positive
+25304,683214,Vous n’avez pas a bordeaux ?,tiktok,favorite restaurant,2026-01-02T18:33:43.549920,0,,,Inquiry,,,,False,1131.0,"[""place_inquiry""]",neutral
+25354,660761,vives les algériens.  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:33:44.284014,0,,,,,,,True,1131.0,[],neutral
+25342,800308,Bonneuil on et la,tiktok,favorite restaurant,2026-01-02T18:33:44.283992,0,,,,,,,True,1131.0,[],neutral
+55860,528542,ربي يباركلك في مالك,tiktok,favorite restaurant,2026-01-02T21:14:12.053402,3,,,,,,,True,1148.0,[],neutral
+55688,546826,كم التوصيل ؟,tiktok,favorite restaurant,2026-01-02T21:14:06.968818,1,,,,Inquiry,,,False,1148.0,"[""delivery_inquiry""]",neutral
+55782,539313,c’est où pour pouvoir passer commande  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:14:11.208310,1,,,inquiry,inquiry,,,False,1148.0,"[""place_inquiry"", ""delivery_inquiry""]",neutral
+55918,526089,كاين توصيل لذراع الريش,tiktok,favorite restaurant,2026-01-02T21:14:13.763885,1,,,,Inquiry,,,False,1148.0,"[""delivery_inquiry""]",neutral
+55844,273989,ماشاء الله تبارك الرحمن الله يبارك,tiktok,favorite restaurant,2026-01-02T21:14:12.053387,1,,,,,,,True,1148.0,[],neutral
+55878,268252,ربي يعينك خويا,tiktok,favorite restaurant,2026-01-02T21:14:13.045318,1,,,,,,,True,1148.0,[],neutral
+55724,286645,والي ما يحبش القازوز,tiktok,favorite restaurant,2026-01-02T21:14:08.503664,0,,,,,,,True,1148.0,[],neutral
+55784,546913,محمد صباح الخير  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:14:11.208312,0,,,,,,,True,1148.0,[],neutral
+55868,131688,كاين توصيل ؟,tiktok,favorite restaurant,2026-01-02T21:14:12.948144,0,,,,Inquiry,,,False,1148.0,"[""delivery_inquiry""]",neutral
+55772,266463,اخر يوم؟؟,tiktok,favorite restaurant,2026-01-02T21:14:11.208298,1,,,Inquiry,,,,False,1148.0,"[""place_inquiry""]",neutral
+55858,266172,"Tres bien, أين انتم",tiktok,favorite restaurant,2026-01-02T21:14:12.053400,1,,,Inquiry,,,,False,1148.0,"[""place_inquiry""]",neutral
+55698,669019,وش من ولاية ؟,tiktok,favorite restaurant,2026-01-02T21:14:06.968830,1,,,Inquiry,,,,False,1148.0,"[""place_inquiry""]",neutral
+55706,809322,ماشاء الله الطاكوس لمخير عندي ربي يرزقكم احسن معاملة,tiktok,favorite restaurant,2026-01-02T21:14:06.968840,6,appreciation,,,,,appreciation,False,1148.0,"[""food_appreciation"", ""treatment_appreciation""]",positive
+54442,286692,وش اسم الصفحة تعكم فالفيسبوك ؟,tiktok,favorite restaurant,2026-01-02T21:09:32.002462,1,,,Inquiry,,,,False,1148.0,"[""place_inquiry""]",neutral
+55880,265963,كاين توصيل وادرهيو؟,tiktok,favorite restaurant,2026-01-02T21:14:13.045321,2,,,,inquiry,,,False,1148.0,"[""delivery_inquiry""]",neutral
+55952,398370,وقتاه الاخر,tiktok,favorite restaurant,2026-01-02T21:14:14.531656,0,,,Inquiry,,,,False,1148.0,"[""place_inquiry""]",neutral
+55966,818250,كاين توصيل للمنازل [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:14:14.575603,1,,,,appreciation,,,False,1148.0,"[""delivery_appreciation""]",positive
+55896,795422,"Waooo, merci bcp c’est où svp",tiktok,favorite restaurant,2026-01-02T21:14:13.045528,2,,,"appreciation,inquiry",,,,False,1148.0,[],neutral
+56158,927652,"C’est pas cher quand j’arrive à Annnaba, je viens manger chez vous",tiktok,favorite restaurant,2026-01-02T21:14:21.456914,1,,,,,Appreciation,,False,1148.0,"[""price_appreciation""]",positive
+56008,286476,الله ابارك لك في تجارتك. لو استطعت بني ان تجعل في كل يوم من عملك قدر من الطعام للمحتاجين قدر المستطاع هذه تجارة مع الله ومن يتاجر مع الله لا خير ابدا موفق ان شاء الله بني [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:14:16.148202,12,,,,,,,True,1148.0,[],neutral
+55886,668994,بارك الله بارك الله  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:14:13.045519,1,,,,,,,True,1148.0,[],neutral
+55740,539973,ماشاء الله الفود لمخير عندي [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:14:08.503683,1,,,,,,,True,1148.0,[],neutral
+55720,281209,كل شيء جميل  [APPRECIATION] [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T21:14:08.503659,1,,,appreciation,,,,False,1148.0,"[""place_appreciation""]",positive
+55920,926243,وهاااه ربي ليوم كنت برا كي روحت طحت ف الفيديو,tiktok,favorite restaurant,2026-01-02T21:14:13.763887,0,,,,,,,True,1148.0,[],neutral
+55950,282506,الله يبارك ربي يعينكم انشاء الله,tiktok,favorite restaurant,2026-01-02T21:14:14.531654,0,,,,,,,True,1148.0,[],neutral
+55752,423010,توصيل شبيطة كاين ؟,tiktok,favorite restaurant,2026-01-02T21:14:08.503695,1,,,,inquiry,,,False,1148.0,"[""delivery_inquiry""]",neutral
+55816,266626,توصيل مجانا ؟,tiktok,favorite restaurant,2026-01-02T21:14:12.008680,0,,,,inquiry,,,False,1148.0,"[""delivery_inquiry""]",neutral
+55828,817541,محمد الراجل الزين الأخ و الصديق ليك وحشة كبيرة في اقرب فرصة نطل عليك ربي يعاونك frro,tiktok,favorite restaurant,2026-01-02T21:14:12.008695,4,,,,,,,True,1148.0,[],neutral
+55852,274163,ربي يبارك ماشاء الله خويا لعزيز  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:14:12.053395,1,,,,,,,True,1148.0,[],neutral
+55842,401048,نهار الخميس ديسبونيبل,tiktok,favorite restaurant,2026-01-02T21:14:12.053386,1,,,inquiry,,,,False,1148.0,"[""place_inquiry""]",neutral
+55722,409072,عجبني البوكس و هذاك الورق وين نلڨاه يتباع من فضلك ؟؟؟,tiktok,favorite restaurant,2026-01-02T21:14:08.503662,0,Appreciation,,Inquiry,,,,False,1148.0,"[""food_appreciation"", ""place_inquiry""]",positive
+55862,276555,يعطيك الصح رووووعة,tiktok,favorite restaurant,2026-01-02T21:14:12.053403,2,,,,,,,True,1148.0,[],neutral
+56002,661992,دوماج بعيد,tiktok,favorite restaurant,2026-01-02T21:14:16.148195,0,,,,,,,True,1148.0,[],neutral
+54388,543009,خويا يطيبو داخل لفور؟؟,tiktok,favorite restaurant,2026-01-02T21:09:29.929130,0,Inquiry,,Inquiry,,,,False,1148.0,"[""food_inquiry"", ""place_inquiry""]",neutral
+55964,947135,Force à vous les frères,tiktok,favorite restaurant,2026-01-02T21:14:14.531667,1,,,,,,,True,1148.0,[],neutral
+25742,671814,l'adresse à Montreux !,tiktok,favorite restaurant,2026-01-02T18:34:11.048528,0,,,Inquiry,,,,False,1166.0,"[""place_inquiry""]",neutral
+25834,921296,un pur délice j'adooorrrr  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:34:12.788107,4,appreciation,,,,,,False,1166.0,"[""food_appreciation""]",positive
+25764,806053,c meilleurs restaurants bravo j'ai senti le goût algérien . mardom avec le boison izem c'est trop bon  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:34:11.048572,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1166.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+25700,927568,j'ai mangé chez eux la qualité la quantité vraiment merci a vs  à très bientôt [APPRECIATION] [BOUFFE],tiktok,favorite restaurant,2026-01-02T18:34:09.355946,2,Appreciation,,Appreciation,,Appreciation,,False,1166.0,"[""food_appreciation"", ""place_appreciation"", ""price_appreciation""]",positive
+25818,929033,franchement trop trop bonne bon riebca dire chapeau,tiktok,favorite restaurant,2026-01-02T18:34:12.788079,4,Appreciation,,Appreciation,,,,False,1166.0,"[""food_appreciation"", ""place_appreciation""]",positive
+26086,284697,la tête de mouton doit être bien nettoyée des supposés parasites parties nez et oreilles  [BOUFFE],tiktok,favorite restaurant,2026-01-02T18:34:18.579999,0,Recommendation,,,,,,False,1166.0,"[""food_recommendation""]",positive
+25686,658981,bon courage et bonne continuation à mis tmurth,tiktok,favorite restaurant,2026-01-02T18:34:09.355935,1,,,,,,,True,1166.0,[],neutral
+25664,938162,"j'ai mangé el mardoum chez moi à taghit cuit dans le sable juste sublimissime spécialité du sud d'Algérie, taghit Béni Abess, timimoum Djanet et plus encore  [APPRECIATION]",tiktok,favorite restaurant,2026-01-02T18:34:08.502910,37,appreciation,,appreciation,,,,False,1166.0,"[""food_appreciation"", ""place_appreciation""]",positive
+25852,683436,Rass 3louch a l’air bonne,tiktok,favorite restaurant,2026-01-02T18:34:12.788125,0,,,,,,,True,1166.0,[],neutral
+25758,265165,très bon restaurant je le conseille vivement  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:34:11.048561,0,,,Appreciation,,,,False,1166.0,"[""place_appreciation""]",positive
+25762,416688,Arrêter d'être divisé chacun ça façon de faire on emportera rien avec nous Allah yahdina wa yahdihoum soyons solidaire,tiktok,favorite restaurant,2026-01-02T18:34:11.048569,8,,,,,,,True,1166.0,[],neutral
+25618,274851,Montreux Suisse où Montreuil Paris !,tiktok,favorite restaurant,2026-01-02T18:34:06.556568,1,,,Inquiry,,,,False,1166.0,"[""place_inquiry""]",neutral
+26112,135367,ya pa de travail chi vous,tiktok,favorite restaurant,2026-01-02T18:34:18.580033,0,,,inquiry,,,,False,1166.0,"[""place_inquiry""]",neutral
+26096,131794,Bon plus qu’à venir tester,tiktok,favorite restaurant,2026-01-02T18:34:18.580014,2,,,,,,,True,1166.0,[],neutral
+25734,290945,c'est où à Montreuil,tiktok,favorite restaurant,2026-01-02T18:34:10.148870,0,,,Inquiry,,,,False,1166.0,"[""place_inquiry""]",neutral
+25628,944930,un bon accueil personnel très agréable.,tiktok,favorite restaurant,2026-01-02T18:34:08.435712,1,,Appreciation,Appreciation,,,Appreciation,False,1166.0,"[""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+25794,154688,l'adresse est bien noté pour ce weekend el mardoum je le mange souvent en Algérie quand je pars en vacances et MTN ya chez le fennec  [APPRECIATION] [BOUFFE],tiktok,favorite restaurant,2026-01-02T18:34:11.848400,4,Appreciation,,Appreciation,,,,False,1166.0,"[""food_appreciation"", ""place_appreciation""]",positive
+25638,668870,"c'est le meilleur restaurant pr moi , il a une qualité de top des toppp sur ts sa viande très tendre, j'adore aussi ses briques incroyable [APPRECIATION]",tiktok,favorite restaurant,2026-01-02T18:34:08.435730,2,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1166.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+25746,668542,"le chef yahya , contant de te voir",tiktok,favorite restaurant,2026-01-02T18:34:11.048538,0,,,,,,appreciation,False,1166.0,"[""treatment_appreciation""]",positive
+25790,942414,ohh ça a l'air tellement bon,tiktok,favorite restaurant,2026-01-02T18:34:11.848396,2,,,,,,,True,1166.0,[],neutral
+25678,659812,"un restaurant chaleureux et avec une équipe très géniale accueillante, bon courage a vous",tiktok,favorite restaurant,2026-01-02T18:34:09.355928,3,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1166.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+26098,929881,je montrerai bien à Paris pour manger votre spécialité  [APPRECIATION] [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T18:34:18.580016,1,,,Appreciation,,,,False,1166.0,"[""place_appreciation""]",positive
+25596,553068,c'est vrai que c'est top,tiktok,favorite restaurant,2026-01-02T18:34:06.556536,1,appreciation,,,,,,False,1166.0,"[""food_appreciation""]",positive
+25712,535938,El Mardoum vive le Sahara Algérien,tiktok,favorite restaurant,2026-01-02T18:34:10.148850,0,,,,,,,True,1166.0,[],neutral
+25660,281544,"Que Dieu vous bénisse, j'espère que nous viendrons à vous un jour [APPRECIATION]",tiktok,favorite restaurant,2026-01-02T18:34:08.435764,3,,,,,,,True,1166.0,[],neutral
+25820,136989,est ce que y'a où ce garer si on vient chez vous en voiture,tiktok,favorite restaurant,2026-01-02T18:34:12.788094,0,,,Inquiry,,,,False,1166.0,"[""place_inquiry""]",neutral
+25888,135196,avez-vous un parking parceque la rue de Paris c'est saturé ?,tiktok,favorite restaurant,2026-01-02T18:34:13.655045,0,,,inquiry,,,,False,1166.0,"[""place_inquiry""]",neutral
+26126,293788,vous avez pas de figure c'est marocain marrakech,tiktok,favorite restaurant,2026-01-02T18:34:19.403117,0,,,,,,,True,1166.0,[],neutral
+25800,655941,Je part souvent ! Accueil chaleureux l’équipe est très à l’écoute la qualité de la viande est excellente ! Je recommande fortement  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:34:11.848407,11,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1166.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+25824,668797,oui je viendrai inchallah  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:34:12.788099,0,,,,,,,True,1166.0,[],neutral
+25644,795284,Je confirme  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:34:08.435740,3,,,Appreciation,,,,False,1166.0,"[""place_appreciation""]",positive
+59924,293296,"fhemt 3lah lmoktr ghir lbnet iroho youklou f les resto lbara , ena lazemli 3 mlain bech nchba3 , eshan fih 2 gram",tiktok,favorite restaurant,2026-01-02T21:22:07.436059,0,Complaint,,,,,,False,1168.0,"[""food_complaint""]",negative
+59918,420529,العجة مرقاز فيها 3 حبات مرقاز والباقي الكل صوص و بيض ب 1000دج جامي صرات . كلينا عجة في مطعم طبرقة معمرة مرقار ب 700 دج .,tiktok,favorite restaurant,2026-01-02T21:22:07.436040,0,Complaint,,,,Complaint,,False,1168.0,"[""food_complaint"", ""price_complaint""]",negative
+59906,803229,"Plus jamais j’ai tester deux fois le service y tawel Yasser avec plus d’une heure d’attente pour un poulet à la crème infâme , et une salade cesar avec le poulet cru , à vomir ce restaurant",tiktok,favorite restaurant,2026-01-02T21:22:06.564433,1,Complaint,Complaint,,,,,False,1168.0,"[""food_complaint"", ""service_complaint""]",negative
+59822,917686,restaurant très cher,tiktok,favorite restaurant,2026-01-02T21:22:02.085775,2,,,,,Complaint,,False,1168.0,"[""price_complaint""]",negative
+59926,283665,ادا وين جات في بالي ، كون يجي واحد ما يعرفش فرونسي وش يدير ؟؟ مش محتم يكون جاهل جيست مايعرفش فرونسي!,tiktok,favorite restaurant,2026-01-02T21:22:07.436062,0,,,,,,,True,1168.0,[],neutral
+59846,159058,كلش مليح تيعوا,tiktok,favorite restaurant,2026-01-02T21:22:05.755977,2,,,appreciation,,,,False,1168.0,"[""place_appreciation""]",positive
+59818,150765,ebch3 service chefto itawelo yaser,tiktok,favorite restaurant,2026-01-02T21:22:02.085771,1,,Complaint,,,,Complaint,False,1168.0,"[""service_complaint"", ""treatment_complaint""]",negative
+59932,800441,في متناول تبون,tiktok,favorite restaurant,2026-01-02T21:22:07.436082,0,,,,,Complaint,,False,1168.0,"[""price_complaint""]",negative
+59806,276297,عجة مرقاز ب100الف4 حبات و الكيلو تع المرقاز ب 120,tiktok,favorite restaurant,2026-01-02T21:22:02.085758,2,,,,,Complaint,,False,1168.0,"[""price_complaint""]",negative
+33732,395294,لوكان ديرلي توصيل راني نتوحم عليه بالدراهم,tiktok,favorite restaurant,2026-01-02T19:22:48.808826,0,,,,Inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33586,292581,ياك فاتحين قدام هذاك لحانوت تع عشرالاف ياك؟,tiktok,favorite restaurant,2026-01-02T19:22:47.063784,4,,,inquiry,,,,False,1198.0,"[""place_inquiry""]",neutral
+33768,423492,يا خو انا صحابي كامل مفترسين وحل كيفاه ههههه,tiktok,favorite restaurant,2026-01-02T19:22:50.183335,0,,,,,,,True,1198.0,[],neutral
+33762,554697,غالي لعزيز,tiktok,favorite restaurant,2026-01-02T19:22:49.605440,0,,,,,Complaint,,False,1198.0,"[""price_complaint""]",negative
+33710,679225,شحال توصيل للشراقة,tiktok,favorite restaurant,2026-01-02T19:22:48.740754,0,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33972,287691,راني نعيطلكم مش قاعدين ترفدو,tiktok,favorite restaurant,2026-01-02T19:22:55.708523,0,,,"complaint,inquiry",,,,False,1198.0,[],neutral
+33938,931946,خبز بل بطاطا 200 الف  [COMPLAINT],tiktok,favorite restaurant,2026-01-02T19:22:55.708470,1,,,,,Complaint,,False,1198.0,"[""price_complaint""]",negative
+33748,410276,تهلا فيا الخطره الماجيه لوكان شفتها غير اول مبارح برك,tiktok,favorite restaurant,2026-01-02T19:22:49.605425,0,,,,,,,True,1198.0,[],neutral
+33774,407849,هل يوجد مكان مخصص عائليا,tiktok,favorite restaurant,2026-01-02T19:22:51.287377,0,,,Inquiry,,,,False,1198.0,"[""place_inquiry""]",neutral
+33976,281903,غير ب 200الف,tiktok,favorite restaurant,2026-01-02T19:22:55.708526,0,,,,,Complaint,,False,1198.0,"[""price_complaint""]",negative
+33950,934918,بزاف غالي,tiktok,favorite restaurant,2026-01-02T19:22:55.708502,0,,,,,Complaint,,False,1198.0,"[""price_complaint""]",negative
+33792,543475,Marseille ?,tiktok,favorite restaurant,2026-01-02T19:22:52.171878,0,,,,,,,True,1198.0,[],neutral
+33784,804198,ليفريزون كاين اخي,tiktok,favorite restaurant,2026-01-02T19:22:51.287392,0,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33674,147314,توصيل كايم,tiktok,favorite restaurant,2026-01-02T19:22:48.188034,0,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33554,146835,توصيل الباب حسن تحت لابوست,tiktok,favorite restaurant,2026-01-02T19:22:45.945024,0,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+32304,800286,الله يبارك ربي يرزقني و يرزق كل واحد جاز على هذا الفيديو و. تشهى,tiktok,favorite restaurant,2026-01-02T19:15:25.042074,2,,,,,,,True,1198.0,[],neutral
+33982,526965,معليش نعاود نترجملهم غلط برك جا يقول 2ملاين قال 200 ألف  الله يبارك خويا راني غير نقصر  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:22:56.507966,0,,,,,,,True,1198.0,[],neutral
+33658,159273,محمد مافي عزيمة [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:22:47.885254,0,,,,,,,True,1198.0,[],neutral
+33620,680224,Jina andkom lyouma Kalina Titanic et franchement c’était top du top meilleur chawerma de toute l’Algerie  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:22:47.063835,0,Appreciation,,Appreciation,,,,False,1198.0,"[""food_appreciation"", ""place_appreciation""]",positive
+33980,265642,تبيع غالي,tiktok,favorite restaurant,2026-01-02T19:22:56.507964,0,,,,,Complaint,,False,1198.0,"[""price_complaint""]",negative
+33600,810576,وين في بابا حسن,tiktok,favorite restaurant,2026-01-02T19:22:47.063807,1,,,Inquiry,,,,False,1198.0,"[""place_inquiry""]",neutral
+33692,162388,هاذ الاكلة واش يسموها,tiktok,favorite restaurant,2026-01-02T19:22:48.740735,0,inquiry,,,,,,False,1198.0,"[""food_inquiry""]",neutral
+33968,788861,ماتمسخرش دوق يا ربي عندها 10 دقائق صبنا طابلة تع 2 او كان الغاشي مكاش لي ريح فيها أيا ريحنا أنا أو صاحبي جا حاوزنا قالنا كاين قبلكم إيه أوكي كاينة مس واحد ماريح فيها كانت فارغة تسمى اوتوماتيكمون ريحنا,tiktok,favorite restaurant,2026-01-02T19:22:55.708521,0,,Complaint,,,,,False,1198.0,"[""service_complaint""]",negative
+33956,395614,فبلاصة لبرغل مدلي مقبيلات باردة,tiktok,favorite restaurant,2026-01-02T19:22:55.708506,0,Recommendation,,,,,,False,1198.0,"[""food_recommendation""]",positive
+33746,142684,عندكم توصيل لدرارية,tiktok,favorite restaurant,2026-01-02T19:22:49.605422,0,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+32322,143154,وين جاية,tiktok,favorite restaurant,2026-01-02T19:15:25.042087,0,,,Inquiry,,,,False,1198.0,"[""place_inquiry""]",neutral
+33646,686850,livraison disponible,tiktok,favorite restaurant,2026-01-02T19:22:47.885245,1,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33638,269688,شحال توصيل للدويرة,tiktok,favorite restaurant,2026-01-02T19:22:47.885234,0,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33630,814465,شحال توصيل للكاليتوس,tiktok,favorite restaurant,2026-01-02T19:22:47.885228,0,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33632,924594,تووب,tiktok,favorite restaurant,2026-01-02T19:22:47.885229,0,,,appreciation,,,,False,1198.0,"[""place_appreciation""]",positive
+33690,661810,كاين توصيل البليدة,tiktok,favorite restaurant,2026-01-02T19:22:48.740733,0,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33790,944357,ديرفيديو مليح وين جاي ورينا طريق اخويا,tiktok,favorite restaurant,2026-01-02T19:22:52.171876,0,,,Inquiry,,,,False,1198.0,"[""place_inquiry""]",neutral
+33654,131535,كاين أومبورتي,tiktok,favorite restaurant,2026-01-02T19:22:47.885251,0,,,,Inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33598,291733,توصيل للخرايسية شحال من فضلك البابور من فضلك,tiktok,favorite restaurant,2026-01-02T19:22:47.063805,1,,,,inquiry,,,False,1198.0,"[""delivery_inquiry""]",neutral
+33696,664890,احلى شيف محمد,tiktok,favorite restaurant,2026-01-02T19:22:48.740739,0,,,,,,,True,1198.0,[],neutral
+33798,140421,moley,tiktok,favorite restaurant,2026-01-02T19:22:52.171954,1,,,,,,,True,1198.0,[],neutral
+33960,526939,ميتينالاف تخدم يومين باش تلمها وحبيبنا يقولك ميتين برك,tiktok,favorite restaurant,2026-01-02T19:22:55.708511,0,,,,,Complaint,,False,1198.0,"[""price_complaint""]",negative
+18252,138505,Franchement très bon restaurant sa l’air super bon juste les nom du restaurant qui m’intrigues pourquoi le nommé tabatkah alor que ya rien de tunisien après ce que je vois et que tu pourrai bien l’appeler hippon ou bone par exemple,tiktok,favorite restaurant,2026-01-02T18:15:16.237346,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1202.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+18184,933073,السلام عليكم ورحمة الله وبركاته خويا لعزيز سخفتونا بزاف بالأكل الجميل,tiktok,favorite restaurant,2026-01-02T18:15:07.273654,0,appreciation,,,,,,False,1202.0,"[""food_appreciation""]",positive
+18182,808083,شحال لي بلا,tiktok,favorite restaurant,2026-01-02T18:15:07.273651,0,,,,,inquiry,,False,1202.0,"[""price_inquiry""]",neutral
+60222,544119,C’est quoi le nom du resto,tiktok,favorite restaurant,2026-01-02T21:22:46.343119,4,,,inquiry,,,,False,1218.0,"[""place_inquiry""]",neutral
+60280,271330,Merci de nous avoir fait visiter ce paradis,tiktok,favorite restaurant,2026-01-02T21:22:47.115746,1,,,Appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60722,418619,magnifique  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:22:57.443462,1,,,appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60148,290366,صح انا رحتلها عجبتني بزاف نقية و كالم شحال داتلي عقلي قلت راجلي لوكان عندي الدراهم نشري تم تحية لناس عنابة,tiktok,favorite restaurant,2026-01-02T21:22:44.123226,13,,,appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60432,136533,algerie mon amour,tiktok,favorite restaurant,2026-01-02T21:22:50.507329,5,,,,,,,True,1218.0,[],neutral
+60276,396238,سرايدي نحسها طرف من اطاليا [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:22:47.115742,0,,,,,,,True,1218.0,[],neutral
+60212,818517,koun ibadel les table berk yachri whayed chwiya bahiyn et confortable pour les clients aussi twali la vidéo matbanch beli fi bladna,tiktok,favorite restaurant,2026-01-02T21:22:45.523291,0,,,Recommendation,,,,False,1218.0,"[""place_recommendation""]",positive
+60378,939856,Ou à seraidi svp,tiktok,favorite restaurant,2026-01-02T21:22:49.679189,0,,,Inquiry,,,,False,1218.0,"[""place_inquiry""]",neutral
+60258,808146,هذي ريسطو؟,tiktok,favorite restaurant,2026-01-02T21:22:46.348998,0,,,inquiry,,,,False,1218.0,"[""place_inquiry""]",neutral
+60772,939470,يخي الطلعة تاع سرايدي، لي تخرج على creps?,tiktok,favorite restaurant,2026-01-02T21:22:58.311471,2,,,inquiry,,,,False,1218.0,"[""place_inquiry""]",neutral
+60318,939780,الجزاير قارة  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:22:47.257375,1,,,,,,,True,1218.0,[],neutral
+60744,809495,juste magnifique  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:22:57.443485,0,,,appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60228,928654,"سرايدي من 1994 , ماولتلهاش ليها وحشة كبيرة",tiktok,favorite restaurant,2026-01-02T21:22:46.343129,0,,,,,,,True,1218.0,[],neutral
+60224,929329,tt endroit dans mon pays est manifique belle musique  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:22:46.343122,7,,,,,,,True,1218.0,[],neutral
+60426,931029,ja d'or c'était mon époque,tiktok,favorite restaurant,2026-01-02T21:22:50.507322,2,,,,,,,True,1218.0,[],neutral
+60752,666862,magnifique j'irai cette été pourtant je ne les pas vue c'est belle endroit j'ai vue hôtel saraidi qui est très jolie mes très mal entretenu,tiktok,favorite restaurant,2026-01-02T21:22:57.443495,0,,,Appreciation,,,Complaint,False,1218.0,"[""place_appreciation"", ""treatment_complaint""]",neutral
+60300,290871,bonjour. un petit paradis sur terre  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:22:47.257362,1,,,appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60324,271341,مكان رائع مع موسيقى روعة,tiktok,favorite restaurant,2026-01-02T21:22:47.965514,0,,,Appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60164,659346,Pourquoi cette chanson?,tiktok,favorite restaurant,2026-01-02T21:22:44.123252,1,,,inquiry,,,,False,1218.0,"[""place_inquiry""]",neutral
+60362,531501,si hier revenait !,tiktok,favorite restaurant,2026-01-02T21:22:48.839853,0,,,,,,,True,1218.0,[],neutral
+60142,943739,Ou exactement à seraidi svp,tiktok,favorite restaurant,2026-01-02T21:22:44.123216,0,,,Inquiry,,,,False,1218.0,"[""place_inquiry""]",neutral
+60156,812396,a côté de l'hôtel,tiktok,favorite restaurant,2026-01-02T21:22:44.123239,0,,,,,,,True,1218.0,[],neutral
+60260,542751,"c""est beau.",tiktok,favorite restaurant,2026-01-02T21:22:46.349001,2,,,Appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60352,793571,formidable on est allée plusieurs fois,tiktok,favorite restaurant,2026-01-02T21:22:48.839835,0,,,,,,,True,1218.0,[],neutral
+60200,936609,أجمل مكان في عنابة,tiktok,favorite restaurant,2026-01-02T21:22:45.454090,0,,,Appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60728,157968,l'endroit est magnifique et ses propriétaires sont des gens d'exception avec leurs éducation que dieu vous garde,tiktok,favorite restaurant,2026-01-02T21:22:57.443468,0,Appreciation,,,,,Appreciation,False,1218.0,"[""food_appreciation"", ""treatment_appreciation""]",positive
+60190,147004,Mashalah I can’t wait to buy a car and discover the beauty of ma algeria,tiktok,favorite restaurant,2026-01-02T21:22:45.454074,2,,,,,,,True,1218.0,[],neutral
+60284,949063,Merci pour cette vidéo,tiktok,favorite restaurant,2026-01-02T21:22:47.115751,2,,,,,,,True,1218.0,[],neutral
+60314,673480,c'est un endroit que j'adore  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:22:47.257373,2,,,Appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60152,674769,راحة نفسية  بصح كي رحتلها مع اولادي هههههبلوني [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:22:44.123233,12,,,appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60170,530175,طريق سرايدي القديمة ؟؟,tiktok,favorite restaurant,2026-01-02T21:22:44.123262,0,,,Inquiry,,,,False,1218.0,"[""place_inquiry""]",neutral
+60234,792569,عنابة روعة,tiktok,favorite restaurant,2026-01-02T21:22:46.343139,0,,,Appreciation,,,,False,1218.0,"[""place_appreciation""]",positive
+60774,684988,waw c'est tous ce que j'aime labraj tamina rfis labhar la nature je kif bsahatkom,tiktok,favorite restaurant,2026-01-02T21:22:58.311473,0,,,,,,,True,1218.0,[],neutral
+60322,276792,صرايدي رووووعة ماشاء الله,tiktok,favorite restaurant,2026-01-02T21:22:47.965506,0,,,,,,,True,1218.0,[],neutral
+60238,792299,دكريات سرايدي ومنها. بوزيزي. ااه يا لوكان تولي,tiktok,favorite restaurant,2026-01-02T21:22:46.343146,0,,,,,,,True,1218.0,[],neutral
+60290,147371,la chanson des années 80 (avec Iglésias),tiktok,favorite restaurant,2026-01-02T21:22:47.115757,0,,,,,,,True,1218.0,[],neutral
+60794,133974,"ce fut un paradis sur terre quand elle s'appelait Bone, car à l'instar des grandes villes algériennes c'est la dégradation totale",tiktok,favorite restaurant,2026-01-02T21:22:59.233285,0,,,Complaint,,,,False,1218.0,"[""place_complaint""]",negative
+60784,289227,لما تقول سريدي تقول الخضار تقول الناس لي متربية وعندهم حرمة،الجبيلية الناس الملاح  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:22:58.311489,0,,,,,,,True,1218.0,[],neutral
+39856,945367,و الله موالف نديرو في دار بزاف بنين  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:43:58.834001,0,,,,,,,True,1235.0,[],neutral
+47850,948330,اعطينا معلومات على ليفريزو من فضلك,tiktok,favorite restaurant,2026-01-02T20:33:30.644245,0,,,,Inquiry,,,False,1235.0,"[""delivery_inquiry""]",neutral
+40274,406269,تاع charloman لي طيباته ڨاع فور عليكم  [BOUFFE],tiktok,favorite restaurant,2026-01-02T19:44:12.037265,0,appreciation,,,,,,False,1235.0,"[""food_appreciation""]",positive
+40108,811162,coquette hayel winta nakloh [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:44:07.919447,1,,,,,,,True,1235.0,[],neutral
+39838,131427,انت خدمتها خير من فرنسا حنا كترونا غير الرز [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:43:58.833987,7,Appreciation,,,,,,False,1235.0,"[""food_appreciation""]",positive
+39928,400146,Khdemtha top mais madirlhach sauce barbecue- hia tji b sauce chili thai. W rabi y3awnek,tiktok,favorite restaurant,2026-01-02T19:44:04.469173,0,Recommendation,,Appreciation,,,,False,1235.0,"[""food_recommendation"", ""place_appreciation""]",positive
+40084,144280,يبان بنين,tiktok,favorite restaurant,2026-01-02T19:44:07.115791,0,appreciation,,,,,,False,1235.0,"[""food_appreciation""]",positive
+39862,531230,وين بلاصة بالضبط في ولاية شلف و ما اسم مطعم تعكم,tiktok,favorite restaurant,2026-01-02T19:43:58.834006,0,,,Inquiry,,,,False,1235.0,"[""place_inquiry""]",neutral
+39972,814762,Chaba Zaki bon courage inchaAllah,tiktok,favorite restaurant,2026-01-02T19:44:04.635657,0,,,,,,,True,1235.0,[],neutral
+40238,393736,"Moi je vais vous dire le vrai il a quoi dedans poir vous vous améliorer : Riz basmati faut il soit collant un peu , sauce maison c’est 4 cuillère crème fraîche 2 cuillère mayonnaise un peu sauce chili sel poivre paprika et persil encore , après dessus tenders avec sauce chili la vrai aigre douce , sauce thaï piquante en + , oignon frit , persil et c’est tout",tiktok,favorite restaurant,2026-01-02T19:44:11.216050,0,Recommendation,,,,,,False,1235.0,"[""food_recommendation""]",positive
+40068,803771,كليتو في فرنسا وسمو tasty criusri,tiktok,favorite restaurant,2026-01-02T19:44:06.321196,0,,,,,,,True,1235.0,[],neutral
+40270,798848,صوص بربكيو متجيش مع الروز ديرها مقرونة تجي بنينة,tiktok,favorite restaurant,2026-01-02T19:44:12.037257,0,"complaint,recommendation",,,,,,False,1235.0,[],neutral
+39890,676189,روز طايب معجن الله يبارك  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:44:03.525673,1,appreciation,,,,,,False,1235.0,"[""food_appreciation""]",positive
+39852,275337,combien le prix,tiktok,favorite restaurant,2026-01-02T19:43:58.833998,0,,,,,Inquiry,,False,1235.0,"[""price_inquiry""]",neutral
+40220,811257,كيفاه صحي وًخو معكر بليصوصً,tiktok,favorite restaurant,2026-01-02T19:44:10.396888,0,Complaint,,,,,,False,1235.0,"[""food_complaint""]",negative
+39996,394080,تحياتي لناس شلف,tiktok,favorite restaurant,2026-01-02T19:44:05.348599,0,,,,,,,True,1235.0,[],neutral
+40034,273493,السعر شعال باه واحد يدير حسابو,tiktok,favorite restaurant,2026-01-02T19:44:05.415939,0,,,,,Inquiry,,False,1235.0,"[""price_inquiry""]",neutral
+40212,398368,هو يبان لذيذ بصح طبڨةوتاع شخم مضمونة ،,tiktok,favorite restaurant,2026-01-02T19:44:10.396879,0,Complaint,,Appreciation,,,,False,1235.0,"[""food_complaint"", ""place_appreciation""]",neutral
+39918,420589,كاين التوصيل لشطية,tiktok,favorite restaurant,2026-01-02T19:44:04.469166,0,,,,inquiry,,,False,1235.0,"[""delivery_inquiry""]",neutral
+40230,933524,ماشي انت الاول كليتو عند كرسبينو تاع الشطية عندو مدة طويلة happy fries w happy rice,tiktok,favorite restaurant,2026-01-02T19:44:11.216035,0,,,,,,,True,1235.0,[],neutral
+40272,941063,شحال أنتم فين كما صحي طنوبلية مقلوش سوما ههه,tiktok,favorite restaurant,2026-01-02T19:44:12.037263,0,,,,,Inquiry,,False,1235.0,"[""price_inquiry""]",neutral
+40004,283993,والله غير راه طوندونس في اوروبا شباب بزاف كي نجو لشلف نجو عندك,tiktok,favorite restaurant,2026-01-02T19:44:05.348605,0,,,,,,,True,1235.0,[],neutral
+40062,935002,salam Zaki bon courage Walah toujours nklou heniyaa c very el e bonne,tiktok,favorite restaurant,2026-01-02T19:44:06.257587,0,Appreciation,,Appreciation,,,,False,1235.0,"[""food_appreciation"", ""place_appreciation""]",positive
+40276,945196,هههه قالو اول واحد هه راك روطار خويا لعزيز مهم ربي يقدرك و يعونك,tiktok,favorite restaurant,2026-01-02T19:44:12.037267,0,,,,,,,True,1235.0,[],neutral
+40256,554097,c est pas de la sauce fromage le croustillant c est crème fraîche mayonnaise aigre douche soja sucré et thai,tiktok,favorite restaurant,2026-01-02T19:44:11.216068,0,Complaint,,,,,,False,1235.0,"[""food_complaint""]",negative
+40252,160798,pourquoi vous critiquer toujours goutlou rabi 3awnek,tiktok,favorite restaurant,2026-01-02T19:44:11.216064,0,,,,,,,True,1235.0,[],neutral
+40064,280796,سومة شعال,tiktok,favorite restaurant,2026-01-02T19:44:06.321177,0,,,,,Inquiry,,False,1235.0,"[""price_inquiry""]",neutral
+40092,394571,Le crousty c’est avec une sauce thaï et non pas une sauce barbecue,tiktok,favorite restaurant,2026-01-02T19:44:07.919427,30,Recommendation,,,,,,False,1235.0,"[""food_recommendation""]",positive
+39886,136969,اااا خويا زاكي بنا وهما فخامة اسم تكفي ربي يبارك خويا زاكي  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:44:03.525670,0,,,appreciation,,,,False,1235.0,"[""place_appreciation""]",positive
+40186,798746,rien avoir avec le vrai testy crusty,tiktok,favorite restaurant,2026-01-02T19:44:09.615852,0,complaint,,,,,,False,1235.0,"[""food_complaint""]",negative
+40022,276686,C’est pas du tous les sauces qu’il faut dedans,tiktok,favorite restaurant,2026-01-02T19:44:05.415931,6,Recommendation,,,,,,False,1235.0,"[""food_recommendation""]",positive
+39834,542425,الروز زيدلو وية مكسرات وشوية زبيب,tiktok,favorite restaurant,2026-01-02T19:43:58.833984,6,recommendation,,,,,,False,1235.0,"[""food_recommendation""]",positive
+40014,293528,box c'est pas Plat frère Bon courage,tiktok,favorite restaurant,2026-01-02T19:44:05.415920,3,Recommendation,,,,,,False,1235.0,"[""food_recommendation""]",positive
+39902,160484,زاكي خويا و كيمو والشبيبة ربي يبارك,tiktok,favorite restaurant,2026-01-02T19:44:03.525681,0,,,,,,,True,1235.0,[],neutral
+31216,528866,"Super restoles plats sont délicieux et bien preparés surtout mushroom swiis, déjà la vidéo donne envie d’y retourner",tiktok,favorite restaurant,2026-01-02T19:10:50.805829,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1243.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+31172,424162,Le burger algerien aussi à ne pas rater je suis vraiment dan,tiktok,favorite restaurant,2026-01-02T19:10:49.007358,0,appreciation,,,,,,False,1243.0,"[""food_appreciation""]",positive
+31212,156932,J'ai goûté celui à dubai pas mal,tiktok,favorite restaurant,2026-01-02T19:10:50.805826,0,,,,,,,True,1243.0,[],neutral
+31200,536465,je l'ai essayé et il est très bon,tiktok,favorite restaurant,2026-01-02T19:10:50.805816,0,Appreciation,,,,,,False,1243.0,"[""food_appreciation""]",positive
+31196,411981,"Il est le meilleur, tu te trompes mon grand",tiktok,favorite restaurant,2026-01-02T19:10:50.430764,0,,,Appreciation,,,,False,1243.0,"[""place_appreciation""]",positive
+31198,542933,mauvais pour l estomac,tiktok,favorite restaurant,2026-01-02T19:10:50.805804,0,complaint,,,,,,False,1243.0,"[""food_complaint""]",negative
+31152,147569,Y’a que du fromage et quel fromage le cheddar,tiktok,favorite restaurant,2026-01-02T19:10:49.007338,0,complaint,,,,,,False,1243.0,"[""food_complaint""]",negative
+31232,927173,où exct cvp,tiktok,favorite restaurant,2026-01-02T19:10:51.519755,0,,,Inquiry,,,,False,1243.0,"[""place_inquiry""]",neutral
+31148,550203,C le meilleur [BOUFFE],tiktok,favorite restaurant,2026-01-02T19:10:46.080518,0,,,Appreciation,,,,False,1243.0,"[""place_appreciation""]",positive
+31166,919221,bonne adresse mais le service n’est pas rapide  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:10:49.007353,2,,Complaint,Appreciation,,,,False,1243.0,"[""service_complaint"", ""place_appreciation""]",neutral
+31134,655611,Un des meilleurs fast food que j’ai testé dans toute ma vie [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:10:46.080508,2,Appreciation,,,,,,False,1243.0,"[""food_appreciation""]",positive
+31220,542982,j'ai essayé celui d'Alger centre j'ai pas du tt aimé un big flop,tiktok,favorite restaurant,2026-01-02T19:10:50.805832,26,complaint,,complaint,,,,False,1243.0,"[""food_complaint"", ""place_complaint""]",negative
+31226,920864,Jai tester taylor alger centre c’était magique une experience a refaire  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:10:50.805836,2,Appreciation,,Appreciation,,,,False,1243.0,"[""food_appreciation"", ""place_appreciation""]",positive
+31308,527908,تاع الجي سونتر سارفيس بزاف يطول ريحت ساعة وزيادة باش جات لاكومند وتان الغمة وسخانة وين يطيبو الريحة كامل جي وين راكي قاعدة,tiktok,favorite restaurant,2026-01-02T19:10:53.350593,0,,Complaint,Complaint,,,,False,1243.0,"[""service_complaint"", ""place_complaint""]",negative
+31168,919192,شكون شاف الشعرة فالأول  [COMPLAINT],tiktok,favorite restaurant,2026-01-02T19:10:49.007355,1,Complaint,,,,,,False,1243.0,"[""food_complaint""]",negative
+34076,548146,Le meilleur franchement je confirme  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:23:32.084498,0,,,,,,,True,1244.0,[],neutral
+34162,156790,Nanou117 عن تجربة هايل [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:23:34.622386,1,appreciation,,,,,,False,1244.0,"[""food_appreciation""]",positive
+34344,532830,mziya rani nakra f les commentaires,tiktok,favorite restaurant,2026-01-02T19:23:37.947846,0,,,,,,,True,1244.0,[],neutral
+34126,670555,vraiment les prix sont raisonnables  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:23:32.880148,0,,,,,Appreciation,,False,1244.0,"[""price_appreciation""]",positive
+34368,541097,Save for the next khrdja!  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T19:23:38.797968,0,,,,,,,True,1244.0,[],neutral
+34048,940843,Rahtlo kant l 13h w 9aloulna khlas l raclette ! Et j’ai pris un burger fih poulet la marinade kan 3ndha un goût vraiment bizarre.,tiktok,favorite restaurant,2026-01-02T19:23:32.084422,6,Complaint,,,,,,False,1244.0,"[""food_complaint""]",negative
+34164,805017,♡ found new spot,tiktok,favorite restaurant,2026-01-02T19:23:34.622396,2,,,Appreciation,,,,False,1244.0,"[""place_appreciation""]",positive
+34370,935772,أسعار في متناول لاعبي أستون فيلا,tiktok,favorite restaurant,2026-01-02T19:23:38.797970,0,,,,,Complaint,,False,1244.0,"[""price_complaint""]",negative
+34082,816686,وين في دالي ابراهيم نسكن تم و منعرفوش,tiktok,favorite restaurant,2026-01-02T19:23:32.084506,0,,,Inquiry,,,,False,1244.0,"[""place_inquiry""]",neutral
+34140,943666,C’est archi pas cher,tiktok,favorite restaurant,2026-01-02T19:23:33.774782,0,,,,,Appreciation,,False,1244.0,"[""price_appreciation""]",positive
+34024,141721,تاع الجي سونتر روعة مولاه نعمة التربية ونعمة الإستقبال كليت عندو مشروم روعة ، تستاهل القعدة عندو,tiktok,favorite restaurant,2026-01-02T19:23:28.957321,6,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1244.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+34348,409350,قاع يقولو هك كي تروح تلقى كلش عادي,tiktok,favorite restaurant,2026-01-02T19:23:37.947851,0,,,,,,,True,1244.0,[],neutral
+34366,409137,رحنا؟,tiktok,favorite restaurant,2026-01-02T19:23:38.797967,0,,,Inquiry,,,,False,1244.0,"[""place_inquiry""]",neutral
+34174,159809,Mou c’était trop bon nhar li rohna,tiktok,favorite restaurant,2026-01-02T19:23:34.622409,1,appreciation,,,,,,False,1244.0,"[""food_appreciation""]",positive
+34108,279340,الخميس الي فاتت برك روحتلو صح بزاف ماكلة بنينة عندو,tiktok,favorite restaurant,2026-01-02T19:23:32.880128,0,appreciation,,,,,,False,1244.0,"[""food_appreciation""]",positive
+21336,667362,excellent restaurant,tiktok,favorite restaurant,2026-01-02T18:22:05.756801,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1250.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+21072,806439,اكل صح بنين والمكان محترم والاستقبال في القمة ماشاء الله و هذه شهادة لله.,tiktok,favorite restaurant,2026-01-02T18:21:58.677007,2,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1250.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+21084,678298,A tester thank u love,tiktok,favorite restaurant,2026-01-02T18:21:58.677018,3,,,,,,,True,1250.0,[],neutral
+21516,415772,ماما تموت على التحواس و الماكلة برا  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:22:11.176248,1,,,,,,,True,1250.0,[],neutral
+21340,423681,Et les prix ? c'est important non?,tiktok,favorite restaurant,2026-01-02T18:22:06.933357,1,,,,,Inquiry,,False,1250.0,"[""price_inquiry""]",neutral
+21206,939805,adresse exacte svp,tiktok,favorite restaurant,2026-01-02T18:22:03.688398,0,,,Inquiry,,,,False,1250.0,"[""place_inquiry""]",neutral
+21070,675308,Mais au faite on n’a pas l’adresse où telefon,tiktok,favorite restaurant,2026-01-02T18:21:58.677003,0,,,Inquiry,,,,False,1250.0,"[""place_inquiry""]",neutral
+21234,810687,هههه انا تاني تقولنا هكا,tiktok,favorite restaurant,2026-01-02T18:22:03.698268,0,,,,,,,True,1250.0,[],neutral
+21300,678449,هذي أنا هه,tiktok,favorite restaurant,2026-01-02T18:22:04.495508,0,,,,,,,True,1250.0,[],neutral
+21556,816610,عجبك الحال والسعر عجبك الزبون [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:22:12.076136,0,,,,,appreciation,,False,1250.0,"[""price_appreciation""]",positive
+21126,543888,اوااااه انا درهمين كامل نعرفهم فالمطاعم,tiktok,favorite restaurant,2026-01-02T18:22:01.861527,0,,,,,complaint,,False,1250.0,"[""price_complaint""]",negative
+21344,680749,oui exactement,tiktok,favorite restaurant,2026-01-02T18:22:06.933387,0,,,Inquiry,,,,False,1250.0,"[""place_inquiry""]",neutral
+21306,410410,service trop long,tiktok,favorite restaurant,2026-01-02T18:22:05.228101,0,,Complaint,,,,,False,1250.0,"[""service_complaint""]",negative
+21352,416259,oui,tiktok,favorite restaurant,2026-01-02T18:22:07.066180,0,,,,,,,True,1250.0,[],neutral
+21298,262153,Comment un restaurant faire autant de mélange et faire des produits frais…. J ai un gros doute sur la fraîcheur de ses produits,tiktok,favorite restaurant,2026-01-02T18:22:04.495506,0,Complaint,,,,,,False,1250.0,"[""food_complaint""]",negative
+21534,533706,qui m'y invite quand je viens sur Alger ?  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:22:12.076118,0,,,,,,,True,1250.0,[],neutral
+21348,395826,Il est localisé où?,tiktok,favorite restaurant,2026-01-02T18:22:06.933392,0,,,Inquiry,,,,False,1250.0,"[""place_inquiry""]",neutral
+21100,681229,نن ماما ماتستخسرش في روحها,tiktok,favorite restaurant,2026-01-02T18:22:01.861491,10,,,,,,,True,1250.0,[],neutral
+21226,667253,ou il se trouve?,tiktok,favorite restaurant,2026-01-02T18:22:03.698262,0,,,Inquiry,,,,False,1250.0,"[""place_inquiry""]",neutral
+21272,680287,bsh les prix kheti,tiktok,favorite restaurant,2026-01-02T18:22:04.418022,0,,,,,Inquiry,,False,1250.0,"[""price_inquiry""]",neutral
+21222,146180,راكي تهدري على يما,tiktok,favorite restaurant,2026-01-02T18:22:03.698259,0,,,,,,,True,1250.0,[],neutral
+21542,394583,انا نحب نعرضها ماما تعيف و لوكان نضل نقنع فيها والو,tiktok,favorite restaurant,2026-01-02T18:22:12.076125,0,,,,,,,True,1250.0,[],neutral
+21168,808608,هادي غير انا لي نقولها ماشي ماما,tiktok,favorite restaurant,2026-01-02T18:22:02.778837,0,,,,,,,True,1250.0,[],neutral
+21246,936808,لحضة ادراك أنا هي هاد الام الجزائرية,tiktok,favorite restaurant,2026-01-02T18:22:03.698276,0,,,,,,,True,1250.0,[],neutral
+21332,686496,Moi aussi wlh le même problème tjr,tiktok,favorite restaurant,2026-01-02T18:22:05.228138,0,,,,,,,True,1250.0,[],neutral
+52236,408140,وش من بلاصة,tiktok,favorite restaurant,2026-01-02T21:03:27.379959,0,,,Inquiry,,,,False,1252.0,"[""place_inquiry""]",neutral
+52278,541976,بنين ابوتين تيعوا ننصحكم والله بنة,tiktok,favorite restaurant,2026-01-02T21:03:28.158442,0,appreciation,,,,,,False,1252.0,"[""food_appreciation""]",positive
+52576,787673,Onat,tiktok,favorite restaurant,2026-01-02T21:03:36.435804,0,,,,,,,True,1252.0,[],neutral
+52696,801039,سامحني ا خويا شهادة زور هادي كليت عندو تع طوكيو في حالة حاشة نعمة ربي وكريسبي موزاريلا تقول توكل ف الحطب ولاصوص لي تحكي علاها تقول حليب وما مبقيتش نروحلو للأبد  [RECOMMENDATION],tiktok,favorite restaurant,2026-01-02T21:03:40.624827,0,Complaint,,,,,,False,1252.0,"[""food_complaint""]",negative
+52122,791365,Lgit fih cha3ra hamburger lol,tiktok,favorite restaurant,2026-01-02T21:03:25.013469,10,complaint,,,,,,False,1252.0,"[""food_complaint""]",negative
+52324,663933,شحال طاكوس,tiktok,favorite restaurant,2026-01-02T21:03:29.230229,0,,,,,inquiry,,False,1252.0,"[""price_inquiry""]",neutral
+52364,792598,du camembert en plus,tiktok,favorite restaurant,2026-01-02T21:03:31.530460,0,appreciation,,,,,,False,1252.0,"[""food_appreciation""]",positive
+52728,935650,ادا بالذات كليت فيه و ندمت يعيف ماللخر و لي prix زايدين بلا فايدة,tiktok,favorite restaurant,2026-01-02T21:03:40.624946,0,Complaint,,,,Complaint,,False,1252.0,"[""food_complaint"", ""price_complaint""]",negative
+52116,796484,عادي ماشي حاجة واو و سرفيس ناقص,tiktok,favorite restaurant,2026-01-02T21:03:25.013463,2,Complaint,,,,,Complaint,False,1252.0,"[""food_complaint"", ""treatment_complaint""]",negative
+52356,402652,لاصوص مايها زيد عقدها شوية بركا,tiktok,favorite restaurant,2026-01-02T21:03:31.530452,0,recommendation,,,,,,False,1252.0,"[""food_recommendation""]",positive
+52310,279358,bn courage mais آنكلز مش اونكلز,tiktok,favorite restaurant,2026-01-02T21:03:29.079508,3,,,,,,,True,1252.0,[],neutral
+52192,142955,فريت في حالة,tiktok,favorite restaurant,2026-01-02T21:03:26.511083,0,complaint,,,,,,False,1252.0,"[""food_complaint""]",negative
+52248,665838,lpoutine ta3ou Très délicieux Benaa masratch,tiktok,favorite restaurant,2026-01-02T21:03:28.152394,0,Appreciation,,,,,,False,1252.0,"[""food_appreciation""]",positive
+52706,524904,أنا معجبنيش الخبز يعيف,tiktok,favorite restaurant,2026-01-02T21:03:40.624878,0,Complaint,,,,,,False,1252.0,"[""food_complaint""]",negative
+52360,922788,حق ربي شجعتني مرنروحش تما ٠٠,tiktok,favorite restaurant,2026-01-02T21:03:31.530457,0,,,,,,,True,1252.0,[],neutral
+52162,404543,le pain mech bnin,tiktok,favorite restaurant,2026-01-02T21:03:26.444463,1,complaint,,,,,,False,1252.0,"[""food_complaint""]",negative
+52710,422653,لينسم,tiktok,favorite restaurant,2026-01-02T21:03:40.624886,0,,,,,,,True,1252.0,[],neutral
+52270,917504,كليت عندهم كلش توب والله,tiktok,favorite restaurant,2026-01-02T21:03:28.158417,0,Appreciation,Appreciation,Appreciation,Appreciation,Appreciation,Appreciation,False,1252.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""delivery_appreciation"", ""price_appreciation"", ""treatment_appreciation""]",positive
+52316,422204,Top poutin [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:03:29.230221,0,Appreciation,,,,,,False,1252.0,"[""food_appreciation""]",positive
+52352,151465,والله مايتكل,tiktok,favorite restaurant,2026-01-02T21:03:31.530449,0,complaint,,,,,,False,1252.0,"[""food_complaint""]",negative
+52234,149919,عنابة l a classe toujours بصحتك [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:03:27.379956,0,,,Appreciation,,,,False,1252.0,"[""place_appreciation""]",positive
+52252,806632,صحبوب,tiktok,favorite restaurant,2026-01-02T21:03:28.152402,1,,,,,,,True,1252.0,[],neutral
+52186,293931,"continue, mon frère",tiktok,favorite restaurant,2026-01-02T21:03:26.511078,4,,,,,,,True,1252.0,[],neutral
+52626,543446,اعيف فاست فود في عنابة ساعة باش يجيبو لكوموند و يجيبوها باردة و ينساو نصها الله غلطت عمري لي دخلت ليه,tiktok,favorite restaurant,2026-01-02T21:03:38.920966,1,,complaint,,complaint,,complaint,False,1252.0,"[""service_complaint"", ""delivery_complaint"", ""treatment_complaint""]",negative
+52254,669075,محتوى روعة ربي يوفقك,tiktok,favorite restaurant,2026-01-02T21:03:28.152404,1,,,appreciation,,,,False,1252.0,"[""place_appreciation""]",positive
+52756,421413,تلعبيز كبير,tiktok,favorite restaurant,2026-01-02T21:03:41.467077,0,,,,,,,True,1252.0,[],neutral
+52680,554930,ارحم ton colon يا jeune,tiktok,favorite restaurant,2026-01-02T21:03:39.748644,1,recommendation,,,,,,False,1252.0,"[""food_recommendation""]",positive
+52190,151650,يدير la livraison,tiktok,favorite restaurant,2026-01-02T21:03:26.511081,1,,,,inquiry,,,False,1252.0,"[""delivery_inquiry""]",neutral
+52744,815032,تلعبيز ف لبلاطو بالفرماج سايح لا استطيع,tiktok,favorite restaurant,2026-01-02T21:03:41.467065,0,complaint,,,,,,False,1252.0,"[""food_complaint""]",negative
+52148,161459,من سوق اهراس رحنا ليه روعة يهبل,tiktok,favorite restaurant,2026-01-02T21:03:26.444453,2,,,Appreciation,,,,False,1252.0,"[""place_appreciation""]",positive
+52366,948998,أو بحدايا وين نخدم بوتين تيعو يقتل خلاه  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T21:03:31.530463,0,Appreciation,,,,,,False,1252.0,"[""food_appreciation""]",positive
+52754,675733,كاين 5 بوتين وش الفرق بيناتهم ادو تاني,tiktok,favorite restaurant,2026-01-02T21:03:41.467075,0,,,Inquiry,,,,False,1252.0,"[""place_inquiry""]",neutral
+52308,680322,عندهم توصيل,tiktok,favorite restaurant,2026-01-02T21:03:29.079505,1,,,,inquiry,,,False,1252.0,"[""delivery_inquiry""]",neutral
+52124,947592,وينا بلاصة,tiktok,favorite restaurant,2026-01-02T21:03:25.013471,1,,,Inquiry,,,,False,1252.0,"[""place_inquiry""]",neutral
+52288,265486,أنا في عنابة وأول مرة نعرف بهذا روستورو,tiktok,favorite restaurant,2026-01-02T21:03:28.158459,0,,,,,,,True,1252.0,[],neutral
+16650,409965,il faut encourager les resto algeriens,tiktok,favorite restaurant,2026-01-02T18:10:45.373093,7,,,,,,,True,1253.0,[],neutral
+16806,686420,48% c’est pas rare de croiser,tiktok,favorite restaurant,2026-01-02T18:10:47.938160,0,,,,,,,True,1253.0,[],neutral
+17002,657236,"et dire que les arméniens, les égyptiens, les Syriens, les libanais, les palestiniens ont presque tous les mêmes spécialités et personnes se tape . que nous les hmars",tiktok,favorite restaurant,2026-01-02T18:10:53.059374,0,,,,,,,True,1253.0,[],neutral
+16848,658166,resto algérien ou tu mange des pâtes frites omelettes brochettes. sisi. bouq êtes les meilleurs,tiktok,favorite restaurant,2026-01-02T18:10:49.604849,1,,,Appreciation,,,,False,1253.0,"[""place_appreciation""]",positive
+16774,161153,C’est grave,tiktok,favorite restaurant,2026-01-02T18:10:46.256515,1,,,complaint,,,,False,1253.0,"[""place_complaint""]",negative
+17026,526067,جنون العظمة,tiktok,favorite restaurant,2026-01-02T18:10:53.059397,0,,,,,,,True,1253.0,[],neutral
+16792,682500,« Sinon j’va m’énervé » tout ce que j’ai retenu,tiktok,favorite restaurant,2026-01-02T18:10:47.888298,0,,,,,,,True,1253.0,[],neutral
+16666,396225,Ah mais si seulement j’étais là,tiktok,favorite restaurant,2026-01-02T18:10:45.373112,4,,,,,,,True,1253.0,[],neutral
+17024,397004,ils sont fans wallah,tiktok,favorite restaurant,2026-01-02T18:10:53.059396,0,,,appreciation,,,,False,1253.0,"[""place_appreciation""]",positive
+16688,817791,les pauvres ils sont obsédée par Ĺ’ALGÉRIE,tiktok,favorite restaurant,2026-01-02T18:10:45.705989,78,,,,,,,True,1253.0,[],neutral
+16978,920919,elle préfère les tacos,tiktok,favorite restaurant,2026-01-02T18:10:52.141287,1,,,,,,,True,1253.0,[],neutral
+16698,677682,Perso et je suis algérien j adore tte la cuisine du Maghreb ( des 3 pays) .,tiktok,favorite restaurant,2026-01-02T18:10:46.252450,0,,,,,,,True,1253.0,[],neutral
+17020,945779,Je pense on doit même fermer le satellite aussi,tiktok,favorite restaurant,2026-01-02T18:10:53.059392,0,,,Recommendation,,,,False,1253.0,"[""place_recommendation""]",positive
+16612,790010,أويلي اويلي,tiktok,favorite restaurant,2026-01-02T18:10:42.541746,7,,,,,,,True,1253.0,[],neutral
+16772,265732,c'est le pays de 48%,tiktok,favorite restaurant,2026-01-02T18:10:46.256512,1,,,,,,,True,1253.0,[],neutral
+16642,406440,quelle gars,tiktok,favorite restaurant,2026-01-02T18:10:45.373080,0,,,,,,,True,1253.0,[],neutral
+16618,792703,التربية للمروكية في غير مايجيب الله,tiktok,favorite restaurant,2026-01-02T18:10:42.541751,4,,,,,,,True,1253.0,[],neutral
+16952,273741,fallait tout simplement la sortir du restaurant et appeler la police ! point !,tiktok,favorite restaurant,2026-01-02T18:10:52.141238,2,,,Complaint,,,,False,1253.0,"[""place_complaint""]",negative
+16696,268851,Je crois elle voulait essayer votre nourriture à la vue ca lui a pas plu,tiktok,favorite restaurant,2026-01-02T18:10:45.705995,10,,,,,,,True,1253.0,[],neutral
+16708,404472,Tu as tout dit à bonne entendeurs !,tiktok,favorite restaurant,2026-01-02T18:10:46.252473,0,Appreciation,,,,,,False,1253.0,"[""food_appreciation""]",positive
+16946,394734,C’est vraiment la psychiatrie de faire ça,tiktok,favorite restaurant,2026-01-02T18:10:51.232500,5,,,Complaint,,,,False,1253.0,"[""place_complaint""]",negative
+17008,270166,c'est de la provocation tout simplement,tiktok,favorite restaurant,2026-01-02T18:10:53.059381,0,,,,,,,True,1253.0,[],neutral
+16796,682888,Comme tu dis chacun prône son pays one two three viva l’Algérie,tiktok,favorite restaurant,2026-01-02T18:10:47.888303,1,,,,,,,True,1253.0,[],neutral
+16998,536132,Elle à été envoyée par l'israélien andré azoulay,tiktok,favorite restaurant,2026-01-02T18:10:53.059370,0,,,,,,,True,1253.0,[],neutral
+16942,526115,Les chiens aboient et la caravane passe,tiktok,favorite restaurant,2026-01-02T18:10:51.232496,11,,,,,,,True,1253.0,[],neutral
+16710,524675,Logique,tiktok,favorite restaurant,2026-01-02T18:10:46.252475,0,,,,,,,True,1253.0,[],neutral
+16810,412873,C’est tellement mon resto de brochette pref  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:10:47.938165,0,,,appreciation,,,,False,1253.0,"[""place_appreciation""]",positive
+17012,680855,La cuisine marocaine est delicieuse et la cuisine Algerienne aussi [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:10:53.059385,0,,,,,,,True,1253.0,[],neutral
+16726,656892,Mdrrrrr seigneur,tiktok,favorite restaurant,2026-01-02T18:10:46.252494,2,,,,,,,True,1253.0,[],neutral
+16760,552664,pourquoi je ne tombe pas sur ce genre de personne,tiktok,favorite restaurant,2026-01-02T18:10:46.256499,1,,,,,,,True,1253.0,[],neutral
+16798,943425,C d’une tristesse . le silence est la meilleure des réponses,tiktok,favorite restaurant,2026-01-02T18:10:47.888307,0,,,,,,,True,1253.0,[],neutral
+16812,395584,lz vérité tajine meteoime an fait comme ça de se côté ele la raison,tiktok,favorite restaurant,2026-01-02T18:10:47.938167,0,,,,,,,True,1253.0,[],neutral
+16728,936835,Bien dit  tahya la cuisine Algérienne c’est la meilleure Macha Allah [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:10:46.252497,3,Appreciation,,Appreciation,,,,False,1253.0,"[""food_appreciation"", ""place_appreciation""]",positive
+16976,421695,Elle devrait allez manger au village de bousebir il ya une cuisine avec le chef lyauty,tiktok,favorite restaurant,2026-01-02T18:10:52.141284,1,,,,,,,True,1253.0,[],neutral
+16644,421660,nos fans sont partout jpp,tiktok,favorite restaurant,2026-01-02T18:10:45.373083,0,,,,,,,True,1253.0,[],neutral
+16602,281108,Bas elle a raison,tiktok,favorite restaurant,2026-01-02T18:10:42.541737,0,,,,,,,True,1253.0,[],neutral
+17016,287615,كون جيت لتما ان بعتها البرا,tiktok,favorite restaurant,2026-01-02T18:10:53.059388,0,,,,,,,True,1253.0,[],neutral
+16660,282367,c'est une envoyée spéciale  [APPRECIATION],tiktok,favorite restaurant,2026-01-02T18:10:45.373105,4,,,Appreciation,,,,False,1253.0,"[""place_appreciation""]",positive
+16654,796346,Et pourtant c’est la cuisine Algérienne qui a gagné le premier prix,tiktok,favorite restaurant,2026-01-02T18:10:45.373098,4,,,,,,,True,1253.0,[],neutral
+16724,536867,la cuisine et la même sauf que elle évolue de endroits à un autre,tiktok,favorite restaurant,2026-01-02T18:10:46.252492,2,complaint,,,,,,False,1253.0,"[""food_complaint""]",negative
+3508,142211,Agréable,Google Maps,favorite restaurant,2020-04-01T10:06:26.525Z,0,,,Appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3407,131699,مكان رائع,Google Maps,favorite restaurant,2024-06-09T15:11:43.320Z,1,,,Appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3515,933417,Très jolie découverte très bon restaurant moment très sympa,Google Maps,favorite restaurant,2019-12-06T16:52:29.290Z,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3462,423782,"Le restaurant est très charmant. Accueil chaleureux, personnel très agréable et sympathique. Le service est impeccable. J'ai découvert de très belles spécialités locales. Gros coup de coeur pour le tajine agneau. La viande est bien fondante et la sauce riche en saveurs. Très bon rapport qualité prix. Je recommande fortement ce restaurant",Google Maps,favorite restaurant,2023-05-14T08:48:25.927Z,30,Appreciation,Appreciation,Appreciation,,Appreciation,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""price_appreciation"", ""treatment_appreciation""]",positive
+3413,155519,يعتبر من أجمل المطاعم,Google Maps,favorite restaurant,2024-06-08T14:11:58.273Z,1,,,appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3474,146546,"Une carte à 80% avec des plats Français ( poisson sauce dieppoise, viande sauce bordelaise, etc) et un couscous assez décevant . Service très bien.",Google Maps,favorite restaurant,2023-01-14T18:59:36.183Z,1,Complaint,,,,,Appreciation,False,1265.0,"[""food_complaint"", ""treatment_appreciation""]",neutral
+3374,151273,"Bon repas et bon service, mais je vous déconseille fortement au niveau de la disposition des tables, il n’y a pas de séparation entre les fumeurs et les non fumeurs. Cela est désagréable lorsqu’on mange, ça pue et c’est écœurant. Je ne vous conseille pas de venir accompagnés d’enfants ou de personnes ayant des problèmes respiratoires. Cela peut avoir de graves conséquences sur leurs santés. De mon point de vue, restaurant est largement grand, le personnel aurait pu penser à séparer les fumeurs et les non fumeurs. À cause de ça, vous pouvez potentiellement perdre des clients et récolter de mauvais avis. Bref, je pense que tout cela est à revoir !",Google Maps,favorite restaurant,2025-12-30T19:28:07.395Z,0,Appreciation,Appreciation,Complaint,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_complaint"", ""treatment_appreciation""]",positive
+3446,673311,مطعم راقي بخدمات عالمية,Google Maps,favorite restaurant,2023-10-29T13:12:26.423Z,0,,,appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3427,659650,Manifique,Google Maps,favorite restaurant,2024-06-08T09:07:35.033Z,0,,,appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3432,670076,Vraiment luxe,Google Maps,favorite restaurant,2024-05-07T17:58:12.112Z,0,,,appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3405,677427,"Je ne recommande pas le restaurant Caracoya situé à Alger. Mon expérience a été très décevante pour plusieurs raisons, principalement en ce qui concerne le service. Tout d'abord, le service était extrêmement lent et le personnel semblait désorganisé et peu attentif aux besoins des clients, d'ailleurs le serveur m'a très mal parlé. Et malgré plusieurs rappels, il a fallu attendre longtemps pour être servi, ce qui a rendu l'expérience encore plus frustrante. En résumé, le manque de professionnalisme et d'efficacité du service a gâché notre repas. Je déconseille vivement ce restaurant à ceux qui recherchent un service de qualité. English version : I do not recommend the Caracoya restaurant located in Algiers. My experience was very disappointing for several reasons, mainly regarding the service. First of all, the service was extremely slow and the staff seemed disorganized and inattentive to the customers' needs. Despite several reminders, we had to wait a long time to be served. Additionally, the waiters were often absent or difficult to find, which made the experience even more frustrating. In summary, the lack of professionalism and efficiency in the service ruined our meal. I strongly advise against this restaurant for those seeking quality service.",Google Maps,favorite restaurant,2024-06-23T21:22:02.334Z,1,,Complaint,Complaint,,,Complaint,False,1265.0,"[""service_complaint"", ""place_complaint"", ""treatment_complaint""]",negative
+3530,545984,Caché dans une ruelle triste. inutile de chercher un parking. Prix revus en hausse et chers en relation avec qualité. Vins et menus conseillés par le personnel à éviter.,Google Maps,favorite restaurant,2018-12-26T20:30:38.343Z,1,Complaint,,Complaint,,Complaint,Complaint,False,1265.0,"[""food_complaint"", ""place_complaint"", ""price_complaint"", ""treatment_complaint""]",negative
+3454,161633,Great food and service. The lamb shoulder was cooked perfectly.,Google Maps,favorite restaurant,2023-09-07T15:04:14.360Z,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3380,666353,Vous êtes les meilleurs je vous aime  [APPRECIATION],Google Maps,favorite restaurant,2025-10-07T19:03:31.264Z,0,,,Appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3495,280339,Very good service and delicious meals.,Google Maps,favorite restaurant,2021-11-26T19:56:16.329Z,0,Appreciation,,,,,Appreciation,False,1265.0,"[""food_appreciation"", ""treatment_appreciation""]",positive
+3402,806461,"Horrible …une très longue attente , les plats n’ont pas de goûts, ils sont fades même les frites maison n’étaient pas bien cuites crues à l intérieur, la sauce aux champignons avait un goût bizarre , les boureks algérois étaient Pas top, on a commandé un Virgin mojito, on l as reçu en kit , d’abord le citron et peu de menthe dans un verre puis il voulait ajouté de « l’eau » car pas de boisson gazeuse type sprite , ni hammoud (y avait pas de selecto non plus d ailleurs) par contre si vous voulez une heineken ou un chivas pas de problème …. Une très longue attente . Si j avais pu j aurais mis 0/5.",Google Maps,favorite restaurant,2024-08-14T10:05:23.686Z,0,Complaint,Complaint,Complaint,,,,False,1265.0,"[""food_complaint"", ""service_complaint"", ""place_complaint""]",negative
+3507,795402,حسن,Google Maps,favorite restaurant,2020-08-03T19:25:35.099Z,0,,,appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3388,140426,"Excellent ! Le CARAGOYA est une véritable pépite à Alger. L’accueil est chaleureux, le service est impeccable et surtout, la cuisine est exceptionnelle. Les plats sont savoureux, généreux et préparés avec des ingrédients de qualité. Je recommande les yeux fermés !",Google Maps,favorite restaurant,2025-06-13T21:08:39.477Z,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3553,133962,"Très bonne cuisine, portion généreuse, terrasse couverte très sympa. Tarifs raisonnable pour la qualité. Il vaut mieux réserver.",Google Maps,favorite restaurant,2016-12-10T09:49:14.079Z,2,Appreciation,,,,Appreciation,,False,1265.0,"[""food_appreciation"", ""price_appreciation""]",positive
+3379,396595,"On était de passage à Alger et on a mangé dans ce restaurant. Juste merci pour l’accueil, merci pour l’intérêt que vous portez à vos clients. Vous êtes d’un professionnalisme inégalable et je suis très contente d’avoir eu une expérience culinaire très réussie. Merci au maître d’hôtel qui était au petit soin, merci à ses autres collègues. Bravo  [APPRECIATION]",Google Maps,favorite restaurant,2025-10-26T13:44:30.358Z,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3428,795842,Un restaurant typique d'Alger. Une excellente cuisine. J'ai goûté la Paella et ce fut un plaisir pour moi. Une carte riche de plats traditionnels et de culture gastronomique partagée. Un restaurant ou il fait bon de profiter du moment. Un accueil chaleureux. Une bonne carte de boisson Je recommande les yeux fermés.,Google Maps,favorite restaurant,2024-05-23T23:27:40.771Z,7,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3386,277946,"Pris d’une envie de bien dîner, nous avons trouvé ce restaurant… Quelle déception une fois installés à table. Le service est d’une lenteur indescriptible : 35 minutes juste pour recevoir la carte. Après avoir choisi nos entrées et nos plats, nous recevons enfin les entrées… Nouvelle déception : le fromage était chaud, signe qu’il était probablement resté à l’air libre depuis un certain temps. Encore 10 à 15 minutes d’attente pour recevoir les plats. J’ai commandé un filet mignon au foie gras à 5000 DA : le filet mignon était un énorme bloc de viande, impossible à apprécier. Les cuissons demandées n’ont malheureusement pas été respectées. Le riz, quant à lui, était en bouillie, certainement resté trop longtemps dans un plat de maintien au chaud. Seuls les légumes et les frites étaient corrects et avaient bon goût. Et pour couronner le tout, pour ce prix-là, vous mangerez en prime entourés de fumeurs et de buveurs d’alcool…",Google Maps,favorite restaurant,2025-06-30T20:52:18.547Z,0,Complaint,Complaint,,,Complaint,Complaint,False,1265.0,"[""food_complaint"", ""service_complaint"", ""price_complaint"", ""treatment_complaint""]",negative
+3505,287313,Une référence incontournable à Alger.,Google Maps,favorite restaurant,2020-10-20T21:04:17.229Z,0,,,Appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3545,796063,"Lieu très agréable pour dîner, le service est attentionné et la nourriture très bonne, nous avons passé une très bonne soirée !",Google Maps,favorite restaurant,2018-02-23T13:11:16.440Z,4,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3434,132579,Indémodable  [APPRECIATION],Google Maps,favorite restaurant,2024-04-25T22:09:49.880Z,0,,,Appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3482,413948,"Good restorant, good meal, luck of english",Google Maps,favorite restaurant,2022-10-28T17:17:40.982Z,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3449,404483,"Lunch here. Great fish, steak tough BUT can get a beer and wine!",Google Maps,favorite restaurant,2023-10-24T14:09:58.027Z,0,Appreciation,,Appreciation,,,,False,1265.0,"[""food_appreciation"", ""place_appreciation""]",positive
+3486,422279,J'avais l'habitude d'y aller étant plus jeune mais maintenant avec les enfants c'est plus dur de trouver un moment à soi. j'en garde cependant un excellent souvenir autant pour la nourriture goûteuse que l'accueil chaleureux et c'est clair que j'y retourne ces jours ci.,Google Maps,favorite restaurant,2022-06-19T20:23:20.103Z,3,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3559,404375,"tres sympa, a recommander",Google Maps,favorite restaurant,2016-06-21T15:27:32.309Z,0,Appreciation,,Appreciation,,,,False,1265.0,"[""food_appreciation"", ""place_appreciation""]",positive
+3503,794384,Definitely worth 4 stars.,Google Maps,favorite restaurant,2020-10-22T23:36:43.062Z,0,,,appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3456,539627,Comme toujours un réel plaisir Un personnel très accueillant Une bonne ambiance Une cuisine raffinée Merci,Google Maps,favorite restaurant,2023-08-20T11:05:17.492Z,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3479,786524,"Un bon restaurant une bonne ambiance, pour le parking au dîner ça marche on peut stationné dans la rue didouch par contre pour le déjeuner il faut chercher un parking",Google Maps,favorite restaurant,2022-11-15T06:09:38.895Z,1,Appreciation,Appreciation,Appreciation,,,,False,1265.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation""]",positive
+3378,396403,مكان جميل تشعر في دفء الزمن الجميل من السبعينات الثمانينات,Google Maps,favorite restaurant,2025-11-21T00:07:22.769Z,0,,,Appreciation,,,,False,1265.0,"[""place_appreciation""]",positive
+3853,424776,"De bons gâteaux qui valent leurs prix à mon avis, points forts les gâteaux sont bien équilibrés et pas trop sucrés. Coup de cœur pour le trompe l'œil mangue.",Google Maps,favorite restaurant,2025-03-12T20:05:43.827Z,0,Appreciation,,,,Appreciation,,False,1273.0,"[""food_appreciation"", ""price_appreciation""]",positive
+3905,409792,"le visuel, le gout et les saveurs sont délicieux, pas trop sucrée, les ingrédients de qualité. je recommande vivement",Google Maps,favorite restaurant,2023-08-19T13:55:03.976Z,1,,,,,,,True,1273.0,[],neutral
+3830,922850,Franchement sa paye pas de mine mais c’est très bon,Google Maps,favorite restaurant,2025-08-08T13:18:28.493Z,0,Appreciation,,,,Complaint,,False,1273.0,"[""food_appreciation"", ""price_complaint""]",neutral
+3906,935356,Tous mes gâteau anniversaire vienne de l’alchimiste excellent,Google Maps,favorite restaurant,2023-08-08T14:04:22.396Z,0,Appreciation,,Appreciation,,,,False,1273.0,"[""food_appreciation"", ""place_appreciation""]",positive
+3810,407749,Meilleure pâtisserie,Google Maps,favorite restaurant,2025-10-06T16:08:58.509Z,0,Appreciation,,Appreciation,,,,False,1273.0,"[""food_appreciation"", ""place_appreciation""]",positive
+3917,663842,"A déconseiller, vous commandez une tarte pour 6 personnes, on vous livre une, très minuscule ne suffirait même pas pour 3 personnes pour un prix exorbitant, plus les frais de livaison, l'arnaque pure et simple.",Google Maps,favorite restaurant,2022-10-31T12:40:46.210Z,4,Complaint,,Complaint,Complaint,Complaint,,False,1273.0,"[""food_complaint"", ""place_complaint"", ""delivery_complaint"", ""price_complaint""]",negative
+3848,930439,"Personnels agréable, gâteaux très bon , bon continuation et plus de réussite inchallah",Google Maps,favorite restaurant,2025-04-23T18:36:31.631Z,0,Appreciation,,Appreciation,,,Appreciation,False,1273.0,"[""food_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3902,135211,"Un pur délice, question de goût, le visuel qui donne envie d'en raffoler au 1er regard , je recommande vivement . Espérant qu'ils restent comme ça",Google Maps,favorite restaurant,2023-08-31T15:36:59.590Z,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1273.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3904,405315,"Très bon gâteau , j'adore",Google Maps,favorite restaurant,2023-08-22T13:15:03.336Z,0,Appreciation,,,,,,False,1273.0,"[""food_appreciation""]",positive
+3827,288826,"J’ai passé commande 48h avant l’anniversaire de ma mère par téléphone en demandant à ce que le gâteau soit livré 48h après. 24h après, un livreur m’appelle pour me dire qu’il a une livraison pour moi, j’ai expliqué que la commande était pour le lendemain. Il m’a dit qu’il n’y avait pas de problème et qu’ils allaient me refaire un nouveau gâteau pour la date que j’ai demandé. Le jour J, j’ai quand même appelé le magazin pour m’assurer que j’allais bien recevoir le gâteau et que le gâteau serait fait le même jour. La dame au téléphone m’a assuré qu’il n’y avait aucun problème. J’ai reçu la livraison comme promis, au moment de couper le gâteaux avec tous les invités et tout… on découvre que c’est un gâteaux qui a été congelé! Ils ont tous simplement livré le gâteau de la veille qu’ils ont bien pris le soin de congelé. Je DÉCONSEILLE vivement car ils sont malhonnêtes et pas du tout professionnel. J’ai voulu faire plaisir à ma mère qui a 72 ans et franchement c’est tombé à l’eau a cause de leur manque de professionnalisme et leurs mensonges. A FUIR ABSOLUMENT Ps: le gâteau m’a coûté 7000 DA",Google Maps,favorite restaurant,2025-08-17T09:50:40.420Z,0,Complaint,,Complaint,,Complaint,,False,1273.0,"[""food_complaint"", ""place_complaint"", ""price_complaint""]",negative
+3961,533851,Excellente pâtisserie le soucis c'est le regard frustrant des apprentis pâtissiers qui n'arrêtent pas de vous regarder c'est gênant !,Google Maps,favorite restaurant,2020-03-23T18:12:05.694Z,4,Appreciation,,,,,Complaint,False,1273.0,"[""food_appreciation"", ""treatment_complaint""]",neutral
+3798,420276,"Très mauvaise expérience. Dès le départ, j’ai expliqué clairement ce que je voulais : un gâteau pistache aux fruits, pâte d’amande, avec uniquement une écriture simple, pour laquelle j’ai donné un exemple avec une photo trouvée sur Google. J’ai appelé, je me suis déplacée pour goûter, et j’ai confirmé vouloir exactement le même gâteau. Le jour du retrait, le gâteau ne correspondait pas à ma commande, mis à part le petit dessin. Lorsque je l’ai signalé, ils ont fait le geste de “rajouter de la pâte d’amande” uniquement pour que je prenne le gâteau. En réalité, elle a utilisé de la pâte à sucre, tout en me confirmant verbalement que c’était bien de la pâte d’amande. Avant de partir, j’ai également demandé si l’intérieur était bien le même (pistache/fruits). On m’a répondu oui, ce qui était faux. Une fois chez moi, j’ai constaté que l’intérieur ne correspondait pas du tout et que le goût était très décevant. Au téléphone comme en boutique, le personnel est mal poli, hautain, n’écoute pas le client et cherche surtout à se débarrasser de lui, sans chercher à comprendre sa demande. On a clairement le sentiment que seul l’argent compte, pas la satisfaction du client. Ce que je reproche le plus, ce n’est pas l’erreur, mais le manque de transparence et d’honnêteté. Je ne recommande pas du tout.",Google Maps,favorite restaurant,2025-12-23T13:29:36.343Z,0,Complaint,Complaint,Complaint,,Complaint,Complaint,False,1273.0,"[""food_complaint"", ""service_complaint"", ""place_complaint"", ""price_complaint"", ""treatment_complaint""]",negative
+3865,410731,"Une pâtisserie digne de ce nom ! Les gâteaux proposés sont aussi beaux que bons. Le ""Glamour"" à la framboise est superbe et délicieux (cf. les photos du gâteau cœur rouge). Il est sans gluten et le niveau de sucre est tout à fait correct. Merci pour vos superbes pâtisseries [APPRECIATION]",Google Maps,favorite restaurant,2024-10-24T15:28:41.095Z,0,Appreciation,,,,,,False,1273.0,"[""food_appreciation""]",positive
+3857,937315,Tarte délicieuse Croissant au beurre léger. Bonne présentation et l'accueil avec le sourire,Google Maps,favorite restaurant,2025-01-14T19:35:51.181Z,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1273.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3939,793756,Très bon gâteau,Google Maps,favorite restaurant,2021-11-06T23:38:24.465Z,0,Appreciation,,Appreciation,,,,False,1273.0,"[""food_appreciation"", ""place_appreciation""]",positive
+3956,137576,"Excellente pâtisserie, et un accueil chaleureux et agréable. Un grand bravo",Google Maps,favorite restaurant,2020-11-01T01:56:16.019Z,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1273.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3932,263453,Pas beaucoup de choix Sinon elle est bonne leurs patisserie haute de gamme,Google Maps,favorite restaurant,2022-04-01T13:41:09.304Z,0,Appreciation,,,,,,False,1273.0,"[""food_appreciation""]",positive
+3858,927953,"Vraiment vous m aviez déçu, je vous ais confie ma commande qui été, commander trois jours avant la vieille du réveillent, en revanant et de toute façons , c , vous aviez et a chaque année vous reproduit la même erreure, j aurais du commander chez pâtissier, aromato, et je refais plus la bêtise avec vous, menteuse, mal organiser, serveuses perturber ds leur travail, et surtout très lentes finalement d après les commentaires chez ds autres clients ont été aussi déçus, ,",Google Maps,favorite restaurant,2025-01-02T10:56:36.102Z,0,Complaint,Complaint,Complaint,,,Complaint,False,1273.0,"[""food_complaint"", ""service_complaint"", ""place_complaint"", ""treatment_complaint""]",negative
+3824,293423,"""Très mauvaise expérience. J’avais demandé une pâtisserie sans gluten, on m’a confirmé que c’était possible, mais au final ce n’était pas le cas. Après avoir perdu plus d’un jour et demi à attendre leur réponse, ils ont fini par me laisser en « vu » sans solution ni excuse. Manque total de professionnalisme et de sérieux. Je déconseille fortement à toute personne cherchant un service fiable et honnête. """,Google Maps,favorite restaurant,2025-08-20T15:16:20.508Z,0,Complaint,Complaint,Complaint,,,Complaint,False,1273.0,"[""food_complaint"", ""service_complaint"", ""place_complaint"", ""treatment_complaint""]",negative
+3948,924137,Du bon gâteau avec moins de sucre mais excessivement cher .,Google Maps,favorite restaurant,2021-05-06T09:39:16.375Z,2,Appreciation,,,,Complaint,,False,1273.0,"[""food_appreciation"", ""price_complaint""]",neutral
+3946,679335,Superbe pâtisserie il y a de tout je la conseille fortement,Google Maps,favorite restaurant,2021-05-27T17:56:50.994Z,1,Appreciation,,Appreciation,,,,False,1273.0,"[""food_appreciation"", ""place_appreciation""]",positive
+3804,684042,Super gâteau tant visuellement que gustativement,Google Maps,favorite restaurant,2025-11-14T22:22:29.414Z,0,Appreciation,,,,,,False,1273.0,"[""food_appreciation""]",positive
+3938,683158,ماشاء الله تبارك الله,Google Maps,favorite restaurant,2021-12-22T19:01:15.105Z,0,,,,,,,True,1273.0,[],neutral
+3962,944705,"Meilleure pâtisserie sur Alger, personnable très aimable. Je recommande.",Google Maps,favorite restaurant,2020-03-16T14:02:44.815Z,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1273.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3877,555965,Accueil chaleureux et le goût impeccable,Google Maps,favorite restaurant,2024-08-09T09:34:18.801Z,0,Appreciation,,Appreciation,,,,False,1273.0,"[""food_appreciation"", ""place_appreciation""]",positive
+3947,943833,"Gâteau était bon mais leurs systèmes de livraison est catastrophique, je vous recommande de ne pas leurs faire la confiance totale quand il s'agit des surprises.",Google Maps,favorite restaurant,2021-05-09T17:27:16.511Z,0,Appreciation,,,Complaint,,,False,1273.0,"[""food_appreciation"", ""delivery_complaint""]",neutral
+3867,393337,Le brownie est à tomber par terre mais le croissant roll pistache la crème à l'intérieur n'est pas à mon goût.,Google Maps,favorite restaurant,2024-10-14T19:03:38.800Z,0,Complaint,Complaint,,,,,False,1273.0,"[""food_complaint"", ""service_complaint""]",negative
+3913,935334,"On se régale à chaque fois , de la bonne pâtisserie pas très sucrée, l'accueil est chaleureux, le prix reste correct",Google Maps,favorite restaurant,2023-01-16T13:40:13.118Z,0,Appreciation,Appreciation,Appreciation,,Appreciation,Appreciation,False,1273.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""price_appreciation"", ""treatment_appreciation""]",positive
+3928,552896,Équipe très sérieuse. La pâtisserie est bonne bravo,Google Maps,favorite restaurant,2022-04-21T13:13:36.015Z,0,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1273.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+3850,524391,Je vous déconseille cette pâtisserie j’ai commandé un gâteau d’anniversaire pour 16 personnes il était tout petit et les vendeuses sont désagréables. Une arnaque.,Google Maps,favorite restaurant,2025-04-05T15:19:31.870Z,0,Complaint,Complaint,Complaint,,Complaint,,False,1273.0,"[""food_complaint"", ""service_complaint"", ""place_complaint"", ""price_complaint""]",negative
+3871,538556,"Allez y les yeux fermé, vous ne serez pas déçus  [APPRECIATION]",Google Maps,favorite restaurant,2024-08-26T21:28:47.883Z,0,,,appreciation,,,,False,1273.0,"[""place_appreciation""]",positive
+3934,815023,"Fraisier pistache magnifique, j'ai commandais 1j avant et il était prêt à l'heure prévue, et prix concurrentiel pour le marché",Google Maps,favorite restaurant,2022-03-03T11:50:45.383Z,1,Appreciation,,Appreciation,,Complaint,,False,1273.0,"[""food_appreciation"", ""place_appreciation"", ""price_complaint""]",positive
+3933,536662,"Il faut savoir que les prix sont vraiment cher mais rien a dire la finition est parfaite tout est maitrisé, la creme est bonne, sa texture, pas tres sucré juste ce qu'il faut, le glacage fin et croquant. Rapport qualité prix 8/10",Google Maps,favorite restaurant,2022-03-03T13:39:49.877Z,1,Appreciation,,Appreciation,,Complaint,,False,1273.0,"[""food_appreciation"", ""place_appreciation"", ""price_complaint""]",positive
+3898,678883,L'équilibre parfait entre la mousse et le biscuit.,Google Maps,favorite restaurant,2023-10-02T21:57:00.965Z,0,Appreciation,,,,,,False,1273.0,"[""food_appreciation""]",positive
+3859,790079,"Je viens ici dénoncer le manque de professionnalisme de cette pâtisserie. Nous avons commandé une bûche , et nous avons donné un acompte de ****da. Aujourd’hui nous sommes allés récupérer notre gâteau, sans scrupule ils ne disent il ne reste plus rien vous pouvez récupérer votre acompte. C’est juste scandaleux et preuve que vous n’avez la nuance du professionnalisme ! Honteux de votre part , vous n’êtes pas dignes de confiance. Donc le client vous fait confiance, et vous vendez son gateau le plus normalement possible. Il est grand temps de revoir votre copie ! Honte à vous",Google Maps,favorite restaurant,2024-12-31T18:59:33.653Z,2,Complaint,Complaint,Complaint,,Complaint,Complaint,False,1273.0,"[""food_complaint"", ""service_complaint"", ""place_complaint"", ""price_complaint"", ""treatment_complaint""]",negative
+1143,687222,It looks so delicious  [APPRECIATION],instagram,favorite restaurant,2024-12-28T19:57:15.000Z,5,Appreciation,,Appreciation,,,,False,1274.0,"[""food_appreciation"", ""place_appreciation""]",positive
+1170,661287,Mashallah alih Abdou que de la réussite vraiment c'est un homme argaz j'espère que la jeunesse réussissent comme Abdou vraiment mashalah il mérite de la réussite tahya likoum de Béjaïa inchallah très bientôt neji nakol hhhhh nakol kolech hhhhh c'est vraiment au top  bravo l'équipe dédicace au gérant abdou Rha,instagram,favorite restaurant,2025-05-19T18:42:59.000Z,1,,,,,,,True,1274.0,[],neutral
+1134,813005,شوكولا ولا ارواع بنة,instagram,favorite restaurant,2025-10-25T14:50:56.000Z,0,Appreciation,,,,,,False,1274.0,"[""food_appreciation""]",positive
+1177,292791,قوووة ماشاء الله  [APPRECIATION],instagram,favorite restaurant,2025-02-16T12:03:28.000Z,1,,,,,,,True,1274.0,[],neutral
+10118,537356,خويا زيد في ماكلة متخافش دخل ربي شريك معاك في تجارة ومتخافش قناعة راك تطغا خويا دير نية,Facebook,favorite restaurant,2025-12-31T19:38:13.000Z,0,recommendation,,,,,,False,1280.0,"[""food_recommendation""]",positive
+9319,267390,La meilleur,Facebook,favorite restaurant,2025-12-24T22:59:56.000Z,0,,,Appreciation,,,,False,1280.0,"[""place_appreciation""]",positive
+9321,279624,مشاء الله ربي يبارك بن خالتي دايما Top  [APPRECIATION],Facebook,favorite restaurant,2025-12-24T22:25:58.000Z,0,appreciation,,,,,,False,1280.0,"[""food_appreciation""]",positive
+9816,925522,ربي يعينك خويا هي باينة ماكلة الله يبارك بصح ديما تهدروا على كلش غير الأسعار لي جامي هدرتو عليهم,Facebook,favorite restaurant,2025-12-23T18:26:43.000Z,1,Appreciation,,,,Inquiry,,False,1280.0,"[""food_appreciation"", ""price_inquiry""]",positive
+9007,416100,قول صحن زيت مش صحن ملوخية  [COMPLAINT],Facebook,favorite restaurant,2025-12-25T19:21:23.000Z,2,complaint,,,,,,False,1280.0,"[""food_complaint""]",negative
+9820,929539,وشبيه الصحن فارغ بصح مالڨري لبري زايد,Facebook,favorite restaurant,2025-12-29T13:22:03.000Z,0,complaint,,,,complaint,,False,1280.0,"[""food_complaint"", ""price_complaint""]",negative
+9418,663231,زغبة في الصحن هههه,Facebook,favorite restaurant,2025-12-24T17:48:25.000Z,1,complaint,,,,,,False,1280.0,"[""food_complaint""]",negative
+9679,553520,Rose Blanche دوماج,Facebook,favorite restaurant,2025-12-26T18:43:02.000Z,0,,,,,,,True,1280.0,[],neutral
+9229,807581,قلبي الصغير لا يتحمل,Facebook,favorite restaurant,2025-12-26T17:03:50.000Z,0,,,,,,,True,1280.0,[],neutral
+9684,399517,نوعية تبان محترمة جدا لكن الغريب في الأمر الصحن كبير جدا عن الكمية المقدمة والتي تعتبر قليلة جدا جدا أما اذا كانت للإشهار وتقدم كميات أخرى للزبائن فذلك أمر آخر,Facebook,favorite restaurant,2026-01-02T07:25:02.000Z,0,Complaint,,,,Complaint,,False,1280.0,"[""food_complaint"", ""price_complaint""]",negative
+9084,272638,Asma Amasa بالك هذا صح باين زايدة زيت بصح والله ملوخيتهم مليحة وبنينة,Facebook,favorite restaurant,2025-12-25T23:33:40.000Z,1,"appreciation,complaint",,,,,,False,1280.0,[],neutral
+10192,662137,اي كمية زيد شوي,Facebook,favorite restaurant,2025-12-23T18:33:09.000Z,0,complaint,,,,,,False,1280.0,"[""food_complaint""]",negative
+9114,263797,شخشوخة حبيبي,Facebook,favorite restaurant,2025-12-23T17:25:06.000Z,1,,,,,,,True,1280.0,[],neutral
+9633,136227,الكمية قليلة,Facebook,favorite restaurant,2025-12-24T18:06:44.000Z,1,Complaint,,,,,,False,1280.0,"[""food_complaint""]",negative
+9635,940972,الكمية شفتها بصح السعر مانعرف؟؟,Facebook,favorite restaurant,2025-12-30T19:59:51.000Z,0,,,,,Inquiry,,False,1280.0,"[""price_inquiry""]",neutral
+9542,811819,واحد كي يعود جيعان مايقدرش يخير ويقول هذا خير من هذا الاطباق كلها مفضلة لكن كي يشبع يولي يخير ويقول هذا خير من هذا,Facebook,favorite restaurant,2025-12-28T15:25:51.000Z,0,,,,,,,True,1280.0,[],neutral
+10036,528690,الاغلبية عندها ملاحظات على الكمية,Facebook,favorite restaurant,2025-12-30T19:46:16.000Z,0,complaint,,,,,,False,1280.0,"[""food_complaint""]",negative
+9110,937016,أين المكان من فضلكم,Facebook,favorite restaurant,2025-12-25T17:57:19.000Z,0,,,Inquiry,,,,False,1280.0,"[""place_inquiry""]",neutral
+9631,938138,عيب صحن فيه زوج لقمات! ؟,Facebook,favorite restaurant,2025-12-24T20:57:20.000Z,0,Complaint,,,,,,False,1280.0,"[""food_complaint""]",negative
+9323,528900,طبق المفضل كلش,Facebook,favorite restaurant,2025-12-23T21:17:10.000Z,0,appreciation,,,,,,False,1280.0,"[""food_appreciation""]",positive
+8880,397965,غاشي كل يشكي من كمية و سعر غالي لازم تراحعو حسباتكم مالا هكا لي يحب يجرب يشوف تعليقات يهرب,Facebook,favorite restaurant,2025-12-23T20:50:40.000Z,14,Complaint,,,,Complaint,,False,1001.0,"[""food_complaint"", ""price_complaint""]",negative
+9113,677295,ملوخية,Facebook,favorite restaurant,2025-12-24T07:13:08.000Z,0,,,,,,,True,1280.0,[],neutral
+9419,817419,مطعم في القمة كعادته دائما موفقين و شكرا على الاستقبال و الابتسامة الدائمة,Facebook,favorite restaurant,2025-12-23T21:54:43.000Z,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1280.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+9689,792741,أطباقكم كل تهبل ،كمية ونوعية الله يبارك يعطيكم الصحة.,Facebook,favorite restaurant,2025-12-23T22:00:35.000Z,1,Appreciation,,,,,,False,1280.0,"[""food_appreciation""]",positive
+8969,923335,تسمي تدخل تخلص و تزيد تطلب ؟ منطلبش منيش طلاب بدراهمي يحترم مقادير راه عيب هدا,Facebook,favorite restaurant,2025-12-26T15:20:27.000Z,1,,,,,complaint,,False,1280.0,"[""price_complaint""]",negative
+9015,146917,شخشوخة وين لمحل,Facebook,favorite restaurant,2025-12-23T20:09:38.000Z,0,,,Inquiry,,,,False,1280.0,"[""place_inquiry""]",neutral
+10041,793505,ما عندنا ما نخيرو الله يبارك كلشي ما شاء الله,Facebook,favorite restaurant,2025-12-31T13:50:19.000Z,0,,,,,,,True,1280.0,[],neutral
+9637,680212,الناس كل تحكي على الكمية انا تبانلي قدقد Plat. لزوز مناس ويفضل مش 5 ومبعد تحكو على الكمية انا طباسة تع ملوخية ولوبيا صغار نشبع,Facebook,favorite restaurant,2025-12-24T10:12:26.000Z,0,Complaint,,,,,,False,1280.0,"[""food_complaint""]",negative
+8965,817717,Biba Chelbi حسيتها شوية الكمية علخر,Facebook,favorite restaurant,2025-12-23T21:23:16.000Z,1,Complaint,,,,,,False,1280.0,"[""food_complaint""]",negative
+9225,394126,بدل الصحونة علاه عليك تشري فيهم كبار,Facebook,favorite restaurant,2025-12-23T18:51:03.000Z,0,Recommendation,,Recommendation,,,,False,1280.0,"[""food_recommendation"", ""place_recommendation""]",positive
+9545,275025,الكمية يا اخي,Facebook,favorite restaurant,2025-12-27T17:58:12.000Z,0,Inquiry,,,,,,False,1280.0,"[""food_inquiry""]",neutral
+10119,138449,وينو اللحم,Facebook,favorite restaurant,2025-12-31T14:36:00.000Z,0,Inquiry,,,,,,False,1280.0,"[""food_inquiry""]",neutral
+9773,146341,Nadia Socio صح بنين يقتل.,Facebook,favorite restaurant,2025-12-24T07:51:43.000Z,0,appreciation,,,,,,False,1280.0,"[""food_appreciation""]",positive
+9638,154763,الملوخية,Facebook,favorite restaurant,2025-12-31T22:45:29.000Z,0,,,,,,,True,1280.0,[],neutral
+9913,415840,كسكسي بالعصبانة,Facebook,favorite restaurant,2025-12-23T22:04:27.000Z,0,,,,,,,True,1280.0,[],neutral
+10245,528238,شهريت الزوالي تكفيه باش يفطر احشمو شويا,Facebook,favorite restaurant,2025-12-18T20:56:29.000Z,0,,,,,complaint,,False,1004.0,"[""price_complaint""]",negative
+9553,949524,Restaurant elassil خويا وفقك الله لا تضيع وقتك في الرد على التفاهات,Facebook,favorite restaurant,2025-12-16T17:32:45.000Z,2,,,,,,,True,1004.0,[],neutral
+9702,420569,", السمك غالي القدرة المعيشية في الجزائر طايحة بزاف",Facebook,favorite restaurant,2025-12-17T16:10:14.000Z,0,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+10744,670383,واش هوى الحوت لي مليح لانيمي,Facebook,favorite restaurant,2025-12-16T20:17:02.000Z,0,,,Inquiry,,,,False,1004.0,"[""place_inquiry""]",neutral
+10249,289515,بارطاجي الأسعار نشوفو,Facebook,favorite restaurant,2025-12-16T18:41:06.000Z,0,,,,,Inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+10241,287397,تبيعو غالي خو غالي بزاف,Facebook,favorite restaurant,2025-12-17T19:51:56.000Z,0,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+10751,270448,Baghi nafham c'est quoi rouget de roche c'est sérieux,Facebook,favorite restaurant,2025-12-17T14:54:08.000Z,0,Inquiry,,,,,,False,1004.0,"[""food_inquiry""]",neutral
+9586,405035,قول السومة اما الحوت نعرفو اسمو,Facebook,favorite restaurant,2025-12-24T10:54:50.000Z,0,,,,,inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+10591,928839,السلام عليكم. نقدر ندي ليبلا تاوعي أمبوختي ؟,Facebook,favorite restaurant,2025-12-17T11:17:20.000Z,0,inquiry,,inquiry,inquiry,,,False,1004.0,"[""food_inquiry"", ""place_inquiry"", ""delivery_inquiry""]",neutral
+10203,131697,Le prix stp,Facebook,favorite restaurant,2025-12-18T08:51:34.000Z,0,,,,,Inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+9828,675865,الله يبارك مشاء الله,Facebook,favorite restaurant,2026-01-01T19:14:17.000Z,0,,,,,,,True,1004.0,[],neutral
+10470,525275,لا بستان لا زهور تغلط تخلص بقرة وبنتها,Facebook,favorite restaurant,2025-12-27T11:30:15.000Z,0,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+9592,934051,Abde Lkrim إسم المطعم من فضلك,Facebook,favorite restaurant,2025-12-17T20:26:23.000Z,0,,,Inquiry,,,,False,1004.0,"[""place_inquiry""]",neutral
+10612,265427,من كل فرنسا إسم. وجملة,Facebook,favorite restaurant,2025-12-17T15:59:01.000Z,0,,,,,,,True,1004.0,[],neutral
+10663,131938,Restaurant elassil خونا الاصيل انت قول السعر و دزو معاهم اللي عجبو ايجي و اللي ما عجبوش اشوف مع كوك,Facebook,favorite restaurant,2025-12-26T14:01:07.000Z,0,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+10246,794823,شحال الثمن تاع هذا للطبق؟,Facebook,favorite restaurant,2025-12-17T21:04:06.000Z,0,,,,,inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+10609,946087,باسم الله ما شاء الله,Facebook,favorite restaurant,2025-12-18T15:44:28.000Z,0,,,,,,,True,1004.0,[],neutral
+9949,288409,ؤاخوي ياخويا قلبي ضرني حرام عليكم,Facebook,favorite restaurant,2025-12-22T19:22:30.000Z,0,,,,,,,True,1004.0,[],neutral
+10415,402683,بشعال هذا لعزيز,Facebook,favorite restaurant,2025-12-16T12:16:50.000Z,0,,,,,inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+9554,679708,ام دعاء ام دعاء ليس هنالك من شهادة أحسن من قائمة الطعام و الأسعار لي رانا حاطينها فالبايو  تُغنيك عن ألف شهادة [APPRECIATION],Facebook,favorite restaurant,2025-12-16T18:50:13.000Z,2,appreciation,,,,appreciation,,False,1004.0,"[""food_appreciation"", ""price_appreciation""]",positive
+10594,787720,خير كبير و سعر كبير مشاء الله,Facebook,favorite restaurant,2025-12-27T17:42:40.000Z,0,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+9584,409371,الحوت يقعد حوت وين تروح تصيبو بصح السومة ؟؟؟؟,Facebook,favorite restaurant,2025-12-16T20:14:03.000Z,0,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+9487,288756,السومة اللي قولوها في التكتوك خاوتي ما تلقاوهاش في الواقع . تحبو حوت سومة و بنة و نوعية اكثر من جيدة ننصحكم ب حسين الداي ، شارع طرابلس ملخر. ناس علامة و قنوعين و بركة كبيرة في الماكلة نتاعهم.,Facebook,favorite restaurant,2025-12-17T00:17:19.000Z,2,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+10059,669558,بالصح السومة يجيب ربي ، هذا معناها تقدم لعندنا يطير راسك ، عندي قاعدة لي ما يجبدش السومة نتاعو صدقني ما نامنوش و ما نقدملوش خلاص !,Facebook,favorite restaurant,2025-12-27T16:39:31.000Z,0,,,,,Inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+10783,529093,ياو السومة,Facebook,favorite restaurant,2025-12-17T09:30:47.000Z,0,,,,,inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+10471,792016,مش اقل من مليون,Facebook,favorite restaurant,2025-12-27T18:17:02.000Z,0,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+9574,923013,زهير بن يكن عندك الحق كيما يقولو انا نتمتم وأنت افهم كيما فهمها مول الريسطورو,Facebook,favorite restaurant,2025-12-16T19:40:25.000Z,2,,,,,,,True,1004.0,[],neutral
+10130,936039,السومة. جدك فيطامين هدا الى غادي يكله بينا يخلص 30 مليون,Facebook,favorite restaurant,2025-12-16T19:27:06.000Z,0,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+10743,807163,الى هذا من 150 الف حتى 2000 دج لاباس,Facebook,favorite restaurant,2025-12-22T20:43:32.000Z,0,,,,,Appreciation,,False,1004.0,"[""price_appreciation""]",positive
+10347,134428,Mais à quel prix ?,Facebook,favorite restaurant,2025-12-17T17:15:17.000Z,0,,,,,Inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+10128,540994,علاش متهدروش على السومة باش الزبون يدير حسابو مقبل مايجي,Facebook,favorite restaurant,2025-12-18T09:09:03.000Z,0,,,,,Inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+10342,553092,Had lplat bayen bli 40 milion c'est pour ça mabritch dgoulena souma,Facebook,favorite restaurant,2025-12-26T12:02:33.000Z,0,,,,,complaint,,False,1004.0,"[""price_complaint""]",negative
+10137,922859,قولهم السومة. ماشي من كل بستان زهرة,Facebook,favorite restaurant,2025-12-25T18:17:04.000Z,0,,,,,Complaint,,False,1004.0,"[""price_complaint""]",negative
+9551,268288,Restaurant elassil صحيح عندك الحق لكن واحد كي يشهد شهادة حية انت تأمنو و لا لا ؟؟,Facebook,favorite restaurant,2025-12-16T16:36:57.000Z,1,,,,,,,True,1004.0,[],neutral
+9483,925328,هذو الاطباق خاصين بالطبقة الراقية والناس لمرفهة هوما لي يعرفو la gastronomie و على كل حال انا هذو الاطباق مايشهيونيش بالعكس كينشوفهم نعافهم,Facebook,favorite restaurant,2025-12-16T19:12:23.000Z,9,,,,,,,True,1004.0,[],neutral
+9578,664957,Restaurant elassil الله لا يورّي مومن خسارة ، و أنا الحقيقة ما عندي حتى علاقة مع مطاعم السمك ، الحاجة الّي خلاّتني نعلّق هنا هي حسن الكلام و الردود اتّاعك ، اللهم بارك. باين عليك إنسان متربّي. بالتوفيق إن شاء الله.,Facebook,favorite restaurant,2025-12-17T01:12:50.000Z,1,,,,,,,True,1004.0,[],neutral
+10129,137352,قول شحال السعر حبيبي ولا واعرة باش تقولو,Facebook,favorite restaurant,2025-12-26T17:51:13.000Z,0,,,,,Inquiry,,False,1004.0,"[""price_inquiry""]",neutral
+10294,811153,ماكاش حوت للزوالي,Facebook,favorite restaurant,2025-12-17T21:04:59.000Z,0,,,,,,,True,1004.0,[],neutral
+9590,930034,صح الله يبارك خير كبيييييير بصح الطياب ما ردنا والو كلش محرووووق خصوصا الصومو والكروفات,Facebook,favorite restaurant,2025-12-19T22:47:25.000Z,0,complaint,,appreciation,,,,False,1004.0,"[""food_complaint"", ""place_appreciation""]",neutral
+10662,796761,Hiba Bou apprenez à donner les prix,Facebook,favorite restaurant,2025-12-26T11:27:06.000Z,1,,,,,Recommendation,,False,1004.0,"[""price_recommendation""]",positive
+1190,424757,machallah meilleur duo pour le moment dans tt alger  [APPRECIATION],instagram,favorite restaurant,2025-05-13T20:37:56.000Z,2,,,Appreciation,,,,False,1301.0,"[""place_appreciation""]",positive
+1209,410327,Bonne année  [APPRECIATION],instagram,favorite restaurant,2026-01-01T16:10:40.000Z,2,,,,,,,True,1301.0,[],neutral
+1201,292380,Ya deux jours j'ai prix le camembert pané suivie de linguine aux fruits de mer jme suis vraiment régalé dailleur jté jamais deçu chez le carré merci les chefs et les serveurs aussi un service vraiment top  [APPRECIATION],instagram,favorite restaurant,2025-05-13T23:28:44.000Z,1,Appreciation,Appreciation,Appreciation,,Appreciation,Appreciation,False,1301.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""price_appreciation"", ""treatment_appreciation""]",positive
+1210,803591,Est c'est qu'ils servent de l'accole ?,instagram,favorite restaurant,2026-01-01T14:07:49.000Z,0,inquiry,,inquiry,,,,False,1301.0,"[""food_inquiry"", ""place_inquiry""]",neutral
+1226,927124,"Loved the restaurant, definitely made a positive memory dining there in 2025, looking to come back in 2026",instagram,favorite restaurant,2025-12-26T21:14:15.000Z,1,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1301.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+1195,396824,Chef zinou chikour Lcouzina  ki Lyoum nchallah n3awd nahbat l dzayr w nji nakoul 3andek les pâtes b les fruits de mer  [APPRECIATION],instagram,favorite restaurant,2025-05-13T21:27:40.000Z,3,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1301.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+1222,799787,Meilleur restaurant à Alger allah y barek toujours un Passage chez vous qd je suis à Alger,instagram,favorite restaurant,2025-06-05T07:23:08.000Z,15,Appreciation,,Appreciation,,,Appreciation,False,1301.0,"[""food_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+1233,678066,meilleur endroit chic [APPRECIATION],instagram,favorite restaurant,2025-12-29T22:38:33.000Z,0,,,Appreciation,,,,False,1301.0,"[""place_appreciation""]",positive
+1238,935172,Ça a l'air sympa cet endroit.,instagram,favorite restaurant,2025-04-25T12:19:49.000Z,1,,,Appreciation,,,,False,1302.0,"[""place_appreciation""]",positive
+1241,405183,Superbe restaurant avec une belle vue. Les plats proposés irréprochables. Personnel attentionné.,instagram,favorite restaurant,2025-04-18T14:37:47.000Z,5,Appreciation,Appreciation,Appreciation,,,Appreciation,False,1302.0,"[""food_appreciation"", ""service_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+2090,798187,وين مطعم؟,instagram,favorite restaurant,2025-06-28T17:35:09.000Z,5,,,Inquiry,,,,False,1331.0,"[""place_inquiry""]",neutral
+2067,920844,اممم. بيتزا من القلب . الى القلب . [APPRECIATION],instagram,favorite restaurant,2024-11-22T12:02:30.000Z,1,appreciation,,,,,,False,1331.0,"[""food_appreciation""]",positive
+2086,396605,الجاج 1500دج,instagram,favorite restaurant,2025-09-22T12:25:51.000Z,0,,,,,Complaint,,False,1331.0,"[""price_complaint""]",negative
+2095,275468,عداب القبر ادا,instagram,favorite restaurant,2025-09-14T18:55:56.000Z,1,,,,,,,True,1331.0,[],neutral
+2072,673163,تبع و قول بااااااااع,instagram,favorite restaurant,2024-10-31T20:46:07.000Z,2,,,,,,,True,1331.0,[],neutral
+2078,291690,"Je confirme, 3andou des plats bzzf bnan [APPRECIATION]",instagram,favorite restaurant,2025-09-15T16:11:05.000Z,1,appreciation,,,,,,False,1331.0,"[""food_appreciation""]",positive
+2063,806746,Visited and loved!  definitely recommend! [APPRECIATION],instagram,favorite restaurant,2025-12-26T18:47:12.000Z,1,Appreciation,,Appreciation,,,Appreciation,False,1331.0,"[""food_appreciation"", ""place_appreciation"", ""treatment_appreciation""]",positive
+2101,140332,شكون لي كملهم اللحم تاع العيد يصفّ معايا .,instagram,favorite restaurant,2025-06-28T13:32:27.000Z,61,,,,,,,True,1331.0,[],neutral
