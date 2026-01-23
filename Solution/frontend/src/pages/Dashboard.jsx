@@ -165,7 +165,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="glass-card chart-container main-chart">
-                    <h3>Category Sentiments</h3>
+                    <h3>{t('categoryPerformance')}</h3>
                     <div className="chart-wrapper">
                         <ResponsiveContainer width="100%" height={320}>
                             <BarChart data={data.category_data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
@@ -201,7 +201,7 @@ const Dashboard = () => {
             <div className="insights-preview-row">
                 <div className="glass-card ai-summary-card">
                     <div className="ai-summary-header">
-                        <h3>Quick Insights</h3>
+                        <h3>{t('quickInsights')}</h3>
                         <span className="ai-badge-new">AI Generated</span>
                     </div>
                     <div className="ai-content-new">
@@ -223,7 +223,7 @@ const Dashboard = () => {
                 </div>
 
                 <div className="glass-card platforms-card">
-                    <h3>Platform Activity</h3>
+                    <h3>{t('platformActivity')}</h3>
                     <div className="platform-stats">
                         {data.platform_dist.map((plat, idx) => {
                             const maxVal = Math.max(...data.platform_dist.map(p => p.value), 1);

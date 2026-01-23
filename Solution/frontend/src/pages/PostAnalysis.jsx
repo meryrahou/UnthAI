@@ -247,7 +247,7 @@ const PostAnalysis = () => {
                                     onClick={() => setCommentFilter(f)}
                                 >
                                     {f !== 'all' && <div className={`comment-sentiment-dot ${f}`}></div>}
-                                    {t(f === 'appreciation' ? 'positive' : f === 'complaint' ? 'negative' : f)}
+                                    {f === 'all' ? 'All' : f.charAt(0).toUpperCase() + f.slice(1)}
                                 </button>
                             ))}
                         </div>
@@ -255,27 +255,38 @@ const PostAnalysis = () => {
                     {loading ? (
                         <div className="loading-small">Loading comments...</div>
                     ) : (
-                        <ul className="comment-list">
-                            {allComments
-                                .filter(c => commentFilter === 'all' || c.type === commentFilter)
-                                .map((comment, idx) => (
-                                    <li key={idx} className="comment-item animate-fade-in">
-                                        <div className={`comment-sentiment-dot ${comment.type}`}></div>
-                                        <div className="comment-content">
-                                            <p>"{comment.text}"</p>
-                                            <div className="comment-meta">
-                                                <span className={`meta-cat ${comment.type}`}>{t(`pillers.${comment.category.toLowerCase()}`)}</span> • <span>{comment.time}</span>
-                                                {comment.likesCount > 0 && (
-                                                    <span className="comment-likes">
-                                                        <ThumbsUp size={12} /> {comment.likesCount}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))
-                            }
-                        </ul>
+                        <div className="comments-content-wrapper">
+                            {allComments.filter(c => commentFilter === 'all' || c.type === commentFilter).length > 0 ? (
+                                <ul className="comment-list">
+                                    {allComments
+                                        .filter(c => commentFilter === 'all' || c.type === commentFilter)
+                                        .map((comment, idx) => (
+                                            <li key={idx} className="comment-item animate-fade-in">
+                                                <div className={`comment-sentiment-dot ${comment.type}`}></div>
+                                                <div className="comment-content">
+                                                    <p>"{comment.text}"</p>
+                                                    <div className="comment-meta">
+                                                        <span className={`meta-cat ${comment.type}`}>
+                                                            {comment.category === 'general' ? 'General' : comment.category.charAt(0).toUpperCase() + comment.category.slice(1)}
+                                                        </span> • <span>{comment.time}</span>
+                                                        {comment.likesCount > 0 && (
+                                                            <span className="comment-likes">
+                                                                <ThumbsUp size={12} /> {comment.likesCount}
+                                                            </span>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        ))
+                                    }
+                                </ul>
+                            ) : (
+                                <div className="no-comments-state animate-fade-in">
+                                    <MessageSquare size={40} className="empty-icon" />
+                                    <p>{t('noComments')}</p>
+                                </div>
+                            )}
+                        </div>
                     )}
                 </div>
             </div>
