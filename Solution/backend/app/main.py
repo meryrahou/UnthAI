@@ -461,15 +461,6 @@ async def get_trends(
     # Filter out out_of_scope comments
     d_df = d_df[d_df['out_of_scope'].astype(str).str.lower() != 'true']
     
-    # Simple Word Frequency Logic
-    text_data = " ".join(d_df['comment_text'].astype(str).tolist()).lower()
-    
-    import re
-    from collections import Counter
-    
-    # Update regex to support Arabic script explicitly
-    words = re.findall(r'[\w\u0600-\u06FF]+', text_data)
-    
     # Custom Stopword List (English, French, basic Arabic/Chat)
     stopwords = {
         'the', 'and', 'a', 'to', 'of', 'in', 'is', 'it', 'for', 'with', 'on', 'was', 'very',
@@ -479,13 +470,51 @@ async def get_trends(
         'top', 'good', 'best', 'magnifique', 'excellent', 'restaurant', 'food', 'service', 'place'
     }
     
-    # Filter stopwords and short words
-    filtered_words = [w for w in words if w not in stopwords and len(w) > 2 and not w.isdigit()]
+    import re
+    from collections import Counter
     
-    count = Counter(filtered_words)
+    # Calculate sentiment per word
+    word_sentiments = {} # {word: {'pos': 0, 'neg': 0, 'neu': 0}}
+    all_words = []
+    
+    # Iterate through rows to associate words with comment feeling
+    for _, row in d_df.iterrows():
+        sentiment = str(row.get('feeling', 'neutral')).lower()
+        if sentiment not in ['positive', 'negative', 'neutral']: sentiment = 'neutral'
+        
+        comment_text = str(row.get('comment_text', '')).lower()
+        row_words = re.findall(r'[\w\u0600-\u06FF]+', comment_text)
+        
+        seen_in_row = set() # Avoid double counting sentiment for same word in one comment
+        for w in row_words:
+            if w in stopwords or len(w) <= 2 or w.isdigit(): continue
+            
+            # Add to all_words for frequency counting
+            all_words.append(w)
+            
+            if w in seen_in_row: continue
+            
+            seen_in_row.add(w)
+            if w not in word_sentiments:
+                word_sentiments[w] = {'positive': 0, 'negative': 0, 'neutral': 0}
+            word_sentiments[w][sentiment] += 1
+
+    count = Counter(all_words)
     common = count.most_common(60)
     
-    return [{"text": word, "value": freq} for word, freq in common]
+    result = []
+    for word, freq in common:
+        sents = word_sentiments.get(word, {'positive': 0, 'negative': 0, 'neutral': 0})
+        # Determine dominant sentiment
+        dom_sentiment = 'neutral'
+        if sents['positive'] > sents['negative'] and sents['positive'] > sents['neutral']:
+            dom_sentiment = 'positive'
+        elif sents['negative'] > sents['positive'] and sents['negative'] > sents['neutral']:
+            dom_sentiment = 'negative'
+            
+        result.append({"text": word, "value": freq, "sentiment": dom_sentiment})
+        
+    return result
 
 @app.get("/api/ai/insights")
 async def get_ai_insights(current_user: dict = Depends(get_current_user)):

@@ -30,7 +30,7 @@ const Trends = () => {
 
         const layout = cloud()
             .size([800, 500])
-            .words(words.map(d => ({ text: d.text, size: 10 + Math.sqrt(d.value) * 10 })))
+            .words(words.map(d => ({ text: d.text, size: 10 + Math.sqrt(d.value) * 10, sentiment: d.sentiment })))
             .padding(5)
             .rotate(0) // Force horizontal
             .font("Inter")
@@ -40,7 +40,7 @@ const Trends = () => {
         layout.start();
 
         function draw(words) {
-            d3.select(svgRef.current).selectAll("*").remove();
+            d3.select(svgRef.current).selectAll("*").remove(); // Clear previous
             d3.select(svgRef.current)
                 .attr("width", layout.size()[0])
                 .attr("height", layout.size()[1])
@@ -51,7 +51,12 @@ const Trends = () => {
                 .enter().append("text")
                 .style("font-size", d => d.size + "px")
                 .style("font-family", "Inter")
-                .style("fill", () => ['#ff6b35', '#2ec4b6', '#e71d36', '#ff9f1c', '#ffffff', '#9ca3af'][Math.floor(Math.random() * 6)])
+                .style("fill", d => {
+                    // Color based on sentiment
+                    if (d.sentiment === 'positive') return '#10b981'; // Green
+                    if (d.sentiment === 'negative') return '#ef4444'; // Red
+                    return '#60a5fa'; // Blue for neutral
+                })
                 .attr("text-anchor", "middle")
                 .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
                 .text(d => d.text);
