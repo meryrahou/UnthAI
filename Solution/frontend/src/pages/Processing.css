@@ -1,0 +1,103 @@
+.processing-page {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #1e293b;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 20000;
+}
+
+.processing-container {
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    padding: 60px 50px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.spinner-ring {
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 107, 53, 0.2);
+    border-top: 4px solid #ff6b35;
+    /* Primary Orange */
+    border-radius: 50%;
+    margin: 0 auto 30px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.steps-list {
+    margin-top: 30px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+}
+
+.step-item.active {
+    background: rgba(255, 107, 53, 0.1);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.step-item.completed {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.step-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-text {
+    font-size: 14px;
+    color: #64748b;
+}
+
+.step-item.active .step-text,
+.step-item.completed .step-text {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.processing-container h2 {
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.processing-container p {
+    color: #64748b;
+}

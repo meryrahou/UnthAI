@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Sparkles, Mail, Lock, ArrowRight, Chrome, Sun, Moon } from 'lucide-react';
 import { useApp } from '../utils/AppContext';
 import './Auth.css';
 
 const Auth = ({ onLogin }) => {
     const { theme, toggleTheme, t } = useApp();
+    const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
     const [restaurantName, setRestaurantName] = useState('');
     const [password, setPassword] = useState('');

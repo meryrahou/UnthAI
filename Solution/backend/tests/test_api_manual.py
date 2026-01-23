@@ -30,6 +30,14 @@ def test_actions():
                 print(json.dumps(recs[0], indent=2))
             else:
                 print("No recommendations returned.")
+
+            # Test Processing Endpoint
+            url = "http://localhost:8001/api/process-data"
+            req = urllib.request.Request(url, method="POST")
+            req.add_header("Authorization", f"Bearer {token}")
+            with urllib.request.urlopen(req) as response:
+                proc_data = json.loads(response.read().decode())
+                print(f"Processing status: {proc_data}")
                 
     except Exception as e:
         print(f"Error: {e}")

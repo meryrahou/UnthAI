@@ -267,7 +267,7 @@ const PostAnalysis = () => {
                                                     <p>"{comment.text}"</p>
                                                     <div className="comment-meta">
                                                         <span className={`meta-cat ${comment.type}`}>
-                                                            {t(`pillers.${comment.category}`) || comment.category}
+                                                            {t(`pillers.${comment.category.toLowerCase()}`) || comment.category}
                                                         </span> • <span>{comment.time}</span>
                                                         {comment.likesCount > 0 && (
                                                             <span className="comment-likes">

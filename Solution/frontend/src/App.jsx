@@ -10,6 +10,7 @@ import AIInsights from './pages/AIInsights';
 import SocialConfig from './pages/SocialConfig';
 import Profile from './pages/Profile';
 import Auth from './pages/Auth';
+import Processing from './pages/Processing';
 import { AppProvider } from './utils/AppContext';
 
 import './App.css';
@@ -35,24 +36,30 @@ function App() {
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         ) : (
-          <div className="layout">
-            <Sidebar onLogout={handleLogout} />
-            <main className="main-content">
-              <Header />
-              <div className="content-container">
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/analysis" element={<PostAnalysis />} />
-                  <Route path="/trends" element={<Trends />} />
-                  <Route path="/actions" element={<ActionCenter />} />
-                  <Route path="/insights" element={<AIInsights />} />
-                  <Route path="/config" element={<SocialConfig />} />
-                  <Route path="/profile" element={<Profile />} />
-                  <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
+          <Routes>
+            <Route path="/login" element={<Navigate to="/processing" replace />} />
+            <Route path="/processing" element={<Processing />} />
+            <Route path="/*" element={
+              <div className="layout">
+                <Sidebar onLogout={handleLogout} />
+                <main className="main-content">
+                  <Header />
+                  <div className="content-container">
+                    <Routes>
+                      <Route path="/" element={<Dashboard />} />
+                      <Route path="/analysis" element={<PostAnalysis />} />
+                      <Route path="/trends" element={<Trends />} />
+                      <Route path="/actions" element={<ActionCenter />} />
+                      <Route path="/insights" element={<AIInsights />} />
+                      <Route path="/config" element={<SocialConfig />} />
+                      <Route path="/profile" element={<Profile />} />
+                      <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                  </div>
+                </main>
               </div>
-            </main>
-          </div>
+            } />
+          </Routes>
         )}
       </Router>
     </AppProvider>

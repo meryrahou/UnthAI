@@ -35,11 +35,18 @@ const Dashboard = () => {
                 });
                 if (response.ok) {
                     const result = await response.json();
+                    console.log("Dashboard Data:", result); // Debugging
+                    if (result.error) {
+                        console.error("Dashboard Backend Error:", result.error);
+                    }
                     setData(result);
-                    if (startDate === '' || endDate === '') {
+                    if ((startDate === '' || endDate === '') && result.startDate) {
                         setStartDate(result.startDate);
                         setEndDate(result.endDate);
                     }
+                } else {
+                    console.error("Dashboard HTTP Error:", response.status);
+                    setData({ error: `HTTP Error: ${response.status}` });
                 }
             } catch (err) {
                 console.error("Dashboard fetch error:", err);
@@ -51,11 +58,26 @@ const Dashboard = () => {
         fetchDashboard();
     }, [startDate, endDate]);
 
-    if (loading || !data) {
+    if (loading) {
         return (
             <div className="loading-container">
                 <div className="spinner"></div>
                 <p>{t('analyzingReputation')}</p>
+            </div>
+        );
+    }
+
+    if (!data || data.error) {
+        return (
+            <div className="dashboard-page">
+                <div className="page-header">
+                    <h1>{t('dashboard')}</h1>
+                </div>
+                <div className="empty-state">
+                    <AlertTriangle size={48} style={{ color: 'var(--text-muted)', marginBottom: '16px', opacity: 0.5 }} />
+                    <h3>{t('noDataAvailable') || 'No Data Available'}</h3>
+                    <p>{data?.error || t('checkConnection') || 'Please try processing your data again.'}</p>
+                </div>
             </div>
         );
     }

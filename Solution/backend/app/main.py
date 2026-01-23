@@ -273,6 +273,31 @@ async def get_dashboard_summary(
         ]
     }
 
+@app.post("/api/process-data")
+async def process_data_endpoint(current_user: dict = Depends(get_current_user)):
+    """
+    Triggers the data processing pipeline:
+    1. Loads raw data from Master CSV
+    2. Filters for the specific restaurant
+    3. Runs AI models (Sentiment, Classification)
+    4. Saves to processed cache
+    """
+    name = current_user["restaurant_name"]
+    
+    try:
+        success = refresh_restaurant_data(name)
+        
+        if success:
+            # Clear cache for this user so next request reloads from new file
+            if name in data_cache:
+                del data_cache[name]
+            return {"status": "success", "message": "Data processed"}
+        else:
+            return {"status": "warning", "message": "No data found for this restaurant"}
+            
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.get("/api/posts")
 async def get_posts(
     start_date: Optional[str] = None,
