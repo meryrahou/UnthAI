@@ -183,8 +183,8 @@ async def get_dashboard_summary(
     neu_count = len(d_df[d_df['feeling'] == 'neutral'])
     
     sentiment_distribution = [
-        {"name": "Appreciation", "value": pos_count, "color": "#10b981"},
-        {"name": "Complaint", "value": neg_count, "color": "#ef4444"},
+        {"name": "Positive", "value": pos_count, "color": "#10b981"},
+        {"name": "Negative", "value": neg_count, "color": "#ef4444"},
         {"name": "Neutral", "value": neu_count, "color": "#94a3b8"},
     ]
     
@@ -262,6 +262,8 @@ async def get_dashboard_summary(
             {"label": "Top Complaint", "value": top_complaint_cat.capitalize(), "trend": "Attention", "status": "down", "id": "complaint"},
         ],
         "sentiment_distribution": sentiment_distribution,
+        "pos_count": pos_count,
+        "neg_count": neg_count,
         "category_data": category_data,
         "recommendation_count": recommendation_total,
         "sentiment_history": history[:40], # Increased limit to show much more of the timeline

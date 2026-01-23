@@ -1,20 +1,21 @@
 import React from 'react';
 import {
     Lightbulb,
-    ArrowRight,
     Target,
-    TrendingUp,
     AlertCircle,
     CheckCircle2
 } from 'lucide-react';
+import { useApp } from '../utils/AppContext';
 import './AIInsights.css';
 
 const AIInsights = () => {
+    const { t } = useApp();
+
     const recommendations = [
         {
             id: 1,
             type: 'critical',
-            category: 'Service',
+            category: t('pillers.service'),
             title: 'Optimize Weekend Staffing',
             description: 'Analysis shows a 65% spike in "Service Complaints" specifically regarding "Waiting Time" on Thursday and Friday nights (8 PM - 11 PM).',
             action: 'Consider adding 2 extra floor staff members during these peak windows to reduce wait times by an estimated 20%.',
@@ -23,19 +24,10 @@ const AIInsights = () => {
         {
             id: 2,
             type: 'positive',
-            category: 'Food',
+            category: t('pillers.food'),
             title: 'Highlight Premium Ingredients',
             description: 'Customers frequently appreciate the freshness of your "Smash Burger" meat, often mentioning it as the reason for returning.',
             action: 'Launch a short video series on TikTok/IG showing your meat preparation process and local sourcing. This aligns with your 85% food appreciation score.',
-            impact: 'Medium'
-        },
-        {
-            id: 3,
-            type: 'suggest',
-            category: 'Price',
-            title: 'Value-Added Combos',
-            description: '20% of Google Maps reviews mention that prices are "fair but slightly high" for single items.',
-            action: 'Introduce a "Student Lunch Combo" or a "Family Weekend Platter" to improve price-per-item perception while increasing average ticket size.',
             impact: 'Medium'
         }
     ];
@@ -44,7 +36,7 @@ const AIInsights = () => {
         <div className="insights-page animate-fade-in">
             <div className="page-header">
                 <div>
-                    <h1>AI Strategic Insights</h1>
+                    <h1>{t('aiInsights')}</h1>
                     <p className="subtitle">Data-driven recommendations to grow your restaurant's reputation.</p>
                 </div>
             </div>
@@ -89,26 +81,11 @@ const AIInsights = () => {
                         <h3>Weekly Summary</h3>
                         <div className="summary-item">
                             <span className="summary-val positive">+12%</span>
-                            <span className="summary-txt">Positive Sentiment</span>
+                            <span className="summary-txt">{t('positive')} Sentiment</span>
                         </div>
                         <div className="summary-item">
                             <span className="summary-val negative">-5%</span>
                             <span className="summary-txt">Response Time</span>
-                        </div>
-                        <p className="summary-footer">
-                            Your restaurant is currently performing in the <strong>top 15%</strong> of local fast-food establishments on TikTok.
-                        </p>
-                    </div>
-
-                    <div className="glass-card topics-card">
-                        <h3>Trending Keywords</h3>
-                        <div className="tag-cloud">
-                            <span className="tag priority">Smash Burger</span>
-                            <span className="tag">Friendly Staff</span>
-                            <span className="tag alert">Wait Time</span>
-                            <span className="tag">Fresh Meat</span>
-                            <span className="tag">Garden Decor</span>
-                            <span className="tag">Pricey</span>
                         </div>
                     </div>
                 </div>

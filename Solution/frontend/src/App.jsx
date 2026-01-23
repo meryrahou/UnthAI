@@ -10,6 +10,7 @@ import AIInsights from './pages/AIInsights';
 import SocialConfig from './pages/SocialConfig';
 import Profile from './pages/Profile';
 import Auth from './pages/Auth';
+import { AppProvider } from './utils/AppContext';
 
 import './App.css';
 
@@ -18,30 +19,36 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
   if (!isAuthenticated) {
-    return <Auth onLogin={() => setIsAuthenticated(true)} />;
+    return (
+      <AppProvider>
+        <Auth onLogin={() => setIsAuthenticated(true)} />
+      </AppProvider>
+    );
   }
 
   return (
-    <Router>
-      <div className="layout">
-        <Sidebar onLogout={() => setIsAuthenticated(false)} />
-        <main className="main-content">
-          <Header />
-          <div className="content-container">
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/analysis" element={<PostAnalysis />} />
-              <Route path="/trends" element={<Trends />} />
-              <Route path="/actions" element={<ActionCenter />} />
-              <Route path="/insights" element={<AIInsights />} />
-              <Route path="/config" element={<SocialConfig />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
-          </div>
-        </main>
-      </div>
-    </Router>
+    <AppProvider>
+      <Router>
+        <div className="layout">
+          <Sidebar onLogout={() => setIsAuthenticated(false)} />
+          <main className="main-content">
+            <Header />
+            <div className="content-container">
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/analysis" element={<PostAnalysis />} />
+                <Route path="/trends" element={<Trends />} />
+                <Route path="/actions" element={<ActionCenter />} />
+                <Route path="/insights" element={<AIInsights />} />
+                <Route path="/config" element={<SocialConfig />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="*" element={<Navigate to="/" />} />
+              </Routes>
+            </div>
+          </main>
+        </div>
+      </Router>
+    </AppProvider>
   );
 }
 

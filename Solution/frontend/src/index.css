@@ -1,21 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --bg-dark: #0a0b10;
-  --bg-card: rgba(20, 22, 30, 0.7);
-  --bg-card-hover: rgba(30, 35, 50, 0.8);
-  --primary: #ff6b35; /* Vibrant Sunset Orange */
+  /* Common Tokens */
+  --primary: #ff6b35;
   --primary-glow: rgba(255, 107, 53, 0.3);
-  --secondary: #6366f1; /* Indigo */
-  --accent: #22d3ee; /* Cyan */
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --border: rgba(255, 255, 255, 0.08);
-  --glass: blur(12px);
+  --secondary: #6366f1;
+  --accent: #22d3ee;
   --success: #10b981;
   --error: #ef4444;
   --warning: #f59e0b;
   --font-main: 'Outfit', sans-serif;
+  --glass: blur(12px);
+
+  /* Dark Mode (Default) */
+  --bg-dark: #0a0b10;
+  --bg-card: rgba(20, 22, 30, 0.7);
+  --bg-card-hover: rgba(30, 35, 50, 0.8);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="light"] {
+  --bg-dark: #f0f2f5;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --border: rgba(0, 0, 0, 0.06);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -30,9 +44,14 @@ body {
   font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -58,46 +77,36 @@ button {
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 24px;
-  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="light"] .glass-card {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .glass-card:hover {
   background: var(--bg-card-hover);
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+  border-color: rgba(255, 107, 53, 0.2);
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate-fade-in {
   animation: fadeIn 0.5s ease forwards;
 }
 
-/* Dashboard Utility */
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  padding: 24px;
+[dir="rtl"] {
+  text-align: right;
 }

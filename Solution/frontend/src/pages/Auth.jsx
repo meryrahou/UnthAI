@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Sparkles, Mail, Lock, ArrowRight, Chrome } from 'lucide-react';
+import { Sparkles, Mail, Lock, ArrowRight, Chrome, Sun, Moon } from 'lucide-react';
+import { useApp } from '../utils/AppContext';
 import './Auth.css';
 
 const Auth = ({ onLogin }) => {
+    const { theme, toggleTheme } = useApp();
     const [isLogin, setIsLogin] = useState(true);
     const [restaurantName, setRestaurantName] = useState('');
     const [password, setPassword] = useState('');
@@ -48,6 +50,9 @@ const Auth = ({ onLogin }) => {
 
     return (
         <div className="auth-container">
+            <button onClick={toggleTheme} className="theme-toggle-btn">
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
             <div className="auth-visual">
                 <div className="visual-overlay"></div>
                 <div className="visual-content">

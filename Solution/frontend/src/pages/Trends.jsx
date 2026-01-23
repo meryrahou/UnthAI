@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
-import * as d3 from 'd3';
-import cloud from 'd3-cloud';
-import { Zap } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Zap, MessageSquare } from 'lucide-react';
+import { useApp } from '../utils/AppContext';
 import './Trends.css';
 
 const Trends = () => {
+    const { t } = useApp();
     const [words, setWords] = useState([]);
     const [loading, setLoading] = useState(true);
-    const svgRef = useRef(null);
 
     useEffect(() => {
         const fetchTrends = async () => {
@@ -25,71 +24,62 @@ const Trends = () => {
         fetchTrends();
     }, []);
 
-    useEffect(() => {
-        if (!words.length || !svgRef.current) return;
-
-        const layout = cloud()
-            .size([800, 500])
-            .words(words.map(d => ({ text: d.text, size: 10 + Math.sqrt(d.value) * 10, sentiment: d.sentiment })))
-            .padding(5)
-            .rotate(0) // Force horizontal
-            .font("Inter")
-            .fontSize(d => d.size)
-            .on("end", draw);
-
-        layout.start();
-
-        function draw(words) {
-            d3.select(svgRef.current).selectAll("*").remove(); // Clear previous
-            d3.select(svgRef.current)
-                .attr("width", layout.size()[0])
-                .attr("height", layout.size()[1])
-                .append("g")
-                .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
-                .selectAll("text")
-                .data(words)
-                .enter().append("text")
-                .style("font-size", d => d.size + "px")
-                .style("font-family", "Inter")
-                .style("fill", d => {
-                    // Color based on sentiment
-                    if (d.sentiment === 'positive') return '#10b981'; // Green
-                    if (d.sentiment === 'negative') return '#ef4444'; // Red
-                    return '#60a5fa'; // Blue for neutral
-                })
-                .attr("text-anchor", "middle")
-                .attr("transform", d => "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")")
-                .text(d => d.text);
-        }
-    }, [words]);
-
-    if (loading) return <div className="loading-container">Generating trend analysis...</div>;
+    if (loading) return (
+        <div className="loading-container">
+            <div className="spinner"></div>
+            <p>Gathering Trend Data...</p>
+        </div>
+    );
 
     return (
         <div className="trends-page animate-fade-in">
             <div className="trends-header">
                 <div>
-                    <h2><Zap size={24} style={{ display: 'inline', marginRight: '8px', color: '#ff9f1c' }} /> Trend Explorer</h2>
-                    <p>Discover what people are talking about most.</p>
+                    <h2><Zap size={24} style={{ color: 'var(--primary)' }} /> {t('trendExplorer')}</h2>
+                    <p>Discover the most discussed topics across all platforms.</p>
                 </div>
             </div>
 
-            <div className="glass-card cloud-container">
-                <svg ref={svgRef} className="word-cloud-svg"></svg>
-                {words.length === 0 && <div className="empty-state">No trend data available.</div>}
+            <div className="trends-section">
+                <h3>Food & Feedback Keywords</h3>
+                <div className="vibrant-grid">
+                    {words.slice(0, 20).map((w, idx) => (
+                        <div key={idx} className="vibrant-trend-card">
+                            <div className="trend-main">
+                                <span className="trend-word">{w.text}</span>
+                                <div className="trend-badge">
+                                    <span className="count">{w.value}</span>
+                                    <span className="label">Comments</span>
+                                </div>
+                            </div>
+                            <div className="trend-progress-bar">
+                                <div
+                                    className="progress-fill"
+                                    style={{
+                                        width: `${Math.min((w.value / words[0].value) * 100, 100)}%`,
+                                        background: w.sentiment === 'positive' ? 'var(--success)' :
+                                            w.sentiment === 'negative' ? 'var(--error)' : 'var(--primary)'
+                                    }}
+                                ></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
-            <div className="trends-header" style={{ marginTop: '40px' }}>
-                <h3>Top Keywords</h3>
-            </div>
-
-            <div className="trending-list">
-                {words.slice(0, 12).map((w, idx) => (
-                    <div key={idx} className="trend-item">
-                        <span className="trend-word">{w.text}</span>
-                        <span className="trend-count">{w.value} mentions</span>
-                    </div>
-                ))}
+            <div className="trends-section" style={{ marginTop: '40px' }}>
+                <h3>Topic Distribution</h3>
+                <div className="topic-cloud">
+                    {words.slice(0, 30).map((w, idx) => (
+                        <span
+                            key={idx}
+                            className={`topic-tag ${w.sentiment}`}
+                            style={{ fontSize: `${Math.max(12, Math.min(24, 10 + w.value / 5))}px` }}
+                        >
+                            {w.text}
+                        </span>
+                    ))}
+                </div>
             </div>
         </div>
     );

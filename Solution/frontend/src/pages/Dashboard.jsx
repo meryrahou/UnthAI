@@ -2,22 +2,23 @@ import React, { useState, useEffect } from 'react';
 import {
     TrendingUp,
     MessageCircle,
-    ThumbsUp,
-    ThumbsDown,
     Activity,
-    ArrowUpRight,
-    ArrowDownRight,
     Target,
     AlertTriangle,
-    Lightbulb
+    ArrowUpRight,
+    ArrowDownRight,
+    Zap,
+    Calendar
 } from 'lucide-react';
 import {
     PieChart, Pie, Cell, ResponsiveContainer, Tooltip, Legend,
     BarChart, Bar, XAxis, YAxis, CartesianGrid
 } from 'recharts';
+import { useApp } from '../utils/AppContext';
 import './Dashboard.css';
 
 const Dashboard = () => {
+    const { t, theme } = useApp();
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const [data, setData] = useState(null);
@@ -35,7 +36,6 @@ const Dashboard = () => {
                 if (response.ok) {
                     const result = await response.json();
                     setData(result);
-                    // Update input dates if they were empty (initial load)
                     if (startDate === '' || endDate === '') {
                         setStartDate(result.startDate);
                         setEndDate(result.endDate);
@@ -52,84 +52,113 @@ const Dashboard = () => {
     }, [startDate, endDate]);
 
     if (loading || !data) {
-        return <div className="loading-container">Analyzing data...</div>;
+        return (
+            <div className="loading-container">
+                <div className="spinner"></div>
+                <p>Analyzing Reputation...</p>
+            </div>
+        );
     }
+
+    const tooltipStyle = {
+        backgroundColor: theme === 'dark' ? '#1a1d26' : '#fff',
+        border: 'none',
+        borderRadius: '12px',
+        boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
+        color: theme === 'dark' ? '#fff' : '#1e293b',
+        fontSize: '12px'
+    };
+
+    const kpiConfig = {
+        total: { icon: <MessageCircle size={22} />, status: 'up', label: 'Total Reviews', trend: 'Filtered' },
+        health: { icon: <Activity size={22} />, status: 'up', label: 'Brand Health', trend: 'Sentiment' },
+        pillar: { icon: <Target size={22} />, status: 'up', label: 'Most Discussed', trend: 'Popular' },
+        complaint: { icon: <AlertTriangle size={22} />, status: 'down', label: 'Top Complaint', trend: 'Attention' }
+    };
 
     return (
         <div className="dashboard-page animate-fade-in">
             <div className="page-header">
                 <div>
-                    <h1>Global Reputation Dashboard</h1>
+                    <h1>{t('dashboard')}</h1>
                     <p className="subtitle">Real-time analysis of your restaurant's digital footprint.</p>
                 </div>
                 <div className="date-picker-container">
                     <div className="date-input-group">
-                        <label>Start</label>
-                        <input
-                            type="date"
-                            value={startDate}
-                            onChange={(e) => setStartDate(e.target.value)}
-                        />
+                        <label>START</label>
+                        <div className="input-with-icon">
+                            <input
+                                type="date"
+                                value={startDate}
+                                onChange={(e) => setStartDate(e.target.value)}
+                            />
+                            <Calendar size={16} className="calendar-icon" />
+                        </div>
                     </div>
                     <div className="date-input-group">
-                        <label>End</label>
-                        <input
-                            type="date"
-                            value={endDate}
-                            onChange={(e) => setEndDate(e.target.value)}
-                        />
+                        <label>END</label>
+                        <div className="input-with-icon">
+                            <input
+                                type="date"
+                                value={endDate}
+                                onChange={(e) => setEndDate(e.target.value)}
+                            />
+                            <Calendar size={16} className="calendar-icon" />
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div className="stats-grid">
-                {data.kpis.map((stat, idx) => (
-                    <div key={idx} className="glass-card stat-card">
-                        <div className={`stat-icon ${stat.status}`}>
-                            {stat.id === 'total' ? <MessageCircle /> :
-                                stat.id === 'health' ? <Activity /> :
-                                    stat.id === 'pillar' ? <Target /> :
-                                        stat.id === 'complaint' ? <AlertTriangle /> :
-                                            <Lightbulb />}
+                {data.kpis.map((stat, idx) => {
+                    const config = kpiConfig[stat.id] || { icon: <Zap />, status: 'up', label: stat.label, trend: 'Updated' };
+                    return (
+                        <div key={idx} className="glass-card stat-card">
+                            <div className={`stat-icon ${stat.id === 'complaint' ? 'down' : stat.id === 'pillar' ? 'info' : 'up'}`}>
+                                {config.icon}
+                            </div>
+                            <div className="stat-info">
+                                <p className="stat-label">{config.label}</p>
+                                <h3 className="stat-value">{stat.value}</h3>
+                            </div>
+                            <div className="stat-trend">
+                                {config.trend} {stat.id === 'complaint' ? <ArrowDownRight size={14} /> : <ArrowUpRight size={14} />}
+                            </div>
                         </div>
-                        <div className="stat-info">
-                            <p className="stat-label">{stat.label}</p>
-                            <h3 className="stat-value">{stat.value}</h3>
-                        </div>
-                        <div className={`stat-trend ${stat.status}`}>
-                            {stat.status === 'up' ? <ArrowUpRight size={16} /> :
-                                stat.status === 'down' ? <ArrowDownRight size={16} /> :
-                                    <TrendingUp size={16} />}
-                            <span>{stat.trend}</span>
-                        </div>
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
             <div className="charts-row">
                 <div className="glass-card chart-container">
-                    <h3>Sentiment Distribution</h3>
+                    <h3>{t('sentimentDistribution')}</h3>
                     <div className="chart-wrapper">
-                        <ResponsiveContainer width="100%" height={300}>
+                        <ResponsiveContainer width="100%" height={320}>
                             <PieChart>
                                 <Pie
                                     data={data.sentiment_distribution}
                                     cx="50%"
                                     cy="50%"
-                                    innerRadius={60}
-                                    outerRadius={80}
-                                    paddingAngle={5}
+                                    innerRadius={75}
+                                    outerRadius={100}
+                                    paddingAngle={8}
                                     dataKey="value"
+                                    stroke="none"
                                 >
                                     {data.sentiment_distribution.map((entry, index) => (
                                         <Cell key={`cell-${index}`} fill={entry.color} />
                                     ))}
                                 </Pie>
-                                <Tooltip
-                                    contentStyle={{ backgroundColor: '#1e2230', border: 'none', borderRadius: '8px', color: '#fff' }}
-                                    itemStyle={{ color: '#fff' }}
+                                <Tooltip contentStyle={tooltipStyle} />
+                                <Legend
+                                    verticalAlign="bottom"
+                                    height={36}
+                                    iconType="circle"
+                                    formatter={(value) => {
+                                        const label = value === 'Appreciation' ? 'Positive' : value === 'Complaint' ? 'Negative' : value;
+                                        return <span style={{ color: 'var(--text-muted)', fontSize: '13px', fontWeight: 500 }}>{label}</span>
+                                    }}
                                 />
-                                <Legend verticalAlign="bottom" height={36} />
                             </PieChart>
                         </ResponsiveContainer>
                     </div>
@@ -138,19 +167,31 @@ const Dashboard = () => {
                 <div className="glass-card chart-container main-chart">
                     <h3>Category Sentiments</h3>
                     <div className="chart-wrapper">
-                        <ResponsiveContainer width="100%" height={300}>
-                            <BarChart data={data.category_data}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-                                <XAxis dataKey="name" stroke="#94a3b8" />
-                                <YAxis stroke="#94a3b8" />
-                                <Tooltip
-                                    cursor={{ fill: 'rgba(255, 255, 255, 0.05)' }}
-                                    contentStyle={{ backgroundColor: '#1e2230', border: 'none', borderRadius: '8px', color: '#fff' }}
-                                    itemStyle={{ color: '#fff' }}
+                        <ResponsiveContainer width="100%" height={320}>
+                            <BarChart data={data.category_data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" vertical={false} />
+                                <XAxis
+                                    dataKey="name"
+                                    stroke="var(--text-muted)"
+                                    fontSize={12}
+                                    axisLine={false}
+                                    tickLine={false}
+                                    tick={{ fill: 'var(--text-muted)' }}
                                 />
-                                <Legend />
-                                <Bar dataKey="apprec" name="Appreciation" fill="#10b981" radius={[4, 4, 0, 0]} />
-                                <Bar dataKey="compl" name="Complaint" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                                <YAxis
+                                    stroke="var(--text-muted)"
+                                    fontSize={12}
+                                    axisLine={false}
+                                    tickLine={false}
+                                    tick={{ fill: 'var(--text-muted)' }}
+                                />
+                                <Tooltip
+                                    cursor={{ fill: 'rgba(255, 255, 255, 0.03)' }}
+                                    contentStyle={tooltipStyle}
+                                />
+                                <Legend iconType="rect" verticalAlign="bottom" />
+                                <Bar dataKey="apprec" name="Positive" fill="#10b981" radius={[6, 6, 0, 0]} barSize={24} />
+                                <Bar dataKey="compl" name="Negative" fill="#ef4444" radius={[6, 6, 0, 0]} barSize={24} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
@@ -158,43 +199,54 @@ const Dashboard = () => {
             </div>
 
             <div className="insights-preview-row">
-                <div className="glass-card insights-card">
-                    <div className="insights-header">
+                <div className="glass-card ai-summary-card">
+                    <div className="ai-summary-header">
                         <h3>Quick Insights</h3>
-                        <span className="badge">AI Generated</span>
+                        <span className="ai-badge-new">AI Generated</span>
                     </div>
-                    {data.insights ? (
-                        <ul className="insights-list">
-                            {data.insights.map((insight, idx) => (
-                                <li key={idx}>
-                                    <div className={`insight-bullet ${insight.status}`}></div>
-                                    <p dangerouslySetInnerHTML={{ __html: insight.text }}></p>
-                                </li>
-                            ))}
+                    <div className="ai-content-new">
+                        <ul className="ai-facts-new">
+                            <li>
+                                <span className="dot pos"></span>
+                                Found <strong>{data.pos_count || 0} Appreciations</strong> and <strong>{data.recommendation_count || 0} Recommendations</strong>.
+                            </li>
+                            <li>
+                                <span className="dot info"></span>
+                                Your most discussed pillar is <strong>{data.kpis.find(k => k.id === 'pillar')?.value || 'N/A'}</strong>.
+                            </li>
+                            <li>
+                                <span className="dot neg"></span>
+                                Top Negative source: <strong>{data.kpis.find(k => k.id === 'complaint')?.value || 'N/A'}</strong>.
+                            </li>
                         </ul>
-                    ) : (
-                        <div className="loading-small">Thinking...</div>
-                    )}
+                    </div>
                 </div>
 
                 <div className="glass-card platforms-card">
                     <h3>Platform Activity</h3>
                     <div className="platform-stats">
-                        {data.platform_dist.map((plat, idx) => (
-                            <div key={idx} className="platform-item">
-                                <div className="platform-name">{plat.name}</div>
-                                <div className="platform-bar-bg">
-                                    <div
-                                        className="platform-bar"
-                                        style={{
-                                            width: `${(plat.value / Math.max(...data.platform_dist.map(p => p.value), 1)) * 100}%`,
-                                            background: plat.name === 'TikTok' ? '#ff0050' : plat.name === 'Instagram' ? '#e1306c' : '#4285f4'
-                                        }}
-                                    ></div>
+                        {data.platform_dist.map((plat, idx) => {
+                            const maxVal = Math.max(...data.platform_dist.map(p => p.value), 1);
+                            const color = plat.name === 'TikTok' ? '#ff0050' :
+                                plat.name === 'Instagram' ? '#e1306c' :
+                                    plat.name === 'Facebook' ? '#1877f2' : '#4285f4';
+                            return (
+                                <div key={idx} className="platform-item">
+                                    <div className="platform-name">{plat.name}</div>
+                                    <div className="platform-bar-bg">
+                                        <div
+                                            className="platform-bar"
+                                            style={{
+                                                width: `${(plat.value / maxVal) * 100}%`,
+                                                background: color,
+                                                boxShadow: `0 0 12px ${color}33`
+                                            }}
+                                        ></div>
+                                    </div>
+                                    <div className="platform-value">{plat.value}</div>
                                 </div>
-                                <div className="platform-value">{plat.value}</div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 </div>
             </div>

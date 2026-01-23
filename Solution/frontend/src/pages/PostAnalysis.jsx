@@ -11,9 +11,11 @@ import {
     AlertTriangle,
     Users
 } from 'lucide-react';
+import { useApp } from '../utils/AppContext';
 import './PostAnalysis.css';
 
 const PostAnalysis = () => {
+    const { t } = useApp();
     const [selectedPlatform, setSelectedPlatform] = useState('facebook');
     const [selectedPost, setSelectedPost] = useState(null);
     const [commentFilter, setCommentFilter] = useState('all');
@@ -24,7 +26,6 @@ const PostAnalysis = () => {
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
 
-    // Fetch default dates from dashboard summary to match Dashboard page
     useEffect(() => {
         const fetchDefaultDates = async () => {
             try {
@@ -52,11 +53,7 @@ const PostAnalysis = () => {
                 if (response.ok) {
                     const data = await response.json();
                     setPosts(data);
-
-                    // Only change selection if currently selected post is no longer in the list
-                    // or if nothing was selected
                     const currentPostExists = data.find(p => p.id === selectedPost);
-
                     if (!currentPostExists && data.length > 0) {
                         setSelectedPost(data[0].id);
                         setSelectedPlatform(data[0].platform);
@@ -69,8 +66,6 @@ const PostAnalysis = () => {
         };
         fetchPosts();
     }, [startDate, endDate]);
-
-    // ... (keep comment fetch effect same)
 
     useEffect(() => {
         if (selectedPost === null) {
@@ -111,28 +106,24 @@ const PostAnalysis = () => {
     };
 
     if (postsLoading && !posts.length && !startDate) {
-        return <div className="loading-container">Gathering social data...</div>;
+        return <div className="loading-container"><div className="spinner"></div><p>Gathering social data...</p></div>;
     }
 
     return (
         <div className="analysis-page animate-fade-in">
             <div className="sidebar-analysis">
-                <div className="date-filter-section" style={{ marginBottom: '24px' }}>
-                    <label style={{ display: 'block', fontSize: '12px', color: 'var(--text-muted)', marginBottom: '8px', fontWeight: 'bold' }}>DATE RANGE</label>
-                    <div style={{ display: 'flex', gap: '8px' }}>
+                <div className="date-filter-section">
+                    <label>{t('summary').toUpperCase()}</label>
+                    <div className="date-inputs">
                         <input
                             type="date"
-                            className="glass-input"
                             value={startDate}
                             onChange={(e) => setStartDate(e.target.value)}
-                            style={{ width: '100%', padding: '8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '11px' }}
                         />
                         <input
                             type="date"
-                            className="glass-input"
                             value={endDate}
                             onChange={(e) => setEndDate(e.target.value)}
-                            style={{ width: '100%', padding: '8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '11px' }}
                         />
                     </div>
                 </div>
@@ -152,7 +143,7 @@ const PostAnalysis = () => {
                                     p === 'facebook' ? <Facebook size={18} /> :
                                         p === 'instagram' ? <Instagram size={18} /> :
                                             <MapPin size={18} />}
-                                <span style={{ textTransform: 'capitalize' }}>{p === 'googlemaps' ? 'Maps' : p}</span>
+                                <span>{p === 'googlemaps' ? 'Maps' : p.charAt(0).toUpperCase() + p.slice(1)}</span>
                                 <span className="platform-count">{count}</span>
                             </button>
                         );
@@ -160,7 +151,7 @@ const PostAnalysis = () => {
                 </div>
 
                 <div className="posts-list">
-                    <h3>Recent Content</h3>
+                    <h3>{t('postPerformance')}</h3>
                     {posts.filter(p => !selectedPlatform || p.platform === selectedPlatform).map((post) => (
                         <div
                             key={post.id}
@@ -188,7 +179,7 @@ const PostAnalysis = () => {
                             {getPlatformIcon(activePost.platform)}
                         </div>
                         <div className="preview-info">
-                            <h2>Post Analysis</h2>
+                            <h2>{t('postAnalysis')}</h2>
                             <p>{activePost.author} • {activePost.date}</p>
                         </div>
                     </div>
@@ -197,20 +188,20 @@ const PostAnalysis = () => {
 
                 <div className="analysis-grid">
                     <div className="glass-card detail-card">
-                        <h3>Sentiment Intensity</h3>
+                        <h3>{t('sentimentDistribution')}</h3>
                         <div className="sentiment-bars">
                             <div className="sentiment-bar-item">
-                                <div className="bar-label">Positive</div>
+                                <div className="bar-label">{t('positive')}</div>
                                 <div className="bar-outer"><div className="bar-inner pos" style={{ width: `${activePost.sentiment?.pos || 0}%` }}></div></div>
                                 <div className="bar-value">{activePost.sentiment?.pos || 0}%</div>
                             </div>
                             <div className="sentiment-bar-item">
-                                <div className="bar-label">Neutral</div>
+                                <div className="bar-label">{t('neutral')}</div>
                                 <div className="bar-outer"><div className="bar-inner neu" style={{ width: `${activePost.sentiment?.neu || 0}%` }}></div></div>
                                 <div className="bar-value">{activePost.sentiment?.neu || 0}%</div>
                             </div>
                             <div className="sentiment-bar-item">
-                                <div className="bar-label">Negative</div>
+                                <div className="bar-label">{t('negative')}</div>
                                 <div className="bar-outer"><div className="bar-inner neg" style={{ width: `${activePost.sentiment?.neg || 0}%` }}></div></div>
                                 <div className="bar-value">{activePost.sentiment?.neg || 0}%</div>
                             </div>
@@ -218,14 +209,14 @@ const PostAnalysis = () => {
                     </div>
 
                     <div className="glass-card detail-card">
-                        <h3>Category Performance</h3>
+                        <h3>{t('categoryPerformance')}</h3>
                         <div className="category-scores">
                             {(activePost.categories || []).map((cat, idx) => (
                                 <div key={idx} className="category-score-item">
                                     <div className="cat-header">
                                         <div className="cat-name-group">
-                                            <span>{cat.name}</span>
-                                            {cat.critical && <AlertTriangle size={14} color="var(--error)" title="Critical Platform Disparity" />}
+                                            <span>{t(`pillers.${cat.name.toLowerCase()}`)}</span>
+                                            {cat.critical && <AlertTriangle size={14} color="var(--error)" />}
                                             <span className="cat-volume"><Users size={12} /> {cat.volume}</span>
                                         </div>
                                         <span>{cat.score}/100</span>
@@ -241,49 +232,24 @@ const PostAnalysis = () => {
                                     </div>
                                 </div>
                             ))}
-                            {(!activePost.categories || activePost.categories.length === 0) && <p className="empty-text">No category data available.</p>}
                         </div>
                     </div>
                 </div>
 
                 <div className="glass-card top-comments">
                     <div className="comments-header">
-                        <h3>Representative Comments</h3>
+                        <h3>{t('comments')}</h3>
                         <div className="filter-group">
-                            <button
-                                className={`filter-btn ${commentFilter === 'all' ? 'active' : ''}`}
-                                onClick={() => setCommentFilter('all')}
-                            >
-                                All
-                            </button>
-                            <button
-                                className={`filter-btn ${commentFilter === 'appreciation' ? 'active' : ''}`}
-                                onClick={() => setCommentFilter('appreciation')}
-                            >
-                                <div className="comment-sentiment-dot appreciation"></div>
-                                Appreciation
-                            </button>
-                            <button
-                                className={`filter-btn ${commentFilter === 'complaint' ? 'active' : ''}`}
-                                onClick={() => setCommentFilter('complaint')}
-                            >
-                                <div className="comment-sentiment-dot complaint"></div>
-                                Complaint
-                            </button>
-                            <button
-                                className={`filter-btn ${commentFilter === 'recommendation' ? 'active' : ''}`}
-                                onClick={() => setCommentFilter('recommendation')}
-                            >
-                                <div className="comment-sentiment-dot recommendation"></div>
-                                Recommendation
-                            </button>
-                            <button
-                                className={`filter-btn ${commentFilter === 'inquiry' ? 'active' : ''}`}
-                                onClick={() => setCommentFilter('inquiry')}
-                            >
-                                <div className="comment-sentiment-dot inquiry"></div>
-                                Inquiry
-                            </button>
+                            {['all', 'appreciation', 'complaint', 'recommendation', 'inquiry'].map(f => (
+                                <button
+                                    key={f}
+                                    className={`filter-btn ${commentFilter === f ? 'active' : ''}`}
+                                    onClick={() => setCommentFilter(f)}
+                                >
+                                    {f !== 'all' && <div className={`comment-sentiment-dot ${f}`}></div>}
+                                    {t(f === 'appreciation' ? 'positive' : f === 'complaint' ? 'negative' : f)}
+                                </button>
+                            ))}
                         </div>
                     </div>
                     {loading ? (
@@ -298,9 +264,9 @@ const PostAnalysis = () => {
                                         <div className="comment-content">
                                             <p>"{comment.text}"</p>
                                             <div className="comment-meta">
-                                                <span className={`meta-cat ${comment.type}`}>{comment.category}</span> • <span>{comment.time}</span>
+                                                <span className={`meta-cat ${comment.type}`}>{t(`pillers.${comment.category.toLowerCase()}`)}</span> • <span>{comment.time}</span>
                                                 {comment.likesCount > 0 && (
-                                                    <span className="comment-likes" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', marginLeft: '12px', color: 'var(--text-dim)' }}>
+                                                    <span className="comment-likes">
                                                         <ThumbsUp size={12} /> {comment.likesCount}
                                                     </span>
                                                 )}
@@ -309,9 +275,6 @@ const PostAnalysis = () => {
                                     </li>
                                 ))
                             }
-                            {allComments.filter(c => commentFilter === 'all' || c.type === commentFilter).length === 0 && (
-                                <li className="empty-comments">No comments found for this filter.</li>
-                            )}
                         </ul>
                     )}
                 </div>
