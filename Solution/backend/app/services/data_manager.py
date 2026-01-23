@@ -4,8 +4,11 @@ import os
 import sys
 
 # Master File Path
-MASTER_PATH = "/Users/mery/GitHub/UnthAI/Solution/backend/data/master_data.csv"
-DATA_DIR = "/Users/mery/GitHub/UnthAI/Solution/backend/data"
+# Master File Path
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Go up 2 levels: services -> app -> backend, then into data
+CSV_PATH = os.path.join(BASE_DIR, "../../data/master_data.csv")
+DATA_DIR = os.path.join(BASE_DIR, "../../data")
 
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
@@ -18,7 +21,7 @@ def get_processed_path(restaurant_name):
 def refresh_restaurant_data(restaurant_name):
     print(f"Refreshing data for: {restaurant_name}")
     try:
-        df = pd.read_csv(MASTER_PATH)
+        df = pd.read_csv(CSV_PATH)
         df = df.fillna("")
         
         # Filter for this specific restaurant (Case insensitive)

@@ -16,3 +16,9 @@ frontend/.env.local
 frontend/.env.development.local
 frontend/.env.test.local
 frontend/.env.production.local
+
+# Backend
+Solution/backend/venv/
+Solution/backend/.env
+Solution/backend/data/processed_*.csv
+Solution/backend/__pycache__/

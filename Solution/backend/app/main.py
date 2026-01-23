@@ -11,10 +11,18 @@ from passlib.context import CryptContext
 import os
 import json
 from app.services.data_manager import refresh_restaurant_data, get_processed_path
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # --- Configuration ---
-CSV_PATH = "/Users/mery/GitHub/UnthAI/Solution/backend/data/master_data.csv"
-SECRET_KEY = "unthai_super_secret_key"
+# Use relative path as default or get from env
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DEFAULT_CSV_PATH = os.path.join(BASE_DIR, "../data/master_data.csv")
+
+CSV_PATH = os.getenv("CSV_PATH", DEFAULT_CSV_PATH)
+SECRET_KEY = os.getenv("SECRET_KEY", "unthai_super_secret_key")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 600
 
@@ -31,22 +39,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- Data Loading (Legacy - Commented Out) ---
-# PROCESSED_CSV_PATH = "/Users/mery/GitHub/UnthAI/Solution/backend/processed_san_benito.csv"
-# try:
-#     df_res = pd.read_csv(PROCESSED_CSV_PATH)
-#     df_res = df_res.fillna("")
-#     # Pre-calculate data bounds
-#     if not df_res.empty:
-#         df_res['date_dt_all'] = pd.to_datetime(df_res['date'], utc=True)
-#         DATA_MIN = df_res['date_dt_all'].min().strftime('%Y-%m-%d')
-#         DATA_MAX = df_res['date_dt_all'].max().strftime('%Y-%m-%d')
-#     else:
-#         DATA_MIN, DATA_MAX = "2026-01-01", "2026-01-30"
-# except Exception as e:
-#     print(f"Error loading processed CSV: {e}")
-#     df_res = pd.DataFrame()
-#     DATA_MIN, DATA_MAX = "2026-01-01", "2026-01-30"
+# --- Data Loading ---
 
 # --- Dynamic Data Store ---
 data_cache = {}

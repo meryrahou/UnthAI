@@ -56,4 +56,10 @@ def check_similar_names(csv_path):
         print(f"{n1[:45]:<45} | {n2[:45]:<45} | {r:.2f}")
 
 if __name__ == "__main__":
-    check_similar_names('/Users/mery/GitHub/UnthAI/Solution/backend/data/master_data.csv')
+    import os
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    # Assuming this script is in app/services/, we need to go up two levels to get to backend root
+    # Current file: backend/app/services/detect_duplicates.py
+    # Data: backend/data/
+    CSV_PATH = os.path.join(BASE_DIR, "../../data/master_data.csv")
+    check_similar_names(CSV_PATH)

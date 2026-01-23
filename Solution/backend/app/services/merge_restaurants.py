@@ -89,5 +89,7 @@ def merge_restaurant_names(csv_path):
         print("No matches found for merging.")
 
 if __name__ == "__main__":
-    CSV_PATH = "/Users/mery/GitHub/UnthAI/Solution/backend/data/master_data.csv"
+    import os
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    CSV_PATH = os.path.join(BASE_DIR, "../../data/master_data.csv")
     merge_restaurant_names(CSV_PATH)

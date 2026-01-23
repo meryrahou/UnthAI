@@ -1,9 +1,0 @@
-comment_id,final_id,comment_text,platform,source_name,date,likesCount,food,service,place,delivery,price,treatment,out_of_scope,post_id,model_prediction,feeling
-66568,659840,restaurant BAKHCHIS,tiktok,@bakhcis_oran,2026-01-02T21:50:40.600961,25,,,,,,,True,1020.0,[],neutral
-66566,928769,we eat meilleur poulet pané fi oran,tiktok,@bakhcis_oran,2026-01-02T21:50:36.560311,57,Appreciation,,,,,,False,1020.0,"[""food_appreciation""]",positive
-66558,948327,Win rah resto bakhchi el bay steak house pizza welcome pour moi Hado les meilleurs,tiktok,@bakhcis_oran,2026-01-02T21:50:36.560304,49,appreciation,,appreciation,,,,False,1020.0,"[""food_appreciation"", ""place_appreciation""]",positive
-66534,526832,Arabesque aussi [APPRECIATION],tiktok,@bakhcis_oran,2026-01-02T21:50:36.560282,1,,,,,,,True,1020.0,[],neutral
-66600,795259,ماتنساش food lover [APPRECIATION],tiktok,@bakhcis_oran,2026-01-02T21:50:40.600999,13,,,,,,,True,1020.0,[],neutral
-66596,278918,لطيفة الاحسن,tiktok,@bakhcis_oran,2026-01-02T21:50:40.600995,38,,,,,,,True,1020.0,[],neutral
-66584,664468,Jabali est trop sal à éviter,tiktok,@bakhcis_oran,2026-01-02T21:50:40.600985,0,,,complaint,,,,False,1020.0,"[""place_complaint""]",negative
-66552,793186,سمحلي خويا بصح جبالي والله زدمة و صي براس بويا,tiktok,@bakhcis_oran,2026-01-02T21:50:36.560298,93,,,,,,,True,1020.0,[],neutral
