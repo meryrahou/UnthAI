@@ -106,42 +106,58 @@
     border-radius: 2px;
 }
 
-/* Topic Cloud */
-.topic-cloud {
+/* Cloud Section */
+.cloud-section {
+    margin-bottom: 48px;
+}
+
+.topic-cloud-container {
+    background: #0f1115;
+    border-radius: 24px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    height: 500px;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+[data-theme="light"] .topic-cloud-container {
+    background: #f8fafc;
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.word-cloud-svg-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.word-cloud-svg-wrapper svg {
+    display: block;
+    margin: auto;
+}
+
+.section-title-with-border {
+    font-size: 18px;
+    margin-bottom: 24px;
+    color: var(--text-main);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
     gap: 12px;
-    padding: 24px;
-    background: var(--bg-card);
-    border-radius: 20px;
-    border: 1px solid var(--border);
 }
 
-.topic-tag {
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    font-weight: 600;
-    color: var(--text-muted);
-    transition: all 0.2s ease;
-    cursor: default;
-}
-
-.topic-tag:hover {
-    background: var(--primary-glow);
-    border-color: var(--primary);
-    color: var(--primary);
-}
-
-.topic-tag.positive {
-    color: var(--success);
-    border-color: rgba(16, 185, 129, 0.2);
-}
-
-.topic-tag.negative {
-    color: var(--error);
-    border-color: rgba(239, 68, 68, 0.2);
+.section-title-with-border::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
 }
 
 @media (max-width: 768px) {

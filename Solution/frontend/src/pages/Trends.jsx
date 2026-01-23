@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Zap, MessageSquare } from 'lucide-react';
+import { Zap } from 'lucide-react';
 import { useApp } from '../utils/AppContext';
+import WordCloud from '../components/WordCloud';
 import './Trends.css';
 
 const Trends = () => {
-    const { t } = useApp();
+    const { t, theme } = useApp();
     const [words, setWords] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -40,8 +41,14 @@ const Trends = () => {
                 </div>
             </div>
 
+            <div className="trends-section cloud-section">
+                <div className="topic-cloud-container">
+                    {words.length > 0 && <WordCloud words={words.slice(0, 50)} theme={theme} />}
+                </div>
+            </div>
+
             <div className="trends-section">
-                <h3>{t('keywordsTitle')}</h3>
+                <h3 className="section-title-with-border">{t('keywordsTitle')}</h3>
                 <div className="vibrant-grid">
                     {words.slice(0, 20).map((w, idx) => (
                         <div key={idx} className="vibrant-trend-card">
@@ -63,21 +70,6 @@ const Trends = () => {
                                 ></div>
                             </div>
                         </div>
-                    ))}
-                </div>
-            </div>
-
-            <div className="trends-section" style={{ marginTop: '40px' }}>
-                <h3>{t('topicDistribution')}</h3>
-                <div className="topic-cloud">
-                    {words.slice(0, 30).map((w, idx) => (
-                        <span
-                            key={idx}
-                            className={`topic-tag ${w.sentiment}`}
-                            style={{ fontSize: `${Math.max(12, Math.min(24, 10 + w.value / 5))}px` }}
-                        >
-                            {w.text}
-                        </span>
                     ))}
                 </div>
             </div>
