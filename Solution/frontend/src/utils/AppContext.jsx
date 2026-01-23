@@ -22,15 +22,23 @@ export const AppProvider = ({ children }) => {
         setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
     };
 
-    const t = (key) => {
+    const t = (key, variables = {}) => {
         const keys = key.split('.');
         let result = translations[language];
         for (const k of keys) {
-            if (result[k]) {
+            if (result && result[k]) {
                 result = result[k];
             } else {
                 return key;
             }
+        }
+
+        if (typeof result === 'string') {
+            let processed = result;
+            Object.keys(variables).forEach(v => {
+                processed = processed.replace(`{${v}}`, variables[v]);
+            });
+            return processed;
         }
         return result;
     };

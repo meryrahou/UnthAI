@@ -1,0 +1,19 @@
+comment_id,final_id,comment_text,platform,source_name,date,likesCount,food,service,place,delivery,price,treatment,out_of_scope,post_id,model_prediction,feeling
+33434,539629,غالي غالي,tiktok,@ambiancefood,2026-01-02T19:21:15.685748,0,,,,,Complaint,,False,1011.0,"[""price_complaint""]",negative
+33502,930700,ماش غالي في متناول كريستيانو وأولاده ههههه,tiktok,@ambiancefood,2026-01-02T19:21:17.323032,0,,,,,Complaint,,False,1011.0,"[""price_complaint""]",negative
+33476,410093,je valide  les meilleurs  [APPRECIATION],tiktok,@ambiancefood,2026-01-02T19:21:16.587465,1,,,Appreciation,,,,False,1011.0,"[""place_appreciation""]",positive
+33426,809657,ايه صح غالي,tiktok,@ambiancefood,2026-01-02T19:21:15.650056,0,,,,,Complaint,,False,1011.0,"[""price_complaint""]",negative
+33316,809481,Je passe demain insh’الله,tiktok,@ambiancefood,2026-01-02T19:21:12.263615,1,,,,,,,True,1011.0,[],neutral
+33428,666854,خويا ديرلنا لوكاليزاسيو فتيك توك باه نطلعها في قوقل,tiktok,@ambiancefood,2026-01-02T19:21:15.650058,2,,,inquiry,,,,False,1011.0,"[""place_inquiry""]",neutral
+33454,281751,Meilleure salade César  [APPRECIATION],tiktok,@ambiancefood,2026-01-02T19:21:16.556639,2,appreciation,,,,,,False,1011.0,"[""food_appreciation""]",positive
+33442,809786,Oui un peu cher quand même,tiktok,@ambiancefood,2026-01-02T19:21:15.685780,2,,,,,Complaint,,False,1011.0,"[""price_complaint""]",negative
+33350,530791,تأكدنا بلي غالي ثنكيووووو,tiktok,@ambiancefood,2026-01-02T19:21:14.858944,1,,,,,Complaint,,False,1011.0,"[""price_complaint""]",negative
+33396,282376,Le meilleur restaurant pour moi  [APPRECIATION],tiktok,@ambiancefood,2026-01-02T19:21:15.649990,3,,,Appreciation,,,,False,1011.0,"[""place_appreciation""]",positive
+33508,279696,win jay exct ! ?,tiktok,@ambiancefood,2026-01-02T19:21:17.323039,0,,,Inquiry,,,,False,1011.0,"[""place_inquiry""]",neutral
+33386,133819,علاه مخرجليش هاد فيديو بارح كنت في وهرن  بصح معليش الجمعة هادي نب مولية نجي لعندكم,tiktok,@ambiancefood,2026-01-02T19:21:14.917528,0,,,,,,,True,1011.0,[],neutral
+33518,685294,زدت أكدتلنا بلي غالي,tiktok,@ambiancefood,2026-01-02T19:21:17.470996,0,,,,,Complaint,,False,1011.0,"[""price_complaint""]",negative
+33494,804112,صح ما كذبتش غالي,tiktok,@ambiancefood,2026-01-02T19:21:17.323016,0,,,,,Complaint,,False,1011.0,"[""price_complaint""]",negative
+33406,798851,Mon préféré je l’adore,tiktok,@ambiancefood,2026-01-02T19:21:15.650011,1,,,Appreciation,,,,False,1011.0,"[""place_appreciation""]",positive
+33346,537128,الخاوة مطعم هذا مشي فاست فود الاسعار نورمال,tiktok,@ambiancefood,2026-01-02T19:21:14.858941,2,,,,,Appreciation,,False,1011.0,"[""price_appreciation""]",positive
+33404,788869,Sawri win ext la route,tiktok,@ambiancefood,2026-01-02T19:21:15.650008,0,,,Inquiry,,,,False,1011.0,"[""place_inquiry""]",neutral
+33380,142695,c'est où au juste?,tiktok,@ambiancefood,2026-01-02T19:21:14.917523,0,,,Inquiry,,,,False,1011.0,"[""place_inquiry""]",neutral

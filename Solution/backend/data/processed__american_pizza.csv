@@ -1,0 +1,3 @@
+comment_id,final_id,comment_text,platform,source_name,date,likesCount,food,service,place,delivery,price,treatment,out_of_scope,post_id,model_prediction,feeling
+47936,686919,بسم الله ماشاء الله ربي يبارك ويزيد,tiktok,@american_pizza,2026-01-02T20:33:55.893479,1,,,,,,,True,1013.0,[],neutral
+47914,814983,شحال هكا خويا,tiktok,@american_pizza,2026-01-02T20:33:55.893442,1,,,,,inquiry,,False,1013.0,"[""price_inquiry""]",neutral

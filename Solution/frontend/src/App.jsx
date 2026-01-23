@@ -15,38 +15,45 @@ import { AppProvider } from './utils/AppContext';
 import './App.css';
 
 function App() {
-  // Simple auth mockup
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(!!localStorage.getItem('token'));
 
-  if (!isAuthenticated) {
-    return (
-      <AppProvider>
-        <Auth onLogin={() => setIsAuthenticated(true)} />
-      </AppProvider>
-    );
-  }
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+  };
 
   return (
     <AppProvider>
       <Router>
-        <div className="layout">
-          <Sidebar onLogout={() => setIsAuthenticated(false)} />
-          <main className="main-content">
-            <Header />
-            <div className="content-container">
-              <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/analysis" element={<PostAnalysis />} />
-                <Route path="/trends" element={<Trends />} />
-                <Route path="/actions" element={<ActionCenter />} />
-                <Route path="/insights" element={<AIInsights />} />
-                <Route path="/config" element={<SocialConfig />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="*" element={<Navigate to="/" />} />
-              </Routes>
-            </div>
-          </main>
-        </div>
+        {!isAuthenticated ? (
+          <Routes>
+            <Route path="/login" element={<Auth onLogin={handleLogin} />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </Routes>
+        ) : (
+          <div className="layout">
+            <Sidebar onLogout={handleLogout} />
+            <main className="main-content">
+              <Header />
+              <div className="content-container">
+                <Routes>
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/analysis" element={<PostAnalysis />} />
+                  <Route path="/trends" element={<Trends />} />
+                  <Route path="/actions" element={<ActionCenter />} />
+                  <Route path="/insights" element={<AIInsights />} />
+                  <Route path="/config" element={<SocialConfig />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+              </div>
+            </main>
+          </div>
+        )}
       </Router>
     </AppProvider>
   );

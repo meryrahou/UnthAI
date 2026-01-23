@@ -544,12 +544,13 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
     
     # Define complaint keywords to cluster
     complaint_keywords = {
-        'slow service': ['slow', 'wait', 'long', 'attente', 'lent'],
-        'cold food': ['cold', 'froid', 'froide', 'bared'],
-        'rude staff': ['rude', 'impolite', 'mal', 'mauvais', 'service'],
-        'dirty place': ['dirty', 'sale', 'propre', 'clean'],
-        'high prices': ['expensive', 'cher', 'price', 'prix', 'costly'],
-        'small portions': ['small', 'portion', 'petite', 'little']
+        'slow service': ['slow', 'wait', 'long', 'attente', 'lent', 'tawel', 'itawel', 'itawlo', 'ثقال', 'ساعة', 'heure', 'retard', 'itawelo', 'temps d\'attente', 'attends plus d\'une heure', 'متربونديوش', 'ما يريبونديوش'],
+        'cold food': ['cold', 'froid', 'froide', 'bared', 'بارد', 'ماشي سخون', 'pas chaud'],
+        'rude staff': ['rude staff', 'le serveur', 'impolite', 'mal parlé', 'malhonnête', 'pas professionnel', 'pas du tout professionnel', 'mauvais accueil', 'accueil froid', 'disorganized', 'متكبر', 'arrogant', 'منفخ', 'pas de respect', 'محقور', 'متكبر'],
+        'dirty place': ['dirty', 'sale', 'hygiène', 'toilettes', 'وسخ', 'cleaning', 'ventilation', 'aérer', 'نظافة', 'مهمش', 'poussière'],
+        'high prices': ['expensive', 'cher', 'costly', 'prix', 'غالي', 'غالية', 'غلا', 'prices', 'abusé', 'دولار', 'euro', 'cherol', 'السعر', 'سومة', 'ثمن', 'غالي بزاف', 'les prix', 'li bri', 'tarifs'],
+        'small portions': ['small', 'portion', 'petite', 'minuscule', 'sghir', 'سغير', 'صغير', 'peu', 'little', 'فارغ', 'قليل', 'ما يشبعش'],
+        'taste issue': ['pas bon', 'pas de goût', 'البنة 0', 'tasteless', 'ماشي بنين', 'بلا بنة', 'salé', 'cramé', 'burnt', 'normal', '0000', 'خردة', 'ما عجبنيش', 'خسر', 'بدل الماكلة']
     }
     
     for issue, keywords in complaint_keywords.items():
@@ -557,15 +558,29 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
         mask = complaints['comment_text'].str.lower().str.contains('|'.join(keywords), na=False, regex=True)
         issue_complaints = complaints[mask]
         
-        if len(issue_complaints) >= 3:  # Only surface if 3+ mentions
+        if len(issue_complaints) >= 3:
+            # Smarter samples: find the relevant sentence/segment
+            samples = []
+            for _, row in issue_complaints.head(5).iterrows():
+                text = str(row['comment_text'])
+                # Find which keyword was hit
+                hit = next((k for k in keywords if k in text.lower()), None)
+                if hit:
+                    # Extract ultra-tight window (~40 chars total)
+                    idx = text.lower().find(hit)
+                    start = max(0, idx - 15)
+                    end = min(len(text), idx + 25)
+                    snippet = text[start:end].strip()
+                    if start > 0: snippet = "..." + snippet
+                    if end < len(text): snippet = snippet + "..."
+                    samples.append(snippet)
+                else:
+                    samples.append(text[:40] + "...")
+            
             # Get platforms
             platforms = issue_complaints['platform'].unique().tolist()
             platforms = [p.capitalize() if p != 'googlemaps' else 'Maps' for p in platforms]
             
-            # Sample comments
-            samples = issue_complaints['comment_text'].head(3).tolist()
-            
-            # Calculate trend
             this_week_count = len(issue_complaints[issue_complaints['date_dt'] >= week_ago])
             last_week_count = len(issue_complaints[(issue_complaints['date_dt'] >= two_weeks_ago) & (issue_complaints['date_dt'] < week_ago)])
             
@@ -593,14 +608,32 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
             if recent_count == 0:
                 priority = 'low'
             
+            # Calculate exact timeframe
+            oldest_date = issue_complaints['date_dt'].min()
+            days_ago = (now - oldest_date).days
+            timeframe = f"Last {days_ago} days" if days_ago > 0 else "Today"
+
+            # Format for frontend translation
+            topic_key = {
+                'slow service': 'slowService',
+                'cold food': 'coldFood',
+                'rude staff': 'rudeStaff',
+                'dirty place': 'dirtyPlace',
+                'high prices': 'highPrices',
+                'small portions': 'smallPortions',
+                'taste issue': 'food'
+            }.get(issue, 'general')
+
             actions.append({
                 'id': action_id,
                 'type': 'complaints',
                 'priority': priority,
-                'title': f'{issue.title()} Complaints',
-                'description': f'{len(issue_complaints)} customers mentioned issues with {issue}.',
+                'titleKey': 'complaintsTitle',
+                'topicKey': f'pillers.{topic_key}',
+                'descKey': 'xMentionsCustomers',
                 'count': len(issue_complaints),
-                'timeframe': 'Last 30 days',
+                'timeframeType': 'lastDays' if days_ago > 0 else 'today',
+                'timeframeDays': days_ago,
                 'platforms': platforms[:3],
                 'samples': samples,
                 'trend': trend,
@@ -608,99 +641,143 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
             })
             action_id += 1
     
-    # 2. UNANSWERED INQUIRIES
+    # 2. UNANSWERED INQUIRIES (Grouped by Theme)
     inquiries = df_user[
         (df_user['comment_text'].str.contains(r'\?', na=False, regex=True)) |
         (df_user.apply(lambda row: any('inquiry' in str(p).lower() for p in eval(str(row.get('model_prediction', '[]')))), axis=1))
     ].copy()
     
-    recent_inquiries = inquiries[inquiries['date_dt'] >= week_ago]
+    inquiry_keywords = {
+        'Price': ['price', 'prix', 'combien', 'how much', 'cost', 'menu', 'بشحال', 'السعر', 'list', 'سومة', 'كم', 'قداش', 'tarif'],
+        'Hours & Opening': ['opening', 'hours', 'horaire', 'ouvert', 'open', 'time', 'ferme', 'وقت', 'ساعة', 'available', 'dispo', 'يفتح', 'thel', 'tebda', 'فتحتها'],
+        'Delivery & Prep': ['delivery', 'livraison', 'توصيل', 'order', 'prepar', 'ready', 'booking', 'réservation', 'ليفرزون', 'كاين توصيل'],
+        'Location': ['where', 'location', 'place', 'adresse', 'maps', 'وين', 'بلاصة', 'فين', 'directions', 'c est où', 'win jay', 'أين', 'بلايص'],
+        'Contact & Info': ['numéro', 'téléphone', 'نمرو', 'رقم', 'call', 'contact', 'whatsapp']
+    }
     
-    if len(recent_inquiries) > 0:
-        # Group by similar questions
-        inquiry_samples = recent_inquiries['comment_text'].head(5).tolist()
-        platforms = recent_inquiries['platform'].unique().tolist()
-        platforms = [p.capitalize() if p != 'googlemaps' else 'Maps' for p in platforms]
+    for theme, keywords in inquiry_keywords.items():
+        mask = inquiries['comment_text'].str.lower().str.contains('|'.join(keywords), na=False, regex=True)
+        theme_inquiries = inquiries[mask]
         
-        actions.append({
-            'id': action_id,
-            'type': 'inquiries',
-            'priority': 'medium',
-            'title': 'Unanswered Customer Questions',
-            'description': f'{len(recent_inquiries)} customers asked questions that may need responses.',
-            'count': len(recent_inquiries),
-            'timeframe': 'Last 7 days',
-            'platforms': platforms[:3],
-            'samples': inquiry_samples,
-            'trend': None,
-            'status': 'pending'
-        })
-        action_id += 1
+        if len(theme_inquiries) >= 2: # Lower threshold to 2 for inquiries
+            platforms = theme_inquiries['platform'].unique().tolist()
+            platforms = [p.capitalize() if p != 'googlemaps' else 'Maps' for p in platforms]
+            
+            # Simple snippets for inquiries (the question itself)
+            samples = []
+            for _, row in theme_inquiries.head(3).iterrows():
+                text = str(row['comment_text'])
+                samples.append(text[:40] + "..." if len(text) > 40 else text)
+
+            oldest_date = theme_inquiries['date_dt'].min()
+            days_ago = (now - oldest_date).days
+            timeframe = f"Last {days_ago} days" if days_ago > 0 else "Today"
+
+            topic_key = {
+                'Price': 'price',
+                'Hours & Opening': 'hours',
+                'Delivery & Prep': 'delivery',
+                'Location': 'location',
+                'Contact & Info': 'general'
+            }.get(theme, 'general')
+
+            actions.append({
+                'id': action_id,
+                'type': 'inquiries',
+                'priority': 'medium',
+                'titleKey': 'questionsTitle',
+                'topicKey': f'pillers.{topic_key}',
+                'descKey': 'xQuestionsCustomers',
+                'count': len(theme_inquiries),
+                'timeframeType': 'lastDays' if days_ago > 0 else 'today',
+                'timeframeDays': days_ago,
+                'platforms': platforms[:3],
+                'samples': samples,
+                'trend': None,
+                'status': 'pending'
+            })
+            action_id += 1
     
-    # 3. TRENDING ISSUES (Week-over-week changes)
+    # 3. TRENDING ISSUES (Relaxed Thresholds)
     categories = ['food', 'service', 'place', 'delivery', 'price', 'treatment']
     
     for cat in categories:
         this_week_neg = len(this_week[this_week[cat].astype(str).str.lower() == 'complaint'])
         last_week_neg = len(last_week[last_week[cat].astype(str).str.lower() == 'complaint'])
         
-        if last_week_neg > 0 and this_week_neg > last_week_neg:
-            trend_pct = int(((this_week_neg - last_week_neg) / last_week_neg) * 100)
+        # Surface if there is ANY increase, even from 0
+        if this_week_neg > last_week_neg:
+            trend_pct = 0
+            if last_week_neg > 0:
+                trend_pct = int(((this_week_neg - last_week_neg) / last_week_neg) * 100)
+            else:
+                trend_pct = 100 # New issue this week
             
-            if trend_pct >= 30:  # Only show significant increases
-                samples = this_week[this_week[cat].astype(str).str.lower() == 'complaint']['comment_text'].head(2).tolist()
+            if trend_pct >= 20 or this_week_neg >= 2: 
+                samples = this_week[this_week[cat].astype(str).str.lower() == 'complaint']['comment_text'].head(3).tolist()
                 
                 actions.append({
                     'id': action_id,
                     'type': 'trends',
-                    'priority': 'high' if trend_pct >= 50 else 'medium',
-                    'title': f'{cat.capitalize()} Issues Increasing',
-                    'description': f'Negative feedback about {cat} has increased significantly this week.',
+                    'priority': 'high' if trend_pct >= 40 else 'medium',
+                    'titleKey': 'issuesIncreasingTitle',
+                    'topicKey': f'pillers.{cat}',
+                    'descKey': 'increasingIssuesDesc',
                     'count': this_week_neg,
-                    'timeframe': 'This week',
+                    'timeframeType': 'thisWeek',
                     'platforms': [],
-                    'samples': samples,
+                    'samples': [s[:80] + "..." for s in samples],
                     'trend': trend_pct,
                     'status': 'pending'
                 })
                 action_id += 1
     
-    # 4. QUICK WINS (Top recommendations)
+    # 4. QUICK WINS (More Broad Recommendations)
     recommendations = df_user[
         df_user.apply(lambda row: any('recommendation' in str(p).lower() for p in eval(str(row.get('model_prediction', '[]')))), axis=1)
     ].copy()
     
-    if len(recommendations) >= 5:
-        # Find most common recommendation themes
-        rec_text = ' '.join(recommendations['comment_text'].astype(str).tolist()).lower()
-        
-        quick_wins = []
-        if 'vegan' in rec_text or 'vegetarian' in rec_text:
-            quick_wins.append({
-                'title': 'Add More Vegetarian Options',
-                'description': 'Multiple customers requested more plant-based menu items.',
-                'count': len(recommendations[recommendations['comment_text'].str.contains('vegan|vegetarian', case=False, na=False)])
-            })
-        
-        if 'delivery' in rec_text or 'livraison' in rec_text:
-            quick_wins.append({
-                'title': 'Expand Delivery Hours',
-                'description': 'Customers are asking for extended delivery availability.',
-                'count': len(recommendations[recommendations['comment_text'].str.contains('delivery|livraison', case=False, na=False)])
-            })
-        
-        for win in quick_wins:
-            if win['count'] >= 3:
+    if len(recommendations) >= 1:
+        rec_themes = {
+            'Menu Variety': ['add', 'more', 'option', 'vegan', 'vegetarian', 'choice', 'new', 'زيدو', 'كثرو', 'développer', 'varier', 'sauce', 'minuscule', 'meat', 'viande', 'poulet', 'plus de choix', 'épices'],
+            'Service & Staff': ['faster', 'speed', 'wait', 'time', 'quicker', 'نظمو', 'خفو', 'rapide', 'organisation', 'serveur', 'patience', 'accueil', 'staff', 'bannir', 'متكبر'],
+            'Facility & Decor': ['clean', 'space', 'decor', 'parking', 'music', 'wifi', 'نقو', 'وسع', 'climatisation', 'ventilation', 'toilette', 'مصلى', 'handicapés', 'chaises', 'table', 'propre', 'hygiène'],
+            'Pricing & Info': ['prix', 'tarif', 'adresse', 'localisation', 'نعت', 'وين', 'سعر', 'سومة', 'ثمن', 'details', 'promotions', 'menu', 'carte'],
+            'General Feedback': [''] # Catch all
+        }
+
+        matched_indices = set()
+        for theme, keywords in rec_themes.items():
+            if theme == 'General Feedback':
+                # Only include what hasn't been matched yet
+                theme_recs = recommendations[~recommendations.index.isin(matched_indices)]
+            else:
+                mask = recommendations['comment_text'].str.lower().str.contains('|'.join(keywords), na=False, regex=True)
+                theme_recs = recommendations[mask]
+                matched_indices.update(theme_recs.index.tolist())
+            
+            if len(theme_recs) >= 1:
+                samples = [s[:40] + "..." for s in theme_recs['comment_text'].head(3).tolist()]
+                
+                topic_key = {
+                    'Menu Variety': 'menuVariety',
+                    'Service & Staff': 'serviceSpeed',
+                    'Facility & Decor': 'facility',
+                    'Pricing & Info': 'price',
+                    'General Feedback': 'general'
+                }.get(theme, 'general')
+
                 actions.append({
                     'id': action_id,
                     'type': 'recommendations',
                     'priority': 'low',
-                    'title': win['title'],
-                    'description': win['description'],
-                    'count': win['count'],
-                    'timeframe': 'Recurring',
+                    'titleKey': 'improveTitle',
+                    'topicKey': f'pillers.{topic_key}',
+                    'descKey': 'suggestImprovementsDesc',
+                    'count': len(theme_recs),
+                    'timeframeType': 'recurring',
                     'platforms': [],
-                    'samples': [],
+                    'samples': samples,
                     'trend': None,
                     'status': 'pending'
                 })
@@ -713,7 +790,11 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
         'completed': 0  # Would track this in a real DB
     }
     
-    return {"actions": actions, "stats": stats}
+    return {
+        "actions": actions, 
+        "stats": stats,
+        "restaurant_name": current_user["restaurant_name"]
+    }
 
 @app.get("/api/ai/insights")
 async def get_ai_insights(current_user: dict = Depends(get_current_user)):

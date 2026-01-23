@@ -1,0 +1,25 @@
+comment_id,final_id,comment_text,platform,source_name,date,likesCount,food,service,place,delivery,price,treatment,out_of_scope,post_id,model_prediction,feeling
+55384,686138,انت توكل برك كلش مليح عندك,tiktok,@askim_food,2026-01-02T21:13:29.543726,0,Complaint,,,,,,False,1017.0,"[""food_complaint""]",negative
+40734,788222,حرام عليكم راني نتوحموالله غير شهيتوني,tiktok,@askim_food,2026-01-02T19:49:17.974703,0,,,,,,,True,1017.0,[],neutral
+55332,547754,وعلاه راك دير هك,tiktok,@askim_food,2026-01-02T21:13:28.670717,0,,,,,,,True,1017.0,[],neutral
+55288,272050,رانا معاك لعزيز للخر  [APPRECIATION],tiktok,@askim_food,2026-01-02T21:13:27.857004,0,,,,,,,True,1017.0,[],neutral
+55648,943713,بصح كي تكمل يڨهمك مقرمش و بنين ولبري ماعندك ماتقول,tiktok,@askim_food,2026-01-02T21:13:35.596560,0,appreciation,,,,appreciation,,False,1017.0,"[""food_appreciation"", ""price_appreciation""]",positive
+55656,276936,يزعف,tiktok,@askim_food,2026-01-02T21:13:35.596569,0,,,,,,,True,1017.0,[],neutral
+55346,409382,اني فدار علاه تسخف فيا [COMPLAINT],tiktok,@askim_food,2026-01-02T21:13:28.670733,0,,,,,,,True,1017.0,[],neutral
+55644,150350,ماكلتو غالية و مش بنينة,tiktok,@askim_food,2026-01-02T21:13:35.596556,0,Complaint,,,,Complaint,,False,1017.0,"[""food_complaint"", ""price_complaint""]",negative
+40706,937295,اليوم جيتكم من البوني أنا والزوج . الحق ماكلة بنينة بالززاف. بالتوفيق,tiktok,@askim_food,2026-01-02T19:49:11.498597,4,appreciation,,,,,,False,1017.0,"[""food_appreciation""]",positive
+55396,422241,طاكوس فل الباطة تاع ليكراب  بصحتك خويااا,tiktok,@askim_food,2026-01-02T21:13:29.543740,0,complaint,,,,,,False,1017.0,"[""food_complaint""]",negative
+55620,665192,ناس يخدموا انتا مد رايك,tiktok,@askim_food,2026-01-02T21:13:34.598541,1,,,,,,,True,1017.0,[],neutral
+55222,655578,60 alf [INQUIRY],tiktok,@askim_food,2026-01-02T21:13:24.963569,1,,,,,Inquiry,,False,1017.0,"[""price_inquiry""]",neutral
+55302,675431,وين بلاصة بصح,tiktok,@askim_food,2026-01-02T21:13:27.857017,0,,,Inquiry,,,,False,1017.0,"[""place_inquiry""]",neutral
+55254,788268,اي دنيا غلات ا جماعة 60 نالف توكلي وانت مرتاح مشك حاب اشري سلعة وطيب فدارك,tiktok,@askim_food,2026-01-02T21:13:26.529144,1,,,,,Complaint,,False,1017.0,"[""price_complaint""]",negative
+55234,143732,60 الف ياسر,tiktok,@askim_food,2026-01-02T21:13:24.963579,0,,,,,complaint,,False,1017.0,"[""price_complaint""]",negative
+40702,393306,وين المحل عنابة,tiktok,@askim_food,2026-01-02T19:49:11.498589,0,,,Inquiry,,,,False,1017.0,"[""place_inquiry""]",neutral
+55352,158913,باين ناس ملاح بصحتك  [APPRECIATION],tiktok,@askim_food,2026-01-02T21:13:28.670738,3,,,,,,,True,1017.0,[],neutral
+55312,414266,ساعة باه وجدلنا 1 ههههه,tiktok,@askim_food,2026-01-02T21:13:27.857024,0,,complaint,,,,,False,1017.0,"[""service_complaint""]",negative
+55340,160652,من انت،؟؟؟,tiktok,@askim_food,2026-01-02T21:13:28.670724,0,,,,,,,True,1017.0,[],neutral
+55624,393862,الفرحة الليسي لي قدام askim نقرى فيه [COMPLAINT],tiktok,@askim_food,2026-01-02T21:13:34.598545,0,,,,,,,True,1017.0,[],neutral
+40698,278976,تعيش وسمو فورماج  [APPRECIATION],tiktok,@askim_food,2026-01-02T19:49:11.498580,3,inquiry,,,,,,False,1017.0,"[""food_inquiry""]",neutral
+55368,922003,crème ?,tiktok,@askim_food,2026-01-02T21:13:29.543701,0,Inquiry,,,,,,False,1017.0,"[""food_inquiry""]",neutral
+55398,146602,بوراك مشي طاكوس,tiktok,@askim_food,2026-01-02T21:13:29.543742,0,complaint,,,,,,False,1017.0,"[""food_complaint""]",negative
+55212,157058,ماقللولكش يتقسم,tiktok,@askim_food,2026-01-02T21:13:24.963528,0,,,,,,,True,1017.0,[],neutral

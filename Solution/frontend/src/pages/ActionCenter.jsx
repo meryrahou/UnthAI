@@ -8,8 +8,7 @@ import {
     CheckCircle,
     AlertTriangle,
     HelpCircle,
-    Lightbulb,
-    MessageSquare
+    Lightbulb
 } from 'lucide-react';
 import { useApp } from '../utils/AppContext';
 import './ActionCenter.css';
@@ -17,6 +16,7 @@ import './ActionCenter.css';
 const ActionCenter = () => {
     const { t } = useApp();
     const [activeTab, setActiveTab] = useState('all');
+    const [restaurantName, setRestaurantName] = useState('');
     const [actions, setActions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({ total: 0, urgent: 0, completed: 0 });
@@ -30,12 +30,21 @@ const ActionCenter = () => {
                 });
                 if (response.ok) {
                     const data = await response.json();
-                    const completedIds = JSON.parse(localStorage.getItem('completedActions') || '[]');
+                    const name = data.restaurant_name;
+                    setRestaurantName(name);
+
+                    // Load completed status from localStorage (scoped by restaurant)
+                    const allCompletions = JSON.parse(localStorage.getItem('completedActionsMap') || '{}');
+                    const completedIds = allCompletions[name] || [];
+
                     const actionsWithStatus = data.actions.map(a => ({
                         ...a,
-                        status: completedIds.includes(a.id) ? 'completed' : 'pending'
+                        status: completedIds.includes(String(a.id)) ? 'completed' : 'pending'
                     }));
+
                     setActions(actionsWithStatus);
+
+                    // Recalculate stats
                     const completedCount = actionsWithStatus.filter(a => a.status === 'completed').length;
                     setStats({
                         ...data.stats,
@@ -49,12 +58,43 @@ const ActionCenter = () => {
         fetchActions();
     }, []);
 
-    const handleMarkComplete = (actionId) => {
-        const completedIds = JSON.parse(localStorage.getItem('completedActions') || '[]');
-        completedIds.push(actionId);
-        localStorage.setItem('completedActions', JSON.stringify(completedIds));
-        setActions(actions.map(a => a.id === actionId ? { ...a, status: 'completed' } : a));
-        setStats(prev => ({ ...prev, completed: prev.completed + 1, total: prev.total - 1 }));
+    const handleToggleComplete = (actionId) => {
+        if (!restaurantName) return;
+
+        const allCompletions = JSON.parse(localStorage.getItem('completedActionsMap') || '{}');
+        const completedIds = allCompletions[restaurantName] || [];
+        const actionIdStr = String(actionId);
+        const isCompleted = completedIds.includes(actionIdStr);
+
+        let newCompletedIds;
+        if (isCompleted) {
+            newCompletedIds = completedIds.filter(id => id !== actionIdStr);
+        } else {
+            newCompletedIds = [...completedIds, actionIdStr];
+        }
+
+        allCompletions[restaurantName] = newCompletedIds;
+        localStorage.setItem('completedActionsMap', JSON.stringify(allCompletions));
+
+        // Optimistic update
+        setActions(actions.map(a =>
+            a.id === actionId ? { ...a, status: isCompleted ? 'pending' : 'completed' } : a
+        ));
+
+        setStats({
+            ...stats,
+            completed: isCompleted ? stats.completed - 1 : stats.completed + 1,
+            total: isCompleted ? stats.total + 1 : stats.total - 1
+        });
+    };
+
+    const getPlatformColor = (platform) => {
+        const p = platform.toLowerCase();
+        if (p.includes('tiktok')) return '#ff0050';
+        if (p.includes('maps') || p.includes('google')) return '#4285F4';
+        if (p.includes('instagram')) return '#E1306C';
+        if (p.includes('facebook')) return '#1877F2';
+        return 'var(--border)';
     };
 
     const filteredActions = actions.filter(action => {
@@ -65,11 +105,11 @@ const ActionCenter = () => {
 
     const getIcon = (type) => {
         switch (type) {
-            case 'complaints': return <AlertTriangle size={24} />;
-            case 'inquiries': return <HelpCircle size={24} />;
-            case 'recommendations': return <Lightbulb size={24} />;
-            case 'trends': return <TrendingUp size={24} />;
-            default: return <Target size={24} />;
+            case 'complaints': return <AlertTriangle size={20} />;
+            case 'inquiries': return <HelpCircle size={20} />;
+            case 'recommendations': return <Lightbulb size={20} />;
+            case 'trends': return <TrendingUp size={20} />;
+            default: return <Target size={20} />;
         }
     };
 
@@ -84,76 +124,155 @@ const ActionCenter = () => {
         <div className="action-center-page animate-fade-in">
             <div className="action-header">
                 <div>
-                    <h1><Target size={32} color="var(--primary)" /> {t('actionCenter')}</h1>
-                    <p className="subtitle">{t('actionCenterSubtitle')}</p>
+                    <h1>
+                        <Target size={28} style={{ color: 'var(--primary)' }} />
+                        {t('actionCenter')}
+                    </h1>
+                    <p style={{ color: 'var(--text-muted)', marginTop: '8px' }}>
+                        {t('actionCenterSubtitle')}
+                    </p>
                 </div>
-                <div className="action-summary-cards">
-                    <div className="summary-card active">
-                        <span className="val">{stats.total}</span>
-                        <span className="lbl">{t('actionableTasks')}</span>
+                <div className="action-stats">
+                    <div className="action-stat">
+                        <div className="action-stat-value">{stats.total}</div>
+                        <div className="action-stat-label">{t('actionableTasks')}</div>
                     </div>
-                    <div className="summary-card urgent">
-                        <span className="val">{stats.urgent}</span>
-                        <span className="lbl">{t('urgent')}</span>
+                    <div className="action-stat">
+                        <div className="action-stat-value" style={{ color: 'var(--error)' }}>{stats.urgent}</div>
+                        <div className="action-stat-label">{t('urgent')}</div>
                     </div>
-                    <div className="summary-card completed">
-                        <span className="val">{stats.completed}</span>
-                        <span className="lbl">{t('completed')}</span>
+                    <div className="action-stat">
+                        <div className="action-stat-value" style={{ color: 'var(--success)' }}>{stats.completed}</div>
+                        <div className="action-stat-label">{t('completed')}</div>
                     </div>
                 </div>
             </div>
 
-            <div className="action-navigation">
-                {[
-                    { id: 'all', label: t('allTasks') },
-                    { id: 'complaints', label: t('complaints') },
-                    { id: 'inquiries', label: t('inquiries') },
-                    { id: 'recommendations', label: t('quickWins') },
-                    { id: 'trends', label: t('trending') },
-                    { id: 'completed', label: t('completed') }
-                ].map(tab => (
-                    <button
-                        key={tab.id}
-                        className={`nav-tab ${activeTab === tab.id ? 'active' : ''}`}
-                        onClick={() => setActiveTab(tab.id)}
-                    >
-                        {tab.label}
-                    </button>
-                ))}
+            <div className="action-tabs">
+                <button
+                    className={`action-tab ${activeTab === 'all' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('all')}
+                >
+                    <Target size={16} />
+                    {t('allTasks')}
+                </button>
+                <button
+                    className={`action-tab ${activeTab === 'complaints' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('complaints')}
+                >
+                    <AlertTriangle size={16} />
+                    {t('complaintClusters')}
+                </button>
+                <button
+                    className={`action-tab ${activeTab === 'inquiries' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('inquiries')}
+                >
+                    <HelpCircle size={16} />
+                    {t('unansweredInquiries')}
+                </button>
+                <button
+                    className={`action-tab ${activeTab === 'recommendations' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('recommendations')}
+                >
+                    <Lightbulb size={16} />
+                    {t('quickWins')}
+                </button>
+                <button
+                    className={`action-tab ${activeTab === 'trends' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('trends')}
+                >
+                    <TrendingUp size={16} />
+                    {t('trendingIssues')}
+                </button>
+                <button
+                    className={`action-tab ${activeTab === 'completed' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('completed')}
+                >
+                    <CheckCircle size={16} />
+                    {t('completed')}
+                </button>
             </div>
 
-            <div className="action-vibrant-grid">
+            <div className="action-grid">
                 {filteredActions.length === 0 ? (
-                    <div className="empty-action-state">
-                        <CheckCircle size={64} color="var(--success)" />
-                        <h3>{t('perfectlyManaged')}</h3>
+                    <div className="empty-state">
+                        <CheckCircle size={48} style={{ color: 'var(--success)', opacity: 0.5 }} />
+                        <h3>{t('allCaughtUp')}</h3>
                         <p>{t('noPendingActions')}</p>
                     </div>
                 ) : (
                     filteredActions.map(action => (
-                        <div key={action.id} className={`vibrant-card ${action.priority}`}>
-                            <div className="card-top">
-                                <div className="icon-box">
+                        <div key={action.id} className="action-card glass-card">
+                            <div className="action-card-header">
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                     {getIcon(action.type)}
                                 </div>
-                                <div className="priority-tag">{action.priority} {t('priorityLabel')}</div>
+                                <span className={`action-priority ${action.priority}`}>
+                                    {action.priority}
+                                </span>
                             </div>
 
-                            <div className="card-body">
-                                <h3>{action.title}</h3>
-                                <p>{action.description}</p>
-                            </div>
+                            <h3 className="action-title">
+                                {action.titleKey ? t(action.titleKey, { topic: t(action.topicKey) }) : action.title}
+                            </h3>
+                            <p className="action-description">
+                                {action.descKey ? t(action.descKey, { count: action.count, topic: t(action.topicKey).toLowerCase() }) : action.description}
+                            </p>
 
-                            <div className="card-footer">
-                                <div className="meta-info">
-                                    <span className="mentions"><MessageSquare size={14} /> {action.count} {t('comments')}</span>
-                                    <span className="time"><Clock size={14} /> {action.timeframe}</span>
+                            {action.trend && (
+                                <div className={`trend-indicator ${action.trend > 0 ? 'up' : 'down'}`}>
+                                    {action.trend > 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
+                                    {Math.abs(action.trend)}% {t('thisWeek')}
                                 </div>
-                                {action.status !== 'completed' && (
-                                    <button className="resolve-btn" onClick={() => handleMarkComplete(action.id)}>
-                                        <CheckCircle size={18} /> {t('resolve')}
-                                    </button>
-                                )}
+                            )}
+
+                            <div className="action-meta">
+                                <div className="action-meta-item">
+                                    <MessageCircle size={14} />
+                                    {action.count} {t('mentions')}
+                                </div>
+                                <div className="action-meta-item">
+                                    <Clock size={14} />
+                                    {action.timeframeType === 'lastDays' ? t('lastDays', { days: action.timeframeDays }) :
+                                        action.timeframeType === 'today' ? t('today') :
+                                            action.timeframeType === 'thisWeek' ? t('thisWeek') :
+                                                action.timeframeType === 'recurring' ? t('recurring') :
+                                                    action.timeframe}
+                                </div>
+                            </div>
+
+                            {action.platforms && action.platforms.length > 0 && (
+                                <div className="action-platforms">
+                                    {action.platforms.map((platform, idx) => (
+                                        <span
+                                            key={idx}
+                                            className="platform-badge"
+                                            style={{ borderColor: getPlatformColor(platform) }}
+                                        >
+                                            {platform}
+                                        </span>
+                                    ))}
+                                </div>
+                            )}
+
+                            {action.samples && action.samples.length > 0 && (
+                                <div className="action-samples">
+                                    {action.samples.slice(0, 5).map((sample, idx) => (
+                                        <div key={idx} className="action-sample">
+                                            "{sample}"
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
+                            <div className="action-footer">
+                                <button
+                                    className={`action-btn ${action.status === 'completed' ? 'action-btn-secondary' : 'action-btn-primary'}`}
+                                    onClick={() => handleToggleComplete(action.id)}
+                                >
+                                    <CheckCircle size={16} />
+                                    {action.status === 'completed' ? t('unresolve') : t('markAsAddressed')}
+                                </button>
                             </div>
                         </div>
                     ))
