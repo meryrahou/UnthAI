@@ -21,31 +21,62 @@ const PostAnalysis = () => {
     const [allComments, setAllComments] = useState([]);
     const [loading, setLoading] = useState(false);
     const [postsLoading, setPostsLoading] = useState(true);
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+
+    // Fetch default dates from dashboard summary to match Dashboard page
+    useEffect(() => {
+        const fetchDefaultDates = async () => {
+            try {
+                const response = await fetch('http://localhost:8001/api/dashboard/summary', {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setStartDate(data.startDate);
+                    setEndDate(data.endDate);
+                }
+            } catch (err) { console.error("Error fetching dates:", err); }
+        };
+        fetchDefaultDates();
+    }, []);
 
     useEffect(() => {
         const fetchPosts = async () => {
             setPostsLoading(true);
             try {
-                const response = await fetch('http://localhost:8001/api/posts', {
+                const query = startDate && endDate ? `?start_date=${startDate}&end_date=${endDate}` : '';
+                const response = await fetch(`http://localhost:8001/api/posts${query}`, {
                     headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
                 });
                 if (response.ok) {
                     const data = await response.json();
                     setPosts(data);
-                    // Select the first post found, whatever platform it is
-                    if (data.length > 0) {
+
+                    // Only change selection if currently selected post is no longer in the list
+                    // or if nothing was selected
+                    const currentPostExists = data.find(p => p.id === selectedPost);
+
+                    if (!currentPostExists && data.length > 0) {
                         setSelectedPost(data[0].id);
                         setSelectedPlatform(data[0].platform);
+                    } else if (data.length === 0) {
+                        setSelectedPost(null);
                     }
                 }
             } catch (err) { console.error(err); }
             setPostsLoading(false);
         };
         fetchPosts();
-    }, []);
+    }, [startDate, endDate]);
+
+    // ... (keep comment fetch effect same)
 
     useEffect(() => {
-        if (selectedPost === null) return;
+        if (selectedPost === null) {
+            setAllComments([]);
+            return;
+        }
         const fetchComments = async () => {
             setLoading(true);
             try {
@@ -79,13 +110,33 @@ const PostAnalysis = () => {
         }
     };
 
-    if (postsLoading) {
+    if (postsLoading && !posts.length && !startDate) {
         return <div className="loading-container">Gathering social data...</div>;
     }
 
     return (
         <div className="analysis-page animate-fade-in">
             <div className="sidebar-analysis">
+                <div className="date-filter-section" style={{ marginBottom: '24px' }}>
+                    <label style={{ display: 'block', fontSize: '12px', color: 'var(--text-muted)', marginBottom: '8px', fontWeight: 'bold' }}>DATE RANGE</label>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                        <input
+                            type="date"
+                            className="glass-input"
+                            value={startDate}
+                            onChange={(e) => setStartDate(e.target.value)}
+                            style={{ width: '100%', padding: '8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '11px' }}
+                        />
+                        <input
+                            type="date"
+                            className="glass-input"
+                            value={endDate}
+                            onChange={(e) => setEndDate(e.target.value)}
+                            style={{ width: '100%', padding: '8px', borderRadius: '8px', border: '1px solid var(--border)', background: 'rgba(255,255,255,0.05)', color: 'white', fontSize: '11px' }}
+                        />
+                    </div>
+                </div>
+
                 <div className="platform-filter">
                     {['tiktok', 'instagram', 'facebook', 'googlemaps'].map(p => {
                         const count = posts.filter(post => post.platform === p).length;

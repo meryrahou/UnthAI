@@ -377,3 +377,8 @@
 .meta-cat.recommendation {
     color: #fbbf24;
 }
+.meta-cat.out_of_scope { color: #9ca3af; }
+
+.comment-sentiment-dot.out_of_scope {
+    background: #9ca3af;
+}

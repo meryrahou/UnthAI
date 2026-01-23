@@ -279,24 +279,64 @@ async def get_dashboard_summary(
     }
 
 @app.get("/api/posts")
-async def get_posts(current_user: dict = Depends(get_current_user)):
+async def get_posts(
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    current_user: dict = Depends(get_current_user)
+):
     df_user = get_restaurant_df(current_user["restaurant_name"])
+    
+    d_df = df_user.copy()
+    if 'date_dt' not in d_df.columns:
+         d_df['date_dt'] = pd.to_datetime(d_df['date'], format='mixed', utc=True, errors='coerce')
+    
+    if start_date and end_date and start_date != "" and end_date != "":
+        try:
+            s_dt = pd.to_datetime(start_date, utc=True)
+            e_dt = pd.to_datetime(end_date, utc=True) + pd.Timedelta(days=1)
+            d_df = d_df[(d_df['date_dt'] >= s_dt) & (d_df['date_dt'] < e_dt)]
+        except Exception as e:
+            print(f"Filter error in posts: {e}")
+
     # Group by post_id to get unique posts
-    post_ids = df_user['post_id'].unique().tolist()
+    post_ids = d_df['post_id'].unique().tolist()
     posts = []
     categories = ['food', 'service', 'place', 'delivery', 'price', 'treatment']
     
     for pid in post_ids:
-        p_df = df_user[df_user['post_id'] == pid].copy()
-        if p_df.empty: continue
-        
-        platform = p_df['platform'].iloc[0]
+        # Always use the FULL history to determine the true post date
+        p_df_full = df_user[df_user['post_id'] == pid]
+        if p_df_full.empty: continue
+
+        platform = p_df_full['platform'].iloc[0]
         try:
-            p_df['date_dt'] = pd.to_datetime(p_df['date'], format='mixed', utc=True)
-            earliest_date = p_df['date_dt'].min().strftime('%b %d, %Y')
-        except:
-            earliest_date = "N/A"
+            # Calculate the immutable creation date of the post
+            if 'date_dt' not in p_df_full.columns:
+                 p_df_full = p_df_full.copy()
+                 p_df_full['date_dt'] = pd.to_datetime(p_df_full['date'], format='mixed', utc=True)
             
+            creation_date_dt = p_df_full['date_dt'].min()
+            earliest_date = creation_date_dt.strftime('%b %d, %Y')
+            
+            # STRICT FILTER: If the post was created outside the selected range, HIDE IT.
+            if start_date and end_date and start_date != "" and end_date != "":
+                s_dt = pd.to_datetime(start_date, utc=True)
+                e_dt = pd.to_datetime(end_date, utc=True) + pd.Timedelta(days=1)
+                if not (s_dt <= creation_date_dt < e_dt):
+                    continue
+
+        except Exception as e:
+            # If date parsing fails, we assume it's valid to show (or handle differently)
+            # But usually we fallback to safe defaults
+            creation_date_dt = None
+            earliest_date = "N/A"
+
+        # Now determine which comments to analyze. 
+        # For "Post Analysis", usually we show the full post stats unless specifically requested otherwise?
+        # IMPORTANT: The user wanted "stats for this period" in dashboard, but here they seem focused on "Post Lists".
+        # Let's show the FULL stats for the post so the "Analyzing X interactions" matches the actual post content.
+        p_df = p_df_full 
+
         pos_count = len(p_df[p_df['feeling'] == 'positive'])
         neg_count = len(p_df[p_df['feeling'] == 'negative'])
         neu_count = len(p_df[p_df['feeling'] == 'neutral'])
@@ -361,7 +401,9 @@ async def get_post_comments(post_id: int, current_user: dict = Depends(get_curre
         
         # Determine sentiment type
         c_type = "neutral"
-        if any("recommendation" in str(p).lower() for p in preds): 
+        if str(row.get('out_of_scope', '')).lower() in ['true', '1', 'yes']:
+            c_type = "out_of_scope"
+        elif any("recommendation" in str(p).lower() for p in preds): 
             c_type = "recommendation"
         elif any("inquiry" in str(p).lower() for p in preds): 
             c_type = "inquiry"
