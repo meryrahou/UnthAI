@@ -654,17 +654,28 @@ async def get_actions(current_user: dict = Depends(get_current_user)):
         (df_user.apply(lambda row: any('inquiry' in str(p).lower() for p in eval(str(row.get('model_prediction', '[]')))), axis=1))
     ].copy()
     
-    inquiry_keywords = {
-        'Price': ['price', 'prix', 'combien', 'how much', 'cost', 'menu', 'بشحال', 'السعر', 'list', 'سومة', 'كم', 'قداش', 'tarif'],
-        'Hours & Opening': ['opening', 'hours', 'horaire', 'ouvert', 'open', 'time', 'ferme', 'وقت', 'ساعة', 'available', 'dispo', 'يفتح', 'thel', 'tebda', 'فتحتها'],
-        'Delivery & Prep': ['delivery', 'livraison', 'توصيل', 'order', 'prepar', 'ready', 'booking', 'réservation', 'ليفرزون', 'كاين توصيل'],
-        'Location': ['where', 'location', 'place', 'adresse', 'maps', 'وين', 'بلاصة', 'فين', 'directions', 'c est où', 'win jay', 'أين', 'بلايص'],
-        'Contact & Info': ['numéro', 'téléphone', 'نمرو', 'رقم', 'call', 'contact', 'whatsapp']
-    }
+    # Prioritized processing to prevent overlap
+    # We process Contact first, then remove those rows from the pool
+    processed_indices = []
     
-    for theme, keywords in inquiry_keywords.items():
-        mask = inquiries['comment_text'].str.lower().str.contains('|'.join(keywords), na=False, regex=True)
-        theme_inquiries = inquiries[mask]
+    # Order matters: Contact first to catch phone requests before they get stuck in other buckets
+    ordered_themes = [
+        ('Contact & Info', ['numéro', 'téléphone', 'نمرو', 'رقم', 'call', 'contact', 'whatsapp']),
+        ('Price', ['price', 'prix', 'combien', 'how much', 'cost', 'menu', 'بشحال', 'السعر', 'list', 'سومة', 'قداش', 'tarif']),
+        ('Hours & Opening', ['opening', 'hours', 'horaire', 'ouvert', 'open', 'time', 'ferme', 'وقت', 'ساعة', 'available', 'dispo', 'يفتح', 'thel', 'tebda', 'فتحتها']),
+        ('Delivery & Prep', ['delivery', 'livraison', 'توصيل', 'order', 'prepar', 'ready', 'booking', 'réservation', 'ليفرزون', 'كاين توصيل']),
+        ('Location', ['where', 'location', 'place', 'adresse', 'maps', 'وين', 'بلاصة', 'فين', 'directions', 'c est où', 'win jay', 'أين', 'بلايص'])
+    ]
+    
+    for theme, keywords in ordered_themes:
+        # Filter out already processed rows
+        remaining_inquiries = inquiries.drop(processed_indices, errors='ignore')
+        
+        mask = remaining_inquiries['comment_text'].str.lower().str.contains('|'.join(keywords), na=False, regex=True)
+        theme_inquiries = remaining_inquiries[mask]
+        
+        # Mark these as processed
+        processed_indices.extend(theme_inquiries.index.tolist())
         
         if len(theme_inquiries) >= 2: # Lower threshold to 2 for inquiries
             platforms = theme_inquiries['platform'].unique().tolist()
