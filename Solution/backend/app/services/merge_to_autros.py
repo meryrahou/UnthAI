@@ -65,25 +65,34 @@ def refine_autros_demo():
     df.loc[mask, 'source_name'] = 'Autros'
 
     # 3. PRUNE TO BALANCED POST COUNT
-    # We keep only the top posts per platform for a cleaner demo
+    # Aiming for ~13-14 total posts for maximum snappiness
     autros_df = df[df['source_name'] == 'Autros'].copy()
     
     # Get stats per post
     post_stats = autros_df.groupby(['platform', 'post_id']).size().reset_index(name='count')
     
     limits = {
-        'tiktok': 6,
-        'instagram': 5,
-        'Facebook': 4,
-        'Google Maps': 3
+        'tiktok': 4,        # Up to 4
+        'instagram': 4,     # Up to 4
+        'Facebook': 4,      # Up to 4
+        'Google Maps': 2    # Keep 2
     }
     
     posts_to_keep = []
     for platform, limit in limits.items():
-        top_posts = post_stats[post_stats['platform'] == platform].sort_values('count', ascending=False).head(limit)
-        posts_to_keep.extend(top_posts['post_id'].tolist())
+        # User requested "ones with less comments" for FB/TikTok (and likely others for balance)
+        # We sort by count ASCENDING to get the smallest ones first.
+        # But we don't want "1 comment" posts, so let's filter for meaningful data (>15 comments)
+        
+        platform_posts = post_stats[
+            (post_stats['platform'] == platform) & 
+            (post_stats['count'] > 15)
+        ].sort_values('count', ascending=True)
+        
+        selected_posts = platform_posts.head(limit)
+        posts_to_keep.extend(selected_posts['post_id'].tolist())
     
-    # Final filter: Only rows that are Protected OR are in the pruned Autros list
+    # Final filter: Only rows that are Protected OR are in our hyper-lean Autros list
     mask_to_keep = (df['source_name'].isin(top_protected)) | (df['post_id'].isin(posts_to_keep))
     df = df[mask_to_keep]
 
@@ -92,12 +101,12 @@ def refine_autros_demo():
     
     # 5. VERIFY RESULTS
     autros_df = df[df['source_name'] == 'Autros']
-    print("\n--- ✅ DEMO ACCOUNT 'AUTROS' REFINED ---")
+    print("\n--- ✅ DEMO ACCOUNT 'AUTROS' LIGHT READY ---")
     print(f"Total Comments: {len(autros_df)}")
     print(f"Total Posts: {autros_df['post_id'].nunique()}")
     print("\nPlatform Balance:")
     print(autros_df.groupby('platform').agg({'post_id': 'nunique', 'comment_id': 'count'}))
-    print("\n'Autros' is now perfectly trimmed for a snappy demo!")
+    print("\n'Autros' is now lean, mean, and perfectly suited for a lighting-fast demo!")
 
 if __name__ == "__main__":
     refine_autros_demo()
