@@ -34,10 +34,10 @@ const Trends = () => {
 
     return (
         <div className="trends-page animate-fade-in">
-            <div className="trends-header">
+            <div className="page-header">
                 <div>
-                    <h2><Zap size={24} style={{ color: 'var(--primary)' }} /> {t('trendExplorer')}</h2>
-                    <p>{t('trendsSubtitle')}</p>
+                    <h1><Zap className="header-icon" size={28} /> {t('trendExplorer')}</h1>
+                    <p className="subtitle">{t('trendsSubtitle')}</p>
                 </div>
             </div>
 

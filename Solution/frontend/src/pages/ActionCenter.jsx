@@ -123,15 +123,10 @@ const ActionCenter = () => {
 
     return (
         <div className="action-center-page animate-fade-in">
-            <div className="action-header">
+            <div className="page-header">
                 <div>
-                    <h1>
-                        <Target size={28} style={{ color: 'var(--primary)' }} />
-                        {t('actionCenter')}
-                    </h1>
-                    <p style={{ color: 'var(--text-muted)', marginTop: '8px' }}>
-                        {t('actionCenterSubtitle')}
-                    </p>
+                    <h1><Target className="header-icon" size={28} /> {t('actionCenter')}</h1>
+                    <p className="subtitle">{t('actionCenterSubtitle')}</p>
                 </div>
                 <div className="action-stats">
                     <div className="action-stat">

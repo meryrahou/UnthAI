@@ -2,21 +2,11 @@
     padding: 32px;
 }
 
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    /* Align to baseline */
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-    /* Allow wrapping */
-    gap: 24px;
-}
+/* Page Header inherits from index.css */
 
 .subtitle {
-    color: var(--text-muted);
-    font-size: 14px;
-    margin-top: 4px;
+    margin-top: 8px !important;
+    font-size: 15px !important;
 }
 
 .date-picker-container {

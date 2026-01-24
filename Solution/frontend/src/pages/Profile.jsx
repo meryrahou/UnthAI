@@ -8,8 +8,10 @@ const Profile = () => {
     return (
         <div className="profile-page animate-fade-in">
             <div className="page-header">
-                <h1>{t('accountProfile')}</h1>
-                <p className="subtitle">{t('profileSubtitle')}</p>
+                <div>
+                    <h1><User className="header-icon" size={28} /> {t('accountProfile')}</h1>
+                    <p className="subtitle">{t('profileSubtitle')}</p>
+                </div>
             </div>
 
             <div className="profile-content">

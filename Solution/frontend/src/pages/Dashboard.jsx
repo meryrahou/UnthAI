@@ -102,7 +102,7 @@ const Dashboard = () => {
         <div className="dashboard-page animate-fade-in">
             <div className="page-header">
                 <div>
-                    <h1>{t('dashboard')}</h1>
+                    <h1><Activity className="header-icon" size={28} /> {t('dashboard')}</h1>
                     <p className="subtitle">{t('dashboardSubtitle')}</p>
                 </div>
                 <div className="date-picker-container">

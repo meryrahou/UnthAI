@@ -1,12 +1,14 @@
 .profile-page {
-    padding: 40px;
+    padding: 32px;
 }
+
+/* Page Header inherits from index.css */
 
 .profile-content {
     display: grid;
     grid-template-columns: 320px 1fr;
     gap: 32px;
-    margin-top: 40px;
+    margin-top: 32px;
 }
 
 .user-main-card {

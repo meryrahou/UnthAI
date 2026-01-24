@@ -110,3 +110,33 @@ button {
 [dir="rtl"] {
   text-align: right;
 }
+/* Page Header Design System */
+.page-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  margin-bottom: 32px !important;
+  width: 100% !important;
+}
+
+.page-header h1 {
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  margin: 0 !important;
+  color: var(--text-main) !important;
+}
+
+.page-header .subtitle {
+  margin-top: 8px !important;
+  color: var(--text-muted) !important;
+  font-size: 15px !important;
+  opacity: 0.8 !important;
+}
+
+.header-icon {
+  color: var(--primary);
+  flex-shrink: 0;
+}

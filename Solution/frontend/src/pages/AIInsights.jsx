@@ -1,9 +1,9 @@
-import React from 'react';
 import {
     Lightbulb,
     Target,
     AlertCircle,
-    CheckCircle2
+    CheckCircle2,
+    Sparkles
 } from 'lucide-react';
 import { useApp } from '../utils/AppContext';
 import './AIInsights.css';
@@ -36,7 +36,7 @@ const AIInsights = () => {
         <div className="insights-page animate-fade-in">
             <div className="page-header">
                 <div>
-                    <h1>{t('aiInsights')}</h1>
+                    <h1><Sparkles className="header-icon" size={28} /> {t('aiInsights')}</h1>
                     <p className="subtitle">{t('aiInsightsSubtitle')}</p>
                 </div>
             </div>

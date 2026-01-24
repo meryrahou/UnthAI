@@ -8,7 +8,8 @@ import {
     CheckCircle2,
     RefreshCcw,
     Clock,
-    List
+    List,
+    Settings
 } from 'lucide-react';
 import { useApp } from '../utils/AppContext';
 import './SocialConfig.css';
@@ -54,8 +55,10 @@ const SocialConfig = () => {
     return (
         <div className="config-page animate-fade-in">
             <div className="page-header">
-                <h1>{t('sourceConfiguration')}</h1>
-                <p className="subtitle">{t('configSubtitle')}</p>
+                <div>
+                    <h1><Settings className="header-icon" size={28} /> {t('sourceConfiguration')}</h1>
+                    <p className="subtitle">{t('configSubtitle')}</p>
+                </div>
             </div>
 
             <div className="config-grid">
