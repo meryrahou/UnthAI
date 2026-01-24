@@ -113,9 +113,9 @@ const Processing = () => {
 
     const steps = useMemo(() => [
         { id: 0, icon: <Search />, label: t('stepSearch', { name: restaurantName }) },
-        { id: 1, icon: <Database />, label: "Data Extraction" },
-        { id: 2, icon: <Wand2 />, label: "AI Prediction Engine" },
-        { id: 3, icon: <BarChart3 />, label: "Workspace Preparation" }
+        { id: 1, icon: <Database />, label: t('dataExtraction') },
+        { id: 2, icon: <Wand2 />, label: t('aiPredictionEngine') },
+        { id: 3, icon: <BarChart3 />, label: t('workspacePreparation') }
     ], [t, restaurantName]);
 
     return (
@@ -157,15 +157,15 @@ const Processing = () => {
                 <div className="stats-grid">
                     <div className="mini-stat">
                         <span className="stat-num">{displayCounts.platforms}</span>
-                        <span className="stat-label">Platforms</span>
+                        <span className="stat-label">{t('platforms')}</span>
                     </div>
                     <div className="mini-stat">
                         <span className="stat-num">{displayCounts.posts}</span>
-                        <span className="stat-label">Posts</span>
+                        <span className="stat-label">{t('postsCount')}</span>
                     </div>
                     <div className="mini-stat">
                         <span className="stat-num">{displayCounts.comments}</span>
-                        <span className="stat-label">Comments</span>
+                        <span className="stat-label">{t('comments')}</span>
                     </div>
                 </div>
 

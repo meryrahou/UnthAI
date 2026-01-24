@@ -76,25 +76,23 @@
 /* Grids */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 16px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 24px;
+    margin-bottom: 32px;
     width: 100%;
 }
 
 .charts-row {
     display: grid;
-    grid-template-columns: 1fr 1.8fr;
-    /* Even wider Category chart */
-    gap: 20px;
-    margin-bottom: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
 }
 
 .insights-preview-row {
     display: grid;
-    grid-template-columns: 1.8fr 1fr;
-    /* Insights is wider, Platform Activity is narrower */
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
 }
 
 .chart-container h3,
@@ -107,21 +105,23 @@
 
 /* Stat Cards */
 .stat-card {
-    padding: 16px !important;
+    padding: 24px !important;
     position: relative;
-    border-radius: 16px;
+    border-radius: 20px;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .stat-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
-    font-size: 16px;
+    margin-bottom: 20px;
+    font-size: 20px;
     flex-shrink: 0;
 }
 
@@ -147,13 +147,13 @@
 
 .stat-label {
     color: var(--text-muted);
-    font-size: 12px;
-    margin-bottom: 2px;
+    font-size: 13px;
+    margin-bottom: 6px;
     font-weight: 500;
 }
 
 .stat-value {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 700;
     color: var(--text-main);
     line-height: 1.1;
