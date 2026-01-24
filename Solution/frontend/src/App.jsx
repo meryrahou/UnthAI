@@ -11,6 +11,7 @@ import SocialConfig from './pages/SocialConfig';
 import Profile from './pages/Profile';
 import Auth from './pages/Auth';
 import Processing from './pages/Processing';
+import Lab from './pages/Lab';
 import { AppProvider } from './utils/AppContext';
 
 import './App.css';
@@ -51,6 +52,7 @@ function App() {
                       <Route path="/trends" element={<Trends />} />
                       <Route path="/actions" element={<ActionCenter />} />
                       <Route path="/insights" element={<AIInsights />} />
+                      <Route path="/lab" element={<Lab />} />
                       <Route path="/config" element={<SocialConfig />} />
                       <Route path="/profile" element={<Profile />} />
                       <Route path="*" element={<Navigate to="/" replace />} />

@@ -9,7 +9,8 @@ import {
     LogOut,
     LayoutDashboard,
     Zap,
-    Target
+    Target,
+    FlaskConical
 } from 'lucide-react';
 import { useApp } from '../utils/AppContext';
 import './Sidebar.css';
@@ -46,6 +47,10 @@ const Sidebar = ({ onLogout }) => {
                 <NavLink to="/insights" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
                     <Sparkles size={20} />
                     <span>{t('aiInsights')}</span>
+                </NavLink>
+                <NavLink to="/lab" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
+                    <FlaskConical size={20} />
+                    <span>AI Lab</span>
                 </NavLink>
                 <NavLink to="/config" className={({ isActive }) => isActive ? 'nav-item active' : 'nav-item'}>
                     <Settings size={20} />

@@ -49,8 +49,9 @@ def refresh_restaurant_data(restaurant_name):
         import re
         clean_comments = [re.sub(r'\s*\[(COMPLAINT|INQUIRY|APPRECIATION|RECOMMENDATION|OUT_OF_SCOPE)\]\s*$', '', str(c), flags=re.IGNORECASE) for c in comments]
         
-        print(f"--- 🧠 Running Model Inference on {len(comments)} comments ---")
-        all_preds = model_service.predict_batch(clean_comments, threshold=0.5)
+        print(f"--- 🧠 Running BERT Inference on {len(comments)} comments ---")
+        all_preds = model_service.predict_batch(clean_comments, threshold=0.8)
+        print(f"✅ BERT Inference COMPLETE for {len(comments)} comments.")
         
         # Prepare processed columns
         feelings = []
@@ -94,7 +95,8 @@ def refresh_restaurant_data(restaurant_name):
         
         output_path = get_processed_path(restaurant_name)
         df_res.to_csv(output_path, index=False)
-        print(f"Success: Processed {len(df_res)} rows with BERT model. Saved to {output_path}")
+        print(f"💾 DATA SAVED: Processed file created at {output_path}")
+        print(f"✨ Analysis Pipeline for '{restaurant_name}' Finished Successfully ✨")
         return True
         
     except Exception as e:

@@ -50,8 +50,6 @@ async def startup_event():
 
 # --- Data Loading ---
 
-# --- Dynamic Data Store ---
-data_cache = {}
 # Track which restaurants are currently being processed by the BERT model
 active_processing = set()
 
@@ -60,8 +58,7 @@ def get_restaurant_df(restaurant_name: str):
     if restaurant_name in active_processing:
         return None  # Signal that data is not ready yet
         
-    if restaurant_name in data_cache:
-        return data_cache[restaurant_name]
+    # Removed in-memory cache to ensure dashboard always reflects latest disk data
     
     path = get_processed_path(restaurant_name)
     if not os.path.exists(path):
@@ -75,7 +72,6 @@ def get_restaurant_df(restaurant_name: str):
     df['date_dt_all'] = pd.to_datetime(df['date'], format='mixed', utc=True, errors='coerce')
     df = df.dropna(subset=['date_dt_all'])
     
-    data_cache[restaurant_name] = df
     return df
 
 # --- Auth Logic ---
@@ -327,9 +323,9 @@ async def process_data_endpoint(current_user: dict = Depends(get_current_user)):
         success = refresh_restaurant_data(name)
         
         if success:
-            # Clear cache for this user
-            if name in data_cache:
-                del data_cache[name]
+            # Release lock immediately after model finishes so get_restaurant_df can read it
+            if name in active_processing:
+                active_processing.remove(name)
             
             # Fetch summary stats
             df = get_restaurant_df(name)
@@ -357,8 +353,8 @@ async def process_data_endpoint(current_user: dict = Depends(get_current_user)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     finally:
-        if name in active_processing:
-            active_processing.remove(name)
+        # Note: lock removal now handled inside success block to allow immediate summary fetch
+        pass
 
 @app.get("/api/posts")
 async def get_posts(
@@ -372,13 +368,20 @@ async def get_posts(
     
     d_df = df_user.copy()
     if 'date_dt' not in d_df.columns:
-         d_df['date_dt'] = pd.to_datetime(d_df['date'], format='mixed', utc=True, errors='coerce')
+         d_df['date_dt'] = pd.to_datetime(d_df['date'], errors='coerce', utc=True)
     
+    # Drop rows with invalid dates to prevent issues
+    d_df = d_df.dropna(subset=['date_dt'])
+    
+    print(f"DEBUG: Total rows for {current_user['restaurant_name']}: {len(df_user)}")
+    print(f"DEBUG: Start Date: {start_date}, End Date: {end_date}")
+
     if start_date and end_date and start_date != "" and end_date != "":
         try:
             s_dt = pd.to_datetime(start_date, utc=True)
             e_dt = pd.to_datetime(end_date, utc=True) + pd.Timedelta(days=1)
             d_df = d_df[(d_df['date_dt'] >= s_dt) & (d_df['date_dt'] < e_dt)]
+            print(f"DEBUG: Rows after date filter: {len(d_df)}")
         except Exception as e:
             print(f"Filter error in posts: {e}")
 
@@ -949,7 +952,6 @@ async def get_actions(trend_period: str = "monthly", current_user: dict = Depend
         "stats": stats,
         "restaurant_name": current_user["restaurant_name"]
     }
-
 @app.get("/api/ai/insights")
 async def get_ai_insights(current_user: dict = Depends(get_current_user)):
     df_user = get_restaurant_df(current_user["restaurant_name"])
@@ -965,6 +967,46 @@ async def get_ai_insights(current_user: dict = Depends(get_current_user)):
             "impact": "High"
         }
     ]
+
+class PredictRequest(BaseModel):
+    comment: str
+
+@app.post("/api/lab/predict")
+async def lab_predict(request: PredictRequest, current_user: dict = Depends(get_current_user)):
+    try:
+        model_service = get_model_service()
+        # Clean text
+        import re
+        clean_comment = re.sub(r'\s*\[(COMPLAINT|INQUIRY|APPRECIATION|RECOMMENDATION|OUT_OF_SCOPE)\]\s*$', '', request.comment, flags=re.IGNORECASE)
+        
+        # Predict with optimized threshold
+        preds = model_service.predict_batch([clean_comment], threshold=0.8)[0]
+        
+        # Map to platform labels
+        intents = model_service.map_to_platform_labels(preds)
+        feeling = model_service.get_feeling(preds)
+        
+        # Structure the response for the "Pretty" UI
+        # intents is a list like ["food_appreciation", "service_complaint"]
+        formatted_intents = []
+        for intent in intents:
+            parts = intent.split('_')
+            pillar = parts[0].capitalize()
+            type_label = parts[1].capitalize() if len(parts) > 1 else "Unknown"
+            formatted_intents.append({
+                "pillar": pillar,
+                "type": type_label,
+                "raw": intent
+            })
+
+        return {
+            "feeling": feeling,
+            "intents": formatted_intents,
+            "raw_predictions": preds
+        }
+    except Exception as e:
+        print(f"Lab prediction error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn

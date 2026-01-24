@@ -18,7 +18,7 @@ const Auth = ({ onLogin }) => {
         setError('');
         setLoading(true);
 
-        const loginName = restaurantName || 'Autros';
+        const loginName = restaurantName || 'American burger';
         const loginPassword = password || '1234';
 
         try {

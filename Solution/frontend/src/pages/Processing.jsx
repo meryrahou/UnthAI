@@ -24,6 +24,7 @@ const Processing = () => {
     
     // Use a ref for progress to avoid closures issues in animation frames
     const progressRef = useRef(0);
+    const hasStarted = useRef(false);
 
     const animateSmoothly = (duration, startP, endP, onFrame) => {
         return new Promise(resolve => {
@@ -50,6 +51,10 @@ const Processing = () => {
 
     useEffect(() => {
         const processData = async () => {
+            if (hasStarted.current) return;
+            if (restaurantName === 'Loading...') return; // Wait for context
+            
+            hasStarted.current = true;
             try {
                 const token = localStorage.getItem('token');
                 
@@ -94,8 +99,30 @@ const Processing = () => {
                 });
 
                 // 3. Wait for BOTH (Strict Link)
-                const [backendRes] = await Promise.all([aiProcessPromise, showAIProgress]);
+                let backendRes = await aiProcessPromise;
                 if (!backendRes.ok) throw new Error("AI Prediction failed");
+                
+                let result = await backendRes.json();
+                
+                // --- POLLING LOOP ---
+                // If the backend says it's already processing (e.g. from a double-click or previous tab)
+                // we must WAIT here until it finishes, otherwise we'll go to an empty dashboard.
+                while (result.status === 'processing') {
+                    setSubMessage(t('analyzingSentiment', { n: stats.comments / 2, total: stats.comments }) + " (waiting for worker...)");
+                    await new Promise(r => setTimeout(r, 2000)); // Wait 2s
+                    backendRes = await fetch('http://localhost:8001/api/process-data', {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    result = await backendRes.json();
+                }
+
+                if (result.status === 'warning' || result.status === 'error') {
+                    throw new Error(result.message || "Model failed to find data");
+                }
+                
+                // Wait for animation if it's still running
+                await showAIProgress;
                 
                 // STAGE 3: WORKSPACE PREP (Happens AFTER model is 100% done)
                 setCurrentStep(3);

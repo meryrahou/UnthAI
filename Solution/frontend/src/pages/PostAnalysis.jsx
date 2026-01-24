@@ -52,6 +52,10 @@ const PostAnalysis = () => {
                 });
                 if (response.ok) {
                     const data = await response.json();
+                    if (!Array.isArray(data)) {
+                        console.warn("API returned non-array for posts:", data);
+                        return;
+                    }
                     setPosts(data);
                     const currentPostExists = data.find(p => p.id === selectedPost);
                     if (!currentPostExists && data.length > 0) {
