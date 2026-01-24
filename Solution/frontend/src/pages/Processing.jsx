@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
     CheckCircle2, 
@@ -7,7 +7,6 @@ import {
     Database, 
     Cpu, 
     Search, 
-    MessageSquare, 
     BarChart3,
     Wand2
 } from 'lucide-react';
@@ -19,22 +18,43 @@ const Processing = () => {
     const { t, restaurantName } = useApp();
     const [currentStep, setCurrentStep] = useState(0);
     const [progress, setProgress] = useState(0);
-    const [stats, setStats] = useState(null);
     const [error, setError] = useState(null);
     const [subMessage, setSubMessage] = useState("");
     const [displayCounts, setDisplayCounts] = useState({ platforms: 0, posts: 0, comments: 0 });
+    
+    // Use a ref for progress to avoid closures issues in animation frames
+    const progressRef = useRef(0);
 
-    // Step labels are now fetched via translations in the step rendering logic
+    const animateSmoothly = (duration, startP, endP, onFrame) => {
+        return new Promise(resolve => {
+            const startTime = performance.now();
+            const tick = (now) => {
+                const elapsed = now - startTime;
+                const ratio = Math.min(elapsed / duration, 1);
+                
+                const frameProgress = startP + (endP - startP) * ratio;
+                progressRef.current = frameProgress;
+                setProgress(Math.round(frameProgress));
+                
+                if (onFrame) onFrame(ratio);
+
+                if (ratio < 1) {
+                    requestAnimationFrame(tick);
+                } else {
+                    resolve();
+                }
+            };
+            requestAnimationFrame(tick);
+        });
+    };
 
     useEffect(() => {
         const processData = async () => {
             try {
-                // STAGE 1: SOCIAL SEARCH
+                // STAGE 0: SOCIAL SEARCH
                 setCurrentStep(0);
-                setProgress(10);
                 setSubMessage(restaurantName === 'Loading...' ? t('workspaceSubtitle') : t('stepSearch', { name: restaurantName }));
-                await new Promise(r => setTimeout(r, 3500));
-                setProgress(25);
+                await animateSmoothly(3500, 0, 25);
 
                 const token = localStorage.getItem('token');
                 const response = await fetch('http://localhost:8001/api/process-data', {
@@ -44,68 +64,55 @@ const Processing = () => {
                 
                 if (!response.ok) throw new Error("Processing failed");
                 const result = await response.json();
-                const fetchedStats = result.stats;
-                setStats(fetchedStats);
+                const stats = result.stats;
 
-                // Incremental count animation
-                const duration = 4000;
-                const startTime = performance.now();
-                const animateCounts = (now) => {
-                    const elapsed = now - startTime;
-                    const p = Math.min(elapsed / duration, 1);
-                    setDisplayCounts({
-                        platforms: Math.floor(p * fetchedStats.platforms),
-                        posts: Math.floor(p * fetchedStats.posts),
-                        comments: Math.floor(p * fetchedStats.comments)
-                    });
-                    if (p < 1) requestAnimationFrame(animateCounts);
-                };
-                requestAnimationFrame(animateCounts);
-
-                // STAGE 2: RETRIEVAL
+                // STAGE 1: DATA EXTRACTION
                 setCurrentStep(1);
-                setProgress(40);
-                const platformNames = Object.keys(fetchedStats.breakdown)
+                const platformNames = Object.keys(stats.breakdown)
                     .map(p => t(p.toLowerCase().replace(' ', '')))
                     .join(', ');
-                setSubMessage(t('stepFound', { count: fetchedStats.platforms, list: platformNames }));
-                await new Promise(r => setTimeout(r, 3000));
                 
-                setProgress(60);
-                setSubMessage(t('stepRetrieving', { pCount: fetchedStats.posts, cCount: fetchedStats.comments }));
-                await new Promise(r => setTimeout(r, 3500));
+                setSubMessage(t('stepFound', { count: stats.platforms, list: platformNames }));
+                
+                // Extra smooth flow for retrieval and count counting
+                await animateSmoothly(4000, 25, 60, (ratio) => {
+                    // Update stats counters smoothly in sync with bar
+                    setDisplayCounts({
+                        platforms: Math.floor(ratio * stats.platforms),
+                        posts: Math.floor(ratio * stats.posts),
+                        comments: Math.floor(ratio * stats.comments)
+                    });
+                    if (ratio > 0.5) {
+                        setSubMessage(t('stepRetrieving', { pCount: stats.posts, cCount: stats.comments }));
+                    }
+                });
 
-                // STAGE 3: AI ANALYSIS (THE MAGIC STAGE)
+                // STAGE 2: AI PREDICTION ENGINE
                 setCurrentStep(2);
-                setProgress(75);
                 setSubMessage(t('stepAnalyzing'));
                 
-                // Scale duration based on comment volume (1 second for every 20 comments)
-                const processingDuration = Math.max((fetchedStats.comments / 20) * 1000, 4000);
-                const stepsCount = 10;
-                const stepDelay = processingDuration / stepsCount;
-
-                for (let i = 1; i <= stepsCount; i++) {
-                    const currentProcessed = Math.min(Math.floor((i / stepsCount) * fetchedStats.comments), fetchedStats.comments);
+                // Scale duration based on comment volume (1s per 20 comments)
+                const analysisDuration = Math.max((stats.comments / 20) * 1000, 5000);
+                
+                await animateSmoothly(analysisDuration, 60, 90, (ratio) => {
+                    // Live increment the "analyzed X/Y" number every single frame
+                    const currentProcessed = Math.min(Math.floor(ratio * stats.comments), stats.comments);
                     setSubMessage(t('analyzingSentiment', { 
                         n: currentProcessed, 
-                        total: fetchedStats.comments 
+                        total: stats.comments 
                     }));
-                    await new Promise(r => setTimeout(r, stepDelay));
-                }
-                
-                setProgress(90);
+                });
+
+                // STAGE 3: WORKSPACE PREP
                 setSubMessage(t('stepGenerating'));
-                await new Promise(r => setTimeout(r, 3000));
-                
-                // STAGE 4: FINALIZING
+                await animateSmoothly(3000, 90, 95);
+
                 setCurrentStep(3);
-                setProgress(100);
                 setSubMessage(t('stepAlmost'));
-                await new Promise(r => setTimeout(r, 2500));
+                await animateSmoothly(3000, 95, 100);
 
                 setSubMessage(t('workspaceFinalizing'));
-                await new Promise(r => setTimeout(r, 2000));
+                await new Promise(r => setTimeout(r, 1500));
                 
                 navigate('/');
                 
@@ -128,7 +135,6 @@ const Processing = () => {
 
     return (
         <div className="processing-page">
-            {/* Background Magic Particles would go here if we had a library, using CSS magic instead */}
             <div className="magic-bg">
                 <div className="blob"></div>
                 <div className="blob secondary"></div>
@@ -157,12 +163,14 @@ const Processing = () => {
                         </div>
                     </div>
                     <div className="progress-meta">
-                        <span className="current-submessage">{subMessage}</span>
+                        <div className="message-container">
+                             <span className="current-submessage">{subMessage}</span>
+                        </div>
                         <span className="percentage">{progress}%</span>
                     </div>
                 </div>
 
-                <div className="stats-grid">
+                <div className="stats-grid-compact">
                     <div className="mini-stat">
                         <span className="stat-num">{displayCounts.platforms}</span>
                         <span className="stat-label">{t('platforms')}</span>

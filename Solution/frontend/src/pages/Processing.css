@@ -144,7 +144,7 @@
     height: 100%;
     background: linear-gradient(90deg, var(--primary), var(--accent));
     border-radius: 10px;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Removed CSS transition to allow smooth JS frame updates */
     position: relative;
 }
 
@@ -165,16 +165,24 @@
     align-items: center;
     font-size: 14px;
     font-weight: 600;
+    min-height: 24px;
+}
+
+.message-container {
+    flex: 1;
+    text-align: left;
+    overflow: hidden;
 }
 
 .current-submessage {
     color: var(--primary);
     font-style: italic;
     opacity: 0.9;
+    white-space: nowrap;
 }
 
 /* Stats */
-.stats-grid {
+.stats-grid-compact {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
