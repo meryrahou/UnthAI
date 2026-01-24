@@ -39,6 +39,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from app.services.model_service import get_model_service
+
+@app.on_event("startup")
+async def startup_event():
+    try:
+        get_model_service()
+    except Exception as e:
+        print(f"Warning: Model could not be pre-loaded: {e}")
+
 # --- Data Loading ---
 
 # --- Dynamic Data Store ---
@@ -272,6 +281,31 @@ async def get_dashboard_summary(
              {"text": f"Top Complaint source: <strong>{top_complaint_cat.capitalize()}</strong>.", "status": "warning"}
         ]
     }
+
+@app.get("/api/process-data/stats")
+async def get_process_stats(current_user: dict = Depends(get_current_user)):
+    """Fast endpoint to get raw counts (platforms, posts, comments) from master CSV"""
+    name = current_user["restaurant_name"]
+    try:
+        df_master = pd.read_csv(CSV_PATH)
+        df_res = df_master[df_master['source_name'].str.lower() == name.lower()]
+        
+        if df_res.empty:
+            return {"platforms": 0, "posts": 0, "comments": 0, "breakdown": {}}
+            
+        platforms = df_res['platform'].nunique()
+        posts = df_res['post_id'].nunique()
+        comments = len(df_res)
+        platform_counts = df_res['platform'].value_counts().to_dict()
+        
+        return {
+            "platforms": int(platforms),
+            "posts": int(posts),
+            "comments": int(comments),
+            "breakdown": platform_counts
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/process-data")
 async def process_data_endpoint(current_user: dict = Depends(get_current_user)):
