@@ -6,6 +6,7 @@ __pycache__/
 01_collection/tiktok_dataset.csv
 01_collection/tiktok_dataset_single.csv
 *.pt
+*.pth
 !*.pt.part_*
 
 # Frontend
