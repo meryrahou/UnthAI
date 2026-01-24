@@ -19,7 +19,7 @@ load_dotenv()
 # --- Configuration ---
 # Use relative path as default or get from env
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_CSV_PATH = os.path.join(BASE_DIR, "../data/master_data.csv")
+DEFAULT_CSV_PATH = os.path.join(BASE_DIR, "../data/FinalDataset.csv")
 
 CSV_PATH = os.getenv("CSV_PATH", DEFAULT_CSV_PATH)
 SECRET_KEY = os.getenv("SECRET_KEY", "unthai_super_secret_key")
@@ -291,7 +291,26 @@ async def process_data_endpoint(current_user: dict = Depends(get_current_user)):
             # Clear cache for this user so next request reloads from new file
             if name in data_cache:
                 del data_cache[name]
-            return {"status": "success", "message": "Data processed"}
+            
+            # Fetch summary stats to return to frontend
+            df = get_restaurant_df(name)
+            platforms = df['platform'].nunique()
+            posts = df['post_id'].nunique()
+            comments = len(df)
+            
+            # Platform breakdown
+            platform_counts = df['platform'].value_counts().to_dict()
+            
+            return {
+                "status": "success", 
+                "message": "Data processed",
+                "stats": {
+                    "platforms": int(platforms),
+                    "posts": int(posts),
+                    "comments": int(comments),
+                    "breakdown": platform_counts
+                }
+            }
         else:
             return {"status": "warning", "message": "No data found for this restaurant"}
             
@@ -384,7 +403,7 @@ async def get_posts(
             "platform": "googlemaps" if "maps" in platform.lower() else platform.lower().replace(" ", ""),
             "author": f"Post {int(pid)} from {platform}",
             "date": earliest_date,
-            "content": f"Analyzing {total_p} recent interactions.",
+            "content": total_p,
             "commentCount": total_p,
             "likes": int(p_df['likesCount'].sum()),
             "sentiment": {
@@ -454,6 +473,9 @@ async def get_post_comments(post_id: int, current_user: dict = Depends(get_curre
             "likesCount": int(row['likesCount']) if 'likesCount' in cols and pd.notnull(row['likesCount']) else 0,
             "predictions": preds
         })
+    
+    # Sort comments by likesCount descending
+    comments.sort(key=lambda x: x.get('likesCount', 0), reverse=True)
     
     return comments
 
@@ -537,7 +559,7 @@ async def get_trends(
     return result
 
 @app.get("/api/actions")
-async def get_actions(trend_period: str = "weekly", current_user: dict = Depends(get_current_user)):
+async def get_actions(trend_period: str = "monthly", current_user: dict = Depends(get_current_user)):
     df_user = get_restaurant_df(current_user["restaurant_name"])
     
     # Filter out out_of_scope
@@ -731,10 +753,12 @@ async def get_actions(trend_period: str = "weekly", current_user: dict = Depends
                 'Contact & Info': 'general'
             }.get(theme, 'general')
 
+            priority = 'high' if len(theme_inquiries) >= 10 else 'medium' if len(theme_inquiries) >= 5 else 'low'
+
             actions.append({
                 'id': action_id,
                 'type': 'inquiries',
-                'priority': 'medium',
+                'priority': priority,
                 'titleKey': 'questionsTitle',
                 'topicKey': f'pillers.{topic_key}',
                 'descKey': 'xQuestionsCustomers',
@@ -774,7 +798,11 @@ async def get_actions(trend_period: str = "weekly", current_user: dict = Depends
                     'topicKey': f'pillers.{cat}',
                     'descKey': 'increasingIssuesDesc',
                     'count': this_period_neg,
-                    'timeframeType': f'this{trend_period.capitalize()}',
+                    'timeframeType': {
+                        'weekly': 'thisWeek',
+                        'monthly': 'thisMonth',
+                        'quarterly': 'thisQuarter'
+                    }.get(trend_period, 'thisWeek'),
                     'platforms': [],
                     'samples': [s[:80] + "..." for s in samples],
                     'trend': trend_pct,
@@ -839,6 +867,10 @@ async def get_actions(trend_period: str = "weekly", current_user: dict = Depends
         'urgent': len([a for a in actions if a['priority'] == 'high']),
         'completed': 0  # Would track this in a real DB
     }
+    
+    # Sort cards by priority (high -> medium -> low)
+    priority_map = {"high": 0, "medium": 1, "low": 2}
+    actions.sort(key=lambda x: priority_map.get(x.get('priority', 'low'), 2))
     
     return {
         "actions": actions, 

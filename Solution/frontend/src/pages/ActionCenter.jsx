@@ -20,7 +20,7 @@ const ActionCenter = () => {
     const [actions, setActions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [stats, setStats] = useState({ total: 0, urgent: 0, completed: 0 });
-    const [trendPeriod, setTrendPeriod] = useState('weekly');
+    const [trendPeriod, setTrendPeriod] = useState('monthly');
 
     useEffect(() => {
         const fetchActions = async () => {
@@ -240,7 +240,7 @@ const ActionCenter = () => {
                                     {getIcon(action.type)}
                                 </div>
                                 <span className={`action-priority ${action.priority}`}>
-                                    {action.priority}
+                                    {t(action.priority)}
                                 </span>
                             </div>
 
@@ -248,13 +248,13 @@ const ActionCenter = () => {
                                 {action.titleKey ? t(action.titleKey, { topic: t(action.topicKey) }) : action.title}
                             </h3>
                             <p className="action-description">
-                                {action.descKey ? t(action.descKey, { count: action.count, topic: t(action.topicKey).toLowerCase() }) : action.description}
+                                {action.descKey ? t(action.descKey, { count: action.count, topic: t(action.topicKey).toLowerCase(), period: t(action.timeframeType) }) : action.description}
                             </p>
 
                             {action.trend && (
                                 <div className={`trend-indicator ${action.trend > 0 ? 'up' : 'down'}`}>
                                     {action.trend > 0 ? <TrendingUp size={14} /> : <TrendingDown size={14} />}
-                                    {Math.abs(action.trend)}% {t('thisWeek')}
+                                    {Math.abs(action.trend)}% {t(action.timeframeType)}
                                 </div>
                             )}
 
@@ -281,7 +281,7 @@ const ActionCenter = () => {
                                             className="platform-badge"
                                             style={{ borderColor: getPlatformColor(platform) }}
                                         >
-                                            {platform}
+                                            {t(platform.toLowerCase().split(' ').join(''))}
                                         </span>
                                     ))}
                                 </div>

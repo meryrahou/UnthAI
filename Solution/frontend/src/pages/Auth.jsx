@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sparkles, Mail, Lock, ArrowRight, Chrome, Sun, Moon } from 'lucide-react';
+import { Sparkles, Mail, Lock, ArrowRight, Chrome, Sun, Moon, Languages } from 'lucide-react';
 import { useApp } from '../utils/AppContext';
 import './Auth.css';
 
 const Auth = ({ onLogin }) => {
-    const { theme, toggleTheme, t } = useApp();
+    const { theme, toggleTheme, t, setRestaurantName, language, setLanguage } = useApp();
     const navigate = useNavigate();
     const [isLogin, setIsLogin] = useState(true);
-    const [restaurantName, setRestaurantName] = useState('');
+    const [restaurantName, setRestaurantNameState] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -18,8 +18,7 @@ const Auth = ({ onLogin }) => {
         setError('');
         setLoading(true);
 
-        // For the demo, if clicking Google without inputs, we fill it
-        const loginName = restaurantName || 'favorite restaurant';
+        const loginName = restaurantName || 'Autros';
         const loginPassword = password || '1234';
 
         try {
@@ -38,6 +37,7 @@ const Auth = ({ onLogin }) => {
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem('token', data.access_token);
+                setRestaurantName(loginName);
                 onLogin();
             } else {
                 const data = await response.json();
@@ -52,9 +52,23 @@ const Auth = ({ onLogin }) => {
 
     return (
         <div className="auth-container">
-            <button onClick={toggleTheme} className="theme-toggle-btn">
-                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
+            <div className="auth-top-actions">
+                <div className="lang-selector auth-lang">
+                    <Languages size={18} className="lang-icon" />
+                    <select
+                        value={language}
+                        onChange={(e) => setLanguage(e.target.value)}
+                        className="lang-select"
+                    >
+                        <option value="en">EN</option>
+                        <option value="fr">FR</option>
+                        <option value="ar">AR</option>
+                    </select>
+                </div>
+                <button onClick={toggleTheme} className="theme-toggle-btn">
+                    {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                </button>
+            </div>
             <div className="auth-visual">
                 <div className="visual-overlay"></div>
                 <div className="visual-content">
@@ -106,7 +120,7 @@ const Auth = ({ onLogin }) => {
                                     type="text"
                                     placeholder="e.g. Restaurant San Benito"
                                     value={restaurantName}
-                                    onChange={(e) => setRestaurantName(e.target.value)}
+                                    onChange={(e) => setRestaurantNameState(e.target.value)}
                                     required
                                 />
                             </div>

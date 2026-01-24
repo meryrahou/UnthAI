@@ -4,7 +4,7 @@ import { useApp } from '../utils/AppContext';
 import './Profile.css';
 
 const Profile = () => {
-    const { t } = useApp();
+    const { t, restaurantName } = useApp();
     return (
         <div className="profile-page animate-fade-in">
             <div className="page-header">
@@ -15,9 +15,9 @@ const Profile = () => {
             <div className="profile-content">
                 <div className="profile-sidebar">
                     <div className="glass-card user-main-card">
-                        <div className="avatar-large">M</div>
-                        <h2>Mery's Restaurant</h2>
-                        <p className="user-email">mery@unthai.dz</p>
+                        <div className="avatar-large">{restaurantName[0]}</div>
+                        <h2>{restaurantName}</h2>
+                        <p className="user-email">{restaurantName.toLowerCase().replace(' ', '.')}@unthai.dz</p>
                         <button className="edit-btn">{t('editProfile')}</button>
                     </div>
 

@@ -6,6 +6,7 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'dark');
     const [language, setLanguage] = useState(localStorage.getItem('language') || 'en');
+    const [restaurantName, setRestaurantName] = useState(localStorage.getItem('restaurantName') || 'Loading...');
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
@@ -17,6 +18,32 @@ export const AppProvider = ({ children }) => {
         document.documentElement.setAttribute('dir', language === 'ar' ? 'rtl' : 'ltr');
         localStorage.setItem('language', language);
     }, [language]);
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) return;
+            
+            try {
+                const response = await fetch('http://localhost:8001/api/user/me', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    setRestaurantName(data.restaurant_name);
+                }
+            } catch (err) {
+                console.error("Error fetching user in context:", err);
+            }
+        };
+        fetchUser();
+    }, []);
+
+    useEffect(() => {
+        if (restaurantName !== 'Loading...') {
+            localStorage.setItem('restaurantName', restaurantName);
+        }
+    }, [restaurantName]);
 
     const toggleTheme = () => {
         setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
@@ -44,7 +71,7 @@ export const AppProvider = ({ children }) => {
     };
 
     return (
-        <AppContext.Provider value={{ theme, toggleTheme, language, setLanguage, t }}>
+        <AppContext.Provider value={{ theme, toggleTheme, language, setLanguage, t, restaurantName, setRestaurantName }}>
             {children}
         </AppContext.Provider>
     );

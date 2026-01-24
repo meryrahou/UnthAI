@@ -76,16 +76,20 @@
 .action-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 20px;
+    gap: 32px;
 }
 
 .action-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 20px;
+    padding: 24px;
     transition: all 0.3s;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
 }
 
 .action-card:hover {
@@ -99,6 +103,7 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 12px;
+    width: 100%;
 }
 
 .action-priority {
@@ -141,7 +146,7 @@
 .action-meta {
     display: flex;
     gap: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 4px;
     flex-wrap: wrap;
 }
 
@@ -177,6 +182,7 @@
     gap: 12px;
     padding-top: 16px;
     border-top: 1px solid var(--border);
+    margin-top: auto;
 }
 
 .action-btn {
@@ -232,13 +238,18 @@
     gap: 4px;
     padding: 4px 8px;
     border-radius: 8px;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
+    width: fit-content;
+    margin-bottom: 12px;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .trend-indicator.up {
-    background: rgba(239, 68, 68, 0.15);
+    background: rgba(239, 68, 68, 0.08);
     color: var(--error);
+    border-color: rgba(239, 68, 68, 0.2);
 }
 
 .trend-indicator.down {
@@ -247,19 +258,22 @@
 }
 
 .action-samples {
-    margin-top: 12px;
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 8px;
-    border-left: 3px solid var(--primary);
+    margin-top: 4px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+    flex: 1;
+    width: 100%;
 }
 
 .action-sample {
-    font-size: 13px;
+    font-size: 13.5px;
     color: var(--text-muted);
     font-style: italic;
-    margin-bottom: 8px;
-    line-height: 1.4;
+    margin-bottom: 12px;
+    line-height: 1.5;
+    opacity: 0.85;
 }
 
 .trend-period-selector select:hover {

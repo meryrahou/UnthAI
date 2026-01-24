@@ -143,7 +143,7 @@ const PostAnalysis = () => {
                                     p === 'facebook' ? <Facebook size={18} /> :
                                         p === 'instagram' ? <Instagram size={18} /> :
                                             <MapPin size={18} />}
-                                <span>{p === 'googlemaps' ? 'Maps' : p.charAt(0).toUpperCase() + p.slice(1)}</span>
+                                <span>{t(p)}</span>
                                 <span className="platform-count">{count}</span>
                             </button>
                         );
@@ -162,7 +162,7 @@ const PostAnalysis = () => {
                                 <span className="post-author">{post.author}</span>
                                 <span className="post-date">{post.date}</span>
                             </div>
-                            <p className="post-excerpt">{post.content}</p>
+                            <p className="post-excerpt">{t('analyzingInteractions', { count: post.content })}</p>
                             <div className="post-stats">
                                 <span><MessageSquare size={14} /> {post.commentCount}</span>
                                 <span><ThumbsUp size={14} /> {post.likes}</span>
@@ -183,7 +183,7 @@ const PostAnalysis = () => {
                             <p>{activePost.author} • {activePost.date}</p>
                         </div>
                     </div>
-                    <p className="post-full-content">{activePost.content || "Select a post to view analysis."}</p>
+                    <p className="post-full-content">{activePost.content ? t('analyzingInteractions', { count: activePost.content }) : "Select a post to view analysis."}</p>
                 </div>
 
                 <div className="analysis-grid">

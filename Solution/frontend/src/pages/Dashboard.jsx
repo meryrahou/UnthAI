@@ -141,7 +141,9 @@ const Dashboard = () => {
                             </div>
                             <div className="stat-info">
                                 <p className="stat-label">{config.label}</p>
-                                <h3 className="stat-value">{stat.value}</h3>
+                                <h3 className="stat-value">
+                                    {(stat.id === 'pillar' || stat.id === 'complaint') ? t(`pillers.${stat.value.trim().toLowerCase().replace(' ', '')}`) : stat.value}
+                                </h3>
                             </div>
                             <div className="stat-trend">
                                 {config.trend} {stat.id === 'complaint' ? <ArrowDownRight size={14} /> : <ArrowUpRight size={14} />}
@@ -201,6 +203,7 @@ const Dashboard = () => {
                                     axisLine={false}
                                     tickLine={false}
                                     tick={{ fill: 'var(--text-muted)' }}
+                                    tickFormatter={(val) => t(`pillers.${val.toLowerCase()}`)}
                                 />
                                 <YAxis
                                     stroke="var(--text-muted)"
@@ -238,11 +241,11 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <span className="dot info"></span>
-                                {t('mostDiscussedPillar').replace('{value}', data.kpis.find(k => k.id === 'pillar')?.value || 'N/A')}
+                                {t('mostDiscussedPillar').replace('{value}', t(`pillers.${(data.kpis.find(k => k.id === 'pillar')?.value || 'N/A').trim().toLowerCase().replace(' ', '')}`))}
                             </li>
                             <li>
                                 <span className="dot neg"></span>
-                                {t('topNegativeSource').replace('{value}', data.kpis.find(k => k.id === 'complaint')?.value || 'N/A')}
+                                {t('topNegativeSource').replace('{value}', t(`pillers.${(data.kpis.find(k => k.id === 'complaint')?.value || 'N/A').trim().toLowerCase().replace(' ', '')}`))}
                             </li>
                         </ul>
                     </div>
@@ -258,7 +261,7 @@ const Dashboard = () => {
                                     plat.name === 'Facebook' ? '#1877f2' : '#4285f4';
                             return (
                                 <div key={idx} className="platform-item">
-                                    <div className="platform-name">{plat.name}</div>
+                                    <div className="platform-name">{t(plat.name.toLowerCase().split(' ').join(''))}</div>
                                     <div className="platform-bar-bg">
                                         <div
                                             className="platform-bar"

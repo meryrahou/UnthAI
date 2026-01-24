@@ -4,27 +4,7 @@ import { useApp } from '../utils/AppContext';
 import './Header.css';
 
 const Header = () => {
-    const [restaurantName, setRestaurantName] = useState('San Benito');
-    const { theme, toggleTheme, language, setLanguage, t } = useApp();
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await fetch('http://localhost:8001/api/user/me', {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    setRestaurantName(data.restaurant_name);
-                }
-            } catch (err) {
-                console.error("Error fetching user:", err);
-            }
-        };
-        fetchUser();
-    }, []);
+    const { theme, toggleTheme, language, setLanguage, t, restaurantName } = useApp();
 
     return (
         <header className="header">

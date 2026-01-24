@@ -14,13 +14,41 @@ import { useApp } from '../utils/AppContext';
 import './SocialConfig.css';
 
 const SocialConfig = () => {
-    const { t } = useApp();
+    const { t, restaurantName } = useApp();
     const [pref, setPref] = React.useState('time');
+    const [data, setData] = React.useState(null);
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:8001/api/dashboard/summary', {
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
+                });
+                if (response.ok) {
+                    const result = await response.json();
+                    setData(result);
+                }
+            } catch (err) {
+                console.error("Config fetch error:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const getPlatformStatus = (platName) => {
+        if (!data || !data.platform_dist) return 'pending';
+        const plat = data.platform_dist.find(p => p.name.toLowerCase().replace(' ', '') === platName.toLowerCase().replace(' ', ''));
+        return plat && plat.value > 0 ? 'connected' : 'pending';
+    };
+
     const accounts = [
-        { platform: 'TikTok', username: '@uncles_burger_dz', status: 'connected', icon: <Play /> },
-        { platform: 'Instagram', username: 'uncles_burger_dz', status: 'connected', icon: <Instagram /> },
-        { platform: 'Facebook', username: 'Uncles Burger DZ', status: 'pending', icon: <Facebook /> },
-        { platform: 'Google Maps', username: 'Uncles Burger Algiers', status: 'connected', icon: <MapPin /> },
+        { id: 'tiktok', platform: 'TikTok', username: getPlatformStatus('tiktok') === 'connected' ? `@${restaurantName.toLowerCase().replace(/\s+/g, '_')}` : t('connectToIdentify'), status: getPlatformStatus('tiktok'), icon: <Play /> },
+        { id: 'instagram', platform: 'Instagram', username: getPlatformStatus('instagram') === 'connected' ? restaurantName.toLowerCase().replace(/\s+/g, '_') : t('connectToIdentify'), status: getPlatformStatus('instagram'), icon: <Instagram /> },
+        { id: 'facebook', platform: 'Facebook', username: getPlatformStatus('facebook') === 'connected' ? restaurantName : t('connectToIdentify'), status: getPlatformStatus('facebook'), icon: <Facebook /> },
+        { id: 'googlemaps', platform: 'Google Maps', username: getPlatformStatus('googlemaps') === 'connected' ? restaurantName : t('connectToIdentify'), status: getPlatformStatus('googlemaps'), icon: <MapPin /> },
     ];
 
     return (
@@ -48,7 +76,7 @@ const SocialConfig = () => {
                                 </div>
                                 <div className={`status-badge ${acc.status}`}>
                                     {acc.status === 'connected' ? <CheckCircle2 size={14} /> : <RefreshCcw size={14} className="spin" />}
-                                    {acc.status}
+                                    {acc.status === 'connected' ? t('connected') || 'Connected' : t('pending') || 'Pending'}
                                 </div>
                             </div>
                         ))}

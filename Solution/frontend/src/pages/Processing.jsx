@@ -1,110 +1,193 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CheckCircle2, Circle, Loader2, Sparkles, Database } from 'lucide-react';
+import { 
+    CheckCircle2, 
+    Loader2, 
+    Sparkles, 
+    Database, 
+    Cpu, 
+    Search, 
+    MessageSquare, 
+    BarChart3,
+    Wand2
+} from 'lucide-react';
+import { useApp } from '../utils/AppContext';
 import './Processing.css';
 
 const Processing = () => {
     const navigate = useNavigate();
+    const { t, restaurantName } = useApp();
     const [currentStep, setCurrentStep] = useState(0);
+    const [progress, setProgress] = useState(0);
+    const [stats, setStats] = useState(null);
     const [error, setError] = useState(null);
+    const [subMessage, setSubMessage] = useState("");
+    const [displayCounts, setDisplayCounts] = useState({ platforms: 0, posts: 0, comments: 0 });
 
-    const steps = [
-        {
-            id: 1,
-            label: "Searching Owner's Social Media...",
-            icon: <Database size={18} />,
-            duration: 1500 // Simulated delay for visual effect
-        },
-        {
-            id: 2,
-            label: "Retrieving Comments & Feedback...",
-            icon: <Loader2 size={18} className="animate-spin" />,
-            duration: 2000
-        },
-        {
-            id: 3,
-            label: "Running AI Analysis & Predictions...",
-            icon: <Sparkles size={18} />,
-            duration: 2000
-        }
-    ];
+    // Step labels are now fetched via translations in the step rendering logic
 
     useEffect(() => {
         const processData = async () => {
             try {
-                // Step 1: Database/Social Lookup
+                // STAGE 1: SOCIAL SEARCH
                 setCurrentStep(0);
-                await new Promise(r => setTimeout(r, 1500));
-                
-                // Step 2: Retrieving logic (API Call)
-                setCurrentStep(1);
-                
-                // Trigger the actual backend processing here
-                // We do it in step 2 or 3. Let's do it parallel to step 2 animation or wait.
+                setProgress(10);
+                setSubMessage(restaurantName === 'Loading...' ? t('workspaceSubtitle') : t('stepSearch', { name: restaurantName }));
+                await new Promise(r => setTimeout(r, 3500));
+                setProgress(25);
+
                 const token = localStorage.getItem('token');
                 const response = await fetch('http://localhost:8001/api/process-data', {
                     method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
+                    headers: { 'Authorization': `Bearer ${token}` }
                 });
                 
-                if (!response.ok) {
-                    throw new Error("Failed to process data");
+                if (!response.ok) throw new Error("Processing failed");
+                const result = await response.json();
+                const fetchedStats = result.stats;
+                setStats(fetchedStats);
+
+                // Incremental count animation
+                const duration = 4000;
+                const startTime = performance.now();
+                const animateCounts = (now) => {
+                    const elapsed = now - startTime;
+                    const p = Math.min(elapsed / duration, 1);
+                    setDisplayCounts({
+                        platforms: Math.floor(p * fetchedStats.platforms),
+                        posts: Math.floor(p * fetchedStats.posts),
+                        comments: Math.floor(p * fetchedStats.comments)
+                    });
+                    if (p < 1) requestAnimationFrame(animateCounts);
+                };
+                requestAnimationFrame(animateCounts);
+
+                // STAGE 2: RETRIEVAL
+                setCurrentStep(1);
+                setProgress(40);
+                const platformNames = Object.keys(fetchedStats.breakdown)
+                    .map(p => t(p.toLowerCase().replace(' ', '')))
+                    .join(', ');
+                setSubMessage(t('stepFound', { count: fetchedStats.platforms, list: platformNames }));
+                await new Promise(r => setTimeout(r, 3000));
+                
+                setProgress(60);
+                setSubMessage(t('stepRetrieving', { pCount: fetchedStats.posts, cCount: fetchedStats.comments }));
+                await new Promise(r => setTimeout(r, 3500));
+
+                // STAGE 3: AI ANALYSIS (THE MAGIC STAGE)
+                setCurrentStep(2);
+                setProgress(75);
+                setSubMessage(t('stepAnalyzing'));
+                
+                // Simulate "processing comments" detail
+                for (let i = 1; i <= 5; i++) {
+                    setSubMessage(t('analyzingSentiment', { n: Math.floor((i/5) * fetchedStats.comments), total: fetchedStats.comments }));
+                    await new Promise(r => setTimeout(r, 1200));
                 }
                 
-                // Wait for animation to finish minimal time
-                await new Promise(r => setTimeout(r, 1000));
+                setProgress(90);
+                setSubMessage(t('stepGenerating'));
+                await new Promise(r => setTimeout(r, 3000));
+                
+                // STAGE 4: FINALIZING
+                setCurrentStep(3);
+                setProgress(100);
+                setSubMessage(t('stepAlmost'));
+                await new Promise(r => setTimeout(r, 2500));
 
-                // Step 3: AI Magic
-                setCurrentStep(2);
+                setSubMessage(t('workspaceFinalizing'));
                 await new Promise(r => setTimeout(r, 2000));
                 
-                // Done
                 navigate('/');
                 
             } catch (err) {
                 console.error(err);
-                setError("Something went wrong processing your data. Please try again.");
-                // Optionally navigate anyway or show error
-                setTimeout(() => navigate('/'), 3000);
+                setError(t('processFailed') || "Analysis failed. Please check your data sources.");
+                setTimeout(() => navigate('/config'), 4000);
             }
         };
 
         processData();
-    }, [navigate]);
+    }, [navigate, restaurantName, t]);
+
+    const steps = useMemo(() => [
+        { id: 0, icon: <Search />, label: t('stepSearch', { name: restaurantName }) },
+        { id: 1, icon: <Database />, label: "Data Extraction" },
+        { id: 2, icon: <Wand2 />, label: "AI Prediction Engine" },
+        { id: 3, icon: <BarChart3 />, label: "Workspace Preparation" }
+    ], [t, restaurantName]);
 
     return (
         <div className="processing-page">
-            <div className="processing-container">
-                <div className="spinner-ring"></div>
-                <h2>Setting up your Workspace</h2>
-                <p style={{color: '#888', marginBottom: '30px'}}>Please wait while UnthAI analyzes your data...</p>
-                
-                {error ? (
-                    <div style={{color: 'var(--error, #ef4444)'}}>{error}</div>
-                ) : (
-                    <div className="steps-list">
-                        {steps.map((step, index) => {
-                            let status = 'pending';
-                            if (index < currentStep) status = 'completed';
-                            if (index === currentStep) status = 'active';
+            {/* Background Magic Particles would go here if we had a library, using CSS magic instead */}
+            <div className="magic-bg">
+                <div className="blob"></div>
+                <div className="blob secondary"></div>
+            </div>
 
-                            return (
-                                <div key={step.id} className={`step-item ${status}`}>
-                                    <div className="step-icon">
-                                        {status === 'completed' ? (
-                                            <CheckCircle2 size={18} color="#10b981" />
-                                        ) : status === 'active' ? (
-                                            step.icon
-                                        ) : (
-                                            <Circle size={18} color="#444" />
-                                        )}
-                                    </div>
-                                    <div className="step-text">{step.label}</div>
+            <div className="processing-card glass-card">
+                <div className="card-top">
+                    <div className="ai-brain-container">
+                        <div className={`brain-icon ${currentStep === 2 ? 'pulsing-magic' : ''}`}>
+                            {currentStep < 2 ? <Cpu size={40} /> : <Sparkles size={40} className="sparkle-icon" />}
+                        </div>
+                        <div className="orbital-rings">
+                            <div className="ring"></div>
+                            <div className="ring"></div>
+                        </div>
+                    </div>
+                    
+                    <h2 className="workspace-title">{t('workspaceTitle')}</h2>
+                    <p className="workspace-subtitle">{t('workspaceSubtitle')}</p>
+                </div>
+
+                <div className="progress-section">
+                    <div className="progress-bar-wrapper">
+                        <div className="progress-fill" style={{ width: `${progress}%` }}>
+                            <div className="progress-glow"></div>
+                        </div>
+                    </div>
+                    <div className="progress-meta">
+                        <span className="current-submessage">{subMessage}</span>
+                        <span className="percentage">{progress}%</span>
+                    </div>
+                </div>
+
+                <div className="stats-grid">
+                    <div className="mini-stat">
+                        <span className="stat-num">{displayCounts.platforms}</span>
+                        <span className="stat-label">Platforms</span>
+                    </div>
+                    <div className="mini-stat">
+                        <span className="stat-num">{displayCounts.posts}</span>
+                        <span className="stat-label">Posts</span>
+                    </div>
+                    <div className="mini-stat">
+                        <span className="stat-num">{displayCounts.comments}</span>
+                        <span className="stat-label">Comments</span>
+                    </div>
+                </div>
+
+                <div className="processing-steps">
+                    {steps.map((step, idx) => {
+                        const status = idx < currentStep ? 'done' : (idx === currentStep ? 'active' : 'waiting');
+                        return (
+                            <div key={idx} className={`proc-step ${status}`}>
+                                <div className="proc-icon">
+                                    {status === 'done' ? <CheckCircle2 size={16} /> : step.icon}
                                 </div>
-                            );
-                        })}
+                                <div className="proc-label">{step.label}</div>
+                                {status === 'active' && <Loader2 size={14} className="spin-fast" />}
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {error && (
+                    <div className="proc-error fade-in">
+                        <span className="error-dot"></span>
+                        {error}
                     </div>
                 )}
             </div>
