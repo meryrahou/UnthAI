@@ -52,16 +52,22 @@ async def startup_event():
 
 # --- Dynamic Data Store ---
 data_cache = {}
+# Track which restaurants are currently being processed by the BERT model
+active_processing = set()
 
 def get_restaurant_df(restaurant_name: str):
+    # Check if a heavy model process is currently running for this restaurant
+    if restaurant_name in active_processing:
+        return None  # Signal that data is not ready yet
+        
     if restaurant_name in data_cache:
         return data_cache[restaurant_name]
     
     path = get_processed_path(restaurant_name)
     if not os.path.exists(path):
-        success = refresh_restaurant_data(restaurant_name)
-        if not success:
-            raise HTTPException(status_code=404, detail=f"No data found for {restaurant_name}")
+        # We don't trigger auto-refresh here to avoid blocking simple GET requests
+        # Instead, we rely on the /api/process-data trigger
+        return pd.DataFrame()
             
     df = pd.read_csv(path)
     df = df.fillna("")
@@ -150,6 +156,8 @@ async def get_dashboard_summary(
     current_user: dict = Depends(get_current_user)
 ):
     df_user = get_restaurant_df(current_user["restaurant_name"])
+    if df_user is None:
+        raise HTTPException(status_code=202, detail="AI Analysis in progress...")
     if df_user.empty:
         return {"error": "No data available"}
 
@@ -309,30 +317,28 @@ async def get_process_stats(current_user: dict = Depends(get_current_user)):
 
 @app.post("/api/process-data")
 async def process_data_endpoint(current_user: dict = Depends(get_current_user)):
-    """
-    Triggers the data processing pipeline:
-    1. Loads raw data from Master CSV
-    2. Filters for the specific restaurant
-    3. Runs AI models (Sentiment, Classification)
-    4. Saves to processed cache
-    """
     name = current_user["restaurant_name"]
     
+    if name in active_processing:
+        return {"status": "processing", "message": "Already processing"}
+        
     try:
+        active_processing.add(name)
         success = refresh_restaurant_data(name)
         
         if success:
-            # Clear cache for this user so next request reloads from new file
+            # Clear cache for this user
             if name in data_cache:
                 del data_cache[name]
             
-            # Fetch summary stats to return to frontend
+            # Fetch summary stats
             df = get_restaurant_df(name)
+            if df is None:
+                return {"status": "warning", "message": "Data still being finalized"}
+
             platforms = df['platform'].nunique()
             posts = df['post_id'].nunique()
             comments = len(df)
-            
-            # Platform breakdown
             platform_counts = df['platform'].value_counts().to_dict()
             
             return {
@@ -350,6 +356,9 @@ async def process_data_endpoint(current_user: dict = Depends(get_current_user)):
             
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        if name in active_processing:
+            active_processing.remove(name)
 
 @app.get("/api/posts")
 async def get_posts(
@@ -358,6 +367,8 @@ async def get_posts(
     current_user: dict = Depends(get_current_user)
 ):
     df_user = get_restaurant_df(current_user["restaurant_name"])
+    if df_user is None:
+        raise HTTPException(status_code=202, detail="AI Analysis in progress...")
     
     d_df = df_user.copy()
     if 'date_dt' not in d_df.columns:
@@ -453,6 +464,8 @@ async def get_posts(
 @app.get("/api/posts/{post_id}/comments")
 async def get_post_comments(post_id: int, current_user: dict = Depends(get_current_user)):
     df_user = get_restaurant_df(current_user["restaurant_name"])
+    if df_user is None:
+        raise HTTPException(status_code=202, detail="AI Analysis in progress...")
     
     # Filter by the physical post_id column
     c_df = df_user[df_user['post_id'] == post_id].head(1000)
@@ -467,37 +480,58 @@ async def get_post_comments(post_id: int, current_user: dict = Depends(get_curre
         except:
             preds = []
             
+        # Determine sentiment type and main category with priority
+        c_type = "neutral"
         main_cat = "General"
-        # Check model predictions first
-        if preds and len(preds) > 0:
+        
+        # --- NEW PRIORITY FOR FLAGGING ---
+        # 1. Actionable (Inquiry / Recommendation)
+        # 2. Positive (Appreciation)
+        # 3. Negative (Complaint)
+        
+        # Data preparation
+        preds_str = str(preds).lower()
+        has_inq = any('inquiry' in str(p).lower() for p in preds) or "?" in str(row.get('comment_text', ''))
+        has_rec = any('recommendation' in str(p).lower() for p in preds)
+        has_appreciation = any('_appreciation' in str(p).lower() or '_positive' in str(p).lower() for p in preds) or str(row.get('feeling', '')).lower() == 'positive'
+        has_complaint = any('_complaint' in str(p).lower() or '_negative' in str(p).lower() for p in preds)
+        has_out_of_scope = any('out_of_scope' in str(p).lower() for p in preds) or str(row.get('out_of_scope', '')).lower() in ['true', '1', 'yes']
+
+        if has_inq:
+            c_type = "inquiry"
+        elif has_rec:
+            c_type = "recommendation"
+        elif has_appreciation:
+            c_type = "appreciation"
+        elif has_complaint:
+            c_type = "complaint"
+        elif has_out_of_scope:
+            c_type = "out_of_scope"
+
+        # Determine Main Category (Link it to the flagged type if possible)
+        if has_complaint and not (has_inq or has_rec or has_appreciation):
+            for p in preds:
+                if '_complaint' in str(p).lower() or '_negative' in str(p).lower():
+                    main_cat = str(p).split('_')[0].capitalize()
+                    break
+        elif preds:
             main_cat = str(preds[0]).split('_')[0].capitalize()
         
-        # Determine sentiment type
-        c_type = "neutral"
-        if str(row.get('out_of_scope', '')).lower() in ['true', '1', 'yes']:
-            c_type = "out_of_scope"
-        elif any("recommendation" in str(p).lower() for p in preds): 
-            c_type = "recommendation"
-        elif any("inquiry" in str(p).lower() for p in preds): 
-            c_type = "inquiry"
-        elif str(row.get('feeling', '')).lower() == 'positive': 
-            c_type = "appreciation"
-        elif str(row.get('feeling', '')).lower() == 'negative': 
-            c_type = "complaint"
-        
-        # Fallback/Refine both category and type from raw columns
+        # Sync with raw columns if model predictions are missing
         for cat_col in ['food', 'service', 'place', 'delivery', 'price', 'treatment']:
             val = str(row.get(cat_col, '')).lower()
-            if val != "":
-                # If we were at "General", fix the category
-                if main_cat == "General":
-                    main_cat = cat_col.capitalize()
-                
-                # If it's a special type, prioritize it over general feeling
-                if val == 'recommendation': 
-                    c_type = "recommendation"
-                elif val == 'inquiry': 
-                    c_type = "inquiry"
+            if val == 'complaint' and c_type != 'out_of_scope':
+                c_type = "complaint"
+                if main_cat == "General": main_cat = cat_col.capitalize()
+            elif val == 'recommendation' and c_type in ['neutral', 'appreciation']:
+                c_type = "recommendation"
+                if main_cat == "General": main_cat = cat_col.capitalize()
+            elif val == 'inquiry' and c_type in ['neutral', 'appreciation']:
+                c_type = "inquiry"
+                if main_cat == "General": main_cat = cat_col.capitalize()
+            elif val == 'appreciation' and c_type == 'neutral':
+                c_type = "appreciation"
+                if main_cat == "General": main_cat = cat_col.capitalize()
 
         comments.append({
             "text": str(row.get('comment_text', 'No content')),
@@ -520,6 +554,8 @@ async def get_trends(
     current_user: dict = Depends(get_current_user)
 ):
     df_user = get_restaurant_df(current_user["restaurant_name"])
+    if df_user is None:
+        raise HTTPException(status_code=202, detail="AI Analysis in progress...")
     
     # Filter by date
     d_df = df_user.copy()
@@ -595,6 +631,8 @@ async def get_trends(
 @app.get("/api/actions")
 async def get_actions(trend_period: str = "monthly", current_user: dict = Depends(get_current_user)):
     df_user = get_restaurant_df(current_user["restaurant_name"])
+    if df_user is None:
+        raise HTTPException(status_code=202, detail="AI Analysis in progress...")
     
     # Filter out out_of_scope
     df_user = df_user[df_user['out_of_scope'].astype(str).str.lower() != 'true']
@@ -915,6 +953,8 @@ async def get_actions(trend_period: str = "monthly", current_user: dict = Depend
 @app.get("/api/ai/insights")
 async def get_ai_insights(current_user: dict = Depends(get_current_user)):
     df_user = get_restaurant_df(current_user["restaurant_name"])
+    if df_user is None:
+        raise HTTPException(status_code=202, detail="AI Analysis in progress...")
     pos_len = len(df_user[df_user['feeling'] == 'positive'])
     return [
         {

@@ -56,10 +56,9 @@ const Processing = () => {
                 // STAGE 0: SOCIAL SEARCH
                 setCurrentStep(0);
                 setSubMessage(restaurantName === 'Loading...' ? t('workspaceSubtitle') : t('stepSearch', { name: restaurantName }));
-                await animateSmoothly(1500, 0, 15);
+                await animateSmoothly(2000, 0, 15);
 
                 // --- FAST STATS FETCH ---
-                // Get the counts immediately from the master data
                 const statsRes = await fetch('http://localhost:8001/api/process-data/stats', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
@@ -69,9 +68,7 @@ const Processing = () => {
                 // STAGE 1: DATA EXTRACTION
                 setCurrentStep(1);
                 setSubMessage(t('dataExtraction'));
-                
-                // Animate counts showing up
-                await animateSmoothly(2500, 15, 40, (ratio) => {
+                await animateSmoothly(2000, 15, 30, (ratio) => {
                     setDisplayCounts({
                         platforms: Math.floor(ratio * stats.platforms),
                         posts: Math.floor(ratio * stats.posts),
@@ -79,36 +76,36 @@ const Processing = () => {
                     });
                 });
 
-                // STAGE 2: AI PREDICTION ENGINE
-                // Start the heavy backend fetch NOW
-                const aiProcessPromise = fetch('http://localhost:8001/api/process-data', {
-                    method: 'POST',
-                    headers: { 'Authorization': `Bearer ${token}` }
-                }).then(res => {
-                    if (!res.ok) throw new Error("AI Processing failed");
-                    return res.json();
-                });
-
+                // STAGE 2: AI PREDICTION ENGINE (STRICT WAIT)
                 setCurrentStep(2);
                 setSubMessage(t('aiPredictionEngine'));
                 
-                // Run a fake but realistic progress while AI works
-                const showAIProgress = animateSmoothly(10000, 40, 90, (ratio) => {
-                    if (ratio > 0.4 && ratio < 0.5) setSubMessage(t('stepAnalyzing'));
-                    if (ratio > 0.8) setSubMessage(t('stepAlmost'));
+                // 1. Kick off backend inference
+                const aiProcessPromise = fetch('http://localhost:8001/api/process-data', {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${token}` }
                 });
 
-                // Wait for the AI backend task to finish
-                await Promise.all([aiProcessPromise, showAIProgress]);
+                // 2. Run background animation
+                const minAnimationTime = Math.max(5000, (stats.comments / 20) * 1000); 
+                const showAIProgress = animateSmoothly(minAnimationTime, 30, 85, (ratio) => {
+                    const current = Math.min(Math.floor(ratio * stats.comments), stats.comments);
+                    setSubMessage(`${t('analyzingSentiment', { n: current, total: stats.comments })}...`);
+                });
 
-                // STAGE 3: WORKSPACE PREP
+                // 3. Wait for BOTH (Strict Link)
+                const [backendRes] = await Promise.all([aiProcessPromise, showAIProgress]);
+                if (!backendRes.ok) throw new Error("AI Prediction failed");
+                
+                // STAGE 3: WORKSPACE PREP (Happens AFTER model is 100% done)
                 setCurrentStep(3);
                 setSubMessage(t('stepGenerating'));
-                await animateSmoothly(2000, 90, 100);
+                await animateSmoothly(3000, 85, 100);
 
                 setSubMessage(t('workspaceFinalizing'));
-                await new Promise(r => setTimeout(r, 1000));
+                await new Promise(r => setTimeout(r, 1500));
                 
+                // FINALLY NAVIGATE
                 navigate('/');
                 
             } catch (err) {
