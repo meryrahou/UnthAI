@@ -140,3 +140,13 @@ button {
   color: var(--primary);
   flex-shrink: 0;
 }
+
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 24px !important;
+  }
+  
+  .page-header .subtitle {
+    font-size: 13px !important;
+  }
+}

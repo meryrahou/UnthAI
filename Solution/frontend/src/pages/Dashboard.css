@@ -326,7 +326,7 @@
     .stats-grid,
     .charts-row,
     .insights-preview-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         gap: 16px;
     }
 

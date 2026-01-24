@@ -138,6 +138,7 @@
     color: var(--text-muted);
     line-height: 1.5;
     display: -webkit-box;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -552,5 +553,14 @@
 
     .platform-btn {
         min-width: 100%;
+    }
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .main-analysis {
+        padding-right: 0;
     }
 }

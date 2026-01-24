@@ -111,9 +111,25 @@
         border-top: 1px solid var(--border);
     }
 
-    .logo-container,
-    .sidebar-footer {
+    .logo-container {
         display: none;
+    }
+
+    .sidebar-footer {
+        display: flex;
+        border-top: none;
+        padding-top: 0;
+        margin-top: 0;
+    }
+
+    .logout-btn,
+    .nav-item span {
+        display: none;
+    }
+    
+    .nav-item {
+        padding: 8px;
+        justify-content: center;
     }
 
     .nav-links {

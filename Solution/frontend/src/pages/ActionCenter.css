@@ -272,3 +272,24 @@
 .action-sample:last-child {
     margin-bottom: 0;
 }
+@media (max-width: 768px) {
+    .action-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .action-stats {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .action-tabs {
+        overflow-x: auto;
+        padding-bottom: 8px;
+    }
+}

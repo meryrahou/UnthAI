@@ -145,4 +145,12 @@
     .vibrant-grid {
         grid-template-columns: 1fr;
     }
+    .topic-cloud-container {
+        height: 350px;
+        border-radius: 16px;
+    }
+
+    .trends-page {
+        padding: 16px;
+    }
 }
