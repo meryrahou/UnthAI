@@ -80,10 +80,18 @@ const Processing = () => {
                 setProgress(75);
                 setSubMessage(t('stepAnalyzing'));
                 
-                // Simulate "processing comments" detail
-                for (let i = 1; i <= 5; i++) {
-                    setSubMessage(t('analyzingSentiment', { n: Math.floor((i/5) * fetchedStats.comments), total: fetchedStats.comments }));
-                    await new Promise(r => setTimeout(r, 1200));
+                // Scale duration based on comment volume (1 second for every 20 comments)
+                const processingDuration = Math.max((fetchedStats.comments / 20) * 1000, 4000);
+                const stepsCount = 10;
+                const stepDelay = processingDuration / stepsCount;
+
+                for (let i = 1; i <= stepsCount; i++) {
+                    const currentProcessed = Math.min(Math.floor((i / stepsCount) * fetchedStats.comments), fetchedStats.comments);
+                    setSubMessage(t('analyzingSentiment', { 
+                        n: currentProcessed, 
+                        total: fetchedStats.comments 
+                    }));
+                    await new Promise(r => setTimeout(r, stepDelay));
                 }
                 
                 setProgress(90);
