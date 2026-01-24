@@ -980,7 +980,7 @@ async def lab_predict(request: PredictRequest, current_user: dict = Depends(get_
         clean_comment = re.sub(r'\s*\[(COMPLAINT|INQUIRY|APPRECIATION|RECOMMENDATION|OUT_OF_SCOPE)\]\s*$', '', request.comment, flags=re.IGNORECASE)
         
         # Predict with optimized threshold
-        preds = model_service.predict_batch([clean_comment], threshold=0.8)[0]
+        preds = model_service.predict_batch([clean_comment], threshold=0.6)[0]
         
         # Map to platform labels
         intents = model_service.map_to_platform_labels(preds)

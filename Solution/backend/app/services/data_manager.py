@@ -50,7 +50,7 @@ def refresh_restaurant_data(restaurant_name):
         clean_comments = [re.sub(r'\s*\[(COMPLAINT|INQUIRY|APPRECIATION|RECOMMENDATION|OUT_OF_SCOPE)\]\s*$', '', str(c), flags=re.IGNORECASE) for c in comments]
         
         print(f"--- 🧠 Running BERT Inference on {len(comments)} comments ---")
-        all_preds = model_service.predict_batch(clean_comments, threshold=0.8)
+        all_preds = model_service.predict_batch(clean_comments, threshold=0.5)
         print(f"✅ BERT Inference COMPLETE for {len(comments)} comments.")
         
         # Prepare processed columns

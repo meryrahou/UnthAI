@@ -43,7 +43,7 @@ class ModelService:
             print(f"❌ Error initializing Model Service: {e}")
             raise e
 
-    def predict_batch(self, comments: List[str], threshold: float = 0.8) -> List[List[str]]:
+    def predict_batch(self, comments: List[str], threshold: float = 0.6) -> List[List[str]]:
         if not comments:
             return []
         
@@ -59,7 +59,8 @@ class ModelService:
 
         with torch.no_grad():
             outputs = self.model(input_ids=encoding['input_ids'], attention_mask=encoding['attention_mask'])
-            probs = torch.sigmoid(outputs.logits).cpu().numpy()
+            probs = torch.sigmoid(outputs.logits)
+            preds = (probs >= threshold).int().cpu().numpy()
 
         results = []
         for i in range(len(valid_comments)):
@@ -67,30 +68,7 @@ class ModelService:
                 results.append([])
                 continue
             
-            # --- SMARTER LABEL SELECTION ---
-            # 1. Get all labels above threshold
-            current_probs = probs[i]
-            
-            # Group labels by pillar (food, service, etc)
-            pillar_best = {} # {pillar: (label_index, prob)}
-            
-            for j, prob in enumerate(current_probs):
-                if prob >= threshold:
-                    label = self.label_columns[j]
-                    pillar = label.split('_')[0]
-                    
-                    # Within each pillar, only keep the one with highest probability
-                    if pillar not in pillar_best or prob > pillar_best[pillar][1]:
-                        pillar_best[pillar] = (j, prob)
-            
-            predicted_labels = [self.label_columns[idx] for idx, prob in pillar_best.values()]
-            
-            # Fallback: If nothing is above threshold, take the absolute top 1 if it's reasonably confident
-            if not predicted_labels:
-                top_idx = current_probs.argmax()
-                if current_probs[top_idx] > 0.3: # Absolute floor
-                    predicted_labels = [self.label_columns[top_idx]]
-
+            predicted_labels = [self.label_columns[j] for j, val in enumerate(preds[i]) if val == 1]
             results.append(predicted_labels)
         
         return results
