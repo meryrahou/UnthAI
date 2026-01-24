@@ -71,17 +71,12 @@ def refresh_restaurant_data(restaurant_name):
             out_of_scope_list.append(is_out_of_scope)
             
             # 4. Fill individual category columns (for dashboard summary logic)
-            # This ensures compatibility with existing main.py logic
             row_cats = {cat: "" for cat in categories}
             for p in preds:
                 for cat in categories:
                     if p.startswith(f"{cat}_"):
-                        if "_positive" in p: 
-                            row_cats[cat] = "appreciation"
-                        elif "_negative" in p: 
-                            row_cats[cat] = "complaint"
-                        # We can add inquiry/recommendation if the model supported them specifically
-                        # For now, BERT maps most to appreciation/complaint/neutral
+                        intent = p.split('_')[1]
+                        row_cats[cat] = intent
             
             for cat in categories:
                 cat_data[cat].append(row_cats[cat])

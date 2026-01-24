@@ -166,6 +166,10 @@ async def get_dashboard_summary(
     if d_df.empty:
         return {"error": "No valid dates found in data"}
 
+    # Exclude Out of Scope comments from dashboard analytics
+    if 'out_of_scope' in d_df.columns:
+        d_df = d_df[d_df['out_of_scope'] != True]
+
     if start_date and end_date and start_date != "" and end_date != "":
         try:
             s_dt = pd.to_datetime(start_date, utc=True)
@@ -385,6 +389,10 @@ async def get_posts(
         except Exception as e:
             print(f"Filter error in posts: {e}")
 
+    # Exclude Out of Scope comments from post lists
+    if 'out_of_scope' in d_df.columns:
+        d_df = d_df[d_df['out_of_scope'] != True]
+
     # Group by post_id to get unique posts
     post_ids = d_df['post_id'].unique().tolist()
     posts = []
@@ -472,6 +480,11 @@ async def get_post_comments(post_id: int, current_user: dict = Depends(get_curre
     
     # Filter by the physical post_id column
     c_df = df_user[df_user['post_id'] == post_id].head(1000)
+    
+    # Exclude Out of Scope from detailed comment view
+    if 'out_of_scope' in c_df.columns:
+        c_df = c_df[c_df['out_of_scope'] != True]
+        
     if c_df.empty: return []
     
     comments = []
